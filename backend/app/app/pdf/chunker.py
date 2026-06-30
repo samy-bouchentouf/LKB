@@ -5,8 +5,8 @@ class PDFChunker:
 
     def __init__(
         self,
-        chunk_size=1000,
-        chunk_overlap=200
+        chunk_size=600,
+        chunk_overlap=100
     ):
 
         self.splitter = RecursiveCharacterTextSplitter(
@@ -22,25 +22,6 @@ class PDFChunker:
         )
 
     def chunk_pages(self, pages):
-        """
-        pages =
-        [
-            {
-                "page": 1,
-                "text": "..."
-            }
-        ]
-
-        retourne
-
-        [
-            {
-                "page": 1,
-                "chunk": 0,
-                "content": "..."
-            }
-        ]
-        """
 
         chunks = []
 

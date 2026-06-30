@@ -36,11 +36,14 @@ class PDFImporter:
         author_id=None
     ):
 
+        print(f"📄 Lecture de {pdf_path}")
         pages = PDFExtractor.extract_pages(pdf_path)
+        print(f"✓ {len(pages)} pages extraites")
 
         chunker = PDFChunker()
 
         chunks = chunker.chunk_pages(pages)
+        print(f"✓ {len(chunks)} chunks créés")
 
         for chunk in chunks:
 
@@ -54,7 +57,7 @@ class PDFImporter:
                 document_id=document.id,
                 author_id=author_id
             )
-
+        
         return len(chunks)
 
     @staticmethod
@@ -86,7 +89,7 @@ class PDFImporter:
             experiment_id,
             author_id
         )
-
+        print("✓ Import terminé")
         return {
             "document": document,
             "chunks_created": n_chunks

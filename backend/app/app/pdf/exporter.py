@@ -29,11 +29,19 @@ class JSONExporter:
 
                     "document": item.document.title if item.document else None,
 
+                    "filepath": item.document.filepath if item.document else None,
+
                     "component": item.component.name if item.component else None,
+
+                    "component_id": item.component_id,
 
                     "experiment": item.experiment.name if item.experiment else None,
 
+                    "experiment_id": item.experiment_id,
+
                     "author": item.author.name if item.author else None,
+
+                    "author_id": item.author_id,
 
                     "page": item.page_number,
 
@@ -76,11 +84,19 @@ class JSONExporter:
 
                     "document": item.document.title if item.document else None,
 
+                    "filepath": item.document.filepath if item.document else None,
+
                     "component": item.component.name if item.component else None,
+
+                    "component_id": item.component_id,
 
                     "experiment": item.experiment.name if item.experiment else None,
 
+                    "experiment_id": item.experiment_id,
+
                     "author": item.author.name if item.author else None,
+
+                    "author_id": item.author_id,
 
                     "page": item.page_number,
 
@@ -108,6 +124,25 @@ class JSONExporter:
                 f,
                 indent=4,
                 ensure_ascii=False
+            )
+
+        return filename
+    
+    @staticmethod
+
+    def export_document_to_json(document_id):
+
+        data = JSONExporter.export_document(document_id)
+
+        filename = f"document_{document_id}.json"
+
+        with open(filename, "w", encoding="utf-8") as f:
+
+            json.dump(
+            data,
+            f,
+            indent=4,
+            ensure_ascii=False
             )
 
         return filename
