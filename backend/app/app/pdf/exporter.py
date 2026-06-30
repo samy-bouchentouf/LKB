@@ -1,3 +1,4 @@
+from pathlib import Path
 import json
 
 from ..database import SessionLocal
@@ -117,7 +118,12 @@ class JSONExporter:
 
         data = JSONExporter.export_all()
 
-        with open(filename, "w", encoding="utf-8") as f:
+        # Dossier backend (racine du projet)
+        backend_root = Path(__file__).resolve().parents[2]
+
+        output_file = backend_root / filename
+
+        with open(output_file, "w", encoding="utf-8") as f:
 
             json.dump(
                 data,
@@ -126,7 +132,7 @@ class JSONExporter:
                 ensure_ascii=False
             )
 
-        return filename
+        return str(output_file)
     
     @staticmethod
 
