@@ -382,6 +382,10 @@
         const button = document.getElementById("send-btn");
         const messagesContainer = document.getElementById("chat-messages");
         const placeholder = document.getElementById("chat-placeholder");
+        
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
         button.addEventListener("click", async () => {
             const message = input.value.trim();
@@ -403,6 +407,18 @@
             
             input.value = "";
             
+            // ✅ loader
+            const loadingMsg = document.createElement("div");
+            loadingMsg.className = "flex justify-start";
+            loadingMsg.innerHTML = `
+                <div class="bg-white border border-stone-200 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
+                    <p class="text-xs font-bold text-[#2E5CB8] mb-1">🤖 LKB Assistant</p>
+                    <p class="text-sm text-stone-400 animate-pulse">LKB écrit...</p>
+                </div>
+            `;
+            messagesContainer.appendChild(loadingMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
             // ✅ appel backend
             const res = await fetch("http://localhost:3000/api/chat", {
                 method: "POST",
@@ -413,7 +429,9 @@
             });
         
             const data = await res.json();
-        
+            await sleep(1000);
+            loadingMsg.remove();
+
             // ✅ réponse IA
             const botMsg = document.createElement("div");
             botMsg.className = "flex justify-start";
@@ -426,6 +444,12 @@
             messagesContainer.appendChild(botMsg);
             
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        });
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault(); // empêche retour à la ligne
+                button.click();     // déclenche l'envoi
+            }
         });
         </script>
 </body>
