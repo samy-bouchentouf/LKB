@@ -86,7 +86,7 @@ class Document(Base):
 class KnowledgeItem(Base):
     __tablename__ = "knowledge_item"
     id = Column(Integer, primary_key=True)
-    source_type = Column(String, nullable=False)
+    type = Column(String, nullable=False)
     content = Column(Text, nullable=False)
     page_number = Column(Integer)
     chunk_index = Column(Integer)
