@@ -1,14 +1,8 @@
 import express from "express";
+import { handleChat } from "../controllers/chat.controller.js";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
-  // afficher ce que reçoit le backend
-  console.log(req.body);
-
-  res.json({
-    message: "message reçu"
-  });
-});
+router.post("/", handleChat);
 
 export default router;
