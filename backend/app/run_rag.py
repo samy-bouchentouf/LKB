@@ -1,7 +1,11 @@
 import sys
+from rag import rag_answer_expert
 
-# récupérer le message envoyé par Node
-message = sys.argv[1]
+# récupérer la question
+query = sys.argv[1]
 
-# réponse fake pour tester
-print(f"Python a reçu : {message}")
+# appeler le RAG
+response = rag_answer_expert(query)
+
+# renvoyer vers Node
+print(response)
