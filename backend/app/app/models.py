@@ -38,6 +38,10 @@ class Component(Base):
         "KnowledgeItem",
         back_populates="component"
     )
+    documents = relationship(
+    "Document",
+    back_populates="component"
+    )       
 
 class Experiment(Base):
     __tablename__ = "experiment"
@@ -78,6 +82,11 @@ class Document(Base):
     year = Column(Integer)
     description = Column(Text)
     created_at = Column(DateTime, default=datetime.utcnow)
+    component_id = Column(Integer,ForeignKey("component.id"),nullable=True)
+    component = relationship(
+    "Component",
+    back_populates="documents"
+    )
     knowledge_items = relationship(
         "KnowledgeItem",
         back_populates="document"

@@ -16,7 +16,8 @@ class PDFImporter:
         document_type="paper",
         authors=None,
         year=None,
-        description=None
+        description=None,
+        component_id=None
     ):
 
         return crud_document.add(
@@ -25,7 +26,8 @@ class PDFImporter:
             type=document_type,
             authors=authors,
             year=year,
-            description=description
+            description=description,
+            component_id=component_id
         )
 
     @staticmethod
@@ -88,7 +90,8 @@ class PDFImporter:
             document_type=document_type,
             authors=authors,
             year=year,
-            description=description
+            description=description,
+            component_id=component_id
         )
         print(f"✅ Document créé (id={document.id})")
 
