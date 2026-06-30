@@ -30,6 +30,8 @@ class JSONExporter:
 
                     "document": item.document.title if item.document else None,
 
+                    "document_id": item.document_id,
+
                     "filepath": item.document.filepath if item.document else None,
 
                     "component": item.component.name if item.component else None,
@@ -84,6 +86,8 @@ class JSONExporter:
                     "source": item.type,
 
                     "document": item.document.title if item.document else None,
+
+                    "document_id": item.document_id,
 
                     "filepath": item.document.filepath if item.document else None,
 
