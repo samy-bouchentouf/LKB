@@ -19,25 +19,72 @@ class JSONExporter:
 
             data.append({
 
+                "id": item.id,
+
                 "content": item.content,
 
                 "metadata": {
 
-                    "id": item.id,
+                    "source": item.type,
 
-                    "type": item.type,
+                    "document": item.document.title if item.document else None,
+
+                    "component": item.component.name if item.component else None,
+
+                    "experiment": item.experiment.name if item.experiment else None,
+
+                    "author": item.author.name if item.author else None,
 
                     "page": item.page_number,
 
                     "chunk": item.chunk_index,
 
-                    "component_id": item.component_id,
+                    "created_at": str(item.created_at)
 
-                    "experiment_id": item.experiment_id,
+                }
 
-                    "document_id": item.document_id,
+            })
 
-                    "author_id": item.author_id,
+        db.close()
+
+        return data
+
+    @staticmethod
+    def export_document(document_id):
+
+        db = SessionLocal()
+
+        knowledge_items = (
+            db.query(KnowledgeItem)
+            .filter(KnowledgeItem.document_id == document_id)
+            .all()
+        )
+
+        data = []
+
+        for item in knowledge_items:
+
+            data.append({
+
+                "id": item.id,
+
+                "content": item.content,
+
+                "metadata": {
+
+                    "source": item.type,
+
+                    "document": item.document.title if item.document else None,
+
+                    "component": item.component.name if item.component else None,
+
+                    "experiment": item.experiment.name if item.experiment else None,
+
+                    "author": item.author.name if item.author else None,
+
+                    "page": item.page_number,
+
+                    "chunk": item.chunk_index,
 
                     "created_at": str(item.created_at)
 
