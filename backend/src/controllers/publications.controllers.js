@@ -101,7 +101,19 @@ app.get('/api/files', (req, res) => {
     });
 });
 
+app.delete('/api/files/:filename', (req, res) => {
+            const filename = req.params.filename;
+            const filePath = path.join(UPLOAD_DIR, filename);
 
+            if (!fs.existsSync(filePath)) {
+                return res.status(404).json({ success: false, message: 'Fichier introuvable.' });
+            }
+
+            fs.unlink(filePath, (err) => {
+                if (err) return res.status(500).json({ success: false, message: 'Erreur suppression.' });
+                res.json({ success: true, message: 'Fichier supprimé.' });
+            });
+        });
 
 // Lancement du serveur
 app.listen(PORT, () => {
