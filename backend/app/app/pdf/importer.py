@@ -90,12 +90,8 @@ class PDFImporter:
             document_type=document_type,
             authors=authors,
             year=year,
-<<<<<<< Updated upstream
-            description=description,
+            description=description, # y'avait un conflit ici - avoir si ça a causé des problèmes
             component_id=component_id
-=======
-            description=description
->>>>>>> Stashed changes
         )
         print(f"✅ Document créé (id={document.id})")
 
