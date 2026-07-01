@@ -2791,5 +2791,24 @@
             "chunk": null,
             "created_at": "2026-07-01 08:12:04.829887"
         }
+    },
+    {
+        "id": 148,
+        "content": "Title:\nDetector saturated\n\nProblem:\nOutput stuck at 5V\n\nCause:\nGain set to maximum\n\nSolution:\nReduce gain to x10\n",
+        "metadata": {
+            "source": "troubleshooting",
+            "document": null,
+            "document_id": null,
+            "filepath": null,
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": null,
+            "chunk": null,
+            "created_at": "2026-07-01 08:22:29.121609"
+        }
     }
 ]
