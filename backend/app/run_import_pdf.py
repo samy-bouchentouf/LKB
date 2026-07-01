@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     result = PDFImporter.import_pdf(
         pdf_path=pdf_path,
-        title=title
+        title=title 
     )
 
     print(json.dumps(result))
