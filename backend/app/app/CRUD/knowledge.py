@@ -61,18 +61,18 @@ def get_component_notes(component_id):
 def get_component_troubleshoots(component_id):
     db = SessionLocal()
 
-    troubleshoots = (
+    troubleshootings = (
         db.query(KnowledgeItem)
         .filter(
             KnowledgeItem.component_id == component_id,
-            KnowledgeItem.type == "troubleshoot"
+            KnowledgeItem.type == "troubleshooting"
         )
         .all()
     )
 
     db.close()
 
-    return troubleshoots
+    return troubleshootings
 
 
 def get_experiment_knowledge(experiment_id):
