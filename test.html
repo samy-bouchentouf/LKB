@@ -93,29 +93,47 @@
         </section>
 
         <section id="page-publications" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
-            <div class="border-b border-stone-200 pb-4">
-                <h2 class="text-xl font-bold text-stone-800">Thèses et Publications du Labo</h2>
-                <p class="text-xs text-stone-500">Consultez et téléchargez les derniers travaux de recherche du LKB.</p>
+            
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-stone-800">Thèses et Publications du Labo</h2>
+                    <p class="text-xs text-stone-500">Consultez et téléchargez les derniers travaux de recherche du LKB.</p>
+                </div>
             </div>
+
+            <!-- CONTENU STATIQUE -->
             <div class="grid grid-cols-1 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex items-start gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl flex-shrink-0">📕</div>
-                    <div>
-                        <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">Thèse Doctorale</span>
-                        <h4 class="font-semibold text-stone-800 text-sm mt-1.5">Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique</h4>
+                <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            📕
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">
+                                Thèse Doctorale
+                            </span>
+                            <h4 class="font-semibold text-stone-800 text-sm mt-1.5 group-hover:text-[#2E5CB8] transition-colors">
+                                Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique
+                            </h4>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="drop-zone-publications" class="bg-white border-2 border-dashed border-stone-200 hover:border-red-300 rounded-2xl p-8 text-center cursor-pointer transition-all group">
-                <div class="max-w-md mx-auto flex flex-col items-center">
-                    <span class="text-3xl mb-3 group-hover:scale-110 transition-transform">📚</span>
-                    <p class="text-sm font-semibold text-stone-700">Glissez-déposez une thèse ou publication</p>
-                    <p class="text-xs text-stone-400 mt-1">Formats acceptés : PDF jusqu'à 20 Mo</p>
-                </div>
+
+            <!-- DROP ZONE -->
+            <div id="drop-zone-publications" class="bg-white border-2 border-dashed border-stone-200 hover:border-red-300 rounded-2xl p-8 text-center cursor-pointer transition-all mt-6">
+                <p class="text-sm font-semibold text-stone-700">
+                    📚 Glissez-déposez une publication (PDF)
+                </p>
             </div>
-            <div id="fichiers-container-publications" class="space-y-3">
-                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Publications ajoutées récemment</h3>
+
+            <!-- LISTE DYNAMIQUE -->
+            <div id="fichiers-container-publications" class="space-y-3 mt-6">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                    Publications ajoutées récemment
+                </h3>
             </div>
+
         </section>
 
         <section id="page-tech" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
@@ -123,6 +141,7 @@
                 <h2 class="text-xl font-bold text-stone-800">Documents Techniques & Manuels</h2>
                 <p class="text-xs text-stone-500">Base de connaissances partagée pour le troubleshooting des manips du labo.</p>
             </div>
+
             <div id="drop-zone" class="bg-white border-2 border-dashed border-stone-200 hover:border-sky-300 rounded-2xl p-8 text-center cursor-pointer transition-all group">
                 <div class="max-w-md mx-auto flex flex-col items-center">
                     <span class="text-3xl mb-3 group-hover:scale-110 transition-transform">📥</span>
@@ -158,7 +177,10 @@
                 </div>
             </div>
             <div class="p-4 border-t border-stone-100 bg-stone-50/40 rounded-b-2xl flex justify-end gap-2">
-                <button onclick="document.getElementById('modal-fiche').style.display='none'" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Fermer</button>
+                <button onclick="document.getElementById('modal-fiche').style.display = 'none'" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Fermer</button>
+                <a id="fiche-download" href="#" class="bg-[#2E5CB8] hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2 rounded-xl shadow-sm flex items-center gap-1.5">
+                    <span>Ouvrir</span> 📥
+                </a>
             </div>
         </div>
     </div>
@@ -255,166 +277,137 @@
 
         button.addEventListener("click", envoyerMessage);
         input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); envoyerMessage(); }
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault(); // empêche retour à la ligne
+                button.click();     // déclenche l'envoi
+            }
         });
 
-        // =============================================
-        // 3. DRAG & DROP
-        // =============================================
-        function setupDropZone(zoneId, onDrop) {
-            const zone = document.getElementById(zoneId);
+        function setupDropZonePublications() {
+            const zone = document.getElementById("drop-zone-publications");
             if (!zone) return;
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => {
-                zone.addEventListener(ev, (e) => e.preventDefault(), false);
+
+            zone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                zone.classList.add("border-red-400");
             });
-            ['dragenter', 'dragover'].forEach(ev => {
-                zone.addEventListener(ev, () => zone.classList.add('border-sky-500', 'bg-sky-50'));
+
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("border-red-400");
             });
-            ['dragleave', 'drop'].forEach(ev => {
-                zone.addEventListener(ev, () => zone.classList.remove('border-sky-500', 'bg-sky-50'));
-            });
-            zone.addEventListener('drop', (e) => {
-                const files = e.dataTransfer.files;
-                if (files.length > 0) onDrop(files[0]);
-            });
-        }
 
-        function demanderNomEtEnvoyer(file, containerId) {
-            const nomSuggere = file.name.replace(/\.[^/.]+$/, '');
-            const ext = file.name.split('.').pop();
-            const nouveauNom = prompt('Nommer ce fichier :', nomSuggere);
-            if (nouveauNom === null) return;
-            const nouveauFichier = new File([file], nouveauNom + '.' + ext, { type: file.type });
-            envoyerFichierAuBackend(nouveauFichier, containerId);
-        }
+            zone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                zone.classList.remove("border-red-400");
 
-        setupDropZone('drop-zone', (file) => demanderNomEtEnvoyer(file, 'fichiers-container'));
-        setupDropZone('drop-zone-publications', (file) => demanderNomEtEnvoyer(file, 'fichiers-container-publications'));
+                const file = e.dataTransfer.files[0];
+                if (!file) return;
 
-        // =============================================
-        // 4. UPLOAD
-        // =============================================
-        function envoyerFichierAuBackend(file, containerId = 'fichiers-container') {
-            const formData = new FormData();
-            formData.append('file', file);
+                // rename
+                const base = file.name.replace(/\.[^/.]+$/, "");
+                const ext = file.name.split(".").pop();
+                const newName = prompt("Nom du fichier :", base);
 
-            // On envoie le nom choisi dans un header ET dans le FormData
-            fetch('http://localhost:3000/api/upload', {
-                method: 'POST',
-                headers: {
-                    'x-custom-filename': file.name
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Fichier deposé : ' + file.name);
-                    chargerFichiers(containerId);
-                } else {
-                    alert('Erreur : ' + data.message);
-                }
-            })
-            .catch(() => {
-                alert('Impossible de joindre le serveur backend.');
-            });
-        }
+                if (newName === null) return;
 
-        // =============================================
-        // 5. LISTE DES FICHIERS
-        // =============================================
-        function chargerFichiers(containerId = 'fichiers-container') {
-            fetch('http://localhost:3000/api/files')
-            .then(response => response.json())
-            .then(data => {
-                if (!data.success) return;
-                const container = document.getElementById(containerId);
-                if (!container) return;
-                const titre = container.querySelector('h3');
-                container.innerHTML = '';
-                container.appendChild(titre);
-
-                if (data.files.length === 0) {
-                    const vide = document.createElement('p');
-                    vide.className = "text-xs text-stone-400 text-center py-4";
-                    vide.textContent = "Aucun fichier pour l'instant.";
-                    container.appendChild(vide);
-                    return;
-                }
-
-                data.files.forEach(f => {
-                    const ext = f.filename.split('.').pop().toLowerCase();
-                    const icon = ext === 'pdf' ? '📄' : '🐍';
-                    const div = document.createElement('div');
-                    div.className = "bg-white p-4 rounded-xl border border-stone-200/60 shadow-sm flex items-center justify-between gap-4";
-                    div.innerHTML = `
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-lg">${icon}</div>
-                            <div>
-                                <h4 class="text-sm font-semibold text-stone-800">${f.filename}</h4>
-                                <p class="text-xs text-stone-400">${(f.size / 1024).toFixed(1)} Ko • ${new Date(f.uploadedAt).toLocaleString('fr-FR')}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <a href="http://localhost:3000/uploads/${f.filename}" target="_blank"
-                               class="text-xs font-medium text-sky-600 hover:underline">Télécharger ↗</a>
-                            <button onclick="supprimerFichier('${f.filename}', '${containerId}')"
-                               class="text-xs font-medium text-red-400 hover:text-red-600">Supprimer 🗑️</button>
-                        </div>`;
-                    container.appendChild(div);
+                const renamed = new File([file], newName + "." + ext, {
+                    type: file.type
                 });
-            })
-            .catch(() => console.warn('Backend non disponible.'));
+
+                envoyerPublication(renamed);
+            });
         }
 
-        // =============================================
-        // 6. SUPPRESSION
-        // =============================================
-        function supprimerFichier(filename, containerId) {
-            if (!confirm('Supprimer "' + filename + '" ?')) return;
-            fetch('http://localhost:3000/api/files/' + encodeURIComponent(filename), {
-                method: 'DELETE'
+        function envoyerPublication(file) {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            fetch("http://localhost:3000/api/publications/upload", {
+                method: "POST",
+                body: formData
             })
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    chargerFichiers(containerId);
+                    alert("✅ Upload OK");
+                    chargerPublications();
                 } else {
-                    alert('Erreur : ' + data.message);
+                    alert("❌ " + data.message);
                 }
             })
-            .catch(() => alert('Impossible de joindre le serveur.'));
-        }
-
-        // =============================================
-        // 7. MODAL
-        // =============================================
-        function ouvrirFiche(data) {
-            document.getElementById('fiche-badge').innerText = data.badge || '';
-            document.getElementById('fiche-titre').innerText = data.titre || '';
-            document.getElementById('fiche-meta').innerText = data.meta || '';
-            document.getElementById('fiche-desc').innerText = data.desc || '';
-            const notesUl = document.getElementById('fiche-notes');
-            notesUl.innerHTML = '';
-            (data.notes || []).forEach(note => {
-                const li = document.createElement('li');
-                li.innerText = note;
-                notesUl.appendChild(li);
+            .catch(() => {
+                alert("❌ backend off");
             });
-            document.getElementById('modal-fiche').style.setProperty('display', 'flex', 'important');
         }
 
-        function fermerFiche(event) {
-            if (event.target === document.getElementById('modal-fiche')) {
-                document.getElementById('modal-fiche').style.display = 'none';
-            }
+        function chargerPublications() {
+            fetch("http://localhost:3000/api/publications/files")
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) return;
+
+                const container = document.getElementById("fichiers-container-publications");
+                container.innerHTML = `
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                        Publications ajoutées récemment
+                    </h3>
+                `;
+
+                data.files.forEach(f => {
+                    const div = document.createElement("div");
+
+                    div.className = "bg-white p-4 rounded-xl border flex justify-between";
+
+                    div.innerHTML = `
+                        <div>
+                            <strong>${f.filename}</strong><br>
+                            <small>${(f.size / 1024).toFixed(1)} Ko</small>
+                        </div>
+                        <a href="http://localhost:3000/uploads/${f.filename}" target="_blank">
+                            Ouvrir
+                        </a>
+                    `;
+
+                    container.appendChild(div);
+                });
+            });
         }
 
-        // =============================================
-        // INIT
-        // =============================================
-        chargerFichiers('fichiers-container');
-        chargerFichiers('fichiers-container-publications');
+        function setupDropZoneTech() {
+            const zone = document.getElementById("drop-zone");
+            if (!zone) return;
+
+            zone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+
+            zone.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                const file = e.dataTransfer.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append("file", file);
+
+                fetch("http://localhost:3000/api/publications/upload", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("✅ Upload TECH OK", data);
+                })
+                .catch(err => {
+                    console.error("❌ erreur upload tech", err);
+                });
+            });
+        }
+    
+        setupDropZoneTech();
+        setupDropZonePublications();
+        chargerPublications();
+        
     </script>
 </body>
 </html>
