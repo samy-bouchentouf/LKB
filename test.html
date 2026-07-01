@@ -113,6 +113,7 @@
         </section>
 
         <section id="page-publications" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
+            
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-4">
                 <div>
                     <h2 class="text-xl font-bold text-stone-800">Thèses et Publications du Labo</h2>
@@ -120,17 +121,39 @@
                 </div>
             </div>
 
+            <!-- CONTENU STATIQUE -->
             <div class="grid grid-cols-1 gap-4">
                 <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
                     <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl font-bold flex-shrink-0">📕</div>
+                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl font-bold flex-shrink-0">
+                            📕
+                        </div>
                         <div>
-                            <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">Thèse Doctorale</span>
-                            <h4 class="font-semibold text-stone-800 text-sm mt-1.5 group-hover:text-[#2E5CB8] transition-colors">Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique</h4>
+                            <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">
+                                Thèse Doctorale
+                            </span>
+                            <h4 class="font-semibold text-stone-800 text-sm mt-1.5 group-hover:text-[#2E5CB8] transition-colors">
+                                Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique
+                            </h4>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- DROP ZONE -->
+            <div id="drop-zone-publications" class="bg-white border-2 border-dashed border-stone-200 hover:border-red-300 rounded-2xl p-8 text-center cursor-pointer transition-all mt-6">
+                <p class="text-sm font-semibold text-stone-700">
+                    📚 Glissez-déposez une publication (PDF)
+                </p>
+            </div>
+
+            <!-- LISTE DYNAMIQUE -->
+            <div id="fichiers-container-publications" class="space-y-3 mt-6">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                    Publications ajoutées récemment
+                </h3>
+            </div>
+
         </section>
 
         <section id="page-tech" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
@@ -271,7 +294,7 @@
             <div class="p-4 border-t border-stone-100 bg-stone-50/40 rounded-b-2xl flex justify-end gap-2">
                 <button onclick="document.getElementById('modal-fiche').style.display = 'none'" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Fermer</button>
                 <a id="fiche-download" href="#" class="bg-[#2E5CB8] hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2 rounded-xl shadow-sm flex items-center gap-1.5">
-                    <span>Télécharger</span> 📥
+                    <span>Ouvrir</span> 📥
                 </a>
             </div>
 
@@ -452,38 +475,131 @@
             }
         });
 
-        const dropZone = document.getElementById("drop-zone");
+        function setupDropZonePublications() {
+            const zone = document.getElementById("drop-zone-publications");
+            if (!zone) return;
 
-        // ✅ empêche le navigateur d’ouvrir le fichier
-        dropZone.addEventListener("dragover", (e) => {
-            e.preventDefault();
-        });
+            zone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                zone.classList.add("border-red-400");
+            });
 
-        // ✅ quand tu déposes le fichier
-        dropZone.addEventListener("drop", async (e) => {
-            e.preventDefault();
+            zone.addEventListener("dragleave", () => {
+                zone.classList.remove("border-red-400");
+            });
 
-            const file = e.dataTransfer.files[0];
-            if (!file) return;
+            zone.addEventListener("drop", (e) => {
+                e.preventDefault();
+                zone.classList.remove("border-red-400");
 
-            console.log("📤 Fichier détecté :", file.name);
+                const file = e.dataTransfer.files[0];
+                if (!file) return;
 
-            // ✅ on prépare l'envoi
+                // rename
+                const base = file.name.replace(/\.[^/.]+$/, "");
+                const ext = file.name.split(".").pop();
+                const newName = prompt("Nom du fichier :", base);
+
+                if (newName === null) return;
+
+                const renamed = new File([file], newName + "." + ext, {
+                    type: file.type
+                });
+
+                envoyerPublication(renamed);
+            });
+        }
+
+        function envoyerPublication(file) {
             const formData = new FormData();
             formData.append("file", file);
 
-            try {
-                const res = await fetch("http://localhost:3000/api/documents/upload", {
+            fetch("http://localhost:3000/api/publications/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert("✅ Upload OK");
+                    chargerPublications();
+                } else {
+                    alert("❌ " + data.message);
+                }
+            })
+            .catch(() => {
+                alert("❌ backend off");
+            });
+        }
+
+        function chargerPublications() {
+            fetch("http://localhost:3000/api/publications/files")
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) return;
+
+                const container = document.getElementById("fichiers-container-publications");
+                container.innerHTML = `
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                        Publications ajoutées récemment
+                    </h3>
+                `;
+
+                data.files.forEach(f => {
+                    const div = document.createElement("div");
+
+                    div.className = "bg-white p-4 rounded-xl border flex justify-between";
+
+                    div.innerHTML = `
+                        <div>
+                            <strong>${f.filename}</strong><br>
+                            <small>${(f.size / 1024).toFixed(1)} Ko</small>
+                        </div>
+                        <a href="http://localhost:3000/uploads/${f.filename}" target="_blank">
+                            Ouvrir
+                        </a>
+                    `;
+
+                    container.appendChild(div);
+                });
+            });
+        }
+
+        function setupDropZoneTech() {
+            const zone = document.getElementById("drop-zone");
+            if (!zone) return;
+
+            zone.addEventListener("dragover", (e) => {
+                e.preventDefault();
+            });
+
+            zone.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                const file = e.dataTransfer.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append("file", file);
+
+                fetch("http://localhost:3000/api/publications/upload", {
                     method: "POST",
                     body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("✅ Upload TECH OK", data);
+                })
+                .catch(err => {
+                    console.error("❌ erreur upload tech", err);
                 });
-
-                const data = await res.json();
-                console.log("Réponse serveur :", data);
-            } catch (error) {
-                console.error("Erreur lors de l'upload du fichier :", error);
-            }
-        });
+            });
+        }
+    
+        setupDropZoneTech();
+        setupDropZonePublications();
+        chargerPublications();
+        
     </script>
 </body>
 </html>
