@@ -7,139 +7,125 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-stone-50 flex flex-col h-screen w-screen overflow-hidden font-sans m-0 p-0">
-    
+
+    <!-- HEADER -->
     <header class="bg-[#FDFBF7] border-b border-stone-200/80 shadow-sm z-20 w-full flex-shrink-0">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            
             <div class="cursor-pointer flex-shrink-0" onclick="switchTab('accueil')">
                 <h1 class="text-lg font-bold text-stone-800 flex items-center gap-3">
-                    <img src="lkb.png" alt="⚛️" class="h-8 object-contain">
                     <div class="flex flex-col border-l border-stone-200 pl-3">
                         <span class="text-stone-800 font-bold tracking-tight text-base">Labo LKB</span>
                         <span class="text-[9px] text-stone-400 tracking-wider uppercase font-semibold">Physique Quantique</span>
                     </div>
                 </h1>
             </div>
-            
             <nav class="hidden md:flex items-center justify-center gap-2 flex-1 mx-4">
-                <button id="nav-accueil" onclick="switchTab('accueil')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-sky-100 text-sky-800 transition-colors shadow-sm">
-                    🏠 Accueil
-                </button>
-                <button id="nav-chat" onclick="switchTab('chat')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">
-                    💬 Le Chat
-                </button>
-                <button id="nav-publications" onclick="switchTab('publications')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">
-                    📄 Publications
-                </button>
-                <button id="nav-tech" onclick="switchTab('tech')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">
-                    🛠️ Documents Tech.
-                </button>
+                <button id="nav-accueil" onclick="switchTab('accueil')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-sky-100 text-sky-800 transition-colors shadow-sm">🏠 Accueil</button>
+                <button id="nav-chat" onclick="switchTab('chat')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">💬 Le Chat</button>
+                <button id="nav-publications" onclick="switchTab('publications')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">📄 Publications</button>
+                <button id="nav-tech" onclick="switchTab('tech')" class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors">🛠️ Documents Tech.</button>
             </nav>
-            
             <div class="flex items-center justify-end flex-shrink-0">
-                <button class="p-2 text-stone-400 hover:text-stone-700 rounded-xl hover:bg-stone-100 transition-colors">
-                    ⚙️
-                </button>
+                <button class="p-2 text-stone-400 hover:text-stone-700 rounded-xl hover:bg-stone-100 transition-colors">⚙️</button>
             </div>
         </div>
     </header>
 
     <main class="flex-1 flex flex-col overflow-hidden w-full relative">
 
+        <!-- PAGE ACCUEIL -->
         <section id="page-accueil" class="w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
             <div class="bg-gradient-to-tr from-sky-100 via-indigo-50 to-amber-50/50 rounded-2xl p-6 text-stone-800 border border-sky-100/60 shadow-sm">
                 <h2 class="text-2xl font-bold text-stone-800 mb-2">Bienvenue sur le Hub IA du Laboratoire Kastler Brossel</h2>
                 <p class="text-stone-600/90 text-sm max-w-2xl leading-relaxed">
-                    Votre assistant de recherche est connecté aux bases de données du labo et à l'API Mistral pour vous épauler sur vos expériences d'optique quantique, le traitement de données et l'accès aux thèses.
+                    Votre assistant de recherche est connecté aux bases de données du labo pour vous épauler sur vos expériences d'optique quantique, le traitement de données et l'accès aux thèses.
                 </p>
                 <div class="mt-4 flex gap-3">
-                    <button onclick="switchTab('chat')" class="bg-[#2E5CB8] text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-md shadow-blue-600/10 hover:bg-blue-700 transition-all flex items-center gap-2">
+                    <button onclick="switchTab('chat')" class="bg-[#2E5CB8] text-white px-5 py-2 rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all flex items-center gap-2">
                         Ouvrir l'Assistant IA 🚀
                     </button>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div onclick="switchTab('chat')" class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4 font-semibold">💬</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div onclick="switchTab('chat')" class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4">💬</div>
                     <h3 class="font-semibold text-stone-800 mb-1">Poser une question physique</h3>
                     <p class="text-xs text-stone-500">Interrogez l'IA sur la métrologie quantique, Fisher Information ou vos scripts d'analyse.</p>
                 </div>
-                <div onclick="switchTab('tech')" class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm hover:shadow-md transition-all cursor-pointer group">
-                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4 font-semibold">🛠️</div>
+                <div onclick="switchTab('tech')" class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm hover:shadow-md transition-all cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4">🛠️</div>
                     <h3 class="font-semibold text-stone-800 mb-1">Troubleshooting & Manipes</h3>
                     <p class="text-xs text-stone-500">Accédez aux guides de pannes des lasers, réglages des cavités et protocoles de sécurité.</p>
                 </div>
             </div>
         </section>
 
+        <!-- PAGE CHAT -->
         <section id="page-chat" class="hidden h-full w-full flex-col overflow-hidden bg-stone-50">
-            <div class="bg-white border-b border-stone-200/60 px-6 py-3 flex justify-between items-center shadow-sm flex-shrink-0">
-                <div class="flex items-center gap-3">
-                    <div class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
-                    </div>
-                    <h2 class="font-semibold text-stone-700 text-xs">Assistant Chat (API Mistral Connectée)</h2>
+            <div class="bg-white border-b border-stone-200/60 px-6 py-3 flex items-center gap-3 shadow-sm flex-shrink-0">
+                <div class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
                 </div>
+                <h2 class="font-semibold text-stone-700 text-xs">Assistant Chat — LKB</h2>
             </div>
-
             <div id="chat-messages" class="flex-1 p-6 overflow-y-auto flex flex-col gap-6">
                 <div class="text-center">
-                    <span class="text-xs text-stone-400 bg-stone-100 px-3 py-1 rounded-full border border-stone-200/60">Aujourd'hui, 10:42</span>
+                    <span class="text-xs text-stone-400 bg-stone-100 px-3 py-1 rounded-full border border-stone-200/60">Aujourd'hui</span>
                 </div>
                 <div id="chat-placeholder" class="text-center text-stone-400 text-sm mt-6">
                     🤖 Posez une question pour commencer avec l'Assistant LKB
                 </div>
             </div>
-
             <div class="p-6 bg-white border-t border-stone-200 flex-shrink-0">
-                <div class="max-w-4xl mx-auto relative flex items-end gap-3">
+                <div class="max-w-4xl mx-auto flex items-end gap-3">
                     <div class="flex-1 relative">
-
                         <textarea id="chat-input" rows="1"
                             class="w-full bg-stone-50 border border-stone-200 rounded-xl pl-5 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none text-sm text-stone-700 shadow-inner"
                             placeholder="Posez une question sur l'expérience..."></textarea>
-
-                        <button class="absolute right-3 top-3 text-stone-400 hover:text-stone-600">📎</button>
                     </div>
-
-                    <button id="send-btn"
-                        class="bg-[#2E5CB8] text-white h-12 px-6 rounded-xl font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
+                    <button id="send-btn" class="bg-[#2E5CB8] text-white h-12 px-6 rounded-xl font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
                         <span>Envoyer 🚀</span>
                     </button>
                 </div>
             </div>
         </section>
 
+        <!-- PAGE PUBLICATIONS -->
         <section id="page-publications" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-4">
-                <div>
-                    <h2 class="text-xl font-bold text-stone-800">Thèses et Publications du Labo</h2>
-                    <p class="text-xs text-stone-500">Consultez et téléchargez les derniers travaux de recherche du LKB.</p>
-                </div>
+            <div class="border-b border-stone-200 pb-4">
+                <h2 class="text-xl font-bold text-stone-800">Thèses et Publications du Labo</h2>
+                <p class="text-xs text-stone-500">Consultez et téléchargez les derniers travaux de recherche du LKB.</p>
             </div>
-
             <div class="grid grid-cols-1 gap-4">
-                <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4 group">
-                    <div class="flex items-start gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl font-bold flex-shrink-0">📕</div>
-                        <div>
-                            <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">Thèse Doctorale</span>
-                            <h4 class="font-semibold text-stone-800 text-sm mt-1.5 group-hover:text-[#2E5CB8] transition-colors">Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique</h4>
-                        </div>
+                <div class="bg-white p-5 rounded-2xl border border-stone-200/60 shadow-sm flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-red-50 text-red-500 flex items-center justify-center text-xl flex-shrink-0">📕</div>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider font-semibold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">Thèse Doctorale</span>
+                        <h4 class="font-semibold text-stone-800 text-sm mt-1.5">Limites fondamentales de l'imagerie de sources incohérentes en métrologie quantique</h4>
                     </div>
                 </div>
             </div>
+            <div id="drop-zone-publications" class="bg-white border-2 border-dashed border-stone-200 hover:border-red-300 rounded-2xl p-8 text-center cursor-pointer transition-all group">
+                <div class="max-w-md mx-auto flex flex-col items-center">
+                    <span class="text-3xl mb-3 group-hover:scale-110 transition-transform">📚</span>
+                    <p class="text-sm font-semibold text-stone-700">Glissez-déposez une thèse ou publication</p>
+                    <p class="text-xs text-stone-400 mt-1">Formats acceptés : PDF jusqu'à 20 Mo</p>
+                </div>
+            </div>
+            <div id="fichiers-container-publications" class="space-y-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Publications ajoutées récemment</h3>
+            </div>
         </section>
 
+        <!-- PAGE TECH -->
         <section id="page-tech" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
             <div class="border-b border-stone-200 pb-4">
                 <h2 class="text-xl font-bold text-stone-800">Documents Techniques & Manuels</h2>
                 <p class="text-xs text-stone-500">Base de connaissances partagée pour le troubleshooting des manips du labo.</p>
             </div>
 
-            <div class="bg-white border-2 border-dashed border-stone-200 hover:border-sky-300 rounded-2xl p-8 text-center cursor-pointer transition-all group">
+            <div id="drop-zone" class="bg-white border-2 border-dashed border-stone-200 hover:border-sky-300 rounded-2xl p-8 text-center cursor-pointer transition-all group">
                 <div class="max-w-md mx-auto flex flex-col items-center">
                     <span class="text-3xl mb-3 group-hover:scale-110 transition-transform">📥</span>
                     <p class="text-sm font-semibold text-stone-700">Glissez-déposez une note technique ou un manuel</p>
@@ -147,227 +133,281 @@
                 </div>
             </div>
 
-            <div class="space-y-3">
+            <div id="fichiers-container" class="space-y-3">
                 <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Fichiers partagés récemment</h3>
-
-                <div onclick="ouvrirFiche('cavite')" class="bg-white p-4 rounded-xl border border-stone-200/60 shadow-sm flex items-center justify-between gap-4 cursor-pointer hover:border-sky-300 hover:shadow-md transition-all group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold">🛠️</div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-stone-800 group-hover:text-[#2E5CB8] transition-colors">Procédure d'alignement de la cavité FP-3</h4>
-                            <p class="text-xs text-stone-400">Ajouté par Adèle A. • Il y a 2 jours • PDF (1.4 Mo)</p>
-                        </div>
-                    </div>
-                    <span class="text-xs font-medium text-stone-400 group-hover:text-stone-600 transition-colors">Voir la fiche 📋</span>
-                </div>
-
-                <div onclick="ouvrirFiche('krigeage')" class="bg-white p-4 rounded-xl border border-stone-200/60 shadow-sm flex items-center justify-between gap-4 cursor-pointer hover:border-sky-300 hover:shadow-md transition-all group">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center font-bold">💻</div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-stone-800 group-hover:text-[#2E5CB8] transition-colors">Script de fit automatique - Krigeage & Gaussian Fields</h4>
-                            <p class="text-xs text-stone-400">Ajouté par Moi • Hier à 15:34 • Python (.py)</p>
-                        </div>
-                    </div>
-                    <span class="text-xs font-medium text-stone-400 group-hover:text-stone-600 transition-colors">Voir la fiche 📋</span>
-                </div>
+                <!-- Les fichiers chargés depuis le backend s'afficheront ici -->
             </div>
         </section>
 
     </main>
 
-    <div id="modal-fiche" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 items-center justify-center p-4" style="display: none;" onclick="fermerFiche(event)">
+    <!-- MODAL FICHE -->
+    <div id="modal-fiche" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 items-center justify-center p-4" style="display:none;" onclick="fermerFiche(event)">
         <div class="bg-white rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-xl border border-stone-200" onclick="event.stopPropagation()">
-            
             <div class="p-5 border-b border-stone-100 flex justify-between items-start bg-stone-50/60 rounded-t-2xl">
                 <div>
                     <span id="fiche-badge" class="text-[10px] uppercase tracking-wider font-bold bg-amber-50 text-amber-700 px-2 py-0.5 rounded border border-amber-200/60">Catégorie</span>
                     <h3 id="fiche-titre" class="text-base font-bold text-stone-800 mt-2">Titre du document</h3>
-                    <p id="fiche-meta" class="text-xs text-stone-400 mt-0.5">Metadonnées</p>
+                    <p id="fiche-meta" class="text-xs text-stone-400 mt-0.5">Métadonnées</p>
                 </div>
-                <button onclick="document.getElementById('modal-fiche').style.display = 'none'" class="text-stone-400 hover:text-stone-600 text-lg bg-white border border-stone-200 shadow-sm rounded-xl w-8 h-8 flex items-center justify-center transition-colors">✕</button>
+                <button onclick="document.getElementById('modal-fiche').style.display='none'" class="text-stone-400 hover:text-stone-600 bg-white border border-stone-200 shadow-sm rounded-xl w-8 h-8 flex items-center justify-center">✕</button>
             </div>
-
             <div class="p-6 space-y-5 text-sm text-stone-600 leading-relaxed">
                 <div>
                     <h5 class="text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Description / Objectif</h5>
                     <p id="fiche-desc" class="text-stone-700 bg-stone-50 p-3 rounded-xl border border-stone-100">Détails...</p>
                 </div>
-
-                <div id="zone-schema" class="hidden border border-stone-200 rounded-2xl bg-stone-50 p-4 flex flex-col items-center justify-center">
-                    <h5 class="text-xs font-bold uppercase text-stone-400 tracking-wider mb-3 self-start">Schéma du banc optique (Interactif)</h5>
-                    
-                    <svg viewBox="0 0 400 550" class="w-full max-w-[340px] h-auto font-sans text-[11px] font-semibold select-none">
-                        <path d="M 120 45 C 40 120, 40 380, 130 455" fill="none" stroke="#6B7280" stroke-width="1.5"/>
-                        <text x="40" y="250" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Ethernet (Data)</text>
-
-                        <path d="M 280 45 C 310 70, 270 85, 270 100" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
-                        <text x="315" y="75" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">USB (Contrôle)</text>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="110" y="20" width="180" height="30" rx="4" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
-                            <text x="200" y="39" fill="#1E40AF" text-anchor="middle">💻 PC de Contrôle (LabVIEW)</text>
-                        </g>
-
-                        <line x1="270" y1="140" x2="270" y2="175" stroke="#6B7280" stroke-width="1.5"/>
-                        <text x="270" y="160" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Câble BNC (Puissance)</text>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="200" y="110" width="160" height="30" rx="4" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5"/>
-                            <text x="280" y="129" fill="#991B1B" text-anchor="middle">⚡ Alim Haute Tension (Thorlabs)</text>
-                        </g>
-
-                        <path d="M 160 215 C 160 230, 190 235, 195 250" fill="none" stroke="#4B5563" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-                        <text x="150" y="240" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Fibre Optique PM</text>
-
-                        <path d="M 270 215 C 270 230, 245 235, 240 250" fill="none" stroke="#4B5563" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-                        <text x="285" y="240" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Axe Z</text>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="90" y="180" width="105" height="30" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
-                            <text x="142" y="199" fill="#92400E" text-anchor="middle">🔦 LASER 1 (1064nm)</text>
-                        </g>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="220" y="180" width="115" height="30" rx="4" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5"/>
-                            <text x="277" y="199" fill="#991B1B" text-anchor="middle">⚙️ Actionneur Piezo L2</text>
-                        </g>
-
-                        <line x1="215" y1="290" x2="215" y2="335" stroke="#4B5563" stroke-width="1.2" stroke-dasharray="3,3" marker-end="url(#arrow)"/>
-                        <text x="215" y="318" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Faisceau libre</text>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="165" y="255" width="100" height="30" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
-                            <text x="215" y="274" fill="#92400E" text-anchor="middle">🔲 MPLC 1 (Cailabs)</text>
-                        </g>
-
-                        <path d="M 215 375 C 215 390, 215 410, 215 435" fill="none" stroke="#6B7280" stroke-width="1.5" marker-end="url(#arrow)"/>
-                        <text x="215" y="405" class="fill-stone-800 text-[10px] font-normal" text-anchor="middle">Câble SMA (Signal Analogique)</text>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="135" y="340" width="160" height="30" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
-                            <text x="215" y="359" fill="#334155" text-anchor="middle">🎯 Détecteur QPD (First Sensor)</text>
-                        </g>
-
-                        <g class="cursor-pointer hover:opacity-80 transition-opacity">
-                            <rect x="98" y="440" width="135" height="30" rx="4" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
-                            <text x="165" y="459" fill="#1E40AF" text-anchor="middle">📊 Oscilloscope (Teledyne)</text>
-                        </g>
-
-                        <defs>
-                            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                <path d="M 0 1 L 10 5 L 0 9 z" fill="#4B5563"/>
-                            </marker>
-                        </defs>
-                    </svg>
-                </div>
-                
                 <div>
                     <h5 class="text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Notes importantes</h5>
                     <ul id="fiche-notes" class="list-disc pl-5 space-y-1 text-stone-600 text-xs"></ul>
                 </div>
             </div>
-
             <div class="p-4 border-t border-stone-100 bg-stone-50/40 rounded-b-2xl flex justify-end gap-2">
-                <button onclick="document.getElementById('modal-fiche').style.display = 'none'" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Fermer</button>
-                <a id="fiche-download" href="#" class="bg-[#2E5CB8] hover:bg-blue-700 text-white font-semibold text-xs px-4 py-2 rounded-xl shadow-sm flex items-center gap-1.5">
-                    <span>Télécharger</span> 📥
-                </a>
+                <button onclick="document.getElementById('modal-fiche').style.display='none'" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Fermer</button>
             </div>
-
         </div>
     </div>
 
     <script>
+        // =============================================
+        // 1. GESTION DES ONGLETS
+        // =============================================
         function switchTab(tabName) {
-            const pageAccueil = document.getElementById('page-accueil');
-            const pageChat = document.getElementById('page-chat');
-            const pagePublications = document.getElementById('page-publications');
-            const pageTech = document.getElementById('page-tech');
-            
-            const navAccueil = document.getElementById('nav-accueil');
-            const navChat = document.getElementById('nav-chat');
-            const navPublications = document.getElementById('nav-publications');
-            const navTech = document.getElementById('nav-tech');
+            const pages = {
+                accueil: document.getElementById('page-accueil'),
+                chat: document.getElementById('page-chat'),
+                publications: document.getElementById('page-publications'),
+                tech: document.getElementById('page-tech'),
+            };
+            const navs = {
+                accueil: document.getElementById('nav-accueil'),
+                chat: document.getElementById('nav-chat'),
+                publications: document.getElementById('nav-publications'),
+                tech: document.getElementById('nav-tech'),
+            };
 
             const activeClass = "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold bg-sky-100 text-sky-800 transition-colors shadow-sm";
             const inactiveClass = "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-stone-500 hover:bg-stone-100 hover:text-stone-800 transition-colors";
 
-            pageAccueil.style.display = 'none';
-            pageChat.style.display = 'none';
-            pagePublications.style.display = 'none';
-            pageTech.style.display = 'none';
-            
-            navAccueil.className = inactiveClass;
-            navChat.className = inactiveClass;
-            navPublications.className = inactiveClass;
-            navTech.className = inactiveClass;
+            Object.keys(pages).forEach(key => {
+                pages[key].style.display = 'none';
+                navs[key].className = inactiveClass;
+            });
 
-            if (tabName === 'accueil') {
-                pageAccueil.style.display = 'block';
-                navAccueil.className = activeClass;
-            } else if (tabName === 'chat') {
-                pageChat.style.display = 'flex';
-                navChat.className = activeClass;
-            } else if (tabName === 'publications') {
-                pagePublications.style.display = 'block';
-                navPublications.className = activeClass;
-            } else if (tabName === 'tech') {
-                pageTech.style.display = 'block';
-                navTech.className = activeClass;
+            if (tabName === 'chat') {
+                pages[tabName].style.display = 'flex';
+            } else {
+                pages[tabName].style.display = 'block';
             }
+            navs[tabName].className = activeClass;
         }
 
-        const fichesData = {
-            cavite: {
-                badge: "🛠️ Manipulation",
-                badgeClass: "text-amber-700 bg-amber-50 border-amber-200/60",
-                titre: "schéma expérience",
-                desc: "Ce protocole détaille les étapes pour optimiser le couplage du laser injecté dans la cavité Fabry-Perot n°3. Il permet de stabiliser les modes spatiaux avant de lancer l'acquisition des données de super-résolution.",
-                notes: [
-                    "Vérifier la température de la diode laser avant de toucher aux piézos.",
-                    "Ne pas dépasser 150V sur les modules de contrôle de positionnement.",
-                    "Port des lunettes de protection OD6 obligatoires à cette longueur d'onde."
-                ]
-            },
-            krigeage: {
-                badge: "💻 Code & Data",
-                badgeClass: "text-sky-700 bg-sky-50 border-sky-200/60",
-                titre: "Script de fit automatique - Krigeage & Gaussian Fields",
-                meta: "Mis en ligne par Moi • Modifié hier à 15:34",
-                desc: "Script Python optimisé basé sur Scipy et Numpy pour réaliser une interpolation spatiale par krigeage des champs de phase observés. Permet d'évaluer proprement l'information de Fisher spatiale.",
-                notes: [
-                    "Nécessite la bibliothèque Scikit-Learn ou Scipy installée dans l'environnement virtuel.",
-                    "Les matrices d'échantillonnage de grande taille (>1000x1000) requièrent l'activation du mode Sparse.",
-                    "Changer le paramètre du noyau (RBF ou Matérn) directement à la ligne 42."
-                ]
+        // =============================================
+        // 2. CHAT
+        // =============================================
+        const input = document.getElementById("chat-input");
+        const button = document.getElementById("send-btn");
+        const messagesContainer = document.getElementById("chat-messages");
+        const placeholder = document.getElementById("chat-placeholder");
+
+        async function envoyerMessage() {
+            const message = input.value.trim();
+            if (!message) return;
+
+            if (placeholder && placeholder.parentNode) placeholder.remove();
+
+            // Message utilisateur
+            const userMsg = document.createElement("div");
+            userMsg.className = "flex justify-end";
+            userMsg.innerHTML = `
+                <div class="bg-sky-50 border border-sky-100 text-stone-800 px-5 py-4 rounded-2xl rounded-tr-sm max-w-2xl shadow-sm">
+                    <p class="text-xs font-bold text-sky-700 mb-1">🧑‍🔬 Moi</p>
+                    <p class="text-sm text-stone-900">${message}</p>
+                </div>`;
+            messagesContainer.appendChild(userMsg);
+            input.value = "";
+
+            // Loader
+            const loadingMsg = document.createElement("div");
+            loadingMsg.className = "flex justify-start";
+            loadingMsg.innerHTML = `
+                <div class="bg-white border border-stone-200 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
+                    <p class="text-xs font-bold text-[#2E5CB8] mb-1">🤖 LKB Assistant</p>
+                    <p class="text-sm text-stone-400 animate-pulse">LKB écrit...</p>
+                </div>`;
+            messagesContainer.appendChild(loadingMsg);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            try {
+                const res = await fetch("http://localhost:3000/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message })
+                });
+                const data = await res.json();
+                loadingMsg.remove();
+
+                const botMsg = document.createElement("div");
+                botMsg.className = "flex justify-start";
+                botMsg.innerHTML = `
+                    <div class="bg-white border border-stone-200 text-stone-800 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
+                        <p class="text-xs font-bold text-[#2E5CB8] mb-1">🤖 LKB Assistant</p>
+                        <p class="text-sm text-stone-900">${data.answer || "Pas de réponse reçue."}</p>
+                    </div>`;
+                messagesContainer.appendChild(botMsg);
+            } catch (err) {
+                loadingMsg.remove();
+                const errMsg = document.createElement("div");
+                errMsg.className = "flex justify-start";
+                errMsg.innerHTML = `
+                    <div class="bg-red-50 border border-red-200 px-5 py-4 rounded-2xl max-w-2xl shadow-sm">
+                        <p class="text-xs font-bold text-red-600 mb-1">⚠️ Erreur</p>
+                        <p class="text-sm text-red-700">Impossible de joindre le serveur backend. Est-il bien lancé sur le port 3000 ?</p>
+                    </div>`;
+                messagesContainer.appendChild(errMsg);
             }
-        };
 
-        function ouvrirFiche(cleFiche) {
-            const data = fichesData[cleFiche];
-            if (!data) return;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
 
-            document.getElementById('fiche-badge').innerText = data.badge;
-            document.getElementById('fiche-badge').className = `text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded border ${data.badgeClass}`;
-            document.getElementById('fiche-titre').innerText = data.titre;
-            document.getElementById('fiche-meta').innerText = data.meta;
-            document.getElementById('fiche-desc').innerText = data.desc;
+        button.addEventListener("click", envoyerMessage);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                envoyerMessage();
+            }
+        });
+
+        // =============================================
+        // 3. DRAG & DROP UPLOAD (Tech + Publications)
+        // =============================================
+        function setupDropZone(zoneId, onDrop) {
+            const zone = document.getElementById(zoneId);
+            if (!zone) return;
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => {
+                zone.addEventListener(ev, (e) => e.preventDefault(), false);
+            });
+            ['dragenter', 'dragover'].forEach(ev => {
+                zone.addEventListener(ev, () => zone.classList.add('border-sky-500', 'bg-sky-50'));
+            });
+            ['dragleave', 'drop'].forEach(ev => {
+                zone.addEventListener(ev, () => zone.classList.remove('border-sky-500', 'bg-sky-50'));
+            });
+            zone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                if (files.length > 0) onDrop(files[0]);
+            });
+        }
+
+        function demanderNomEtEnvoyer(file, containerId) {
+            const nomSuggere = file.name.replace(/\.[^/.]+$/, ''); // nom sans extension
+            const ext = file.name.split('.').pop();
+            const nouveauNom = prompt(`Nommer ce fichier :`, nomSuggere);
+            if (nouveauNom === null) return; // annulé
+            const nouveauFichier = new File([file], nouveauNom + '.' + ext, { type: file.type });
+            envoyerFichierAuBackend(nouveauFichier, containerId);
+        }
+        // Zone Tech → upload + liste tech
+        setupDropZone('drop-zone', (file) => {
+            demanderNomEtEnvoyer(file, 'fichiers-container');  // 👈 change ici
+        });
+
+        // Zone Publications → upload + liste publications
+        setupDropZone('drop-zone-publications', (file) => {
+            demanderNomEtEnvoyer(file, 'fichiers-container-publications');  // 👈 et ici
+        });
+
+        function envoyerFichierAuBackend(file, containerId = 'fichiers-container') {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('http://localhost:3000/api/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('✅ Fichier déposé : ' + file.name);
+                    chargerFichiers(containerId);
+                } else {
+                    alert('❌ Erreur : ' + data.message);
+                }
+            })
+            .catch(() => {
+                alert('❌ Impossible de joindre le serveur backend. Est-il bien lancé sur le port 3000 ?');
+            });
+            fetch('http://localhost:3000/api/upload', {
+                method: 'POST',
+                headers: {
+                    'x-custom-filename': file.name   // 👈 ajoute cette ligne
+                },
+                body: formData
+            })
+        }
+
+        // =============================================
+        // 4. LISTE DES FICHIERS
+        // =============================================
+        function chargerFichiers(containerId = 'fichiers-container') {
+            fetch('http://localhost:3000/api/files')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) return;
+
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const titre = container.querySelector('h3');
+                container.innerHTML = '';
+                container.appendChild(titre);
+
+                if (data.files.length === 0) {
+                    const vide = document.createElement('p');
+                    vide.className = "text-xs text-stone-400 text-center py-4";
+                    vide.textContent = "Aucun fichier uploadé pour l'instant.";
+                    container.appendChild(vide);
+                    return;
+                }
+
+                data.files.forEach(f => {
+                    const ext = f.filename.split('.').pop().toLowerCase();
+                    const icon = ext === 'pdf' ? '📄' : '🐍';
+                    const div = document.createElement('div');
+                    div.className = "bg-white p-4 rounded-xl border border-stone-200/60 shadow-sm flex items-center justify-between gap-4";
+                    div.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-lg">${icon}</div>
+                            <div>
+                                <h4 class="text-sm font-semibold text-stone-800">${f.filename}</h4>
+                                <p class="text-xs text-stone-400">${(f.size / 1024).toFixed(1)} Ko • ${new Date(f.uploadedAt).toLocaleString('fr-FR')}</p>
+                            </div>
+                        </div>
+                        <a href="http://localhost:3000/uploads/${f.filename}" target="_blank"
+                           class="text-xs font-medium text-sky-600 hover:underline flex-shrink-0">Télécharger ↗</a>`;
+                    container.appendChild(div);
+                });
+            })
+            .catch(() => {
+                console.warn('Backend non disponible, liste de fichiers non chargée.');
+            });
+        }
+
+        // =============================================
+        // 5. MODAL FICHE
+        // =============================================
+        function ouvrirFiche(data) {
+            document.getElementById('fiche-badge').innerText = data.badge || '';
+            document.getElementById('fiche-titre').innerText = data.titre || '';
+            document.getElementById('fiche-meta').innerText = data.meta || '';
+            document.getElementById('fiche-desc').innerText = data.desc || '';
 
             const notesUl = document.getElementById('fiche-notes');
             notesUl.innerHTML = '';
-            data.notes.forEach(note => {
+            (data.notes || []).forEach(note => {
                 const li = document.createElement('li');
                 li.innerText = note;
                 notesUl.appendChild(li);
             });
-
-            const zoneSchema = document.getElementById('zone-schema');
-            if (cleFiche === 'cavite') {
-                zoneSchema.classList.remove('hidden');
-            } else {
-                zoneSchema.classList.add('hidden');
-            }
 
             document.getElementById('modal-fiche').style.setProperty('display', 'flex', 'important');
         }
@@ -378,79 +418,24 @@
             }
         }
 
-        const input = document.getElementById("chat-input");
-        const button = document.getElementById("send-btn");
-        const messagesContainer = document.getElementById("chat-messages");
-        const placeholder = document.getElementById("chat-placeholder");
-        
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+        // =============================================
+        // INIT
+        // =============================================
+        chargerFichiers('fichiers-container');
+        chargerFichiers('fichiers-container-publications');
+
+        filename: (req, file, cb) => {
+            // Utilise le nom envoyé par le front s'il existe, sinon génère un nom unique
+            const nomChoisi = req.headers['x-custom-filename'];
+            if (nomChoisi) {
+                const ext = path.extname(nomChoisi);
+                const base = path.basename(nomChoisi, ext);
+                cb(null, base + '-' + Date.now() + ext);
+            } else {
+                const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+                cb(null, uniqueSuffix + path.extname(file.originalname));
+            }
         }
-
-        button.addEventListener("click", async () => {
-            const message = input.value.trim();
-            if (!message) return;
-            // ✅ supprimer message d'accueil
-            if (placeholder) {
-                placeholder.remove();
-            }
-            // ✅ message utilisateur
-            const userMsg = document.createElement("div");
-            userMsg.className = "flex justify-end";
-            userMsg.innerHTML = `
-                <div class="bg-sky-50 border border-sky-100 text-stone-800 px-5 py-4 rounded-2xl rounded-tr-sm max-w-2xl shadow-sm">
-                    <p class="text-xs font-bold text-sky-700 mb-1">🧑‍🔬 Moi</p>
-                    <p class="text-sm text-stone-900">${message}</p>
-                </div>
-            `;
-            messagesContainer.appendChild(userMsg);
-            
-            input.value = "";
-            
-            // ✅ loader
-            const loadingMsg = document.createElement("div");
-            loadingMsg.className = "flex justify-start";
-            loadingMsg.innerHTML = `
-                <div class="bg-white border border-stone-200 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
-                    <p class="text-xs font-bold text-[#2E5CB8] mb-1">🤖 LKB Assistant</p>
-                    <p class="text-sm text-stone-400 animate-pulse">LKB écrit...</p>
-                </div>
-            `;
-            messagesContainer.appendChild(loadingMsg);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            // ✅ appel backend
-            const res = await fetch("http://localhost:3000/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message })
-            });
-        
-            const data = await res.json();
-            await sleep(1000);
-            loadingMsg.remove();
-
-            // ✅ réponse IA
-            const botMsg = document.createElement("div");
-            botMsg.className = "flex justify-start";
-            botMsg.innerHTML = `
-                <div class="bg-white border border-stone-200 text-stone-800 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
-                    <p class="text-xs font-bold text-[#2E5CB8] mb-1">🤖 LKB Assistant</p>
-                    <p class="text-sm text-stone-900">${data.answer}</p>
-                </div>
-            `;
-            messagesContainer.appendChild(botMsg);
-            
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        });
-        input.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault(); // empêche retour à la ligne
-                button.click();     // déclenche l'envoi
-            }
-        });
-        </script>
+    </script>
 </body>
 </html>
