@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
         if len(sys.argv) < 3:
             raise Exception(
-                "Usage : python run_import_component.py <pdf_path> <component_name>"
+                "Usage : python run/run_import_component.py <pdf_path> <component_name>"
             )
 
         pdf_path = sys.argv[1]

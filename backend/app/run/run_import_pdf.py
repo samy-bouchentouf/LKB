@@ -25,7 +25,7 @@ if __name__ == "__main__":
 '''
 Ensuite ajouter dans le backend un truc en mode :
 exec(
-  `python app/run_import_pdf.py "${pdfPath}" "${title}"`,
+  `python app/run/run_import_pdf.py "${pdfPath}" "${title}"`,
   (error, stdout, stderr) => {
       ...
   }
