@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/api/chat", chatRoutes);
 app.use("/api/documents", documentsRoutes);
 app.use("/api/publications", publicationsRoutes);
-app.use("/uploads", express.static("uploads"));
+app.use("/uploads-pdf", express.static("uploads-pdf"));
 
 // test route
 app.get("/", (req, res) => {
