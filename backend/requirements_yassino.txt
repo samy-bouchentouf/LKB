@@ -1,0 +1,10 @@
+## Bibliothèques nécessaires pour faire tourner
+# ChromaDB: stocker, organiser et interroger des embeddings
+streamlit
+langchain
+langchain-community
+langchain-text-splitters
+langchain-chroma
+pypdf
+python-dotenv
+langchain-mistralai
