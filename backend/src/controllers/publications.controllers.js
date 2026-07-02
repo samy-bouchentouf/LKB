@@ -1,4 +1,6 @@
 import { uploadMiddleware, getFiles } from "../services/publications.service.js";
+import { exec } from "child_process";
+import path from "path";
 
 // ✅ upload fichier
 export const uploadPublication = (req, res) => {
@@ -19,6 +21,38 @@ export const uploadPublication = (req, res) => {
         }
 
         console.log("📄 Upload OK :", req.file.filename);
+          
+        
+        const pdfPath = path.join(
+            process.cwd(),
+            "backend",
+            "uploads-pdf",
+            req.file.filename
+        );
+
+        const title = path.parse(req.file.filename).name;
+
+        exec(
+            `python backend/run_import_pdf.py "${pdfPath}" "${title}"`,
+            (error, stdout, stderr) => {
+
+                if (error) {
+                    console.error("❌ Import PDF :", error);
+
+                    if (stderr) {
+                        console.error(stderr);
+                    }
+
+                    return;
+                }
+
+                console.log("✅ Import PDF :", stdout);
+
+                if (stderr) {
+                    console.error(stderr);
+                }
+            }
+        );
 
         res.json({
             success: true,
