@@ -1,7 +1,7 @@
 import json
 import sys
 
-from app.component.importer import ComponentImporter
+from operators.component.importer import ComponentImporter
 
 
 if __name__ == "__main__":

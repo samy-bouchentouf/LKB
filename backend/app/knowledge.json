@@ -1,0 +1,2814 @@
+[
+    {
+        "id": 1,
+        "content": "PHYSICAL REVIEW A 96, 062107 (2017)\nMultiparameter quantum metrology of incoherent point sources: Towards realistic superresolution\nJ. ˇRehaˇcek,1 Z. Hradil,1 B. Stoklasa,1 M. Paúr,1 J. Grover,2 A. Krzic,2 and L. L. Sánchez-Soto3,4\n1Department of Optics, Palacký University, 17. listopadu 12, 771 46 Olomouc, Czech Republic\n2ESA—Advanced Concepts and Studies Ofﬁce, European Space Research Technology Centre (ESTEC), Keplerlaan 1,\nPostbus 299, NL-2200AG Noordwijk, the Netherlands\n3Departamento de Óptica, Facultad de Física, Universidad Complutense, 28040 Madrid, Spain",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.465630"
+        }
+    },
+    {
+        "id": 2,
+        "content": "3Departamento de Óptica, Facultad de Física, Universidad Complutense, 28040 Madrid, Spain\n4Max-Planck-Institut für die Physik des Lichts, Staudtstraße 2, 91058 Erlangen, Germany\n(Received 27 September 2017; published 7 December 2017)\nWe establish the multiparameter quantum Cramér-Rao bound for simultaneously estimating the centroid, the\nseparation, and the relative intensities of two incoherent optical point sources using a linear imaging system.\nFor equally bright sources, the Cramér-Rao bound is independent of their separation, which conﬁrms that the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.481103"
+        }
+    },
+    {
+        "id": 3,
+        "content": "Rayleigh resolution limit is just an artifact of the conventional direct imaging and can be overcome with an\nadequate strategy. For the general case of unequally bright sources, the amount of information one can gain about\nthe separation falls to zero, but we show that there is always a quadratic improvement in an optimal detection in\ncomparison with the intensity measurements. This advantage can be of utmost importance in realistic scenarios,\nsuch as observational astronomy.\nDOI: 10.1103/PhysRevA.96.062107\nI. INTRODUCTION\nThe time-honored Rayleigh criterion [1] speciﬁes the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.486480"
+        }
+    },
+    {
+        "id": 4,
+        "content": "I. INTRODUCTION\nThe time-honored Rayleigh criterion [1] speciﬁes the\nminimum separation between two incoherent optical sources\nusing a linear imaging system. As a matter of fact, it is the\nsize of the point spread function (PSF) [2] that determines\nthe resolution: two points closer than the PSF width will\nbe difﬁcult to resolve due to the substantial overlap of their\nimages.\nUntil recently, this Rayleigh criterion has been considered\nas a fundamental limit. Resolution can be improved only either\nby reducing the wavelength or by building higher numerical-",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.491565"
+        }
+    },
+    {
+        "id": 5,
+        "content": "by reducing the wavelength or by building higher numerical-\naperture optics, thereby making the PSF narrower. Nonethe-\nless, outstanding methods have been developed lately that can\nbreak the Rayleigh limit under special circumstances [3–12].\nThough promising, these techniques are involved and require\ncareful control of the source, which is not always possible,\nespecially in astronomical applications.\nDespite being very intuitive, the common derivation of\nthe Rayleigh limit is heuristic, and it is deeply rooted in\nclassical optical technology [13]. Recently, inspired by ideas",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.497295"
+        }
+    },
+    {
+        "id": 6,
+        "content": "classical optical technology [13]. Recently, inspired by ideas\nof quantum information, Tsang and coworkers [14–17] have\nrevisited this problem using the Fisher information and the\nassociated Cramér-Rao lower bound (CRLB) to quantify\nhow well the separation between two point sources can be\nestimated. When only the intensity at the image is measured\n(the basis of all the conventional techniques), the Fisher\ninformation falls to zero as the separation between the sources\ndecreases and the CRLB diverges accordingly; this is known as\nthe Rayleigh curse [14]. However, when the Fisher information",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.503838"
+        }
+    },
+    {
+        "id": 7,
+        "content": "the Rayleigh curse [14]. However, when the Fisher information\nof the complete ﬁeld is calculated, it stays constant and so does\nthe CRLB, revealing that the Rayleigh limit is not essential to\nthe problem.\nThese remarkable predictions prompted a series of\nexperimental implementations [18–21] and further general-\nizations [22–28], including the related question of source\nlocalization [29–31]. All this previous work has focused on\nthe estimation of the separation, taking for granted a highly\nsymmetric conﬁguration with equally bright sources. Here",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.509710"
+        }
+    },
+    {
+        "id": 8,
+        "content": "symmetric conﬁguration with equally bright sources. Here\nwe approach the issue in a more realistic scenario, where\nthe sources may have unequal intensities. This involves the\nsimultaneous estimation of separation, centroid, and intensi-\nties. Typically, when estimating multiple parameters, there is\na trade-off in how well different parameters may be estimated:\nwhen the estimation protocol is optimized from the point of\nview of one parameter, the precision with which the remaining\nones can be estimated deteriorates.\nActually, we show that including intensity in the estimation",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 7,
+            "created_at": "2026-06-30 15:00:23.516522"
+        }
+    },
+    {
+        "id": 9,
+        "content": "ones can be estimated deteriorates.\nActually, we show that including intensity in the estimation\nproblem does lead to a reduction in the information for\nunbalanced sources. However, the information available in an\noptimal measurement still surpasses that of a conventional\ndirect imaging scheme by a signiﬁcant margin at small\nseparations. This suggests possible applications, for example,\nin observational astronomy, where sources typically have\nsmall angular separations and can have large differences in\nbrightness.\nII. FORMULATION OF THE PROBLEM",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 8,
+            "created_at": "2026-06-30 15:00:23.522145"
+        }
+    },
+    {
+        "id": 10,
+        "content": "brightness.\nII. FORMULATION OF THE PROBLEM\nLet us ﬁrst set the stage for our simple model. We assume\nquasimonochromatic paraxial waves with one speciﬁed polar-\nization and one spatial dimension, x denoting the image-plane\ncoordinate. The corresponding object-plane coordinates can\nbe obtained via the lateral magniﬁcation of the system, which\nwe take to be linear spatially invariant. We emphasize that\nthese assumptions are standard in imaging sciences [2] and\nthey do not alter our main conclusions.\nTo facilitate possible generalizations, we phrase what",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 9,
+            "created_at": "2026-06-30 15:00:23.527547"
+        }
+    },
+    {
+        "id": 11,
+        "content": "they do not alter our main conclusions.\nTo facilitate possible generalizations, we phrase what\nfollows in a quantum parlance. A wave of complex amplitude\nU(x) can thus be assigned to a ket |U⟩, such that U(x) =\n⟨x|U⟩, where |x⟩is a vector describing a pointlike source at x.\nThe system is characterized by its PSF, which represents\nits normalized intensity response to a point source. We denote\nthis PSF by I(x) = |⟨x|\u0002⟩|2 = |\u0002(x)|2, so that \u0002(x) can be\ninterpreted as the amplitude PSF.\nTwo mutually incoherent point sources, of different inten-",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 10,
+            "created_at": "2026-06-30 15:00:23.533491"
+        }
+    },
+    {
+        "id": 12,
+        "content": "interpreted as the amplitude PSF.\nTwo mutually incoherent point sources, of different inten-\nsities and separated by a distance s, are imaged by that system.\n2469-9926/2017/96(6)/062107(7)\n062107-1\n©2017 American Physical Society",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 11,
+            "created_at": "2026-06-30 15:00:23.538963"
+        }
+    },
+    {
+        "id": 61,
+        "content": "[40] P. J. D. Crowley, A. Datta, M. Barbieri, and I. A. Walmsley,\nTradeoff in simultaneous quantum-limited phase and loss\nestimation in interferometry, Phys. Rev. A 89, 023845 (2014).\n062107-6",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 12,
+            "created_at": "2026-06-30 15:00:23.816440"
+        }
+    },
+    {
+        "id": 13,
+        "content": "J. ˇREHA ˇCEK et al.\nPHYSICAL REVIEW A 96, 062107 (2017)\nThe signal can be represented as a density operator\nρθ = q ρ+ + (1 −q) ρ−,\n(1)\nwhere q and 1 −q are the intensities of the sources, with\nthe proviso that the total intensity is normalized to unity. In\naddition, we have deﬁned ρ± = |\u0002±⟩⟨\u0002±| and the x-displaced\nPSF states are\n⟨x|\u0002±⟩= ⟨x −s0 ∓s/2|\u0002⟩= \u0002(x −s0 ∓s/2),\n(2)\nso that they are symmetrically located around the geometric\ncentroid s0 = 1\n2(x+ + x−). Note that\n|\u0002±⟩= exp[−i(s0 ± s/2)P]|\u0002⟩,\n(3)\nwhere P is the momentum operator, which generates displace-",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.544470"
+        }
+    },
+    {
+        "id": 14,
+        "content": "|\u0002±⟩= exp[−i(s0 ± s/2)P]|\u0002⟩,\n(3)\nwhere P is the momentum operator, which generates displace-\nments in the x variable. As in quantum mechanics, it acts as a\nderivative P = −i∂x. These spatial modes are not orthogonal\n(⟨\u0002−|\u0002+⟩̸ = 0), so they cannot be separated by independent\nmeasurements.\nWe stress that, by its very nature, a pointlike source is\nspeciﬁed by a Dirac delta complex amplitude, which results\nin a spatially coherent optical ﬁeld. This justiﬁes treating the\nspatial degrees of freedom of both signal components as pure\nstates [32].",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.553330"
+        }
+    },
+    {
+        "id": 15,
+        "content": "spatial degrees of freedom of both signal components as pure\nstates [32].\nThe density matrix ρθ gives the normalized mean intensity\nρθ(x) = q |\u0002(x −s0 −s/2)|2 + (1 −q) |\u0002(x −s0 + s/2)|2\n(4)\nand depends on the centroid s0, the separation s, and the\nrelative intensities of the sources q. This is indicated by the\nvector θ = (s0,s,q)t.\nIII. MULTIPARAMETER CRAMÉR-RAO LOWER BOUNDS\nThe task is to estimate the values of θ through the\nmeasurement of some observables on ρθ. In turn, a quantum\nestimator\u0002θ for θ is a selfadjoint operator representing a proper",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.558628"
+        }
+    },
+    {
+        "id": 16,
+        "content": "estimator\u0002θ for θ is a selfadjoint operator representing a proper\nmeasurement followed by data processing performed on the\noutcomes. Such a parameter estimation implies uncertainties\nfor the measured values, which cannot be avoided.\nIn this multiparameter estimation scenario, the cen-\ntral quantity is the quantum Fisher information matrix\n(QFIM) [33]. This is a natural generalization of the classical\nFisher information, which is a mathematical measure of\nthe sensitivity of an observable quantity to changes in its\nunderlying parameters. However, the QFIM is optimized over",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.564638"
+        }
+    },
+    {
+        "id": 17,
+        "content": "underlying parameters. However, the QFIM is optimized over\nall the possible quantum measurements. It is deﬁned as\nQαβ(θ) = 1\n2 Tr(ρθ{Lα,Lβ}),\n(5)\nwhere the Greek indices run over the components of the vector\nθ and {·,·} denotes the anticommutator. Here Lα stands for\nthe symmetric logarithmic derivative [34] with respect the\nparameter θα, represented implicitly as\n1\n2(Lαρθ + ρθLα) = ∂αρθ,\n(6)\nwith ∂α = ∂/∂θα.\nUpon writing ρθ in its eigenbasis, ρθ = \u0003\nn λn|λn⟩⟨λn|, the\nQFIM can be concisely expressed as [35]\nQαβ(θ) = 2\n\u0004\nm,n\n1\nλm + λn\n⟨λm|∂αρθ|λn⟩⟨λn|∂βρθ|λm⟩,\n(7)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.569851"
+        }
+    },
+    {
+        "id": 18,
+        "content": "QFIM can be concisely expressed as [35]\nQαβ(θ) = 2\n\u0004\nm,n\n1\nλm + λn\n⟨λm|∂αρθ|λn⟩⟨λn|∂βρθ|λm⟩,\n(7)\nand the summation extends over m,n with λm + λn̸ = 0.\nThe QFIM is a distinguishability metric on the space\nof quantum states and leads to the multiparameter quantum\nCRLB [36,37] for a single detection event:\nCov(\u0002θ) ⩾Q−1(θ),\n(8)\nwhere Covαβ(\u0002θ) = E[(\u0002θα −θα)(\u0002θβ −θβ)] refers to the co-\nvariance matrix for a locally unbiased estimator \u0002θ of the\nquantity θ and E[Y] is the expectation value of the random\nvariable Y. The above inequality should be understood as a",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.575266"
+        }
+    },
+    {
+        "id": 19,
+        "content": "variable Y. The above inequality should be understood as a\nmatrix inequality. In general, we can write Tr[G Cov(\u0002θ)] ⩾\nTr[G Q−1(θ)], where G is some positive cost matrix, which\nallows us to asymmetrically prioritise the uncertainty cost of\ndifferent parameters.\nIn using Eq. (8) we implicitly assume that the measurement\nis repeated N times, and this number is large. In astronomy, this\ncorresponds to collecting many photons from the measured\nsource, which is always the case, even for the stars at\nthe detection limit of the telescope. For N detections, the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.581673"
+        }
+    },
+    {
+        "id": 20,
+        "content": "the detection limit of the telescope. For N detections, the\nright-hand side of Eq. (8) is divided by N. Because of this\nsimple proportionality, factor N can be omitted and always\nreintroduced into the ﬁnal expressions if needed.\nThe individual parameter θα can be estimated with a vari-\nance satisfying Var(\u0002θα) ⩾(Q−1)αα(θ), and a positive operator-\nvalued measurement (POVM) attaining this accuracy is given\nby the eigenvectors of Lα. Unlike for a single parameter, the\ncollective bound is not always saturable: the intuitive reason\nfor this is incompatibility of the optimal measurements for",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 7,
+            "created_at": "2026-06-30 15:00:23.587055"
+        }
+    },
+    {
+        "id": 21,
+        "content": "for this is incompatibility of the optimal measurements for\ndifferent parameters [38].\nIf the operators Lα corresponding to the different param-\neters commute, there is no additional difﬁculty in extracting\nmaximal information from a state on all parameters simul-\ntaneously. If they do not commute, however, this does not\nimmediately imply that it is impossible to simultaneously\nextract information on all parameters with precision matching\nthat of the separate scenario for each. As discussed in a number\nof papers [39–41] the multiparameter quantum CRLB can be\nsaturated provided",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 8,
+            "created_at": "2026-06-30 15:00:23.592224"
+        }
+    },
+    {
+        "id": 22,
+        "content": "of papers [39–41] the multiparameter quantum CRLB can be\nsaturated provided\nTr(ρθ[Lα,Lβ]) = 0,\n(9)\nwith [·,·] being the commutator. Then, optimal measurements\ncan be found by optimizing over the classical Fisher informa-\ntion, as the QFIM is an upper bound for the former quantity.\nThis can be efﬁciently accomplished by global optimization\nalgorithms (see the Appendix). For our particular case, it is\neasy to see that the condition (9) is fulﬁlled whenever the PSF\nis real, \u0002(x)∗= \u0002(x), which will be assumed henceforth.\nAdditionally, for N ≫1 the classical CRLB of the optimal",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 9,
+            "created_at": "2026-06-30 15:00:23.598288"
+        }
+    },
+    {
+        "id": 23,
+        "content": "Additionally, for N ≫1 the classical CRLB of the optimal\nmeasurement (i.e., the quantum CRLB) can be saturated with\nmaximum-likelihood estimators. In the following we may thus\nreplace all inequalities with their corresponding upper and\nlower bounds.\nTo proceed further, we note that the density matrix ρθ is,\nby deﬁnition, of rank 2. The QFIM reduces then to the simpler\n062107-2",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 10,
+            "created_at": "2026-06-30 15:00:23.603556"
+        }
+    },
+    {
+        "id": 24,
+        "content": "MULTIPARAMETER QUANTUM METROLOGY OF . . .\nPHYSICAL REVIEW A 96, 062107 (2017)\nform\nQαβ = −3\nλ1\n⟨λ1|∂αρθ|λ1⟩⟨λ1|∂βρθ|λ1⟩\n−3\nλ2\n⟨λ2|∂αρθ|λ2⟩⟨λ2|∂βρθ|λ2⟩\n+ 4\n\u0005\n1 −1\nλ1\n−1\nλ2\n\u0006\n⟨λ1|∂αρθ|λ2⟩⟨λ2|∂βρθ|λ1⟩\n+ 4\nλ1\n⟨λ1|∂αρθ∂βρθ|λ1⟩+ 4\nλ2\n⟨λ2|∂αρθ∂βρθ|λ2⟩.\n(10)\nThe derivatives involved in this equation can be easily\nevaluated; the result reads\n∂s0ρθ = i[ρθ,P],\n∂sρθ = i\n2(q[ρ+,P] −(1 −q)[ρ−,P]),\n∂qρθ = ρ+ −ρ−.\n(11)\nTo complete the calculation it proves convenient to write the\ntwo nontrivial eigenstates of ρθ in terms of nonorthogonal\ncomponent states |\u0002±⟩: |λ1,2⟩= a1,2|\u0002+⟩+ b1,2|\u0002−⟩, where",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.610034"
+        }
+    },
+    {
+        "id": 25,
+        "content": "component states |\u0002±⟩: |λ1,2⟩= a1,2|\u0002+⟩+ b1,2|\u0002−⟩, where\na1,2 and b1,2 are easy-to-ﬁnd yet complicated functions of the\nseparation and the intensities and whose explicit form is of no\nrelevance for our purposes here. Substituting this and Eq. (11)\ninto Eq. (10), and after a lengthy calculation, we obtain a\ncompact expression for the QFIM:\nQ = 4\n⎛\n⎜⎜⎝\np2 + 4q(1 −q)℘2\n(q −1/2)p2\n−iw℘\n(q −1/2)p2\np2/4\n0\n−iw℘\n0\n1 −w2\n4q(1 −q)\n⎞\n⎟⎟⎠.\n(12)\nThis is our central result. The QFIM depends only on the\nfollowing quantities:\nw ≡⟨\u0002±|\u0002∓⟩= ⟨\u0002| exp(isP)|\u0002⟩,\np2 ≡⟨\u0002±|P 2|\u0002±⟩= ⟨\u0002|P 2|\u0002⟩,\n(13)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.616041"
+        }
+    },
+    {
+        "id": 26,
+        "content": "following quantities:\nw ≡⟨\u0002±|\u0002∓⟩= ⟨\u0002| exp(isP)|\u0002⟩,\np2 ≡⟨\u0002±|P 2|\u0002±⟩= ⟨\u0002|P 2|\u0002⟩,\n(13)\n℘≡±⟨\u0002±|P|\u0002∓⟩= ⟨\u0002| exp(isP)P|\u0002⟩.\nNotice carefully that p2 is solely determined by the shape of\nthe PSF, whereas both w and ℘(which is purely imaginary)\ndepend on the separation s.\nIV. RESULTS\nIn what follows, rather than the variances themselves, we\nwill use the inverses\nHα =\n1\nVar(θα),\n(14)\nusually called the precisions [42]. In this way, we avoid\npotential divergences as s →0.\nThe QFIM (12) nicely shows the interplay between various\nsignal parameters. First, notice that Q is independent of",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.621081"
+        }
+    },
+    {
+        "id": 27,
+        "content": "signal parameters. First, notice that Q is independent of\nthe centroid, as might be expected. Second, for equally\nbright sources, q = 1/2, the measurement of separation s\nis uncorrelated with the measurements of the remaining\nparameters and we have Hs(q = 1/2) = p2, a well-known\nresult, and the Rayleigh curse is lifted [18]. This happy\nsituation does not hold for unequal intensities q̸ = 1/2; now\nthe separation is correlated with the centroid (via the intensity\nterm q −1/2), and the centroid is correlated with the intensity\n(via p2). This can be intuitively understood: unequal intensities",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.627228"
+        }
+    },
+    {
+        "id": 28,
+        "content": "(via p2). This can be intuitively understood: unequal intensities\nresult in asymmetrical images and ﬁnding the centroid is\nno longer a trivial task. This asymmetry, in turn, depends\non the relative brightness of the two components. Hence,\nall the three parameters become correlated and, as we shall\nsee, having separation-independent information about s is no\nlonger possible.\nIndeed, by inverting the QFIM we immediately get\nHs0 = 4Q2 ℘2 + p2(1 −w2)\n1 −w2\n,\nHs = p2Q2\n℘2 + p2(1 −w2)\nQ2℘2 + p2(1 −w2),\n(15)\nHq =\n4\nQ2\n℘2 + p2(1 −w2)\n℘2 + p2\n,\nwhere 0 < Q2 ≡4q(1 −q) ⩽1. Obviously, Hs(q) ⩽Hs(q =",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.633275"
+        }
+    },
+    {
+        "id": 29,
+        "content": "(15)\nHq =\n4\nQ2\n℘2 + p2(1 −w2)\n℘2 + p2\n,\nwhere 0 < Q2 ≡4q(1 −q) ⩽1. Obviously, Hs(q) ⩽Hs(q =\n1/2) = p2 and\nlim\nq→0,1 Hs(q) = 0, which demonstrates that\nresolving two highly unequal sources is difﬁcult, even at the\nquantum limit.\nThe instance of large brightness differences and small\nseparations is probably the most interesting regime encoun-\ntered, e.g., in exoplanet observations. We ﬁrst expand the\ns-dependent quantities:\nw(s) = ⟨\u0002|eisP |\u0002⟩≃1 −1\n2p2s2 + 1\n24p4s4,\np(s) = ⟨\u0002|PeisP |\u0002⟩≃ip2s −i 1\n6p4s3,\n(16)\nwhere p4 = ⟨\u0002|P 4|\u0002⟩is the fourth moment of the PSF",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.638919"
+        }
+    },
+    {
+        "id": 30,
+        "content": "p(s) = ⟨\u0002|PeisP |\u0002⟩≃ip2s −i 1\n6p4s3,\n(16)\nwhere p4 = ⟨\u0002|P 4|\u0002⟩is the fourth moment of the PSF\nmomentum. Then, as s ≪1, we get (for 0 < Q < 1)\nHs0 ≃Q2 Var( ˆP 2) s2,\nHs ≃\nQ2\n4(1 −Q2) Var( ˆP 2) s2,\nHq ≃\n1\nQ2 Var( ˆP 2) s4.\n(17)\nThe PSF enters these expressions through the variance of\nP 2: Var( ˆP 2) = E[(P 2 −p2)2]. This leaves room for optimiza-\ntion, provided the PSF can be controlled. For a ﬁxed PSF, the\ninformation about all three parameters vanish with s →0, un-\nless q = 1/2. Since exactly balanced sources are uncommon,\nthe information about very small separations always drops",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.644796"
+        }
+    },
+    {
+        "id": 31,
+        "content": "the information about very small separations always drops\nto near zero and the Rayleigh curse is unavoidable. However,\nsigniﬁcant improvements of the optimal measurement schemes\nover the standard intensity detection are still possible.\nTo illustrate this point let us consider a Gaussian response\n⟨x|\u0002⟩= (2π)1/4 exp(−x2/4) of unit width, which will serve\nfrom now on as our basic unit length. We compare the quantum\nlimit given by (12) with that given by the classical Fisher\ninformation for the direct intensity measurement. We assume\nno prior knowledge about any of the three parameters.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 7,
+            "created_at": "2026-06-30 15:00:23.650498"
+        }
+    },
+    {
+        "id": 32,
+        "content": "no prior knowledge about any of the three parameters.\nFigure 1 plots information about separation Hs for different\nrelative intensities q. Unbalanced intensities make both opti-\nmal and intensity detection go to zero for small separations;\n062107-3",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 8,
+            "created_at": "2026-06-30 15:00:23.655979"
+        }
+    },
+    {
+        "id": 33,
+        "content": "J. ˇREHA ˇCEK et al.\nPHYSICAL REVIEW A 96, 062107 (2017)\nFIG. 1. Upper panel: Precision Hs in the separation s as inferred\nby optimal (red solid lines) and direct (blue broken lines) detections,\nfor different relative intensities of the two sources. The values of\nq, from top to bottom, are 0.5, 0.45, 0.3, and 0.1. Notice that the\nperformance of the optimal detection is rather sensitive to small\ndeviations from equal brightness over a wide range of separations.\nLower panel: Precisions visualized on a logarithmic scale. Slopes of",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.661316"
+        }
+    },
+    {
+        "id": 34,
+        "content": "Lower panel: Precisions visualized on a logarithmic scale. Slopes of\nstraight lines translate to the powers of s. The values of q are, from\ntop to bottom, 0.5, 0.4, and 0.1.\nhowever, the former at a much slower rate. Hence, the ratio\nof optimal to intensity information increases with decreasing\nseparations, regardless of whether the sources are balanced.\nThe reason becomes obvious with the same data visualized\non the logarithmic scales, as shown in the lower panel of\nFig. 1. In the region of s ≪σ, we can discern two regimes\nof importance. For balanced sources, H opt\ns\n∝1 and H int\ns\n∝",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.667071"
+        }
+    },
+    {
+        "id": 35,
+        "content": "of importance. For balanced sources, H opt\ns\n∝1 and H int\ns\n∝\ns2. For unbalanced sources, H opt\ns\n∝s2, as we have seen, and\nH int\ns\n∝s4. In consequence, there is always a factor of s−2\nimprovement of the optimal detection over the standard one,\nirrespective of the true values of the signal parameters. In\npractice, this means that when we already are well below the\nRayleigh limit, if we decrease the separation 10 times, about\n10 000 times more photons must be detected with a CCD\ncamera to keep the accuracy of the measurement, while only\n100 times more would sufﬁce for optimal measurement. This",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.672757"
+        }
+    },
+    {
+        "id": 36,
+        "content": "100 times more would sufﬁce for optimal measurement. This\namounts to saving 99% of detection time with the optimal\ndetection scheme.\nFigure 2 presents a similar comparison, but now concerning\nthe precision Hq in the relative intensity. Here optimal\ninformation and intensity information always scale as s4 and\ns6, respectively, and the same s−2 gain in performance appears.\nFIG. 2. Upper panel: Precision Hq in the relative intensity q\nas inferred by optimal (red solid lines) direct (blue broken lines)\ndetections, for different relative intensities of the two sources. The",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.678251"
+        }
+    },
+    {
+        "id": 106,
+        "content": "PDA50B2 \nGe Switchable Gain \nDetector \n \nUser Guide",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:46.967892"
+        }
+    },
+    {
+        "id": 37,
+        "content": "detections, for different relative intensities of the two sources. The\nvalues of q, from bottom to top are 0.5, 0.2, 0.1, and 0.01. Lower\npanel: Precisions visualized on a logarithmic scale. Slopes of straight\nlines translate to the powers of s. The three blue broken lines cannot\nbe distinguished on this scale. The values of q are, from bottom to\ntop, 0.5, 0.2, and 0.01.\nNotice the reversed ordering of curves with q, meaning\nthat now the information increases with increasing intensity\ndifference, which reveals the complementarity between these",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.683917"
+        }
+    },
+    {
+        "id": 38,
+        "content": "difference, which reveals the complementarity between these\nmagnitudes. Also notice that the broken lines converge as\nwe approach s = 0. It can be shown that the leading term\nfor intensity detection for small separations is q-independent,\nin contrast to the optimal detection, which displays a strong\nH opt\nq\n∝q−1 dependence for q ≪1/2. This highlights the\nadvantage of an optimal detection scheme for astronomical\nobservations. For example, more than a quarter of catalogued\nbinary systems consist of stars that differ in brightness by\nmore than an order of magnitude [43], and the darkest known",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.689368"
+        }
+    },
+    {
+        "id": 39,
+        "content": "more than an order of magnitude [43], and the darkest known\nexoplanet is three orders of magnitude dimmer than its host\nstar in the infrared [44].\nFinally, Fig. 3 shows that for highly unbalanced sources, the\nadvantage of the quantum detection over the direct intensity\nimaging extends to larger separations. For balanced sources\n(q = 0.5) direct imaging drops below 50% of the correspond-\ning quantum limit at s ≃1.3σ. This border value grows to\ns ≃2.3σ at q = 0.1 and further to s ≃3.8σ at q = 0.01. This\nmeans one can beneﬁt from quantum detection well above the\n062107-4",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.694886"
+        }
+    },
+    {
+        "id": 40,
+        "content": "MULTIPARAMETER QUANTUM METROLOGY OF . . .\nPHYSICAL REVIEW A 96, 062107 (2017)\nFIG. 3. Precision about separation provided by the direct intensity\nimaging normalized by the corresponding quantum limit. Notice how\nthe gap between the optimal detection (red solid line) and direct\nimaging (blue broken lines) widens with the two sources getting\nmore unequal. The values of q are, from bottom to top, 0.001, 0.01,\n0.1, and 0.5.\nRayleigh limit provided the two signal components are highly\nunequal, which is often the case.\nV. CONCLUSIONS\nIn summary, we have presented a comprehensive analysis",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.700497"
+        }
+    },
+    {
+        "id": 41,
+        "content": "V. CONCLUSIONS\nIn summary, we have presented a comprehensive analysis\nof the ultimate precision bounds for estimating the centroid,\nthe separation, and the relative intensities of two pointlike\nincoherent sources. For equally bright sources, the quantum\nFisher information remains constant, which translates into the\nfact that the Rayleigh limit is not essential and can be lifted. On\nthe other hand, for unequally bright sources, the information\nabout very small separations always drops to near zero and\nthe Rayleigh curse is unavoidable. Nonetheless, signiﬁcant",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.705607"
+        }
+    },
+    {
+        "id": 42,
+        "content": "the Rayleigh curse is unavoidable. Nonetheless, signiﬁcant\nimprovements can still be expected with optimal detection\nschemes. Work along these lines is in progress.\nACKNOWLEDGMENTS\nWe acknowledge ﬁnancial support from the Grant Agency\nof the Czech Republic (Grant No. 15-03194S), the IGA Project\nof the Palacký University (Grant No. IGA PrF 2016-005),\nthe European Space Agency’s ARIADNA scheme, and the\nSpanish MINECO (Grant No. FIS2015-67963-P).\nAPPENDIX: OPTIMAL DETECTION\nIn principle, analytical techniques to obtain a measurement\nsaturating the quantum CRLB are at hand, but they apply only",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.711660"
+        }
+    },
+    {
+        "id": 43,
+        "content": "saturating the quantum CRLB are at hand, but they apply only\nto pure states [45]. For mixed states, we can ﬁnd such an\noptimal detection by numerical maximization of the classical\nFisher information matrix. It is useful to work in a suitable\ncomputational basis formed by a set of orthonormal modes\ndenoted by |n⟩, with n = 1,2, . . . ,d. The sampled basis wave\nfunctions Vkn = ⟨xk|n⟩readily transform the signal state (1)\nand signal state derivatives (11) between the x representation\n(2) and our computational n representation. Since we deal with",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.717147"
+        }
+    },
+    {
+        "id": 44,
+        "content": "(2) and our computational n representation. Since we deal with\nreal-valued amplitude PSFs only, the basis wave functions can\nbe also taken as real.\n×\nFIG. 4. POVM optimization. The POVM performance (blue dots)\napproaches the quantum limit (red line) in the course of optimization.\nPOVM is optimized for 30 different randomly generated signal states.\nFor each signal state we vary the total number of objective function\nevaluations between 100 and 50 000 times.\nWe parametrize the measurement by a real vector, which\nis required by most black-box optimization routines. We",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.722333"
+        }
+    },
+    {
+        "id": 45,
+        "content": "is required by most black-box optimization routines. We\nconstruct the measurement POVM of size M as \fj = |uj⟩⟨uj|\nusing M −1 rank-one projectors on a set of orthonormal states\n|uj⟩(j = 1, . . . ,M −1). This together with the complement\n\fM = 1 −\u0003M−1\nk\n\fk makes a valid POVM of size M in a\nHilbert space of dimension d.\nIn the computational basis, such a POVM is fully speciﬁed\nby a set of M −1 orthonormal d-dimensional vectors\n⟨n|u1⟩, . . . ,⟨n|uM−1⟩.\n(A1)\nTaking a d × M −1 real matrix Z, such a set is provided by\nthe basis of the range space and can be easily generated using",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.728004"
+        }
+    },
+    {
+        "id": 46,
+        "content": "the basis of the range space and can be easily generated using\nthe SVD decomposition Z = USV †, with\n⟨n|u1⟩= Un1, . . . ,⟨n|uM−1⟩= UnM−1.\n(A2)\nIn this way, any real-valued d × M −1 matrix generates\na POVM. This matrix, in turn, is a reshaped d(M −1)\ndimensional real vector z establishing a convenient vector\nparametrization of the measurement \fj(z).\nQuantum Fisher information is approached by minimizing\na suitable function of classical Fisher information matrix\nFαβ(z) =\nM\n\u0004\nj=1\n∂αpj(z)∂βpj(z)\npj(z)\n,\n(A3)\nwhere pj(z) = Tr[ρθ\fj(z)] are the probabilities of the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.733899"
+        }
+    },
+    {
+        "id": 47,
+        "content": "Fαβ(z) =\nM\n\u0004\nj=1\n∂αpj(z)∂βpj(z)\npj(z)\n,\n(A3)\nwhere pj(z) = Tr[ρθ\fj(z)] are the probabilities of the\nM measurement outputs. One option is to minimize the\nL2 norm of the diagonal elements of the Fisher matrix\ninverse\nmin\nz ∥diag[F(z)−1]∥2.\n(A4)\nGlobal optimization tools are needed to solve such a noncon-\nvex problem [46]. Notice that estimating three independent\nparameters requires a POVM with at least M = 4 outputs and\n3d parameters to optimize. This is within the grasp of currently\navailable numerical tools and hardware.\nFigure 4 shows typical results obtained for a Gaussian PSF",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 7,
+            "created_at": "2026-06-30 15:00:23.739119"
+        }
+    },
+    {
+        "id": 48,
+        "content": "available numerical tools and hardware.\nFigure 4 shows typical results obtained for a Gaussian PSF\nin the Hermite-Gauss computational basis d = 6 subject to\n062107-5",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 8,
+            "created_at": "2026-06-30 15:00:23.744757"
+        }
+    },
+    {
+        "id": 122,
+        "content": "of the active area. Silicon devices generally produce low dark current compared to \ngermanium devices which have high dark currents. The table below lists several \nphotodiode materials and their relative dark currents, speeds, sensitivity, and \ncosts. Please note that sensitivity values in the table are typical values; Thorlabs \noffers photodetectors with sensitivity ranges that vary from those shown below.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.094488"
+        }
+    },
+    {
+        "id": 49,
+        "content": "J. ˇREHA ˇCEK et al.\nPHYSICAL REVIEW A 96, 062107 (2017)\nmeasurements with M = 4 outputs. The signal parameters are\nrandomly sampled from the parameter space s0 ∈[−1,1], s ∈\n[0.05,0.5], and q ∈[0.1,0.5] exploring the region of interest\nwell below the Rayleigh limit. The problem is solved by the\nglobal optimization package BlackBoxOptim for Julia [47]\nusing the default differential evolution optimizer. In most\ncases a few tens of thousand evaluations of Fisher information\nmatrix are enough to secure two signiﬁcant digits of the\nquantum limit. This translated to less than 10˜s computation",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.750304"
+        }
+    },
+    {
+        "id": 50,
+        "content": "quantum limit. This translated to less than 10˜s computation\ntime on a standard i7-7700 CPU. We stress that the resulting\noptimal measurements, although challenging, can be feasibly\nimplemented in the laboratory.\n[1] Lord Rayleigh, Investigations in optics, with special reference\nto the spectroscope, Philos. Mag. 8, 261 (1879).\n[2] J. W. Goodman, Introduction to Fourier Optics (Roberts and\nCompany, Englewood-Cliffs, NJ, 2004).\n[3] A. J. den Dekker and A. van den Bos, Resolution: A survey,\nJ. Opt. Soc. Am. A 14, 547 (1997).\n[4] E. Betzig, G. H. Patterson, R. Sougrat, O. W. Lindwasser,",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.756772"
+        }
+    },
+    {
+        "id": 51,
+        "content": "J. Opt. Soc. Am. A 14, 547 (1997).\n[4] E. Betzig, G. H. Patterson, R. Sougrat, O. W. Lindwasser,\nS. Olenych, J. S. Bonifacino, M. W. Davidson, J. Lippincott-\nSchwartz, and H. F. Hess, Imaging intracellular ﬂuorescent\nproteins at nanometer resolution, Science 313, 1642 (2006).\n[5] S. T. Hess, T. P. K. Girirajan, and M. D. Mason, Ultra-high\nresolution imaging by ﬂuorescence photoactivation localization\nmicroscopy, Biophys. J. 91, 4258 (2006).\n[6] S. W. Hell, Far-ﬁeld optical nanoscopy, Science 316, 1153\n(2007).\n[7] M. I. Kolobov, Quantum Imaging (Springer, Berlin, 2007),\np. 113.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.762918"
+        }
+    },
+    {
+        "id": 52,
+        "content": "(2007).\n[7] M. I. Kolobov, Quantum Imaging (Springer, Berlin, 2007),\np. 113.\n[8] Focus issue: Super-resolution imaging, Nat. Photonics 3, 361\n(2009).\n[9] S. W. W Hell, Microscopy and its focal switch, Nat. Meth. 6, 24\n(2009).\n[10] G. Patterson, M. Davidson, S. Manley, and J. Lippincott-\nSchwartz, Superresolution imaging using single-molecule\nlocalization, Annu. Rev. Phys. Chem. 61, 345 (2010).\n[11] P. R. Hemmer and T. Zapata, The universal scaling laws that\ndetermine the achievable resolution in different schemes for\nsuper-resolution imaging, J. Opt. 14, 083002 (2012).",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:23.768121"
+        }
+    },
+    {
+        "id": 53,
+        "content": "super-resolution imaging, J. Opt. 14, 083002 (2012).\n[12] C. Cremer and R. B. Masters, Resolution enhancement tech-\nniques in microscopy, Eur. Phys. J. H 38, 281 (2013).\n[13] E.\nAbbe,\nUeber\neinen\nneuen\nBeleuchtungsapparat\nam\nMikroskop, Arch. Mikrosk. Anat. 9, 469 (1873).\n[14] M. Tsang, R. Nair, and X.-M. Lu, Quantum Theory of Super-\nresolution for Two Incoherent Optical Point Sources, Phys. Rev.\nX 6, 031033 (2016).\n[15] R. Nair and M. Tsang, Far-Field Superresolution of Thermal\nElectromagnetic Sources at the Quantum Limit, Phys. Rev. Lett.\n117, 190801 (2016).",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:23.773076"
+        }
+    },
+    {
+        "id": 54,
+        "content": "Electromagnetic Sources at the Quantum Limit, Phys. Rev. Lett.\n117, 190801 (2016).\n[16] S. Z. Ang, R. Nair, and M. Tsang, Quantum limit for two-\ndimensional resolution of two incoherent optical point sources,\nPhys. Rev. A 95, 063847 (2017).\n[17] M. Tsang, Subdiffraction incoherent optical imaging via spatial-\nmode demultiplexing, New J. Phys. 19, 023054 (2017).\n[18] M. Paur, B. Stoklasa, Z. Hradil, L. L. Sanchez-Soto, and J.\nRehacek, Achieving the ultimate optical resolution, Optica 3,\n1144 (2016).\n[19] F. Yang, A. Taschilina, E. S. Moiseev, C. Simon, and A. I.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 5,
+            "created_at": "2026-06-30 15:00:23.779149"
+        }
+    },
+    {
+        "id": 55,
+        "content": "1144 (2016).\n[19] F. Yang, A. Taschilina, E. S. Moiseev, C. Simon, and A. I.\nLvovsky, Far-ﬁeld linear optical superresolution via heterodyne\ndetection in a higher-order local oscillator mode, Optica 3, 1148\n(2016).\n[20] W.-K. Tham, H. Ferretti, and A. M. Steinberg, Beating\nRayleigh’s Curse by Imaging Using Phase Information, Phys.\nRev. Lett. 118, 070801 (2017).\n[21] F. Yang, R. Nair, M. Tsang, C. Simon, and A. I. Lvovsky,\nFisher information for far-ﬁeld linear optical superresolution\nvia homodyne or heterodyne detection in a higher-order local\noscillator mode, arXiv:1706.08633 (2017).",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 6,
+            "created_at": "2026-06-30 15:00:23.784630"
+        }
+    },
+    {
+        "id": 56,
+        "content": "oscillator mode, arXiv:1706.08633 (2017).\n[22] C. Lupo and S. Pirandola, Ultimate Precision Bound of Quantum\nand Subwavelength Imaging, Phys. Rev. Lett. 117, 190802\n(2016).\n[23] H. Krovi, S. Guha, and J. H. Shapiro, Attaining the quantum\nlimit of passive imaging, arXiv:16009.00684 (2016).\n[24] J. Rehacek, M. Paúr, B. Stoklasa, Z. Hradil, and L. L. Sánchez-\nSoto, Optimal measurements for resolution beyond the Rayleigh\nlimit, Opt. Lett. 42, 231 (2017).\n[25] R. Kerviche, S. Guha, and A. Ashok, Fundamental limit of\nresolving two point sources limited by an arbitrary point",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 7,
+            "created_at": "2026-06-30 15:00:23.789485"
+        }
+    },
+    {
+        "id": 57,
+        "content": "resolving two point sources limited by an arbitrary point\nspread function, in Proceedings of the 2017 IEEE International\nSymposium on Information Theory (ISIT) (IEEE, New York,\n2017), p. 441.\n[26] Q. Zhuang, Z. Zhang, and J. H. Shapiro, Quantum illumination\nfor enhanced detection of Rayleigh-fading targets, Phys. Rev. A\n96, 020302 (2017).\n[27] M. E. Pearce, E. T. Campbell, and P. Kok, Optimal quantum\nmetrology of distant black bodies, Quantum 1, 21 (2017).\n[28] A. Chrostowski, R. Demkowicz-Dobrza´nski, M. Jarzyna, and\nK. Banaszek, On superresolution imaging as a multiparameter",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 8,
+            "created_at": "2026-06-30 15:00:23.795057"
+        }
+    },
+    {
+        "id": 58,
+        "content": "K. Banaszek, On superresolution imaging as a multiparameter\nestimation problemi, Int. J. Quantum. Inform. 15 (2017).\n[29] M. Tsang, Quantum limits to optical point-source localization,\nOptica 2, 646 (2015).\n[30] R. Nair and M. Tsang, Interferometric superlocalization of two\nincoherent optical point sources, Opt. Express 24, 3684 (2016).\n[31] T. Z. Sheng, K. Durak, and A. Ling, Fault-tolerant and ﬁnite-\nerror localization for point emitters within the diffraction limit,\nOpt. Express 24, 22004 (2016).\n[32] L. Mandel and E. Wolf, Optical Coherence and Quantum Optics",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 9,
+            "created_at": "2026-06-30 15:00:23.800241"
+        }
+    },
+    {
+        "id": 59,
+        "content": "Opt. Express 24, 22004 (2016).\n[32] L. Mandel and E. Wolf, Optical Coherence and Quantum Optics\n(Cambridge University Press, Cambridge, 1995).\n[33] D. Petz and C. Ghinea, Introduction to quantum Fisher informa-\ntion, in Quantum Probability and Related Topics, Vol. 27 (World\nScientiﬁc, Singapore, 2011), p. 261.\n[34] C. W. Helstrom, Minimum mean-squared error of estimates in\nquantum statistics, Phys. Lett. A 25, 101 (1967).\n[35] M. G. A. Paris, Quantum estimation for quantum technology,\nInt. J. Quantum. Inform. 07, 125 (2009).\n[36] S. L. Braunstein and C. M. Caves, Statistical Distance and the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 10,
+            "created_at": "2026-06-30 15:00:23.805217"
+        }
+    },
+    {
+        "id": 60,
+        "content": "[36] S. L. Braunstein and C. M. Caves, Statistical Distance and the\nGeometry of Quantum States, Phys. Rev. Lett. 72, 3439 (1994).\n[37] M. Szczykulska, T. Baumgratz, and A. Datta, Multi-parameter\nquantum metrology, Adv. Phys. 1, 621 (2016).\n[38] A. S. Holevo, Probabilistic and Statistical Aspects of Quantum\nTheory, 2nd ed. (North Holland, Amsterdam, 2003).\n[39] K. Matsumoto, A new approach to the Cramér-Rao-type bound\nof the pure-state model, J. Phys. A: Math. Gen. 35, 3111 (2002).\n[40] P. J. D. Crowley, A. Datta, M. Barbieri, and I. A. Walmsley,",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 11,
+            "created_at": "2026-06-30 15:00:23.811021"
+        }
+    },
+    {
+        "id": 62,
+        "content": "MULTIPARAMETER QUANTUM METROLOGY OF . . .\nPHYSICAL REVIEW A 96, 062107 (2017)\n[41] S. Ragy, M. Jarzyna, and R. Demkowicz-Dobrza´nski, Compat-\nibility in multiparameter quantum metrology, Phys. Rev. A 94,\n052108 (2016).\n[42] J. M. Bernardo and A. F. M. Smith, Bayesian Theory (Wiley,\nSussex, 2000).\n[43] http://www.usno.navy.mil/USNO/astrometry/optical-IR-\nprod/wds/dm3.\n[44] T. Barclay, D. Huber, J. F. Rowe, J. J. Fortney, C. V. Morley, E.\nV. Quintana, D. C. Fabrycky, G. Barentsen, S. Bloemen, J. L.\nChristiansen, B.-O. Demory, B. J. Fulton, J. M. Jenkins, F. Mul-",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:23.821357"
+        }
+    },
+    {
+        "id": 63,
+        "content": "Christiansen, B.-O. Demory, B. J. Fulton, J. M. Jenkins, F. Mul-\nlally, D. Ragozzine, S. E. Seader, A. Shporer, P. Tenenbaum,\nand S. E. Thompson, Photometrically derived masses and radii\nof the planet and star in the tres-2 system, Astrophys. J. 761, 53\n(2012).\n[45] L. Pezzè, M. A. Ciampini, N. Spagnolo, P. C. Humphreys,\nA. Datta, I. A. Walmsley, M. Barbieri, F Sciarrino, and A.\nSmerzi, Optimal Measurements for Simultaneous Quantum\nEstimation of Multiple Phases, Phys. Rev. Lett. 119, 130504\n(2017).\n[46] R. Horst and P. M. Pardalos, eds., Handbook of Global",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:23.826801"
+        }
+    },
+    {
+        "id": 64,
+        "content": "(2017).\n[46] R. Horst and P. M. Pardalos, eds., Handbook of Global\nOptimization (Springer, Berlin, 1995).\n[47] http://julia.org.\n062107-7",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "Multiparameter quantum metrology of incoherent point sources: Towards realistic superresolution",
+            "document_id": 1,
+            "filepath": "uploads/doc1.pdf",
+            "component": null,
+            "component_id": null,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:23.832549"
+        }
+    },
+    {
+        "id": 65,
+        "content": "PDA50B2 \nGe Switchable Gain \nDetector \n \nUser Guide",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 1,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:36.967194"
+        }
+    },
+    {
+        "id": 66,
+        "content": "Ge Switchable Gain Detector \n \n \nTable of Contents \nChapter 1 \nWarning Symbol Definitions ........................................... 1 \nChapter 2 \nDescription ........................................................................ 2 \nChapter 3 \nSetup .................................................................................. 3 \nChapter 4 \nOperation........................................................................... 4 \n4.1. Theory of Operation ...................................................... 4",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.008968"
+        }
+    },
+    {
+        "id": 67,
+        "content": "4.1. Theory of Operation ...................................................... 4 \n4.2. Responsivity ................................................................. 4 \n4.3. Dark Current ................................................................. 4 \n4.4. Bandwidth and Response .............................................. 5 \n4.5. Terminating Resistance ................................................. 5 \n4.6. Gain Adjustment ........................................................... 5 \nChapter 5 \nTroubleshooting ............................................................... 6",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.016095"
+        }
+    },
+    {
+        "id": 68,
+        "content": "Chapter 5 \nTroubleshooting ............................................................... 6 \nChapter 6 \nSpecifications ................................................................... 7 \n6.1. Response Curve ............................................................. 9 \n6.2. Mechanical Drawing ................................................... 10 \nChapter 7 \nCertificate of Conformance ........................................... 11 \nChapter 8 \nRegulatory ....................................................................... 12 \nChapter 9",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.021936"
+        }
+    },
+    {
+        "id": 69,
+        "content": "Regulatory ....................................................................... 12 \nChapter 9 \nThorlabs Worldwide Contacts....................................... 13",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:37.028552"
+        }
+    },
+    {
+        "id": 70,
+        "content": "Ge Switchable Gain Detector \nChapter 1: Warning Symbol Definitions \nRev E, December 7, 2023 \nPage 1 \nChapter 1 Warning Symbol Definitions \nBelow is a list of warning symbols you may encounter in this manual or on your \ndevice. \nSymbol \nDescription \n \nDirect Current \n \nAlternating Current \n \nBoth Direct and Alternating Current \n \nEarth Ground Terminal \n \nProtective Conductor Terminal \n \nFrame or chassis Terminal \n \nEquipotentiality \n \nOn (Supply) \n \nOff (Supply) \n \nIn Position of a Bi-Stable Push Control \n \nOut Position of a Bi-Stable Push Control \n \nCaution, Risk of Electric Shock",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.034691"
+        }
+    },
+    {
+        "id": 71,
+        "content": "Out Position of a Bi-Stable Push Control \n \nCaution, Risk of Electric Shock \n \nCaution, Hot Surface \n \nCaution, Risk of Danger \n \nWarning, Laser Radiation \n \n \nCaution: ESD Sensitive Components",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.041041"
+        }
+    },
+    {
+        "id": 72,
+        "content": "Ge Switchable Gain Detector \nChapter 2: Description \nPage 2 \nTTN135074-D02 \nChapter 2 Description \nThe PDA50B2 is an amplified, switchable-gain, Germanium (Ge) detector \ndesigned for detection of light signals ranging from 800 to 1800 nm. An eight-\nposition rotary switch allows the user to vary the gain in 10 dB steps. A buffered \noutput drives 50 Ω load impedances up to 5 V. The PDA50B2 housing includes a \nremovable threaded coupler (SM1T1) and retainer ring (SM1RR) that is compatible \nwith any number of Thorlabs 1\" threaded accessories. This allows convenient",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.046954"
+        }
+    },
+    {
+        "id": 73,
+        "content": "with any number of Thorlabs 1\" threaded accessories. This allows convenient \nmounting of external optics, light filters, apertures, as well as providing an easy \nmounting mechanism using Thorlabs’ cage assembly accessories. \nESD Caution \nThe components inside this instrument are ESD sensitive. Take all \nappropriate precautions to discharge personnel and equipment before \nmaking any electrical connections to the unit.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.052163"
+        }
+    },
+    {
+        "id": 74,
+        "content": "Ge Switchable Gain Detector \nChapter 3: Setup \nRev E, December 7, 2023 \nPage 3 \nChapter 3 Setup \nThe detector can be set up in many different ways using our extensive line of \nadapters. However, the detector should always be mounted and secured for best \noperation. \n1. \nUnpack the optical head, install either an imperial or metric optical post \ninto one of the mounting holes located on the bottom and side of the \nsensor, and mount using a post holder. Note that these detectors feature \ntapped holes that accept both 8-32 and M4 threads, so using either \nimperial or metric TR posts is possible.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.057830"
+        }
+    },
+    {
+        "id": 75,
+        "content": "imperial or metric TR posts is possible. \n2. \nConnect the power supply 3-pin plug into the power receptacle on the \nPDA50B2. \n3. \nPlug the power supply into a 50 to 60Hz, 100 V / 120 V / 230 V power \noutlet. \n4. \nAttach a 50 Ω coax cable (i.e. RG-58U) to the output of the PDA. When \nrunning cable lengths longer than 12\" we recommend terminating the \nopposite end of the coax with a 50 Ω resistor (Thorlabs p/n T4119) for \nmaximum performance. Connect the remaining end to a measurement \ndevice such as an oscilloscope or high speed DAQ card. Caution: Many",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.064568"
+        }
+    },
+    {
+        "id": 76,
+        "content": "device such as an oscilloscope or high speed DAQ card. Caution: Many \nhigh speed oscilloscopes have input impedances of 50 Ω. In this case, \ndo not install a 50 Ω terminator. The combined loads will equal 25 Ω which \ncould allow ~135 mA of output current. This will damage the output driver \nof the PDA50B2. \n5. \nPower the PDA50B2 on using the power switch located on the top side \nof the unit. \nCaution! \nThe PDA50B2 was designed to allow maximum accessibility to the \nphotodetector by having the active area surface of the diode flush with the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.069781"
+        }
+    },
+    {
+        "id": 77,
+        "content": "photodetector by having the active area surface of the diode flush with the \noutside of the PDA housing. When using fiber adapters, make sure that the \nfiber ferrule does not crash into the detector. Failure to do so may cause \ndamage to the diode and/or the fiber.  \n6. \nInstall any desired filters, optics, adapters, or fiber adapters to the input \naperture. \n7. \nDuring alignment, take appropriate precautions, such as using reduced \nradiation power, or other precautions, and use proper eye and/or skin \nprotection as recommended by the radiation source manufacturer. \n8.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:37.075882"
+        }
+    },
+    {
+        "id": 78,
+        "content": "protection as recommended by the radiation source manufacturer. \n8. \nApply a light source to the detector. Adjust the gain to the desired setting.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:37.082729"
+        }
+    },
+    {
+        "id": 79,
+        "content": "Ge Switchable Gain Detector \nChapter 4: Operation \nPage 4 \nTTN135074-D02 \nChapter 4 Operation \n4.1. Theory of Operation \nThorlabs PDA series are ideal for measuring both pulsed and CW light sources. \nThe PDA50B2 includes a Ge photodiode mated to a switchable gain \ntransimpedance amplifier and is packaged in a rugged housing. \n \n4.2. Responsivity \nThe responsivity of a photodiode can be defined as a ratio of generated \nphotocurrent (IPD) to the incident light power (P) at a given wavelength: \n𝑅(𝜆) = 𝐼𝑃𝐷\n𝑃 \n4.3. Dark Current",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.088257"
+        }
+    },
+    {
+        "id": 80,
+        "content": "𝑅(𝜆) = 𝐼𝑃𝐷\n𝑃 \n4.3. Dark Current \nDark current is leakage current which flows when a bias voltage is applied to a \nphotodiode. The PDA with Transimpedance Amplifier does control the dark current \nflowing out. Looking at the figure above, it can be noted that Point B is held at \nground and the amplifier will try to hold point A to “Virtual Ground”. This minimizes \nthe effects of dark current present in the system. \nThe dark current present is also affected by the photodiode material and the size \nof the active area. Silicon devices generally produce low dark current compared to",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.093366"
+        }
+    },
+    {
+        "id": 81,
+        "content": "of the active area. Silicon devices generally produce low dark current compared to \ngermanium devices which have high dark currents. The table below lists several \nphotodiode materials and their relative dark currents, speeds, sensitivity, and \ncosts. Please note that sensitivity values in the table are typical values; Thorlabs \noffers photodetectors with sensitivity ranges that vary from those shown below.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.100342"
+        }
+    },
+    {
+        "id": 82,
+        "content": "Ge Switchable Gain Detector \nChapter 4: Operation \nRev E, December 7, 2023 \nPage 5 \nMaterial \nDark Current \nSpeed \nSensitivity1 \nCost \nSilicon (Si) \nLow \nHigh \n400 - 1000 nm \nLow \nGermanium (Ge) \nHigh \nLow \n900 - 1600 nm \nLow \nGallium Phosphide (GaP) \nLow \nHigh \n150 - 550 nm \nMed \nIndium Gallium Arsenide \n(InGaAs) \nLow \nHigh \n800 - 1800 nm \nMed \nExtended Range: Indium \nGallium Arsenide (InGaAs) \nHigh \nHigh \n1200 - 2600 nm \nHigh \n4.4. Bandwidth and Response \nFor the PDA detectors,  the gain of the detector is dependent on the feedback",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.106858"
+        }
+    },
+    {
+        "id": 83,
+        "content": "For the PDA detectors,  the gain of the detector is dependent on the feedback \nelement (Rf). The bandwidth of the detector can be calculated using the following: \n𝑓(−3𝑑𝐵) = √\n𝐺𝐵𝑃\n4𝜋𝑅𝑓× 𝐶𝐷\n \nWhere GBP is the amplifier gain bandwidth product and CD is the sum of the \nphotodiode junction capacitance and the amplifier capacitance. \n4.5. Terminating Resistance \nThe maximum output of the PDA50B2 is 10 V for high impedance loads (i.e. RLoad \n> 5 kΩ) and 5 V for 50 Ω loads. Adjust the gain so that the measured signal level \nout of the PDA50B2 is below 10 V (5 V with a 50 Ω load) to avoid saturation.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.113242"
+        }
+    },
+    {
+        "id": 84,
+        "content": "out of the PDA50B2 is below 10 V (5 V with a 50 Ω load) to avoid saturation. \nFor low terminating resistors, <5 kΩ or 1% error, an additional factor needs to be \nconsidered. The output of the PDA includes a 50 Ω series resistor (Rs). The output \nload creates a voltage divider with the 50 Ω series resistor as follows: \n𝑆𝑐𝑎𝑙𝑒 𝐹𝑎𝑐𝑡𝑜𝑟 = \n𝑅𝐿𝑜𝑎𝑑\n𝑅𝐿𝑜𝑎𝑑+ 𝑅𝑠\n \n𝑉𝑂𝑈𝑇 = (𝜆) ∗𝑇𝑟𝑎𝑛𝑠𝑖𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐺𝑎𝑖𝑛∗𝑆𝑐𝑎𝑙𝑒 𝐹𝑎𝑐𝑡𝑜𝑟∗𝐼𝑛𝑝𝑢𝑡 𝑃𝑜𝑤𝑒𝑟 (𝑊) \nNote that we already include the scale factor in our specification for the gain at 50 \nΩ. Refer to the table in Chapter 6 for additional performance specifications.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.118691"
+        }
+    },
+    {
+        "id": 85,
+        "content": "Ω. Refer to the table in Chapter 6 for additional performance specifications. \n4.6. Gain Adjustment \nThe PDA50B2 includes a low noise, low offset, high gain transimpedance amplifier \nthat allows gain adjustment over a 70 dB range. The gain is adjusted by rotating \nthe gain control knob, located on the top side of the unit. There are 8 gain positions \nincremented in 10 dB steps. It is important to note that the bandwidth will decrease \nas the gain increases. See the specifications table on page 7 to choose the best \ngain verse bandwidth for a given input signal.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:37.124263"
+        }
+    },
+    {
+        "id": 86,
+        "content": "gain verse bandwidth for a given input signal. \n \n1 Approximate values; actual wavelength values will vary.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:00:37.130326"
+        }
+    },
+    {
+        "id": 87,
+        "content": "Ge Switchable Gain Detector \nChapter 5: Troubleshooting \nPage 6 \nTTN135074-D02 \nChapter 5 Troubleshooting \nProblem \nSuggested Solutions \nThere is no signal response. \nVerify that the power is switched on and all \nconnections are secure. \nVerify the proper terminating resistor is installed if \nusing a Voltage measurement device. \nVerify that the optical signal wavelength is within \nthe specified wavelength range. \nVerify that the optical signal is illuminating the \ndetector active area. \nOutput Voltage will not increase. \nDetector Output is skewed.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 8,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.135701"
+        }
+    },
+    {
+        "id": 88,
+        "content": "detector active area. \nOutput Voltage will not increase. \nDetector Output is skewed. \nCheck to make sure the detector is not saturated. \nRefer to the Output Voltage spec. in the \nSpecifications table. \n \nInstall a 1\" Lens Tube (SM1L10) to the thread \ncoulpler (SM1T1) to baffle any external light \nsources to see if this improves the response.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 8,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.140934"
+        }
+    },
+    {
+        "id": 89,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nRev E, December 7, 2023 \nPage 7 \nChapter 6 Specifications \nAll performance specifications are typical, performed at 25 °C ambient \ntemperature, and assume a 50 Ω load, unless stated otherwise. \nPerformance Specifications2 \n0 dB Setting \n40 dB Setting \nGain (Hi-Z) \n1.51 x 103 V/A ±2% \nGain (Hi-Z) \n1.51 x 105 V/A ±2% \nGain (50 Ω) \n0.75 x 103 V/A ±2% \nGain (50 Ω) \n0.75 x 105 V/A ±2% \nBandwidth3 \n510 kHz \nBandwidth3 \n6.3 kHz \nNoise (RMS) \n220 μV \nNoise (RMS) \n220 μV \nNEP (@ p) \n1.76 x 10-10 W/Hz \nNEP (@ p) \n4.63 x 10-12 W/Hz \nOffset",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.146934"
+        }
+    },
+    {
+        "id": 107,
+        "content": "Ge Switchable Gain Detector \n \n \nTable of Contents \nChapter 1 \nWarning Symbol Definitions ........................................... 1 \nChapter 2 \nDescription ........................................................................ 2 \nChapter 3 \nSetup .................................................................................. 3 \nChapter 4 \nOperation........................................................................... 4 \n4.1. Theory of Operation ...................................................... 4",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.003368"
+        }
+    },
+    {
+        "id": 90,
+        "content": "Noise (RMS) \n220 μV \nNEP (@ p) \n1.76 x 10-10 W/Hz \nNEP (@ p) \n4.63 x 10-12 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n10 dB Setting \n50 dB Setting \nGain (Hi-Z) \n4.75 x 103 V/A ±2% \nGain (Hi-Z) \n4.75 x 105 V/A ±2% \nGain (50 Ω) \n2.38 x 103 V/A ±2% \nGain (50 Ω) \n2.38 x 105 V/A ±2% \nBandwidth3 \n270 kHz \nBandwidth3 \n2 kHz \nNoise (RMS) \n233 μV \nNoise (RMS) \n231 μV \nNEP (@ p) \n8.77 x 10-11 W/Hz \nNEP (@ p) \n4.83 x 10-11 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n20 dB Setting \n60 dB Setting \nGain (Hi-Z)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.152380"
+        }
+    },
+    {
+        "id": 91,
+        "content": "±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n20 dB Setting \n60 dB Setting \nGain (Hi-Z) \n1.5 x 104 V/A ±2% \nGain (Hi-Z) \n1.5 x 106 V/A ±5% \nGain (50 Ω) \n0.75 x 104 V/A ±2% \nGain (50 Ω) \n0.75 x 106 V/A ±5% \nBandwidth3 \n85 kHz \nBandwidth3 \n630 Hz \nNoise (RMS) \n223 μV \nNoise (RMS) \n247 μV \nNEP (@ p) \n1.95 x 10-11 W/Hz \nNEP (@ p) \n6.73 x 10-12 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset: \n±15 mV (Typ.) \n±20 mV (Max) \n30 dB Setting \n70 dB Setting \nGain (Hi-Z) \n4.75 x 104 V/A ±2% \nGain (Hi-Z) \n4.75 x 106 V/A ±5% \nGain (50 Ω) \n2.38 x 104 V/A ±2% \nGain (50 Ω) \n2.38 x 106 V/A ±5%",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.159129"
+        }
+    },
+    {
+        "id": 92,
+        "content": "Gain (Hi-Z) \n4.75 x 106 V/A ±5% \nGain (50 Ω) \n2.38 x 104 V/A ±2% \nGain (50 Ω) \n2.38 x 106 V/A ±5% \nBandwidth3 \n22 kHz \nBandwidth3 \n210 Hz \nNoise (RMS) \n230 μV \nNoise (RMS) \n333 μV  \nNEP (@ p) \n6.41 x 10-12 W/Hz \nNEP (@ p) \n1.04 x 10-11 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n \n \n2 The PDA50B2 has a 50 Ω series terminator resistor (i.e. in series with amplifier output). This \nforms a voltage divider with any load impedance (e.g. 50 Ω load divides signal in half). \n3 Tested at 1550 nm wavelength.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:37.165565"
+        }
+    },
+    {
+        "id": 93,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nPage 8 \nTTN135074-D02 \nElectrical Specifications \nDetector \n- \nGe \nActive Area \n- \nØ5.0 mm (19.6 mm2) \nWavelength Range \nλ \n800 to 1800 nm \nPeak Wavelength \nλ p \n1550 nm (Typ.) \nPeak Response \n( λ p) \n0.85 A/W (Typ.) \nAmplifier GBP \n- \n25 MHz \nOutput Impedance \n- \n50 Ω \nMax Ouput Current \nIOUT \n100 mA \nLoad Impedance \n- \n50 Ω to Hi-Z \nGain Adjustment Range \n- \n0 dB to 70 dB \nGain Steps \n- \n8 x 10 dB Steps \nOutput Voltage \nVOUT \n0 to 5 V (50 Ω) \n0 to 10 V (Hi-Z) \n \nGeneral \nOn/Off Switch \nSlide \nGain Switch \n8 Position Rotary \nOutput",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.170622"
+        }
+    },
+    {
+        "id": 94,
+        "content": "0 to 10 V (Hi-Z) \n \nGeneral \nOn/Off Switch \nSlide \nGain Switch \n8 Position Rotary \nOutput \nBNC (DC Coupled) \nPackage Size \n2.79\" x 2.07\" x 0.89\" \n(70.9 mm x 52.5 mm x 22.5 mm) \nPD Surface Depth4 \n0.09\" (2.2 mm) \nWeight, Detector Only \n0.10 kg \nAccessories \nSM1T1 Coupler \nSM1RR Retainer Ring \nOperating Temp \n10 to 40 °C \nStorage Temp \n-20 to 70 °C \nAC Power Supply \nAC - DC Converter \nInput Power5 \n6 W \n100 V / 120 V / 230 V, 50 - 60 Hz \n \n \n4 Measured from the active area to the start of the threads on the housing body. The detector",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.175748"
+        }
+    },
+    {
+        "id": 95,
+        "content": "4 Measured from the active area to the start of the threads on the housing body. The detector \nactive area surface is flush with the front of the housing body. \n5 Although the power supply is rated for 6 W, the detector’s actual usage is <5 W over the full \noperating range.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.183555"
+        }
+    },
+    {
+        "id": 96,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nRev E, December 7, 2023 \nPage 9 \n6.1. Response Curve \n \n \n \n800\n1000\n1200\n1400\n1600\n1800\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPDA50B2 Responsivity\n \nResponsivity (A/W)\nWavelength (nm)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 11,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.188561"
+        }
+    },
+    {
+        "id": 97,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nPage 10 \nTTN135074-D02 \n6.2. Mechanical Drawing",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 12,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.193636"
+        }
+    },
+    {
+        "id": 98,
+        "content": "Ge Switchable Gain Detector \nChapter 7: Certificate of Conformance \nRev E, December 7, 2023 \nPage 11 \nChapter 7 Certificate of Conformance",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 13,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.200168"
+        }
+    },
+    {
+        "id": 99,
+        "content": "Ge Switchable Gain Detector \nChapter 8: Regulatory \nPage 12 \nTTN135074-D02 \nChapter 8 Regulatory \nAs required by the WEEE (Waste Electrical and Electronic Equipment Directive) \nof the European Community and the corresponding national laws, Thorlabs offers \nall end users in the EC the possibility to return “end of life” units without incurring \ndisposal charges. \n• \nThis offer is valid for Thorlabs electrical and electronic equipment: \n• \nSold after August 13, 2005  \n• \nMarked correspondingly with the crossed out “wheelie \nbin” logo (see right) \n• \nSold to a company or institute within the EC",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.205289"
+        }
+    },
+    {
+        "id": 100,
+        "content": "bin” logo (see right) \n• \nSold to a company or institute within the EC  \n• \nCurrently owned by a company or institute within the EC  \n• \nStill complete, not disassembled and not contaminated \nAs the WEEE directive applies to self contained operational \nelectrical and electronic products, this end of life take back \nservice does not refer to other Thorlabs products, such as: \n• \nPure OEM products, that means assemblies to be built into a unit by the \nuser (e.g. OEM laser driver cards)  \n• \nComponents  \n• \nMechanics and optics  \n•",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.210857"
+        }
+    },
+    {
+        "id": 101,
+        "content": "user (e.g. OEM laser driver cards)  \n• \nComponents  \n• \nMechanics and optics  \n• \nLeft over parts of units disassembled by the user (PCB’s, housings etc.).  \nIf you wish to return a Thorlabs unit for waste recovery, please contact Thorlabs or \nyour nearest dealer for further information. \nWaste Treatment is Your Own Responsibility \nIf you do not return an “end of life” unit to Thorlabs, you must hand it to a company \nspecialized in waste recovery. Do not dispose of the unit in a litter bin or at a public \nwaste disposal site. \nEcological Background",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:00:37.217308"
+        }
+    },
+    {
+        "id": 102,
+        "content": "waste disposal site. \nEcological Background \nIt is well known that WEEE pollutes the environment by releasing toxic products \nduring decomposition. The aim of the European RoHS directive is to reduce the \ncontent of toxic substances in electronic products in the future. \nThe intent of the WEEE directive is to enforce the recycling of WEEE. A controlled \nrecycling of end of life products will thereby avoid negative impacts on the \nenvironment.  \n \n \nWheelie Bin Logo",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:00:37.222642"
+        }
+    },
+    {
+        "id": 103,
+        "content": "Ge Switchable Gain Detector \nChapter 9: Thorlabs Worldwide Contacts \nRev E, December 7, 2023 \nPage 13 \nChapter 9 Thorlabs Worldwide Contacts \nFor technical support or sales inquiries, please visit us at \nwww.thorlabs.com/contact for our most up-to-date contact information.  \n \n \nUSA, Canada, and South America  \nThorlabs, Inc.  \nsales@thorlabs.com  \ntechsupport@thorlabs.com  \n \n \nUK and Ireland  \nThorlabs Ltd.   \nsales.uk@thorlabs.com  \ntechsupport.uk@thorlabs.com  \nEurope  \nThorlabs GmbH  \neurope@thorlabs.com  \n \nScandinavia  \nThorlabs Sweden AB  \nscandinavia@thorlabs.com  \nFrance",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 15,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.227852"
+        }
+    },
+    {
+        "id": 104,
+        "content": "europe@thorlabs.com  \n \nScandinavia  \nThorlabs Sweden AB  \nscandinavia@thorlabs.com  \nFrance  \nThorlabs SAS  \nsales.fr@thorlabs.com  \n \nBrazil  \nThorlabs Vendas de Fotônicos Ltda.  \nbrasil@thorlabs.com  \nJapan  \nThorlabs Japan, Inc.  \nsales@thorlabs.jp  \nChina  \nThorlabs China  \nchinasales@thorlabs.com",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 15,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:00:37.233341"
+        }
+    },
+    {
+        "id": 105,
+        "content": "www.thorlabs.com",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 2,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 16,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:00:37.238560"
+        }
+    },
+    {
+        "id": 108,
+        "content": "4.1. Theory of Operation ...................................................... 4 \n4.2. Responsivity ................................................................. 4 \n4.3. Dark Current ................................................................. 4 \n4.4. Bandwidth and Response .............................................. 5 \n4.5. Terminating Resistance ................................................. 5 \n4.6. Gain Adjustment ........................................................... 5 \nChapter 5 \nTroubleshooting ............................................................... 6",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.010537"
+        }
+    },
+    {
+        "id": 109,
+        "content": "Chapter 5 \nTroubleshooting ............................................................... 6 \nChapter 6 \nSpecifications ................................................................... 7 \n6.1. Response Curve ............................................................. 9 \n6.2. Mechanical Drawing ................................................... 10 \nChapter 7 \nCertificate of Conformance ........................................... 11 \nChapter 8 \nRegulatory ....................................................................... 12 \nChapter 9",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.018685"
+        }
+    },
+    {
+        "id": 110,
+        "content": "Regulatory ....................................................................... 12 \nChapter 9 \nThorlabs Worldwide Contacts....................................... 13",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 2,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:11:47.025024"
+        }
+    },
+    {
+        "id": 111,
+        "content": "Ge Switchable Gain Detector \nChapter 1: Warning Symbol Definitions \nRev E, December 7, 2023 \nPage 1 \nChapter 1 Warning Symbol Definitions \nBelow is a list of warning symbols you may encounter in this manual or on your \ndevice. \nSymbol \nDescription \n \nDirect Current \n \nAlternating Current \n \nBoth Direct and Alternating Current \n \nEarth Ground Terminal \n \nProtective Conductor Terminal \n \nFrame or chassis Terminal \n \nEquipotentiality \n \nOn (Supply) \n \nOff (Supply) \n \nIn Position of a Bi-Stable Push Control \n \nOut Position of a Bi-Stable Push Control \n \nCaution, Risk of Electric Shock",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.030749"
+        }
+    },
+    {
+        "id": 112,
+        "content": "Out Position of a Bi-Stable Push Control \n \nCaution, Risk of Electric Shock \n \nCaution, Hot Surface \n \nCaution, Risk of Danger \n \nWarning, Laser Radiation \n \n \nCaution: ESD Sensitive Components",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 3,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.036746"
+        }
+    },
+    {
+        "id": 113,
+        "content": "Ge Switchable Gain Detector \nChapter 2: Description \nPage 2 \nTTN135074-D02 \nChapter 2 Description \nThe PDA50B2 is an amplified, switchable-gain, Germanium (Ge) detector \ndesigned for detection of light signals ranging from 800 to 1800 nm. An eight-\nposition rotary switch allows the user to vary the gain in 10 dB steps. A buffered \noutput drives 50 Ω load impedances up to 5 V. The PDA50B2 housing includes a \nremovable threaded coupler (SM1T1) and retainer ring (SM1RR) that is compatible \nwith any number of Thorlabs 1\" threaded accessories. This allows convenient",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.043009"
+        }
+    },
+    {
+        "id": 114,
+        "content": "with any number of Thorlabs 1\" threaded accessories. This allows convenient \nmounting of external optics, light filters, apertures, as well as providing an easy \nmounting mechanism using Thorlabs’ cage assembly accessories. \nESD Caution \nThe components inside this instrument are ESD sensitive. Take all \nappropriate precautions to discharge personnel and equipment before \nmaking any electrical connections to the unit.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 4,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.048097"
+        }
+    },
+    {
+        "id": 115,
+        "content": "Ge Switchable Gain Detector \nChapter 3: Setup \nRev E, December 7, 2023 \nPage 3 \nChapter 3 Setup \nThe detector can be set up in many different ways using our extensive line of \nadapters. However, the detector should always be mounted and secured for best \noperation. \n1. \nUnpack the optical head, install either an imperial or metric optical post \ninto one of the mounting holes located on the bottom and side of the \nsensor, and mount using a post holder. Note that these detectors feature \ntapped holes that accept both 8-32 and M4 threads, so using either \nimperial or metric TR posts is possible.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.054815"
+        }
+    },
+    {
+        "id": 116,
+        "content": "imperial or metric TR posts is possible. \n2. \nConnect the power supply 3-pin plug into the power receptacle on the \nPDA50B2. \n3. \nPlug the power supply into a 50 to 60Hz, 100 V / 120 V / 230 V power \noutlet. \n4. \nAttach a 50 Ω coax cable (i.e. RG-58U) to the output of the PDA. When \nrunning cable lengths longer than 12\" we recommend terminating the \nopposite end of the coax with a 50 Ω resistor (Thorlabs p/n T4119) for \nmaximum performance. Connect the remaining end to a measurement \ndevice such as an oscilloscope or high speed DAQ card. Caution: Many",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.060081"
+        }
+    },
+    {
+        "id": 117,
+        "content": "device such as an oscilloscope or high speed DAQ card. Caution: Many \nhigh speed oscilloscopes have input impedances of 50 Ω. In this case, \ndo not install a 50 Ω terminator. The combined loads will equal 25 Ω which \ncould allow ~135 mA of output current. This will damage the output driver \nof the PDA50B2. \n5. \nPower the PDA50B2 on using the power switch located on the top side \nof the unit. \nCaution! \nThe PDA50B2 was designed to allow maximum accessibility to the \nphotodetector by having the active area surface of the diode flush with the",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.065379"
+        }
+    },
+    {
+        "id": 118,
+        "content": "photodetector by having the active area surface of the diode flush with the \noutside of the PDA housing. When using fiber adapters, make sure that the \nfiber ferrule does not crash into the detector. Failure to do so may cause \ndamage to the diode and/or the fiber.  \n6. \nInstall any desired filters, optics, adapters, or fiber adapters to the input \naperture. \n7. \nDuring alignment, take appropriate precautions, such as using reduced \nradiation power, or other precautions, and use proper eye and/or skin \nprotection as recommended by the radiation source manufacturer. \n8.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:11:47.071248"
+        }
+    },
+    {
+        "id": 119,
+        "content": "protection as recommended by the radiation source manufacturer. \n8. \nApply a light source to the detector. Adjust the gain to the desired setting.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 5,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:11:47.076841"
+        }
+    },
+    {
+        "id": 120,
+        "content": "Ge Switchable Gain Detector \nChapter 4: Operation \nPage 4 \nTTN135074-D02 \nChapter 4 Operation \n4.1. Theory of Operation \nThorlabs PDA series are ideal for measuring both pulsed and CW light sources. \nThe PDA50B2 includes a Ge photodiode mated to a switchable gain \ntransimpedance amplifier and is packaged in a rugged housing. \n \n4.2. Responsivity \nThe responsivity of a photodiode can be defined as a ratio of generated \nphotocurrent (IPD) to the incident light power (P) at a given wavelength: \n𝑅(𝜆) = 𝐼𝑃𝐷\n𝑃 \n4.3. Dark Current",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.082312"
+        }
+    },
+    {
+        "id": 121,
+        "content": "𝑅(𝜆) = 𝐼𝑃𝐷\n𝑃 \n4.3. Dark Current \nDark current is leakage current which flows when a bias voltage is applied to a \nphotodiode. The PDA with Transimpedance Amplifier does control the dark current \nflowing out. Looking at the figure above, it can be noted that Point B is held at \nground and the amplifier will try to hold point A to “Virtual Ground”. This minimizes \nthe effects of dark current present in the system. \nThe dark current present is also affected by the photodiode material and the size \nof the active area. Silicon devices generally produce low dark current compared to",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 6,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.088831"
+        }
+    },
+    {
+        "id": 123,
+        "content": "Ge Switchable Gain Detector \nChapter 4: Operation \nRev E, December 7, 2023 \nPage 5 \nMaterial \nDark Current \nSpeed \nSensitivity1 \nCost \nSilicon (Si) \nLow \nHigh \n400 - 1000 nm \nLow \nGermanium (Ge) \nHigh \nLow \n900 - 1600 nm \nLow \nGallium Phosphide (GaP) \nLow \nHigh \n150 - 550 nm \nMed \nIndium Gallium Arsenide \n(InGaAs) \nLow \nHigh \n800 - 1800 nm \nMed \nExtended Range: Indium \nGallium Arsenide (InGaAs) \nHigh \nHigh \n1200 - 2600 nm \nHigh \n4.4. Bandwidth and Response \nFor the PDA detectors,  the gain of the detector is dependent on the feedback",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.100805"
+        }
+    },
+    {
+        "id": 124,
+        "content": "For the PDA detectors,  the gain of the detector is dependent on the feedback \nelement (Rf). The bandwidth of the detector can be calculated using the following: \n𝑓(−3𝑑𝐵) = √\n𝐺𝐵𝑃\n4𝜋𝑅𝑓× 𝐶𝐷\n \nWhere GBP is the amplifier gain bandwidth product and CD is the sum of the \nphotodiode junction capacitance and the amplifier capacitance. \n4.5. Terminating Resistance \nThe maximum output of the PDA50B2 is 10 V for high impedance loads (i.e. RLoad \n> 5 kΩ) and 5 V for 50 Ω loads. Adjust the gain so that the measured signal level \nout of the PDA50B2 is below 10 V (5 V with a 50 Ω load) to avoid saturation.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.107150"
+        }
+    },
+    {
+        "id": 125,
+        "content": "out of the PDA50B2 is below 10 V (5 V with a 50 Ω load) to avoid saturation. \nFor low terminating resistors, <5 kΩ or 1% error, an additional factor needs to be \nconsidered. The output of the PDA includes a 50 Ω series resistor (Rs). The output \nload creates a voltage divider with the 50 Ω series resistor as follows: \n𝑆𝑐𝑎𝑙𝑒 𝐹𝑎𝑐𝑡𝑜𝑟 = \n𝑅𝐿𝑜𝑎𝑑\n𝑅𝐿𝑜𝑎𝑑+ 𝑅𝑠\n \n𝑉𝑂𝑈𝑇 = (𝜆) ∗𝑇𝑟𝑎𝑛𝑠𝑖𝑚𝑝𝑒𝑑𝑎𝑛𝑐𝑒 𝐺𝑎𝑖𝑛∗𝑆𝑐𝑎𝑙𝑒 𝐹𝑎𝑐𝑡𝑜𝑟∗𝐼𝑛𝑝𝑢𝑡 𝑃𝑜𝑤𝑒𝑟 (𝑊) \nNote that we already include the scale factor in our specification for the gain at 50 \nΩ. Refer to the table in Chapter 6 for additional performance specifications.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.112901"
+        }
+    },
+    {
+        "id": 126,
+        "content": "Ω. Refer to the table in Chapter 6 for additional performance specifications. \n4.6. Gain Adjustment \nThe PDA50B2 includes a low noise, low offset, high gain transimpedance amplifier \nthat allows gain adjustment over a 70 dB range. The gain is adjusted by rotating \nthe gain control knob, located on the top side of the unit. There are 8 gain positions \nincremented in 10 dB steps. It is important to note that the bandwidth will decrease \nas the gain increases. See the specifications table on page 7 to choose the best \ngain verse bandwidth for a given input signal.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:11:47.118190"
+        }
+    },
+    {
+        "id": 127,
+        "content": "gain verse bandwidth for a given input signal. \n \n1 Approximate values; actual wavelength values will vary.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 7,
+            "chunk": 4,
+            "created_at": "2026-06-30 15:11:47.124216"
+        }
+    },
+    {
+        "id": 128,
+        "content": "Ge Switchable Gain Detector \nChapter 5: Troubleshooting \nPage 6 \nTTN135074-D02 \nChapter 5 Troubleshooting \nProblem \nSuggested Solutions \nThere is no signal response. \nVerify that the power is switched on and all \nconnections are secure. \nVerify the proper terminating resistor is installed if \nusing a Voltage measurement device. \nVerify that the optical signal wavelength is within \nthe specified wavelength range. \nVerify that the optical signal is illuminating the \ndetector active area. \nOutput Voltage will not increase. \nDetector Output is skewed.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 8,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.129543"
+        }
+    },
+    {
+        "id": 129,
+        "content": "detector active area. \nOutput Voltage will not increase. \nDetector Output is skewed. \nCheck to make sure the detector is not saturated. \nRefer to the Output Voltage spec. in the \nSpecifications table. \n \nInstall a 1\" Lens Tube (SM1L10) to the thread \ncoulpler (SM1T1) to baffle any external light \nsources to see if this improves the response.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 8,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.135091"
+        }
+    },
+    {
+        "id": 130,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nRev E, December 7, 2023 \nPage 7 \nChapter 6 Specifications \nAll performance specifications are typical, performed at 25 °C ambient \ntemperature, and assume a 50 Ω load, unless stated otherwise. \nPerformance Specifications2 \n0 dB Setting \n40 dB Setting \nGain (Hi-Z) \n1.51 x 103 V/A ±2% \nGain (Hi-Z) \n1.51 x 105 V/A ±2% \nGain (50 Ω) \n0.75 x 103 V/A ±2% \nGain (50 Ω) \n0.75 x 105 V/A ±2% \nBandwidth3 \n510 kHz \nBandwidth3 \n6.3 kHz \nNoise (RMS) \n220 μV \nNoise (RMS) \n220 μV \nNEP (@ p) \n1.76 x 10-10 W/Hz \nNEP (@ p) \n4.63 x 10-12 W/Hz \nOffset",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.141287"
+        }
+    },
+    {
+        "id": 131,
+        "content": "Noise (RMS) \n220 μV \nNEP (@ p) \n1.76 x 10-10 W/Hz \nNEP (@ p) \n4.63 x 10-12 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n10 dB Setting \n50 dB Setting \nGain (Hi-Z) \n4.75 x 103 V/A ±2% \nGain (Hi-Z) \n4.75 x 105 V/A ±2% \nGain (50 Ω) \n2.38 x 103 V/A ±2% \nGain (50 Ω) \n2.38 x 105 V/A ±2% \nBandwidth3 \n270 kHz \nBandwidth3 \n2 kHz \nNoise (RMS) \n233 μV \nNoise (RMS) \n231 μV \nNEP (@ p) \n8.77 x 10-11 W/Hz \nNEP (@ p) \n4.83 x 10-11 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n20 dB Setting \n60 dB Setting \nGain (Hi-Z)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.146776"
+        }
+    },
+    {
+        "id": 132,
+        "content": "±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n20 dB Setting \n60 dB Setting \nGain (Hi-Z) \n1.5 x 104 V/A ±2% \nGain (Hi-Z) \n1.5 x 106 V/A ±5% \nGain (50 Ω) \n0.75 x 104 V/A ±2% \nGain (50 Ω) \n0.75 x 106 V/A ±5% \nBandwidth3 \n85 kHz \nBandwidth3 \n630 Hz \nNoise (RMS) \n223 μV \nNoise (RMS) \n247 μV \nNEP (@ p) \n1.95 x 10-11 W/Hz \nNEP (@ p) \n6.73 x 10-12 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset: \n±15 mV (Typ.) \n±20 mV (Max) \n30 dB Setting \n70 dB Setting \nGain (Hi-Z) \n4.75 x 104 V/A ±2% \nGain (Hi-Z) \n4.75 x 106 V/A ±5% \nGain (50 Ω) \n2.38 x 104 V/A ±2% \nGain (50 Ω) \n2.38 x 106 V/A ±5%",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.152289"
+        }
+    },
+    {
+        "id": 133,
+        "content": "Gain (Hi-Z) \n4.75 x 106 V/A ±5% \nGain (50 Ω) \n2.38 x 104 V/A ±2% \nGain (50 Ω) \n2.38 x 106 V/A ±5% \nBandwidth3 \n22 kHz \nBandwidth3 \n210 Hz \nNoise (RMS) \n230 μV \nNoise (RMS) \n333 μV  \nNEP (@ p) \n6.41 x 10-12 W/Hz \nNEP (@ p) \n1.04 x 10-11 W/Hz \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \nOffset \n±15 mV (Typ.) \n±20 mV (Max) \n \n \n2 The PDA50B2 has a 50 Ω series terminator resistor (i.e. in series with amplifier output). This \nforms a voltage divider with any load impedance (e.g. 50 Ω load divides signal in half). \n3 Tested at 1550 nm wavelength.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 9,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:11:47.158687"
+        }
+    },
+    {
+        "id": 134,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nPage 8 \nTTN135074-D02 \nElectrical Specifications \nDetector \n- \nGe \nActive Area \n- \nØ5.0 mm (19.6 mm2) \nWavelength Range \nλ \n800 to 1800 nm \nPeak Wavelength \nλ p \n1550 nm (Typ.) \nPeak Response \n( λ p) \n0.85 A/W (Typ.) \nAmplifier GBP \n- \n25 MHz \nOutput Impedance \n- \n50 Ω \nMax Ouput Current \nIOUT \n100 mA \nLoad Impedance \n- \n50 Ω to Hi-Z \nGain Adjustment Range \n- \n0 dB to 70 dB \nGain Steps \n- \n8 x 10 dB Steps \nOutput Voltage \nVOUT \n0 to 5 V (50 Ω) \n0 to 10 V (Hi-Z) \n \nGeneral \nOn/Off Switch \nSlide \nGain Switch \n8 Position Rotary \nOutput",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.164185"
+        }
+    },
+    {
+        "id": 135,
+        "content": "0 to 10 V (Hi-Z) \n \nGeneral \nOn/Off Switch \nSlide \nGain Switch \n8 Position Rotary \nOutput \nBNC (DC Coupled) \nPackage Size \n2.79\" x 2.07\" x 0.89\" \n(70.9 mm x 52.5 mm x 22.5 mm) \nPD Surface Depth4 \n0.09\" (2.2 mm) \nWeight, Detector Only \n0.10 kg \nAccessories \nSM1T1 Coupler \nSM1RR Retainer Ring \nOperating Temp \n10 to 40 °C \nStorage Temp \n-20 to 70 °C \nAC Power Supply \nAC - DC Converter \nInput Power5 \n6 W \n100 V / 120 V / 230 V, 50 - 60 Hz \n \n \n4 Measured from the active area to the start of the threads on the housing body. The detector",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.169457"
+        }
+    },
+    {
+        "id": 136,
+        "content": "4 Measured from the active area to the start of the threads on the housing body. The detector \nactive area surface is flush with the front of the housing body. \n5 Although the power supply is rated for 6 W, the detector’s actual usage is <5 W over the full \noperating range.",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 10,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.175631"
+        }
+    },
+    {
+        "id": 137,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nRev E, December 7, 2023 \nPage 9 \n6.1. Response Curve \n \n \n \n800\n1000\n1200\n1400\n1600\n1800\n0.0\n0.2\n0.4\n0.6\n0.8\n1.0\nPDA50B2 Responsivity\n \nResponsivity (A/W)\nWavelength (nm)",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 11,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.180967"
+        }
+    },
+    {
+        "id": 138,
+        "content": "Ge Switchable Gain Detector \nChapter 6: Specifications \nPage 10 \nTTN135074-D02 \n6.2. Mechanical Drawing",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 12,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.186166"
+        }
+    },
+    {
+        "id": 139,
+        "content": "Ge Switchable Gain Detector \nChapter 7: Certificate of Conformance \nRev E, December 7, 2023 \nPage 11 \nChapter 7 Certificate of Conformance",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 13,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.192097"
+        }
+    },
+    {
+        "id": 140,
+        "content": "Ge Switchable Gain Detector \nChapter 8: Regulatory \nPage 12 \nTTN135074-D02 \nChapter 8 Regulatory \nAs required by the WEEE (Waste Electrical and Electronic Equipment Directive) \nof the European Community and the corresponding national laws, Thorlabs offers \nall end users in the EC the possibility to return “end of life” units without incurring \ndisposal charges. \n• \nThis offer is valid for Thorlabs electrical and electronic equipment: \n• \nSold after August 13, 2005  \n• \nMarked correspondingly with the crossed out “wheelie \nbin” logo (see right) \n• \nSold to a company or institute within the EC",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.197290"
+        }
+    },
+    {
+        "id": 141,
+        "content": "bin” logo (see right) \n• \nSold to a company or institute within the EC  \n• \nCurrently owned by a company or institute within the EC  \n• \nStill complete, not disassembled and not contaminated \nAs the WEEE directive applies to self contained operational \nelectrical and electronic products, this end of life take back \nservice does not refer to other Thorlabs products, such as: \n• \nPure OEM products, that means assemblies to be built into a unit by the \nuser (e.g. OEM laser driver cards)  \n• \nComponents  \n• \nMechanics and optics  \n•",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.202440"
+        }
+    },
+    {
+        "id": 142,
+        "content": "user (e.g. OEM laser driver cards)  \n• \nComponents  \n• \nMechanics and optics  \n• \nLeft over parts of units disassembled by the user (PCB’s, housings etc.).  \nIf you wish to return a Thorlabs unit for waste recovery, please contact Thorlabs or \nyour nearest dealer for further information. \nWaste Treatment is Your Own Responsibility \nIf you do not return an “end of life” unit to Thorlabs, you must hand it to a company \nspecialized in waste recovery. Do not dispose of the unit in a litter bin or at a public \nwaste disposal site. \nEcological Background",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 2,
+            "created_at": "2026-06-30 15:11:47.208625"
+        }
+    },
+    {
+        "id": 143,
+        "content": "waste disposal site. \nEcological Background \nIt is well known that WEEE pollutes the environment by releasing toxic products \nduring decomposition. The aim of the European RoHS directive is to reduce the \ncontent of toxic substances in electronic products in the future. \nThe intent of the WEEE directive is to enforce the recycling of WEEE. A controlled \nrecycling of end of life products will thereby avoid negative impacts on the \nenvironment.  \n \n \nWheelie Bin Logo",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 14,
+            "chunk": 3,
+            "created_at": "2026-06-30 15:11:47.213954"
+        }
+    },
+    {
+        "id": 144,
+        "content": "Ge Switchable Gain Detector \nChapter 9: Thorlabs Worldwide Contacts \nRev E, December 7, 2023 \nPage 13 \nChapter 9 Thorlabs Worldwide Contacts \nFor technical support or sales inquiries, please visit us at \nwww.thorlabs.com/contact for our most up-to-date contact information.  \n \n \nUSA, Canada, and South America  \nThorlabs, Inc.  \nsales@thorlabs.com  \ntechsupport@thorlabs.com  \n \n \nUK and Ireland  \nThorlabs Ltd.   \nsales.uk@thorlabs.com  \ntechsupport.uk@thorlabs.com  \nEurope  \nThorlabs GmbH  \neurope@thorlabs.com  \n \nScandinavia  \nThorlabs Sweden AB  \nscandinavia@thorlabs.com  \nFrance",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 15,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.219335"
+        }
+    },
+    {
+        "id": 145,
+        "content": "europe@thorlabs.com  \n \nScandinavia  \nThorlabs Sweden AB  \nscandinavia@thorlabs.com  \nFrance  \nThorlabs SAS  \nsales.fr@thorlabs.com  \n \nBrazil  \nThorlabs Vendas de Fotônicos Ltda.  \nbrasil@thorlabs.com  \nJapan  \nThorlabs Japan, Inc.  \nsales@thorlabs.jp  \nChina  \nThorlabs China  \nchinasales@thorlabs.com",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 15,
+            "chunk": 1,
+            "created_at": "2026-06-30 15:11:47.225267"
+        }
+    },
+    {
+        "id": 146,
+        "content": "www.thorlabs.com",
+        "metadata": {
+            "source": "pdf_chunk",
+            "document": "PDA50B2",
+            "document_id": 3,
+            "filepath": "uploads/PDA50B2-Manual.pdf",
+            "component": "PDA50B2",
+            "component_id": 3,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": 16,
+            "chunk": 0,
+            "created_at": "2026-06-30 15:11:47.230432"
+        }
+    },
+    {
+        "id": 147,
+        "content": "Title:\nDetector saturated\n\nProblem:\nOutput stuck at 5V\n\nCause:\nGain set to maximum\n\nSolution:\nReduce gain to x10\n",
+        "metadata": {
+            "source": "troubleshooting",
+            "document": null,
+            "document_id": null,
+            "filepath": null,
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": null,
+            "chunk": null,
+            "created_at": "2026-07-01 08:12:04.829887"
+        }
+    },
+    {
+        "id": 148,
+        "content": "Title:\nDetector saturated\n\nProblem:\nOutput stuck at 5V\n\nCause:\nGain set to maximum\n\nSolution:\nReduce gain to x10\n",
+        "metadata": {
+            "source": "troubleshooting",
+            "document": null,
+            "document_id": null,
+            "filepath": null,
+            "component": "PDA50B2",
+            "component_id": 1,
+            "experiment": null,
+            "experiment_id": null,
+            "author": null,
+            "author_id": null,
+            "page": null,
+            "chunk": null,
+            "created_at": "2026-07-01 08:22:29.121609"
+        }
+    }
+]

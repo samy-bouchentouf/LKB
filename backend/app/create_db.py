@@ -1,5 +1,5 @@
-from app.database import engine
-from app.models import Base
+from operators.database import engine
+from operators.models import Base
 
 Base.metadata.create_all(bind=engine)
 
