@@ -689,6 +689,88 @@
             img.src = url;
         }
 
+        function enregistrerSchemaDansBackend() {
+            const svgEl = document.getElementById('labo-svg');
+            if (composantsPlaces.length === 0) {
+                alert("⚠️ Le schéma est vide, déposez des composants avant d'enregistrer !");
+                return;
+            }
+
+            // 1. Demander le nom du fichier à l'utilisateur
+            let nomSchema = prompt("Sous quel nom souhaitez-vous enregistrer ce schéma technique ?", "configuration-banc-optique");
+            
+            // Si l'utilisateur clique sur Annuler ou ne met rien
+            if (!nomSchema) {
+                alert("❌ Enregistrement annulé : le nom est obligatoire.");
+                return;
+            }
+
+            // Nettoyer le nom pour éviter les extensions doublées
+            nomSchema = nomSchema.replace(/\.[^/.]+$/, ""); 
+
+            // 2. Convertir le SVG en texte XML
+            const serializer = new XMLSerializer();
+            let source = serializer.serializeToString(svgEl);
+            if(!source.match(/^<svg[^>]+xmlns="http:\/\/www\.w3\.org\/2000\/svg"/)){
+                source = source.replace(/^<svg/, '<svg xmlns="http://www.w3.org/2000/svg"');
+            }
+            
+            const svgBlob = new Blob([source], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+            const img = new Image();
+            const rect = svgEl.getBoundingClientRect();
+            
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = rect.width || 800;
+                canvas.height = rect.height || 550;
+                const context = canvas.getContext('2d');
+                
+                // Fond blanc pour l'image
+                context.fillStyle = '#FFFFFF';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(img, 0, 0);
+                
+                // 3. Convertir le Canvas en fichier Blob PNG pour l'envoi
+                canvas.toBlob(function(blob) {
+                    const fichierImage = new File([blob], nomSchema + ".png", { type: "image/png" });
+                    
+                    // 4. Préparer les données pour le serveur (FormData)
+                    const formData = new FormData();
+                    formData.append("file", fichierImage);
+
+                    document.getElementById('status-bar').innerText = "⏳ Envoi du schéma au serveur de l'IA...";
+
+                    // 5. Requête HTTP POST vers ton backend
+                    fetch("http://localhost:3000/api/publications/upload", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('status-bar').innerText = "✅ Schéma enregistré avec succès et accessible par l'IA !";
+                            alert(`🎉 Le schéma "${nomSchema}.png" a bien été sauvegardé dans le système du labo ! Votre chatbot peut maintenant l'analyser.`);
+                            // Optionnel : recharger la liste des fichiers si tu es sur la bonne page
+                            if(typeof chargerPublications === "function") chargerPublications();
+                        } else {
+                            alert("❌ Erreur du serveur : " + data.message);
+                            document.getElementById('status-bar').innerText = "❌ Échec de l'enregistrement.";
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("❌ Impossible de joindre le serveur. Vérifiez que votre backend est bien lancé sur le port 3000.");
+                        document.getElementById('status-bar').innerText = "❌ Le serveur ne répond pas.";
+                    });
+
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            };
+            
+            img.src = url;
+        
+
         function reinitialiserLabo() {
             composantsPlaces = [];
             liensPlaces = [];
