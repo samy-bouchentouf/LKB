@@ -33,7 +33,7 @@ export const uploadPublication = (req, res) => {
         const title = path.parse(req.file.filename).name;
 
         exec(
-            `python backend/app/run_import_pdf.py "${pdfPath}" "${title}"`,
+            `python backend/app/operators/run_import_pdf.py "${pdfPath}" "${title}"`,
             (error, stdout, stderr) => {
 
                 if (error) {
