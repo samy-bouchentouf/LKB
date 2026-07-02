@@ -1,7 +1,17 @@
 import json
+import os
 import sys
 
+sys.path.append(
+    os.path.abspath(
+        os.path.join(os.path.dirname(__file__), "..")
+    )
+)
+
 from operators.pdf.importer import PDFImporter
+
+sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")
 
 if __name__ == "__main__":
 
@@ -25,7 +35,7 @@ if __name__ == "__main__":
 '''
 Ensuite ajouter dans le backend un truc en mode :
 exec(
-  `python app/run_import_pdf.py "${pdfPath}" "${title}"`,
+  `python app/run/run_import_pdf.py "${pdfPath}" "${title}"`,
   (error, stdout, stderr) => {
       ...
   }
