@@ -1,24 +1,53 @@
-import fs from "fs";
-import path from "path";
+import {
+    uploadMiddleware,
+    getFiles
+} from "../services/documents.service.js";
 
-export const upload = (req, res) => {
+// ✅ upload fichier
+export const uploadDocument = (req, res) => {
+    uploadMiddleware(req, res, (err) => {
 
-    const file = req.file;
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: err.message
+            });
+        }
 
-    if (!file) {
-        return res.status(400).json({ error: "Pas de fichier" });
-    }
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "Aucun fichier"
+            });
+        }
 
-    // ✅ chemin de sauvegarde
-    const filePath = path.join("uploads", file.originalname);
+        console.log("📁 Upload TECH OK :", req.file.filename);
 
-    // ✅ écrire le fichier sur disque
-    fs.writeFileSync(filePath, file.buffer);
-
-    console.log("📄 Fichier sauvegardé :", filePath);
-
-    res.json({
-        message: "Fichier sauvegardé ✅",
-        path: filePath
+        res.json({
+            success: true,
+            message: "Fichier uploadé",
+            file: req.file.filename
+        });
     });
+};
+
+// ✅ liste fichiers
+export const listDocuments = (req, res) => {
+    try {
+
+        const files = getFiles();
+
+        res.json({
+            success: true,
+            files
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            message: "Erreur lecture fichiers"
+        });
+
+    }
 };

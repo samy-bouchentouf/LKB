@@ -466,7 +466,7 @@
                 const formData = new FormData();
                 formData.append("file", file);
 
-                fetch("http://localhost:3000/api/publications/upload", {
+                fetch("http://localhost:3000/api/documents/upload", {
                     method: "POST",
                     body: formData
                 })
@@ -742,7 +742,7 @@
                     document.getElementById('status-bar').innerText = "⏳ Envoi du schéma au serveur de l'IA...";
 
                     // 5. Requête HTTP POST vers ton backend
-                    fetch("http://localhost:3000/api/publications/upload", {
+                    fetch("http://localhost:3000/api/documents/upload", {
                         method: "POST",
                         body: formData
                     })
