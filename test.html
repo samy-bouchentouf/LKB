@@ -216,16 +216,124 @@
             
         </section>
 
-        <section id="page-problemes" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6"> 
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-stone-200 pb-4">
-                <div> <!-- titre et description de la section -->
-                    <h2 class="text-xl font-bold text-stone-800">Problèmes Rencontrés & Erreurs à Éviter</h2>
-                    <p class="text-xs text-stone-500">Renseignez les problèmes rencontrés, sauvegardez les et consultez les anciennes erreurs.</p>
+        <!-- section pour le rapport de panne et le troubleshooting -->
+        <section id="page-problemes" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
+            <div class="border-b border-stone-200 pb-4">
+                <h2 class="text-xl font-bold text-stone-800">Rapport de Panne & Troubleshooting </h2>
+                <p class="text-xs text-stone-400">Renseignez les problèmes rencontrés, sauvegardez les et consultez les anciennes erreurs.</p>
+            </div>
+            
+            <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
+                <!-- on selectionne le composant avec un pb -->
+                <div>
+                    <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                        1. Choisissez le ou les composants concernés :
+                    </label>
+                    <div id="composants-panne-liste" class="flex flex-wrap gap-2">
+                        <button type="button" onclick="toggleComposantPanne(this, 'PC')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">PC de Contrôle</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'Alim HT')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all"> Alim Haute Tension</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'Laser 1064nm')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">LASER 1 (1064nm)</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'Piezo')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Actionneur Piezo</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'MPLC')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">MPLC 1 (Cailabs)</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'QPD')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Détecteur QPD</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'Oscilloscope')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all"> Oscilloscope</button>
+                         <button type="button" onclick="toggleComposantPanne(this, 'Aucun en particulier')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Aucun</button>
+                    </div>
+                </div>
+
+                <!-- zone pour décrire le pb -->
+                <div>
+                    <label for="panne-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                        Titre du problème :
+                    </label>
+                    <textarea id="panne-description" rows="4" 
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                </div>
+
+                <div>
+                    <label for="solution-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                        Problème rencontré:
+                    </label>
+                    <textarea id="solution-description" rows="4" 
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                </div>
+                <div>
+                    <label for="cause-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                        Cause du problème :
+                    </label>
+                    <textarea id="cause-description" rows="4" 
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                </div>
+
+                <div>
+                    <label for="panne-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                        Solution proposée :
+                    </label>
+                    <textarea id="panne-description" rows="4" 
+                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                </div>
+
+                <!-- si la personne veut ajouter une photo du pb -->
+                
+
+                <!--on enregistre le tout pour alimenter l'IA et que les porchains y ai accès -->
+                <div class="pt-2">
+                    <button onclick="enregistrerPanne()" class="w-full md:w-auto px-6 py-3 bg-[#2E5CB8] text-white rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
+                        💾 Enregistrer le rapport de panne
+                    </button>
+                </div>
+                <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-3 mt-6">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                        Rapports de panne enregistrés récemment
+                    </h3>
+                    <div id="pannes-container" class="space-y-3">
+                        </div>
                 </div>
             </div>
-           
         </section>
 
+    <!-- MODAL FICHE TECHNIQUE -->
+    <div id="modal-fiche-tech" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4" style="display:none;">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-xl border border-stone-200" onclick="event.stopPropagation()">
+            <div class="p-5 border-b border-stone-100 bg-stone-50/60 rounded-t-2xl">
+                <h3 class="text-base font-bold text-stone-800">📎 Informations du composant</h3>
+                <p class="text-xs text-stone-400 mt-0.5">Le nom est obligatoire, le reste est optionnel.</p>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Nom du composant <span class="text-red-500">*</span></label>
+                    <input id="ftech-nom" type="text" placeholder="ex: Laser 1064nm Coherent" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Constructeur</label>
+                    <input id="ftech-constructeur" type="text" placeholder="ex: Coherent, Thorlabs..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Référence</label>
+                        <input id="ftech-reference" type="text" placeholder="ex: COH-1064-500" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Numéro de série</label>
+                        <input id="ftech-serie" type="text" placeholder="ex: SN-2024-001" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Stock dans le labo</label>
+                    <input id="ftech-stock" type="text" placeholder="ex: 2 unités, armoire A3..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-1">Description</label>
+                    <textarea id="ftech-description" rows="3" placeholder="Notes, particularités, précautions..." class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-2.5 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"></textarea>
+                </div>
+            </div>
+            <div class="p-4 border-t border-stone-100 bg-stone-50/40 rounded-b-2xl flex justify-end gap-2">
+                <button onclick="annulerFicheTech()" class="px-4 py-2 text-xs font-semibold text-stone-500 hover:text-stone-700">Annuler</button>
+                <button onclick="validerFicheTech()" class="bg-[#2E5CB8] hover:bg-blue-700 text-white font-semibold text-xs px-5 py-2 rounded-xl shadow-sm transition-colors">Enregistrer 💾</button>
+            </div>
+        </div>
+    </div>
+    
     </main>
     <!-- modal pour afficher les fiches techniques et modifier leur nom -->
     <div id="modal-fiche" class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-50 items-center justify-center p-4" style="display:none;" onclick="fermerFiche(event)"> <!-- modal pour afficher les fiches techniques -->
@@ -257,6 +365,8 @@
             </div>
         </div>
     </div>
+
+    
 
     <script>
         // =============================================
@@ -292,6 +402,9 @@
             }
             if (navs[tabName]) {
                 navs[tabName].className = activeClass;
+            }
+            if (tabName === 'problemes' && typeof chargerPublications === "function") {
+                chargerPublications();
             }
         }
         // =============================================
@@ -365,39 +478,120 @@
             }
         });
 
-        function setupDropZonePublications() {
-            const zone = document.getElementById("drop-zone-publications");
-            if (!zone) return;
+        let fichierTechEnAttente = null; // stocke le fichier pendant que la modale est ouverte
 
-            zone.addEventListener("dragover", (e) => {
-                e.preventDefault();
-                zone.classList.add("border-red-400");
-            });
+    function setupDropZoneTech() {
+        const zone = document.getElementById("drop-zone");
+        if (!zone) return;
 
-            zone.addEventListener("dragleave", () => {
-                zone.classList.remove("border-red-400");
-            });
+        zone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            zone.classList.add('border-sky-500', 'bg-sky-50');
+        });
+        zone.addEventListener("dragleave", () => {
+            zone.classList.remove('border-sky-500', 'bg-sky-50');
+        });
+        zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove('border-sky-500', 'bg-sky-50');
 
-            zone.addEventListener("drop", (e) => {
-                e.preventDefault();
-                zone.classList.remove("border-red-400");
+            const file = e.dataTransfer.files[0];
+            if (!file) return;
 
-                const file = e.dataTransfer.files[0];
-                if (!file) return;
+            // On stocke le fichier et on ouvre la modale
+            fichierTechEnAttente = file;
+            document.getElementById('ftech-nom').value = file.name.replace(/\.[^/.]+$/, '');
+            document.getElementById('ftech-constructeur').value = '';
+            document.getElementById('ftech-reference').value = '';
+            document.getElementById('ftech-serie').value = '';
+            document.getElementById('ftech-stock').value = '';
+            document.getElementById('ftech-description').value = '';
+            document.getElementById('modal-fiche-tech').style.setProperty('display', 'flex', 'important');
+        });
+    }
 
-                const base = file.name.replace(/\.[^/.]+$/, "");
-                const ext = file.name.split(".").pop();
-                const newName = prompt("Nom du fichier :", base);
+    function setupDropZonePublications() {
+        const zone = document.getElementById("drop-zone-publications");
+        if (!zone) return;
 
-                if (newName === null) return;
+        zone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            zone.classList.add("border-red-400");
+        });
+        zone.addEventListener("dragleave", () => {
+            zone.classList.remove("border-red-400");
+        });
+        zone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            zone.classList.remove("border-red-400");
 
-                const renamed = new File([file], newName + "." + ext, {
-                    type: file.type
-                });
+            const file = e.dataTransfer.files[0];
+            if (!file) return;
 
-                envoyerPublication(renamed);
-            });
+            const base = file.name.replace(/\.[^/.]+$/, "");
+            const ext = file.name.split(".").pop();
+            const newName = prompt("Nom de la publication :", base);
+            if (newName === null) return;
+
+            const renamed = new File([file], newName + "." + ext, { type: file.type });
+            envoyerPublication(renamed);
+        });
+    }
+
+    function annulerFicheTech() {
+        fichierTechEnAttente = null;
+        document.getElementById('modal-fiche-tech').style.display = 'none';
+    }
+
+    function validerFicheTech() {
+        const nom = document.getElementById('ftech-nom').value.trim();
+        if (!nom) {
+            alert('⚠️ Le nom du composant est obligatoire.');
+            document.getElementById('ftech-nom').focus();
+            return;
         }
+
+        const constructeur = document.getElementById('ftech-constructeur').value.trim();
+        const reference    = document.getElementById('ftech-reference').value.trim();
+        const serie        = document.getElementById('ftech-serie').value.trim();
+        const stock        = document.getElementById('ftech-stock').value.trim();
+        const description  = document.getElementById('ftech-description').value.trim();
+
+        // On renomme le fichier avec le nom du composant
+        const ext = fichierTechEnAttente.name.split('.').pop();
+        const fichierRenomme = new File([fichierTechEnAttente], nom + '.' + ext, { type: fichierTechEnAttente.type });
+
+        // On crée aussi un fichier texte de métadonnées pour le RAG
+        const meta = [
+            `FICHE TECHNIQUE — ${nom}`,
+            constructeur ? `Constructeur : ${constructeur}` : '',
+            reference    ? `Référence : ${reference}`       : '',
+            serie        ? `Numéro de série : ${serie}`     : '',
+            stock        ? `Stock labo : ${stock}`           : '',
+            description  ? `Description : ${description}`   : '',
+        ].filter(Boolean).join('\n');
+
+        const metaBlob = new Blob([meta], { type: 'text/plain;charset=utf-8' });
+        const metaFichier = new File([metaBlob], nom + '-metadata.pdf', { type: 'application/pdf' });
+
+        // Fermer la modale
+        document.getElementById('modal-fiche-tech').style.display = 'none';
+        fichierTechEnAttente = null;
+
+        // Uploader les deux fichiers
+        const upload = (f) => {
+            const fd = new FormData();
+            fd.append('file', f);
+            return fetch('http://localhost:3000/api/publications/upload', { method: 'POST', body: fd });
+        };
+
+        Promise.all([upload(fichierRenomme), upload(metaFichier)])
+            .then(() => {
+                alert('✅ Fiche technique "' + nom + '" enregistrée !');
+                chargerPublications();
+            })
+            .catch(() => alert('❌ Erreur réseau lors de l\'envoi.'));
+    }
 
         function envoyerPublication(file) {
             const formData = new FormData();
@@ -427,58 +621,66 @@
             .then(data => {
                 if (!data.success) return;
 
-                const container = document.getElementById("fichiers-container-publications");
-                container.innerHTML = `
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
-                        Publications ajoutées récemment
-                    </h3>
-                `;
+                const conteneurPub = document.getElementById("fichiers-container-publications");
+                const conteneurTech = document.getElementById("fichiers-container");
+                const conteneurPannes = document.getElementById("pannes-container"); // 👈 Nouveau conteneur
+
+                const entetePub = `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Publications ajoutées récemment</h3>`;
+                const enteteTech = `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Fichiers partagés récemment</h3>`;
+
+                if (conteneurPub) conteneurPub.innerHTML = entetePub;
+                if (conteneurTech) conteneurTech.innerHTML = enteteTech;
+                if (conteneurPannes) conteneurPannes.innerHTML = ""; // On vide la liste des pannes avant de la recréer
 
                 data.files.forEach(f => {
-                    const div = document.createElement("div");
-                    div.className = "bg-white p-4 rounded-xl border flex justify-between";
-                    div.innerHTML = `
-                        <div>
-                            <strong>${f.filename}</strong><br>
-                            <small>${(f.size / 1024).toFixed(1)} Ko</small>
+                    // Structure HTML de base pour un fichier
+                    const htmlFichier = `
+                        <div class="bg-white p-4 rounded-xl border flex justify-between items-center group shadow-sm hover:border-sky-200 transition-all">
+                            <div>
+                                <strong class="text-stone-800 text-sm">${f.filename}</strong><br>
+                                <small class="text-stone-400 text-xs">${(f.size / 1024).toFixed(1)} Ko</small>
+                            </div>
+                            <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-xs font-semibold text-[#2E5CB8] hover:underline">
+                                Ouvrir ↗
+                            </a>
                         </div>
-                        <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank">Ouvrir</a>
                     `;
-                    container.appendChild(div);
+
+                    // Si c'est un rapport de panne (commence par "probleme-")
+                    if (f.filename.startsWith("probleme-")) {
+                        if (conteneurPannes) {
+                            // On crée un affichage un peu plus typé "Alerte/Panne" (avec une touche rouge/orange)
+                            const htmlPanne = `
+                                <div class="bg-red-50/40 p-4 rounded-xl border border-red-100 flex justify-between items-center group shadow-sm hover:border-red-200 transition-all">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-lg">⚠️</span>
+                                        <div>
+                                            <strong class="text-stone-800 text-sm font-semibold">${f.filename}</strong><br>
+                                            <small class="text-stone-400 text-xs">Rapport de dysfonctionnement • ${(f.size / 1024).toFixed(1)} Ko</small>
+                                        </div>
+                                    </div>
+                                    <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-xs font-bold text-red-600 bg-white border border-red-200 px-3 py-1.5 rounded-xl hover:bg-red-50 shadow-sm transition-colors">
+                                        Consulter ↗
+                                    </a>
+                                </div>
+                            `;
+                            conteneurPannes.insertAdjacentHTML('beforeend', htmlPanne);
+                        }
+                    } else {
+                        // Sinon, on range le fichier normalement dans les onglets classiques
+                        if (conteneurPub) conteneurPub.insertAdjacentHTML('beforeend', htmlFichier);
+                        if (conteneurTech) conteneurTech.insertAdjacentHTML('beforeend', htmlFichier);
+                    }
                 });
+
+                // Si aucune panne n'a été trouvée, on met un petit message propre
+                if (conteneurPannes && conteneurPannes.children.length === 0) {
+                    conteneurPannes.innerHTML = `<p class="text-xs text-stone-400 italic">Aucun rapport de panne enregistré pour le moment.</p>`;
+                }
             });
         }
 
-        function setupDropZoneTech() {
-            const zone = document.getElementById("drop-zone");
-            if (!zone) return;
-
-            zone.addEventListener("dragover", (e) => {
-                e.preventDefault();
-            });
-
-            zone.addEventListener("drop", (e) => {
-                e.preventDefault();
-
-                const file = e.dataTransfer.files[0];
-                if (!file) return;
-
-                const formData = new FormData();
-                formData.append("file", file);
-
-                fetch("http://localhost:3000/api/documents/upload", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("✅ Upload TECH OK", data);
-                })
-                .catch(err => {
-                    console.error("❌ erreur upload tech", err);
-                });
-            });
-        }
+       
     
         // =============================================
         // 3. LOGIQUE CONFIGURATION ÉDITEUR INTERACTIF
@@ -733,7 +935,7 @@
                 
                 // 3. Convertir le Canvas en fichier Blob PNG pour l'envoi
                 canvas.toBlob(function(blob) {
-                    const fichierImage = new File([blob], nomSchema + ".png", { type: "image/png" });
+                    const fichierImage = new File([blob], nomSchema + ".pdf", { type: "application/pdf" });
                     
                     // 4. Préparer les données pour le serveur (FormData)
                     const formData = new FormData();
@@ -748,12 +950,16 @@
                     })
                     .then(res => res.json())
                     .then(data => {
-                        if (data.success) {
-                            document.getElementById('status-bar').innerText = "✅ Schéma enregistré avec succès et accessible par l'IA !";
-                            alert(`🎉 Le schéma "${nomSchema}.png" a bien été sauvegardé dans le système du labo ! Votre chatbot peut maintenant l'analyser.`);
-                            // Optionnel : recharger la liste des fichiers si tu es sur la bonne page
-                            if(typeof chargerPublications === "function") chargerPublications();
-                        } else {
+                        // ... dans enregistrerSchemaDansBackend() au moment du succès :
+                    if (data.success) {
+                        document.getElementById('status-bar').innerText = "✅ Schéma enregistré avec succès et accessible par l'IA !";
+                        alert(`🎉 Le schéma "${nomSchema}" a bien été sauvegardé !`);
+                        
+                        // 🔄 FORCE LE RAFRAÎCHISSEMENT IMMÉDIAT DE LA LISTE DES PUBLICATIONS
+                        if (typeof chargerPublications === "function") {
+                            chargerPublications();
+                        }
+                    }   else {
                             alert("❌ Erreur du serveur : " + data.message);
                             document.getElementById('status-bar').innerText = "❌ Échec de l'enregistrement.";
                         }
@@ -794,6 +1000,101 @@
         setupDropZonePublications();
         chargerPublications();
         document.querySelector('#palette-composants button').classList.add('ring-2', 'ring-offset-1', 'ring-sky-500');
+
+
+        // Tableau global pour stocker temporairement les composants sélectionnés pour la panne
+        let composantsEnPanneSelectionnes = [];
+
+        // Permet de sélectionner / désélectionner un composant au clic (Gestion Multiselect)
+        function toggleComposantPanne(bouton, nomComposant) {
+            const index = composantsEnPanneSelectionnes.indexOf(nomComposant);
+            
+            if (index > -1) {
+                // Si déjà sélectionné, on l'enlève et on remet le style normal
+                composantsEnPanneSelectionnes.splice(index, 1);
+                bouton.className = "px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all";
+            } else {
+                // Sinon on l'ajoute et on le passe en bleu/sélectionné
+                composantsEnPanneSelectionnes.push(nomComposant);
+                bouton.className = "px-3 py-2 border border-sky-300 rounded-xl text-xs font-semibold bg-sky-100 text-sky-800 transition-all shadow-sm";
+            }
+        }
+
+        // Fonction pour envoyer le problème au serveur
+        function enregistrerPanne() {
+            const description = document.getElementById("panne-description").value.trim();
+            const inputPhoto = document.getElementById("panne-photo");
+
+            if (composantsEnPanneSelectionnes.length === 0) {
+                alert("⚠️ Veuillez sélectionner au moins un composant concerné par la panne !");
+                return;
+            }
+            if (!description) {
+                alert("⚠️ Veuillez décrire le problème avant d'enregistrer.");
+                return;
+            }
+
+            // Génération d'un nom de fichier propre (ex: probleme-1718293847)
+            const idProbleme = "probleme-" + Math.floor(Date.now() / 1000);
+
+            // S'il y a une photo jointe, on envoie la photo !
+            if (inputPhoto.files && inputPhoto.files[0]) {
+                const photoFile = inputPhoto.files[0];
+                const ext = photoFile.name.split('.').pop();
+                
+                // On utilise la même ruse d'extension autorisée par ton backend (.pdf)
+                const fichierAEnvoyer = new File([photoFile], `${idProbleme}-photo.pdf`, { type: "application/pdf" });
+                
+                const formData = new FormData();
+                formData.append("file", fichierAEnvoyer);
+
+                // Envoi de la photo
+                fetch("http://localhost:3000/api/publications/upload", { method: "POST", body: formData })
+                .catch(err => console.error("Erreur envoi photo:", err));
+            }
+
+            // Création du contenu du rapport texte explicite pour le RAG / Chatbot
+            const contenuRapport = `RAPPORT DE DISFONCTIONNEMENT LABO LKB\n` +
+                                   `ID : ${idProbleme}\n` +
+                                   `Composants touchés : ${composantsEnPanneSelectionnes.join(", ")}\n` +
+                                   `Description du problème :\n${description}`;
+
+            // Conversion du texte en Blob et application de la même ruse d'extension .pdf
+            const blobTexte = new Blob([contenuRapport], { type: 'text/plain;charset=utf-8' });
+            const fichierTexteAEnvoyer = new File([blobTexte], `${idProbleme}.pdf`, { type: "application/pdf" });
+
+            const formDataTexte = new FormData();
+            formDataTexte.append("file", fichierTexteAEnvoyer);
+
+            // Envoi du rapport texte explicatif pour le chatbot
+            fetch("http://localhost:3000/api/publications/upload", {
+                method: "POST",
+                body: formDataTexte
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert(`🎉 Le rapport "${idProbleme}" a été envoyé avec succès au serveur !`);
+                    
+                    // Remise à zéro du formulaire
+                    document.getElementById("panne-description").value = "";
+                    inputPhoto.value = "";
+                    composantsEnPanneSelectionnes = [];
+                    document.querySelectorAll('#composants-panne-liste button').forEach(b => {
+                        b.className = "px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all";
+                    });
+
+                    // Optionnel : rafraîchir la liste globale en bas des pages
+                    if (typeof chargerPublications === "function") chargerPublications();
+                } else {
+                    alert("❌ Erreur du serveur : " + data.message);
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("❌ Erreur réseau lors de l'enregistrement de la panne.");
+            });
+        }
 
     </script>
 
