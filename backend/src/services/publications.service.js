@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs";
 
 // 📁 dossier uploads
-const UPLOAD_DIR = path.join(process.cwd(), "uploads");
+const UPLOAD_DIR = path.join(process.cwd(), "backend", "uploads-pdf");
 
 // créer si absent
 if (!fs.existsSync(UPLOAD_DIR)) {
