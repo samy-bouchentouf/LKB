@@ -15,12 +15,37 @@ if __name__ == "__main__":
 
         pdf_path = sys.argv[1]
         component_name = sys.argv[2]
+        if len(sys.argv) > 3:
+            manufacturer = sys.argv[3]
+            reference = sys.argv[4]
+            serial_number = sys.argv[5]
+            location = sys.argv[6]
+            description = sys.argv[7]
+            
+        else:
+            manufacturer = None
+            reference = None
+            serial_number = None
+            location = None
+            description = None
 
         result = ComponentImporter.import_component(
 
             name=component_name,
 
-            pdf_path=pdf_path
+            pdf_path=pdf_path,
+
+            component_type=None,
+
+            manufacturer=manufacturer,
+
+            reference=reference,
+
+            serial_number=serial_number,
+
+            location=location,
+
+            description=description
 
         )
 
