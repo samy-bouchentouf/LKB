@@ -1,7 +1,7 @@
 import json
 import sys
 
-from app.troubleshooting.importer import TroubleshootingImporter
+from operators.troubleshooting.importer import TroubleshootingImporter
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 import json
 
-from app.pdf.exporter import JSONExporter
+from operators.pdf.exporter import JSONExporter
 
 
 if __name__ == "__main__":

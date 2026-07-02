@@ -1,7 +1,7 @@
 import json
 import sys
 
-from app.pdf.importer import PDFImporter
+from operators.pdf.importer import PDFImporter
 
 if __name__ == "__main__":
 
