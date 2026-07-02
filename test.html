@@ -767,19 +767,27 @@
                     URL.revokeObjectURL(url);
                 }, 'image/png');
             };
-            
+
             img.src = url;
         }
-        
+
+        } // <-- fermeture de enregistrerSchemaDansBackend()
 
         function reinitialiserLabo() {
+
             composantsPlaces = [];
+
             liensPlaces = [];
+
             premierComposantLien = null;
+
             redessinerTout();
+
             document.getElementById('status-bar').innerText = "Table rase ! Cliquez pour déposer des blocs.";
+
         }
 
+        
         // =============================================
         // Lancement initialisations
         // =============================================
