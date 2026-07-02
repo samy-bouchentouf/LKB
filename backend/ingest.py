@@ -11,11 +11,11 @@ load_dotenv()
 
 def preparer_base_de_donnees():
     print(" Étape 1 : Lecture des PDF du labo...")
-    loader = DirectoryLoader('./doc_test', glob="**/*.pdf", loader_cls=PyPDFLoader)
+    loader = DirectoryLoader('./uploads-pdf', glob="**/*.pdf", loader_cls=PyPDFLoader)
     documents = loader.load()
     
     if len(documents) == 0:
-        print(" Attention : Aucun PDF trouvé dans le dossier 'doc_test'. L'opération s'arrête.")
+        print(" Attention : Aucun PDF trouvé dans le dossier 'uploads-pdf'. L'opération s'arrête.")
         return
         
     print(f"   -> {len(documents)} pages lues.")
