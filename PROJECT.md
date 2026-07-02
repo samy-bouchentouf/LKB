@@ -19,21 +19,19 @@ Deux codes différents de RAG ont été developpés indépendamment. Chacun pré
  Pour le premier, nous utilisons le modèle `mistral-embed` de **Mistral AI**, très performant et économique pour vectoriser et indexer localement nos documents au format JSON (`knowledge_vect.json`). Pour la génération de texte (LLM), nous avons intégré **Claude 3.5 Sonnet (Anthropic)** en raison de ses capacités d'analyse logique supérieures, de sa gestion native des formules mathématiques complexe en LaTeX, et de son efficacité. Dans ce modèle, nous avons developpé manuellement toutes les fonctionnalités du RAG: embedding, calcul des distances entre vecteurs, FAISS...Cela nous permettait d'avoir la main sur tous les paramètres mais nous obligeait à developper notre propre méthode de chunking des documents PDF. Cela altérait visiblement la compréhension du document par le LLM. Finalement, cette méthode s'est avérée très coûteuse en temps, bien qu'utile pour comprendre le fonctionnement précis d'un RAG.
 
 
-## 3. Difficultés Rencontrées
-Durant le développement, nous avons été confrontés à trois défis majeurs :
+## 3. Difficultés Rencontrées et Solutions
+
 - **Saturation des API (Rate Limiting) :** Lors de la vectorisation de la base de connaissances, l'envoi massif de requêtes simultanées provoquait des erreurs `429 (Too Many Requests)` chez Mistral, ou prenait un temps très long à être executé. 
 
+- **Communication entre backend et frontend :** Comme nous travaillions tous sur un "bloc" du code, un de nos enjeux majeurs en fin de semaine a été de connecter toutes les pièces entre elles. Nous avons du corriger les erreurs de nomenclature et vérifier les destinations indiquées par chaque code.
 
-## 4. Solutions Trouvées
 Pour surmonter ces obstacles, nous avons mis en place des solutions robustes :
 - **Architecture d'ingestion unique :** Nous avons scripté la vectorisation pour qu'elle s'exécute en tâche de fond une seule fois. Les embeddings étant sauvegardés localement, le chatbot n'a plus à recalculer la base à chaque question.
 
 
-## 5. Notre Organisation
-Le projet a été mené suivant une méthodologie agile itérative, centrée sur le prototypage rapide. Nous avons d'abord validé l'algorithme mathématique de similarité cosinus dans un environnement de sandbox (Jupyter Notebook). Une fois le moteur de recherche sémantique stabilisé, nous avons migré le code vers une architecture modulaire propre sous Node.js (`src/server.js`, `src/services/documents.service.js`) pour le lier au système de fichiers du laboratoire.
+## 5. Pistes d'améliorations 
 
-## 6. Perspectives et Améliorations (Si nous avions eu plus de temps)
 Avec un délai supplémentaire, nous aurions exploré les axes d'amélioration suivants :
-- **Intégration d'une base de données vectorielle dédiée :** Remplacer le fichier local `knowledge_vect.json` par une instance de *ChromaDB* ou *Pinecone* pour permettre le passage à l'échelle sur des milliers de publications.
-- **Reranking des résultats (Reranker) :** Ajouter une étape de re-classement des chunks récupérés (via un modèle de Cross-Encoder) pour s'assurer que les extraits envoyés à Claude soient d'une pertinence absolue.
-- **Parser de PDF avancé :** Améliorer le découpage initial des documents pour extraire proprement les tableaux et les images des articles de physique, souvent mal interprétés par un découpage textuel brut.
+
+- **Modèle hybride de RAG et base de données plus légère:** Nous aurions souhaité trouver une alternative aux deux RAG nous permettant d'avoir la main sur les paramètres de calcul et les méthodes d'embedding tout en gardant l'efficacité des fonctions Python. Nous aurions également cherché à remplacer le fichier local `knowledge_vect.json` par une instance de *ChromaDB* ou *Pinecone* pour permettre le passage à l'échelle sur des milliers de publications.
+
