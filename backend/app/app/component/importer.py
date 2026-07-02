@@ -17,10 +17,10 @@ class ComponentImporter:
     ):
 
         print("=" * 60)
-        print("🔧 Création d'un nouveau composant")
+        print("Création d'un nouveau composant")
         print("=" * 60)
 
-        print("➡️ Création du composant...")
+        print("Création du composant...")
 
         component = crud_component.add(
 
@@ -34,9 +34,9 @@ class ComponentImporter:
 
         )
 
-        print(f"✅ Composant créé (id={component.id})")
+        print(f"Composant créé (id={component.id})")
 
-        print("➡️ Import de la notice technique...")
+        print("Import de la notice technique...")
 
         result = PDFImporter.import_pdf(
 
@@ -50,7 +50,7 @@ class ComponentImporter:
 
         )
 
-        print("✅ Notice importée")
+        print("Notice importée")
         print("=" * 60)
 
         return {

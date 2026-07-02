@@ -41,18 +41,18 @@ class PDFImporter:
 
         print(f"Lecture de {pdf_path}")
         pages = PDFExtractor.extract_pages(pdf_path)
-        print(f"✓ {len(pages)} pages extraites")
+        print(f"{len(pages)} pages extraites")
 
         chunker = PDFChunker()
 
         chunks = chunker.chunk_pages(pages)
-        print(f"✓ {len(chunks)} chunks créés")
+        print(f"{len(chunks)} chunks créés")
 
         for chunk in chunks:
-
+            content = chunk["content"].replace("\x00", "")
             crud_knowledge.add(
                 type="pdf_chunk",
-                content=chunk["content"],
+                content=content,
                 page_number=chunk["page"],
                 chunk_index=chunk["chunk"],
                 component_id=component_id,
@@ -96,7 +96,7 @@ class PDFImporter:
         print(f"Document créé (id={document.id})")
 
         # Chunking
-        print("➡️ Extraction et découpage du PDF...")
+        print("Extraction et découpage du PDF...")
         n_chunks = PDFImporter.create_chunks(
             document=document,
             pdf_path=pdf_path,
