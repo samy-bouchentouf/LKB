@@ -40,7 +40,7 @@ export const uploadDocument = (req, res) => {
         console.log("🚀 Import Component :", pdfPath);
 
         exec(
-            `python backend/app/run_import_component.py "${pdfPath}" "${componentName}"`,
+            `python backend/app/operators/run_import_component.py "${pdfPath}" "${componentName}"`,
             (error, stdout, stderr) => {
 
                 if (error) {
