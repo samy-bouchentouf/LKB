@@ -8,7 +8,9 @@ Ce projet est une solution complète combinant une interface utilisateur intuiti
 Installer :
 * [Node.js](https://nodejs.org/) (v18 ou supérieur)
 * [Python](https://www.python.org/) (v3.9 ou supérieur)
+* [PostgreSQL] (https://www.postgresql.org/) (v16 ou supérieur)
 * Git
+
 
 **Cloner le projet**
 ```bash
