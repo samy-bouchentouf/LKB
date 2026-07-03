@@ -51,12 +51,12 @@ python backend/app/create_db.py
 ```
 **Configuration des variables d'environnement**
 
-Créer un fichier `.env` à la racine du projet :
+Créer un fichier `.env` à la racine du projet (dans LKB) :
 
 ```env
 MISTRAL_API_KEY=votre_cle_api_mistral
 ```
-
+ici la clé API est dans rag.ipynb (dans fichier run dans app)
 ## Lancer l'application
 
 Le projet utilise deux serveurs distincts qui doivent être démarrés simultanément pour permettre au Chatbot IA de fonctionner correctement.
