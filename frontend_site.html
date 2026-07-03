@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- rend la page responsive -->
     <title>Maquette LKB - IA Accueil</title> <!-- titre de la page -->
     <script src="https://cdn.tailwindcss.com"></script> <!-- inclut Tailwind CSS pour le style, on aurait pu faire un fichier CSS avec le style mais comme ça tt est dans un doc -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- pour générer de vrais fichiers PDF -->
 </head>
 <body class="bg-stone-50 flex flex-col h-screen w-screen overflow-hidden font-sans m-0 p-0"> <!-- corps de la page avec un fond gris clair, flexbox pour la mise en page, police sans-serif, pas de marges ni de padding -->
 
@@ -216,15 +217,15 @@
             
         </section>
 
-        <!-- section pour le rapport de panne et le troubleshooting -->
+<!-- section pour le rapport de panne et le troubleshooting -->
         <section id="page-problemes" class="hidden w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
             <div class="border-b border-stone-200 pb-4">
                 <h2 class="text-xl font-bold text-stone-800">Rapport de Panne & Troubleshooting </h2>
-                <p class="text-xs text-stone-400">Renseignez les problèmes rencontrés, sauvegardez les et consultez les anciennes erreurs.</p>
+                <p class="text-xs text-stone-400">Renseignez les problèmes rencontrés, sauvegardez-les et consultez les anciennes erreurs.</p>
             </div>
             
             <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
-                <!-- on selectionne le composant avec un pb -->
+                <!-- 1. Sélection des composants -->
                 <div>
                     <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
                         1. Choisissez le ou les composants concernés :
@@ -237,54 +238,44 @@
                         <button type="button" onclick="toggleComposantPanne(this, 'MPLC')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">MPLC 1 (Cailabs)</button>
                         <button type="button" onclick="toggleComposantPanne(this, 'QPD')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Détecteur QPD</button>
                         <button type="button" onclick="toggleComposantPanne(this, 'Oscilloscope')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all"> Oscilloscope</button>
-                         <button type="button" onclick="toggleComposantPanne(this, 'Aucun en particulier')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Aucun</button>
+                        <button type="button" onclick="toggleComposantPanne(this, 'Aucun en particulier')" class="px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all">Aucun</button>
                     </div>
                 </div>
 
-                <!-- zone pour décrire le pb -->
+                <!-- 2. Formulaires textes -->
                 <div>
-                    <label for="panne-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                        Titre du problème :
-                    </label>
-                    <textarea id="panne-description" rows="4" 
-                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                    <label for="panne-titre" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">Titre du problème :</label>
+                    <input type="text" id="panne-titre" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300" placeholder="Ex: Perte de signal sur le détecteur principal">
                 </div>
 
                 <div>
-                    <label for="solution-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                        Problème rencontré:
-                    </label>
-                    <textarea id="solution-description" rows="4" 
-                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                    <label for="panne-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">Problème rencontré :</label>
+                    <textarea id="panne-description" rows="3" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none shadow-inner" placeholder="Décrivez les symptômes..."></textarea>
                 </div>
+                
                 <div>
-                    <label for="cause-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                        Cause du problème :
-                    </label>
-                    <textarea id="cause-description" rows="4" 
-                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                    <label for="cause-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">Cause du problème :</label>
+                    <textarea id="cause-description" rows="3" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none shadow-inner" placeholder="Quelle est l'origine présumée de la panne ?"></textarea>
                 </div>
 
                 <div>
-                    <label for="panne-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                        Solution proposée :
-                    </label>
-                    <textarea id="panne-description" rows="4" 
-                        class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-400 resize-none shadow-inner"></textarea>
+                    <label for="solution-description" class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">Solution proposée / Action menée :</label>
+                    <textarea id="solution-description" rows="3" class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none shadow-inner" placeholder="Comment avez-vous réglé le problème ?"></textarea>
                 </div>
 
-                <!--on enregistre le tout pour alimenter l'IA et que les porchains y aient accès -->
+                <!-- Bouton Enregistrer -->
                 <div class="pt-2">
                     <button onclick="enregistrerPanne()" class="w-full md:w-auto px-6 py-3 bg-[#2E5CB8] text-white rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all flex items-center justify-center gap-2">
                         💾 Enregistrer le rapport de panne
                     </button>
                 </div>
+                
+                <!-- Historique en bas -->
                 <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-3 mt-6">
-                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
-                        Rapports de panne enregistrés récemment
-                    </h3>
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Rapports de panne enregistrés récemment</h3>
                     <div id="pannes-container" class="space-y-3">
-                        </div>
+                        <!-- Rempli en JS -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -643,7 +634,6 @@
 
         // on charge la liste des publications depuis le serveur backend et on les affiche dans les conteneurs correspondants
         function chargerPublications() {
-            // on fait un fetch pour récupérer la liste des fichiers de publications depuis le serveur backend
             fetch("http://localhost:3000/api/publications/files")
             .then(res => res.json())
             .then(data => {
@@ -657,21 +647,22 @@
                         Publications ajoutées récemment
                     </h3>`;
 
-                data.files.forEach(f => {
-                    // On crée un petit bloc HTML pour chaque fichier avec son nom, sa taille et un lien pour l'ouvrir dans un nouvel onglet
-                    const htmlFichier = `
-                        <div class="bg-white p-4 rounded-xl border flex justify-between items-center group shadow-sm hover:border-sky-200 transition-all">
-                            <div>
-                                <strong class="text-stone-800 text-sm">${f.filename}</strong><br>
-                                <small class="text-stone-400 text-xs">${(f.size / 1024).toFixed(1)} Ko</small>
+                data.files
+                    .filter(f => !f.filename.startsWith("probleme-"))
+                    .forEach(f => {
+                        const htmlFichier = `
+                            <div class="bg-white p-4 rounded-xl border flex justify-between items-center group shadow-sm hover:border-sky-200 transition-all">
+                                <div>
+                                    <strong class="text-stone-800 text-sm">${f.filename}</strong><br>
+                                    <small class="text-stone-400 text-xs">${(f.size / 1024).toFixed(1)} Ko</small>
+                                </div>
+                                <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-blue-500 hover:text-blue-700">
+                                    Ouvrir ↗
+                                </a>
                             </div>
-                            <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-blue-500 hover:text-blue-700">
-                                Ouvrir ↗
-                            </a>
-                        </div>
-                    `;
-                    conteneurPub.insertAdjacentHTML("beforeend", htmlFichier);
-                });
+                        `;
+                        conteneurPub.insertAdjacentHTML("beforeend", htmlFichier);
+                    });
             });
         }
 
@@ -1048,6 +1039,7 @@
         setupDropZonePublications(); // pour la zone de dépôt des publications
         chargerPublications(); // pour charger la liste des fichiers existants depuis le serveur
         chargerDocumentsTechniques(); // pour charger la liste des fichiers techniques existants depuis le serveur
+        chargerPannes(); // pour charger la liste des pannes existantes depuis le serveur
         document.querySelector('#palette-composants button').classList.add('ring-2', 'ring-offset-1', 'ring-sky-500');
 
 
@@ -1069,65 +1061,151 @@
             }
         }
 
+        
+        
+        function chargerPannes() {
+            fetch("http://localhost:3000/api/publications/files") // même endpoint que chargerPublications()
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById("pannes-container");
+                    if (!container) return;
+
+                    if (!data.success) return;
+
+                    container.innerHTML = ""; // On vide la zone avant de réafficher
+
+                    // On ne garde que les fichiers qui commencent par "probleme-"
+                    const rapportsPannes = data.files.filter(f => f.filename.startsWith("probleme-"));
+
+                    if (rapportsPannes.length === 0) {
+                        container.innerHTML = `<p class="text-xs text-stone-400 italic">Aucun rapport de panne enregistré pour le moment.</p>`;
+                        return;
+                    }
+
+                    // On crée le HTML pour chaque panne trouvée
+                    rapportsPannes.forEach(panne => {
+                        const div = document.createElement("div");
+                        div.className = "flex items-center justify-between p-3 bg-red-50/50 border border-red-100 rounded-xl text-xs text-stone-700 shadow-sm";
+                        div.innerHTML = `
+                            <div class="flex items-center gap-2">
+                                <span class="text-red-500">🚨</span>
+                                <div>
+                                    <span class="font-semibold text-stone-800">${panne.filename}</span>
+                                    <span class="text-[10px] text-stone-400 block">Téléversé pour le RAG</span>
+                                </div>
+                            </div>
+                            <a href="http://localhost:3000/uploads-pdf/${panne.filename}" target="_blank" class="px-2 py-1 bg-white border border-stone-200 rounded-lg text-stone-600 hover:bg-stone-50 font-medium transition-colors">
+                                👁️ Voir la source
+                            </a>
+                        `;
+                        container.appendChild(div);
+                    });
+                })
+                .catch(err => console.error("Erreur lors du chargement des pannes:", err));
+        }
+
+
+
+
         // Fonction pour envoyer le problème au serveur
         function enregistrerPanne() {
-            const description = document.getElementById("panne-description").value.trim();
-            const inputPhoto = document.getElementById("panne-photo");
+            // Récupération des 4 champs distincts
+            const titre = document.getElementById("panne-titre").value.trim();
+            const probleme = document.getElementById("panne-description").value.trim();
+            const cause = document.getElementById("cause-description").value.trim() || "Non spécifiée.";
+            const solution = document.getElementById("solution-description").value.trim() || "En attente de résolution.";
 
+            // Validations obligatoires
             if (composantsEnPanneSelectionnes.length === 0) {
                 alert("⚠️ Veuillez sélectionner au moins un composant concerné par la panne !");
                 return;
             }
-            if (!description) {
-                alert("⚠️ Veuillez décrire le problème avant d'enregistrer.");
+            if (!titre || !probleme) {
+                alert("⚠️ Veuillez renseigner au moins un Titre et la Description du problème rencontré.");
                 return;
             }
 
-            // Génération d'un nom de fichier propre (ex: probleme-1718293847)
-            const idProbleme = "probleme-" + Math.floor(Date.now() / 1000);
+            // Génération d'un nom de fichier basé sur le TITRE du problème
+            const idUnique = Math.floor(Date.now() / 1000);
+            const titreSlug = titre.toLowerCase()
+                                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // enlève les accents
+                                    .replace(/[^a-z0-9]+/g, "-")
+                                    .replace(/(^-|-$)/g, "");
+            const nomFichierPropre = `probleme-${titreSlug}-${idUnique}.pdf`;
 
-            // Création du contenu du rapport texte explicite pour le RAG / Chatbot
-            const contenuRapport = `RAPPORT DE DISFONCTIONNEMENT LABO LKB\n` +
-                                   `ID : ${idProbleme}\n` +
-                                   `Composants touchés : ${composantsEnPanneSelectionnes.join(", ")}\n` +
-                                   `Description du problème :\n${description}`;
+            // Construction du contenu du rapport, ligne par ligne
+            const lignesRapport = [
+                "RAPPORT DE DYSFONCTIONNEMENT TECHNIQUE",
+                "",
+                `Titre du Problème : ${titre}`,
+                `Composants impactés : ${composantsEnPanneSelectionnes.join(", ")}`,
+                "",
+                "Symptômes constatés :",
+                probleme,
+                "",
+                "Cause identifiée :",
+                cause,
+                "",
+                "Solution apportée / Correctif :",
+                solution,
+                "",
+                "Généré via le module Troubleshooting LKB."
+            ];
 
-            // Conversion du texte en Blob et application de la même ruse d'extension .pdf
-            const blobTexte = new Blob([contenuRapport], { type: 'text/plain;charset=utf-8' });
-            const fichierTexteAEnvoyer = new File([blobTexte], `${idProbleme}.pdf`, { type: "application/pdf" });
+            // Génération d'un VRAI fichier PDF (via jsPDF)
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const margeGauche = 15;
+            let curseurY = 20;
+            doc.setFontSize(14);
+            doc.text(lignesRapport[0], margeGauche, curseurY);
+            doc.setFontSize(10);
+            curseurY += 10;
 
-            const formDataTexte = new FormData();
-            formDataTexte.append("file", fichierTexteAEnvoyer);
+            lignesRapport.slice(1).forEach(ligne => {
+                const texteDecoupe = doc.splitTextToSize(ligne || " ", 180);
+                texteDecoupe.forEach(sousLigne => {
+                    if (curseurY > 280) {
+                        doc.addPage();
+                        curseurY = 20;
+                    }
+                    doc.text(sousLigne, margeGauche, curseurY);
+                    curseurY += 6;
+                });
+            });
 
-            // Envoi du rapport texte explicatif pour le chatbot
+            const blobPdf = doc.output("blob");
+            const fichierAEnvoyer = new File([blobPdf], nomFichierPropre, { type: "application/pdf" });
+
+            const formData = new FormData();
+            formData.append("file", fichierAEnvoyer);
+
+            // Envoi au serveur local sur le port 3000
             fetch("http://localhost:3000/api/publications/upload", {
                 method: "POST",
-                body: formDataTexte
+                body: formData
             })
             .then(res => res.json())
             .then(data => {
-                if (data.success) {
-                    alert(`🎉 Le rapport "${idProbleme}" a été envoyé avec succès au serveur !`);
-                    
-                    // Remise à zéro du formulaire
-                    document.getElementById("panne-description").value = "";
-                    inputPhoto.value = "";
-                    composantsEnPanneSelectionnes = [];
-                    document.querySelectorAll('#composants-panne-liste button').forEach(b => {
-                        b.className = "px-3 py-2 border border-stone-200 rounded-xl text-xs font-medium text-stone-600 bg-stone-50 hover:bg-stone-100 transition-all";
-                    });
-
-                    // Optionnel : rafraîchir la liste globale en bas des pages
-                    if (typeof chargerPublications === "function") chargerPublications();
-                } else {
-                    alert("❌ Erreur du serveur : " + data.message);
+                // ... fin du fetch de ton enregistrerPanne() ...
+            if (data.success) {
+                alert(`🎉 Le rapport de panne "${titre}" a bien été enregistré !`);
+                
+                // Réinitialise les champs...
+                document.getElementById("panne-titre").value = "";
+                document.getElementById("panne-description").value = "";
+                document.getElementById("cause-description").value = "";
+                document.getElementById("solution-description").value = "";
+                
+                // 🔴 REMPLACE chargerPublications() PAR CELA :
+                if (typeof chargerPannes === "function") {
+                    chargerPannes();
                 }
-            })
-            .catch(err => {
-                console.error(err);
-                alert("❌ Erreur réseau lors de l'enregistrement de la panne.");
-            });
-        }
+            }
+        });
+    }
+
+
 
     </script>
 
