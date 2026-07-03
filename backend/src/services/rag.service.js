@@ -2,7 +2,7 @@ import { exec } from "child_process";
 
 export const runRag = (message) => {
   return new Promise((resolve, reject) => {
-    exec(`python app/run_rag.py "${message}"`, (error, stdout, stderr) => {
+    exec(`python run/run_rag.py "${message}"`, (error, stdout, stderr) => {
 
       // afficher erreur réelle
       if (error) {

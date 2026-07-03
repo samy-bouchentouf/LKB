@@ -1,24 +1,97 @@
-import fs from "fs";
+import {
+    uploadMiddleware,
+    getFiles
+} from "../services/documents.service.js";
+
+import { exec } from "child_process";
 import path from "path";
 
-export const upload = (req, res) => {
+// ✅ upload fichier
+export const uploadDocument = (req, res) => {
+    uploadMiddleware(req, res, (err) => {
 
-    const file = req.file;
+        if (err) {
+            return res.status(400).json({
+                success: false,
+                message: err.message
+            });
+        }
 
-    if (!file) {
-        return res.status(400).json({ error: "Pas de fichier" });
-    }
+        if (!req.file) {
+            return res.status(400).json({
+                success: false,
+                message: "Aucun fichier"
+            });
+        }
 
-    // ✅ chemin de sauvegarde
-    const filePath = path.join("uploads", file.originalname);
+        console.log("📁 Upload TECH OK :", req.file.filename);
 
-    // ✅ écrire le fichier sur disque
-    fs.writeFileSync(filePath, file.buffer);
+        const pdfPath = path.join(
+            process.cwd(),
+            "backend",
+            "uploads-component",
+            req.file.filename
+        );
 
-    console.log("📄 Fichier sauvegardé :", filePath);
+        const componentName = path.parse(
+            req.file.filename
+        ).name;
 
-    res.json({
-        message: "Fichier sauvegardé ✅",
-        path: filePath
+        console.log("🚀 Import Component :", pdfPath);
+
+        exec(
+            `python backend/app/run/run_import_component.py "${pdfPath}" "${componentName}"`,
+            (error, stdout, stderr) => {
+
+                if (error) {
+                    console.error(
+                        "❌ Import Component :",
+                        error
+                    );
+
+                    if (stderr) {
+                        console.error(stderr);
+                    }
+
+                    return;
+                }
+
+                console.log(
+                    "✅ Import Component :",
+                    stdout
+                );
+
+                if (stderr) {
+                    console.error(stderr);
+                }
+            }
+        );
+
+        res.json({
+            success: true,
+            message: "Fichier uploadé",
+            file: req.file.filename
+        });
     });
+};
+
+// ✅ liste fichiers
+export const listDocuments = (req, res) => {
+    try {
+
+        const files = getFiles();
+
+        res.json({
+            success: true,
+            files
+        });
+
+    } catch (err) {
+
+        res.status(500).json({
+            success: false,
+            message: "Erreur lecture fichiers"
+        });
+
+    }
 };
