@@ -604,14 +604,14 @@
         const upload = (f) => {
             const fd = new FormData();
             fd.append('file', f);
-            return fetch('http://localhost:3000/api/publications/upload', { method: 'POST', body: fd });
+            return fetch('http://localhost:3000/api/documents/upload', {method: 'POST',body: fd});
         };
 
         // Lance l'envoi des deux fichiers (le PDF et les infos texte) en même temps au serveur
         Promise.all([upload(fichierRenomme), upload(metaFichier)]) 
             .then(() => {
                 alert('✅ Fiche technique "' + nom + '" enregistrée !');
-                chargerPublications();
+                chargerDocumentsTechniques();
             })
             .catch(() => alert('❌ Erreur réseau lors de l\'envoi.'));
     }
@@ -647,18 +647,15 @@
             fetch("http://localhost:3000/api/publications/files")
             .then(res => res.json())
             .then(data => {
-                if (!data.success) return; // si la récupération a échoué, on ne fait rien
-                // on récupère les conteneurs HTML pour les publications, les fichiers techniques et les rapports de panne
+
+                if (!data.success) return;
+
                 const conteneurPub = document.getElementById("fichiers-container-publications");
-                const conteneurTech = document.getElementById("fichiers-container");
-                const conteneurPannes = document.getElementById("pannes-container"); 
-                // on définit les entêtes pour les publications et les fichiers techniques
-                const entetePub = `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Publications ajoutées récemment</h3>`;
-                const enteteTech = `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">Fichiers partagés récemment</h3>`;
-                // on vide les conteneurs avant de les remplir avec les fichiers récupérés
-                if (conteneurPub) conteneurPub.innerHTML = entetePub;
-                if (conteneurTech) conteneurTech.innerHTML = enteteTech;
-                if (conteneurPannes) conteneurPannes.innerHTML = ""; // On vide la liste des pannes avant de la recréer
+
+                conteneurPub.innerHTML =
+                    `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                        Publications ajoutées récemment
+                    </h3>`;
 
                 data.files.forEach(f => {
                     // On crée un petit bloc HTML pour chaque fichier avec son nom, sa taille et un lien pour l'ouvrir dans un nouvel onglet
@@ -668,59 +665,50 @@
                                 <strong class="text-stone-800 text-sm">${f.filename}</strong><br>
                                 <small class="text-stone-400 text-xs">${(f.size / 1024).toFixed(1)} Ko</small>
                             </div>
-                            <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-xs font-semibold text-[#2E5CB8] hover:underline">
+                            <a href="http://localhost:3000/uploads-pdf/${f.filename}" target="_blank" class="text-blue-500 hover:text-blue-700">
                                 Ouvrir ↗
                             </a>
                         </div>
                     `;
+                    conteneurPub.insertAdjacentHTML("beforeend", htmlFichier);
+                });
+            });
+        }
 
-                    // pareil pour les rapports de panne
-                    const htmlTech = `
+
+        // on charge les fichiers techniques au démarrage de la page
+        function chargerDocumentsTechniques() {
+            fetch("http://localhost:3000/api/documents/files")
+            .then(res => res.json())
+            .then(data => {
+
+                if (!data.success) return;
+
+                const conteneurTech = document.getElementById("fichiers-container");
+
+                conteneurTech.innerHTML =
+                    `<h3 class="text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">
+                        Fichiers partagés récemment
+                    </h3>`;
+                   
+                data.files.forEach(f => {
+
+                    const htmlFichier = `
                         <div class="bg-white p-4 rounded-xl border flex justify-between items-center group shadow-sm hover:border-sky-200 transition-all">
                             <div>
                                 <strong class="text-stone-800 text-sm">${f.filename}</strong><br>
                                 <small class="text-stone-400 text-xs">${(f.size / 1024).toFixed(1)} Ko</small>
                             </div>
-                            <a href="http://localhost:3000/uploads-component/${f.filename}" target="_blank" class="text-xs font-semibold text-[#2E5CB8] hover:underline">
+                            <a href="http://localhost:3000/uploads-component/${f.filename}" target="_blank" class="text-blue-500 hover:text-blue-700">
                                 Ouvrir ↗
                             </a>
                         </div>
                     `;
-
-                    // Si c'est un rapport de panne (commence par "probleme-")
-                    if (f.filename.startsWith("probleme-")) {
-                        if (conteneurPannes) {
-                            // On crée un affichage en mode alerte/panne pour les rapports de panne avec un fond rouge et un bouton pour consulter le rapport
-                            const htmlPanne = `
-                                <div class="bg-red-50/40 p-4 rounded-xl border border-red-100 flex justify-between items-center group shadow-sm hover:border-red-200 transition-all">
-                                    <div class="flex items-center gap-3">
-                                        <span class="text-lg">⚠️</span>
-                                        <div>
-                                            <strong class="text-stone-800 text-sm font-semibold">${f.filename}</strong><br>
-                                            <small class="text-stone-400 text-xs">Rapport de dysfonctionnement • ${(f.size / 1024).toFixed(1)} Ko</small>
-                                        </div>
-                                    </div>
-                                    <a href="http://localhost:3000/uploads-component/${f.filename}" target="_blank" class="text-xs font-bold text-red-600 bg-white border border-red-200 px-3 py-1.5 rounded-xl hover:bg-red-50 shadow-sm transition-colors">
-                                        Consulter ↗
-                                    </a>
-                                </div>
-                            `;
-                            conteneurPannes.insertAdjacentHTML('beforeend', htmlPanne);// On ajoute le rapport de panne dans le conteneur dédié aux pannes
-                        }
-                    } else {
-                        // Sinon, on range le fichier normalement dans les onglets classiques
-                        if (conteneurPub) conteneurPub.insertAdjacentHTML('beforeend', htmlFichier);
-                        if (conteneurTech) conteneurTech.insertAdjacentHTML('beforeend', htmlTech);
-                    }
+                       
+                    conteneurTech.insertAdjacentHTML("beforeend", htmlFichier);
                 });
-
-                // Si aucune panne n'a été trouvée, on met un petit message propre
-                if (conteneurPannes && conteneurPannes.children.length === 0) {
-                    conteneurPannes.innerHTML = `<p class="text-xs text-stone-400 italic">Aucun rapport de panne enregistré pour le moment.</p>`;
-                }
             });
-        }
-
+        }       
        
         // POUR LE SCHEMA //
 
@@ -1003,7 +991,7 @@
                     document.getElementById('status-bar').innerText = "⏳ Envoi du schéma au serveur de l'IA...";
 
                     //Requête HTTP POST vers ton backend
-                    fetch("http://localhost:3000/api/publications/upload", { // on envoie le fichier au serveur backend
+                    fetch("http://localhost:3000/api/documents/upload", { // on envoie le fichier au serveur backend
                         method: "POST",
                         body: formData
                     })
@@ -1014,9 +1002,9 @@
                         document.getElementById('status-bar').innerText = "✅ Schéma enregistré avec succès et accessible par l'IA !";
                         alert(`🎉 Le schéma "${nomSchema}" a bien été sauvegardé !`);
                         
-                        // 🔄 FORCE LE RAFRAÎCHISSEMENT IMMÉDIAT DE LA LISTE DES PUBLICATIONS
-                        if (typeof chargerPublications === "function") {
-                            chargerPublications();
+                        // 🔄 FORCE LE RAFRAÎCHISSEMENT IMMÉDIAT DE LA LISTE DES DOCUMENTS TECHNIQUES
+                        if (typeof chargerDocumentsTechniques === "function") {
+                            chargerDocumentsTechniques();
                         }
                     }   else { // si l'envoi a échoué, on affiche un message d'erreur
                             alert("❌ Erreur du serveur : " + data.message);
@@ -1059,6 +1047,7 @@
         setupDropZoneTech(); // pour la zone de dépôt des fichiers techniques
         setupDropZonePublications(); // pour la zone de dépôt des publications
         chargerPublications(); // pour charger la liste des fichiers existants depuis le serveur
+        chargerDocumentsTechniques(); // pour charger la liste des fichiers techniques existants depuis le serveur
         document.querySelector('#palette-composants button').classList.add('ring-2', 'ring-offset-1', 'ring-sky-500');
 
 
