@@ -10,17 +10,30 @@ from langchain_mistralai import MistralAIEmbeddings
 load_dotenv()
 
 def preparer_base_de_donnees():
-    print(" Étape 1 : Lecture des PDF du labo...")
-    loader = DirectoryLoader('./uploads-pdf', glob="**/*.pdf", loader_cls=PyPDFLoader)
-    documents = loader.load()
+    print(" Étape 1 : Lecture des PDF du labo et des composants...")
     
-    if len(documents) == 0:
-        print(" Attention : Aucun PDF trouvé dans le dossier 'uploads-pdf'. L'opération s'arrête.")
-        return
-        
-    print(f"-> {len(documents)} pages lues.")
+    # Liste des dossiers à scanner
+    dossiers = ['./uploads-pdf', './uploads-components']
+    documents = []
+
+    for dossier in dossiers:
+        print(f" Chargement depuis : {dossier}")
+        loader = DirectoryLoader(dossier, glob="**/*.pdf", loader_cls=PyPDFLoader)
+        # On ajoute les documents trouvés à notre liste principale
+        documents.extend(loader.load())
+
+    print(f" Total de documents chargés : {len(documents)}")
+    
+    
+    
 
     print(" Étape 2 : Découpage du texte en morceaux (Chunks)...")
+    for doc in documents:
+    # On extrait le nom du dossier à partir du chemin du fichier
+        dossier = os.path.basename(os.path.dirname(doc.metadata['source']))
+        doc.metadata['type_source'] = dossier
+
+
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     morceaux = text_splitter.split_documents(documents)
     print(f"-> {len(morceaux)} morceaux créés.")
