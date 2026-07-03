@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/samy-bouchentouf/LKB/issues"
   },
-  "homepage": "https://github.com/samy-bouchentouf/LKB#readme"
+  "homepage": "https://github.com/samy-bouchentouf/LKB#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
 }
