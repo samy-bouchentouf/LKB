@@ -27,9 +27,9 @@ cd backend
 npm install
 ```
 
-**Configurer PostgreSQL**
+**Configurer PostgreSQL (facultatif)**
 
-On peut utiliser pgAdmin4 pour paramétrer la base de donnée.
+On peut utiliser pgAdmin4 pour paramétrer/regarder la base de donnée.
 
 Créer une base PostgreSQL (par exemple `lab_knowledge`) puis renseigner les paramètres de connexion dans `backend/app/operators/database.py`
 
