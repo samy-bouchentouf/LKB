@@ -57,6 +57,8 @@ Créer un fichier `.env` à la racine du projet (dans LKB) :
 MISTRAL_API_KEY=votre_cle_api_mistral
 ```
 ici la clé API est dans rag.ipynb (dans fichier run dans app)
+
+
 ## Lancer l'application
 
 Le projet utilise deux serveurs distincts qui doivent être démarrés simultanément pour permettre au Chatbot IA de fonctionner correctement.
@@ -81,9 +83,6 @@ uvicorn backend.app.rag_api:app --reload --port 8000
 
 Le serveur démarre sur http://localhost:8000
 
-Une documentation de l'API est accessible à l'adresse :
-
-http://localhost:8000/docs
 
 3. Lancer l'application Web
 
