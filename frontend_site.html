@@ -4,7 +4,8 @@
     <meta charset="UTF-8"> <!-- adapte l'encodage des caractères -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- rend la page responsive -->
     <title>Maquette LKB - IA Accueil</title> <!-- titre de la page -->
-    <script src="https://cdn.tailwindcss.com"></script> <!-- inclut Tailwind CSS pour le style, on aurait pu faire un fichier CSS avec le style mais comme ça tt est dans un doc -->
+    <script src="https://cdn.tailwindcss.com?raphy"></script> <!-- inclut Tailwind CSS pour le style, on aurait pu faire un fichier CSS avec le style mais comme ça tt est dans un doc -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> <!-- pour parser le markdown -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> <!-- pour générer de vrais fichiers PDF -->
 </head>
 <body class="bg-stone-50 flex flex-col h-screen w-screen overflow-hidden font-sans m-0 p-0"> <!-- corps de la page avec un fond gris clair, flexbox pour la mise en page, police sans-serif, pas de marges ni de padding -->
@@ -455,7 +456,9 @@
                 botMsg.innerHTML = `
                     <div class="bg-white border border-stone-200 text-stone-800 px-5 py-4 rounded-2xl rounded-tl-sm max-w-2xl shadow-sm">
                         <p class="text-xs font-bold text-[#2E5CB8] mb-1"> LKB Assistant</p>
-                        <p class="text-sm text-stone-900">${data.answer || "Pas de réponse reçue."}</p>
+                        <div class="prose prose-sm max-w-none text-stone-900">
+                            ${marked.parse(data.answer || "Pas de réponse reçue.")}
+                        </div>
                     </div>`;
                 messagesContainer.appendChild(botMsg); // on ajoute le message de l'assistant à la liste des messages
             } catch (err) { // si une erreur se produit lors de l'envoi du message ou de la réception de la réponse, on affiche un message d'erreur
