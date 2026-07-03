@@ -5,7 +5,7 @@ Ce document présente la démarche, les choix techniques et l'organisation mis e
 
 
 ## 1. Le projet
-Un des principaux problèmes dans les laboratoires de recherche est la transmission des savoirs entre les générations successives de chercheurs. Il est fréquent que des problèmes se répètent et que les chercheurs perdent du temps à retrouver une solution. Le laboratoire LKB nous donc a proposé de travailler sur un projet d'application Web rassemblant les connaissances scientifiques de leurs chercheurs, des articles et un chatbot entraîné sur cette base de connaissances. 
+Un des principaux problèmes dans les laboratoires de recherche est la transmission des savoirs entre les générations successives de chercheurs. Il est fréquent que des problèmes se répètent et que les chercheurs perdent du temps à retrouver une solution. Le laboratoire LKB nous donc a proposé de travailler sur un projet d'application Web rassemblant les connaissances scientifiques de leurs chercheurs, des articles de recherche, des notices techniques de composants utilisés pour les expériences du laboratoire, et un historique des problèmes rencontrés dans le passé ainsi que leur solution. L'objectif est de mettre a disposition sur cette application Web un chatbot entraîné sur cette base de connaissances. 
 
 ## 2. Choix Techniques
 Nous avons choisi une répartition assez classique avec un backend et un frontend communiquants. 
