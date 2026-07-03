@@ -1,25 +1,20 @@
-import { exec } from "child_process";
+export const runRag = async (message) => {
 
-export const runRag = (message) => {
-  return new Promise((resolve, reject) => {
-    exec(`python run/run_rag.py "${message}"`, (error, stdout, stderr) => {
-
-      // afficher erreur réelle
-      if (error) {
-        console.error("ERROR:", error);
-        reject(error.message);
-        return;
-      }
-
-      // afficher erreurs Python
-      if (stderr) {
-        console.error("STDERR:", stderr);
-      }
-
-      // afficher sortie Python
-      console.log("STDOUT:", stdout);
-
-      resolve(stdout);
-    });
+  const response = await fetch("http://localhost:8000/rag", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      question: message
+    })
   });
+
+  if (!response.ok) {
+    throw new Error(`Erreur FastAPI : ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  return data.answer;
 };
