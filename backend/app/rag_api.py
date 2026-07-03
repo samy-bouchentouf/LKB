@@ -25,7 +25,7 @@ vectordb = Chroma(
     embedding_function=embeddings
 )
 
-retriever = vectordb.as_retriever(search_kwargs={"k": 4})
+retriever = vectordb.as_retriever(search_kwargs={"k": 5})
 
 # Modèle LLM
 llm = ChatMistralAI(
