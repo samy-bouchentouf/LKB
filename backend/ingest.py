@@ -18,12 +18,12 @@ def preparer_base_de_donnees():
         print(" Attention : Aucun PDF trouvé dans le dossier 'uploads-pdf'. L'opération s'arrête.")
         return
         
-    print(f"   -> {len(documents)} pages lues.")
+    print(f"-> {len(documents)} pages lues.")
 
     print(" Étape 2 : Découpage du texte en morceaux (Chunks)...")
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     morceaux = text_splitter.split_documents(documents)
-    print(f"   -> {len(morceaux)} morceaux créés.")
+    print(f"-> {len(morceaux)} morceaux créés.")
 
     print(" Étape 3 : Conversion en vecteurs avec Mistral et stockage dans ChromaDB...")
     
