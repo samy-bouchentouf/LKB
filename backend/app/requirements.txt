@@ -30,3 +30,8 @@ langchain-chroma
 langchain-mistralai
 pypdf
 python-dotenv
+fastapi
+uvicorn
+pydantic
+chromadb
+mistralai
