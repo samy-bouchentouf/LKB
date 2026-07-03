@@ -8,7 +8,7 @@ Un des principaux problèmes dans les laboratoires de recherche est la transmiss
 ## 2. Choix Techniques
 Nous avons choisi une répartition assez classique avec un backend et un frontend communiquants. 
 
-Dans le frontend, nous avons codé l'interface en html dans le fichier `test.html`.
+Dans le frontend, nous avons codé l'interface en html dans le fichier `frontend_site.html`.
 
 
  ### Backend
@@ -84,7 +84,8 @@ Avec un délai supplémentaire, nous aurions exploré les axes d'amélioration s
 
 - **Troubleshootings automatiques:**  Nous aurions aimé que le chatbot soit capable d'apprendre lui même au fur et a mesure des discussions en proposant d'enregistrer un troubleshooting à la fin d'une discussion
 
-- **Amélioration Backend:** Une amélioration importante consisterait à mettre en place un système d'authentification et de gestion des utilisateurs. Actuellement, toute personne ayant accès à l'application peut consulter et ajouter des documents. À terme, il serait intéressant de créer différents niveaux d'autorisation (chercheur, doctorant, administrateur, etc.) afin de mieux contrôler l'accès aux ressources du laboratoire. Cette évolution permettrait également de conserver un historique des contributions de chaque utilisateur, de renforcer la sécurité des données et de faciliter la traçabilité des modifications apportées à la base de connaissances.
+- **Amélioration du moteur RAG:** Une évolution importante consisterait à automatiser complètement la mise à jour de la base vectorielle. Actuellement, lorsqu'un nouveau document est ajouté, une réindexation est nécessaire afin que le chatbot puisse exploiter son contenu. À terme, il serait intéressant que l'ajout d'une publication, d'une fiche technique ou d'un rapport de panne déclenche automatiquement l'indexation du document et la mise à jour de ChromaDB. Les nouvelles informations seraient alors immédiatement disponibles pour le chatbot, sans avoir à relancer le serveur RAG ni effectuer d'intervention manuelle. Cette amélioration rendrait l'application plus fluide, plus proche d'un usage en production et plus simple à utiliser au quotidien pour les membres du laboratoire.
+
 
 - **Frontend publications scientifiques et thèses** pour l’instant nous avons uniquement un drag and drop pour les déposer. Or nous aurions aimé pouvoir le connecter à Zotero. C’est à dire une fois sur l’onglet Publications, avoir un bouton Zotero qui permet d'accéder à l'interface et choisir des fichiers à importer directement depuis Zotero.
 
