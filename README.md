@@ -28,17 +28,15 @@ pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
----
+**Configurer PostgreSQL**
 
-### 4. Configurer PostgreSQL
-
+On peut utiliser pgAdmin4 pour paramétrer la base de donnée.
 Créer une base PostgreSQL (par exemple `lab_knowledge`) puis renseigner les paramètres de connexion dans :
 
 
 ```backend/app/operators/database.py
 DATABASE_URL = ...`
 ```
-
 
 Enfin, créer les tables de la base de données :
 
@@ -47,14 +45,12 @@ python backend/app/create_db.py
 ```
 
 
----
 
 **Lancer le serveur**
 node src/server.js
 
 **Lancer frontend**
 Ouvrir le fichier frontend_site.html
-
 
 ### Manuel Utilisateur
 
