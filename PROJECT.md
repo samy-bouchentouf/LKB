@@ -39,12 +39,14 @@ Cette architecture permet de séparer clairement la couche d'interface utilisate
 
  Le second système du RAG est entièrement basé sur LangChain et ChromaDB. Les documents sont ingérés une seule fois via un script dédié (ingest.py), puis indexés localement dans une base vectorielle persistée. Pour la génération, nous avons choisi le modèle mistral-large-latest de Mistral AI, plus stable et plus adapté à un usage strict en contexte scientifique. Afin d’intégrer proprement ce RAG Python dans l’application Web, nous avons remplacé l’ancien appel exec() par un serveur FastAPI dédié. Le backend Express communique désormais avec FastAPI via une route /rag, ce qui permet de charger le modèle et la base vectorielle une seule fois, d’améliorer fortement les performances et de rendre l’architecture beaucoup plus robuste.
 
- ### Gestion de la base de connaissance
+ ### Gestion de la base de connaissance utilisée par le RAG.
  Après discussion avec notre encadrant, nous avons souhaité garantir une bonne séparation entre les données et l'interface Web via une base SQL. S'assurer que cette séparation est faite proprement n'est pas strictement nécessaire pour les premiers objectifs de l'application Web, mais le deviendra rapidement lors de développement futurs (exemples donnés plus tard dans cette section).
  
- Ainsi, nous avons développé un backend Python chargé de la gestion de la base de connaissances. Ce backend s'appuie sur une base de données PostgreSQL et sur l'ORM SQLAlchemy afin de stocker de manière structurée les différentes entités manipulées par l'application : publications scientifiques, composants expérimentaux, expériences et éléments de connaissance utilisés par le chatbot (knowledge), ainsi que les différents utilisateurs qui vont intéragir avec la base de données.
+ Ainsi, nous avons développé un backend Python chargé de la gestion de la base de connaissances. Ce backend s'appuie sur une base de données PostgreSQL et sur l'ORM SQLAlchemy afin de stocker de manière structurée les différentes entités manipulées par l'application : publications scientifiques, composants expérimentaux, expériences et éléments de connaissance utilisés par le chatbot (knowledge_item), ainsi que les différents utilisateurs qui vont intéragir avec la base de données.
 
- Le choix d'une base de données relationnelle permet de conserver les relations entre les différents objets (par exemple l'association d'une notice technique à un composant précis, ou d'un composant précis et d'une expérience) ce qui facilitera les futures évolutions de l'application. Par exemple, on peut imaginer dans le futur vouloir étudier les interactions entre deux composants dans une même expérience, demander des informations sur les composants d'une expérience précise etc.
+ Cette base de donnée est actuellement personelle, et doit être générée en local avant d'utiliser l'app Web, mais elle a été imaginée pour être hébergée sur un serveur dans le futur (intérêt de la table user par exemple).
+
+ Le choix d'une base de données relationnelle permet notamment de conserver les relations entre les différents objets (par exemple l'association d'une notice technique à un composant précis, ou d'un composant précis et d'une expérience) ce qui facilitera les futures évolutions de l'application. Par exemple, on peut imaginer dans le futur vouloir étudier les interactions entre deux composants dans une même expérience, demander des informations sur les composants d'une expérience précise etc.
 
  Les documents PDF (articles scientifiques ou notices techniques de composants) sont importés automatiquement via un pipeline dédié. Lorsqu'un utilisateur ajoute un document, celui-ci est d'abord enregistré dans la base de données avec toutes les informations données par l'utilisateur, puis son texte est extrait à l'aide de PyMuPDF. Le contenu est ensuite découpé en fragments ("chunks") grâce au découpage récursif proposé par LangChain (RecursiveCharacterTextSplitter). Chaque fragment est enregistré dans la base comme une unité de connaissance indépendante, accompagnée de ses métadonnées (document d'origine, numéro de page, composant associé, etc.). Ce découpage est nécessaire pour le fonctionnement du RAG, qui a besoin de morceaux d'informations de petite taille (un pdf de plusieurs pages non chunké entrainerait plusieurs minutes pour l'exécution).
 
@@ -58,15 +60,20 @@ Cette architecture permet de séparer clairement la couche d'interface utilisate
 
 - **Communication entre backend et frontend :** Comme nous travaillions tous sur un "bloc" du code, un de nos enjeux majeurs en fin de semaine a été de connecter toutes les pièces entre elles. Nous avons du corriger les erreurs de nomenclature et vérifier les destinations indiquées par chaque code.
 
-Pour surmonter ces obstacles, nous avons mis en place des solutions robustes :
+Pour surmonter ces obstacles, nous avons mis en place des solutions :
+
 - **Architecture d'ingestion unique :** Nous avons scripté la vectorisation pour qu'elle s'exécute en tâche de fond une seule fois. Les embeddings étant sauvegardés localement, le chatbot n'a plus à recalculer la base à chaque question.
 
 - **Conflits de dépendances:** Nous avons tenté d'utiliser lors de la réalisation du RAG d'une clé API Google Gemini. Des instabilités majeures ont été rencontrées avec l'API Google Gemini suite à la transition forcée de Google vers un nouveau format de clés d'authentification (préfixe AQ... au lieu du format standard AIza...).
 Cette transition  rend les anciennes implémentations et de nombreuses bibliothèques tierces incompatibles malgré les commandes Upgrade, nous avons eu des erreurs incomprises et la détection de l'origine du problème a du nous prendre du temps.
+
 - **Frontend drag and drop** Réussir à enregistrer les documents qu’on importe avec le drag and drop au bon endroit. En effet, tout (que ça soit sur publications ou tech) s’enregistrer au même endroit et on ne les voyait pas au début. Nous avons donc séparer les directions et les endroits où ca s’enregistrait et nous les avons fait visible sur la page. 
-- **Format des fichiers**Au début le serveur backend n’acceptait à l’origine que les formats académiques stricts (PDF). Cela posait problème quand nous voulions enregistrer les schémas créés, le server les rejetait. Pour ne pas perdre de temps à réécrire tout le code du serveur. Dès qu'un utilisateur crée un schéma ou remplit un rapport, le code convertit automatiquement ces informations en pdf.
-- **Pull et Push** Nous avons aussi rencontré beaucoup de problèmes avec les pull and push. Comme nous ne travaillons tous sur une partie nous étions souvent plusieurs sur Main ce qui posait problèmes.
-- **Faire le lien entre tout** Nous avons aussi du tout relier. En effet, nous avions séparé le frontend du backend du RAG or a la fin tout doit être relié. Cela a pris un peu de temps pour mettre les bonnes directions et que tout fonctionne. 
+
+- **Format des fichiers** Au début le serveur backend n’acceptait à l’origine que les formats académiques stricts (PDF). Cela posait problème quand nous voulions enregistrer les schémas créés, le server les rejetait. Pour ne pas perdre de temps à réécrire tout le code du serveur. Dès qu'un utilisateur crée un schéma ou remplit un rapport, le code convertit automatiquement ces informations en pdf.
+
+- **Pull et Push** Nous avons aussi rencontré beaucoup de problèmes avec les pull and push. Il a pu arriver qu'on soit plusieurs en même temps sur main ce qui a pu causer des problèmes
+
+- **Faire le lien entre tout** Nous avons aussi du tout relier pour le bon fonctionnement. En effet, nous avions séparé le frontend du backend du RAG or a la fin tout doit être relié. Cela a pris un peu de temps pour mettre les bonnes directions et que tout fonctionne. 
 
 
 ## 5. Pistes d'améliorations 
@@ -75,9 +82,12 @@ Avec un délai supplémentaire, nous aurions exploré les axes d'amélioration s
 
 - **Modèle hybride de RAG et base de données plus légère:** Nous aurions souhaité trouver une alternative aux deux RAG nous permettant d'avoir la main sur les paramètres de calcul et les méthodes d'embedding tout en gardant l'efficacité des fonctions Python. Nous aurions également cherché à remplacer le fichier local `knowledge_vect.json` par une instance de *ChromaDB* ou *Pinecone* pour permettre le passage à l'échelle sur des milliers de publications.
 
-- **Réaliser les Troubleshoots:**  un historique des tous les problèmes rencontrés dans le passé, et de leur résolution. On peut imaginer pouvoir « signaler un nouveau problème » via le chatbot.
+- **Troubleshootings automatiques:**  Nous aurions aimé que le chatbot soit capable d'apprendre lui même au fur et a mesure des discussions en proposant d'enregistrer un troubleshooting à la fin d'une discussion
 
 - **Amélioration Backend:** Une amélioration importante consisterait à mettre en place un système d'authentification et de gestion des utilisateurs. Actuellement, toute personne ayant accès à l'application peut consulter et ajouter des documents. À terme, il serait intéressant de créer différents niveaux d'autorisation (chercheur, doctorant, administrateur, etc.) afin de mieux contrôler l'accès aux ressources du laboratoire. Cette évolution permettrait également de conserver un historique des contributions de chaque utilisateur, de renforcer la sécurité des données et de faciliter la traçabilité des modifications apportées à la base de connaissances.
-- **Frontend publications scientifiques et thèses** pour l’instant nous avons uniquement un drag and drop pour les déposer. Or nous aurions aimé pouvoir le connecter à Zootero. C’est à dire une fois sur l’onglet Publications nous aurions un bouton Zootero qui nous y donnerait accès et nous pourrions sélectionner et télécharger direct depuis ce site pour que l’IA apprenne. 
-- **Frontend schémas:**, peut-être faire un bouton pour ajouter des composants et des liens. Aussi une fois fait, qu’on puisse déplacer les composants et en supprimer que certain plutôt que de tout réinitialiser. Et rendre l’IA capable d’en faire. De plus, si on rechante un schéma avec le même nom, pouvoir créer une "V2, V3" pour que l'IA connaisse l'historique des modifications du banc optique.
+
+- **Frontend publications scientifiques et thèses** pour l’instant nous avons uniquement un drag and drop pour les déposer. Or nous aurions aimé pouvoir le connecter à Zotero. C’est à dire une fois sur l’onglet Publications, avoir un bouton Zotero qui permet d'accéder à l'interface et choisir des fichiers à importer directement depuis Zotero.
+
+- **Frontend schémas:**, Nous aurions aimé faire un bouton pour ajouter des composants et des liens pour construire des schémas d'expérience. Aussi une fois fait, qu’on puisse déplacer les composants et en supprimer que certain plutôt que de tout réinitialiser. L'idée aurait également été de rendre l’IA capable de faire des schémas. De plus, si on rechante un schéma avec le même nom, pouvoir créer une "V2, V3" pour que l'IA connaisse l'historique des modifications du banc optique. L'IA pourrait ensuite être intérogée sur la structure des expériences, des liens entre composants et leur nature, des interactions entre composants etc.
+
 - **Frontend troubleshooting:** lorsque l'utilisateur commence à taper le nom d'une panne, l'IA suggère des pannes similaires déjà résolues par le passé pour faire gagner du temps.
