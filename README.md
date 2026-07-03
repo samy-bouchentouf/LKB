@@ -22,9 +22,14 @@ cd LKB
 **Installations nécessaires**
 ```bash
 pip install -r requirements.txt
+```
 
-cd backend
+Installation des dépendances Node.js (pour le Backend)
+Bien s'assurer d'être à la racine du projet 
+
+``` bash
 npm install
+
 ```
 
 **Configurer PostgreSQL**
