@@ -1,6 +1,6 @@
 # LKB
 
-Ce projet est une solution complète combinant une interface utilisateur intuitive, un serveur backend et un pipeline de RAG. Elle permet aux chercheurs de téléverser des publications, de documenter les fiches techniquesndu matériel, et de déclarer des pannes pour alimenter automatiquement la base de connaissances d'un Chatbot IA.
+Ce projet combine une interface utilisateur sur une app Web, un serveur backend et un pipeline de RAG. Elle permet aux chercheurs d'importer des publications, de documenter des fiches techniques de composants, et de déclarer des pannes et problèmes rencontrer pour alimenter la base de connaissances d'un Chatbot IA.
 
 ## Installation & Configuration
 
