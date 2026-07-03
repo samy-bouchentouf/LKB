@@ -780,26 +780,26 @@
         function clicComposant(idComposant, e) {
             e.stopPropagation(); 
             
-            if (outilSelectionne.type === 'lien') {// si l'outil sélectionné est un lien, on gère la création du lien entre deux composants
-                if (!premierComposantLien) {// si aucun composant de départ n'a été sélectionné, on le sélectionne et on met à jour la barre de statut
+            if (outilSelectionne.type === 'lien') {
+                if (!premierComposantLien) {
                     premierComposantLien = idComposant;
-                     // on met à jour la barre de statut pour indiquer à l'utilisateur de cliquer sur le composant de destination:
                     document.getElementById('status-bar').innerText = "Composant de départ sélectionné. Cliquez sur le composant DE DESTINATION.";
-                } else { // si un composant de départ a déjà été sélectionné, on crée le lien vers le composant de destination
+                } else {
                     if (premierComposantLien === idComposant) return;
                     
-                    liensPlaces.push({// on ajoute le lien créé à la liste des liens
+                    liensPlaces.push({
                         type: outilSelectionne.id,
                         de: premierComposantLien,
                         vers: idComposant
                     });
                     
-                    premierComposantLien = null; // on réinitialise le composant de départ pour permettre la création d'autres liens
-                    document.getElementById('status-bar').innerText = `Lien créé ! Re-sélectionnez un composant de départ.`; // on met à jour la barre de statut 
+                    redessinerTout(); // 🔴 AJOUT : on redessine pour afficher la flèche
+                    
+                    premierComposantLien = null;
+                    document.getElementById('status-bar').innerText = `Lien créé ! Re-sélectionnez un composant de départ.`;
                 }
             }
         }
-
         // fonction pour redessiner tous les composants et les liens dans la zone de dessin
         function redessinerTout() {
             const svg = document.getElementById('labo-svg'); // on récupère l'élément SVG pour dessiner les composants et les liens
