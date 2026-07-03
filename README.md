@@ -8,7 +8,7 @@ Ce projet combine une interface utilisateur sur une app Web, un serveur backend 
 Installer :
 * [Node.js](https://nodejs.org/) (v18 ou supérieur)
 * [Python](https://www.python.org/) (v3.9 ou supérieur)
-* [PostgreSQL] (https://www.postgresql.org/) (v16 ou supérieur)
+* [PostgreSQL](https://www.postgresql.org/) (v16 ou supérieur)
 * Git
 
 
@@ -22,6 +22,7 @@ cd LKB
 **Installations nécessaires**
 ```bash
 pip install -r requirements.txt
+
 cd backend
 npm install
 ```
@@ -29,11 +30,13 @@ npm install
 **Configurer PostgreSQL**
 
 On peut utiliser pgAdmin4 pour paramétrer la base de donnée.
-Créer une base PostgreSQL (par exemple `lab_knowledge`) puis renseigner les paramètres de connexion dans :
 
+Créer une base PostgreSQL (par exemple `lab_knowledge`) puis renseigner les paramètres de connexion dans `backend/app/operators/database.py`
 
-```backend/app/operators/database.py
-DATABASE_URL = ...`
+Format :
+
+```python
+DATABASE_URL = "postgresql://postgres:password@localhost/lab_knowledge"
 ```
 
 Enfin, créer les tables de la base de données :
