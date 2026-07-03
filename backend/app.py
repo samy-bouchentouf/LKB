@@ -31,7 +31,7 @@ def initialiser_rag():
     
     # B. Connexion à votre dossier chroma_db
     vectordb = Chroma(persist_directory="./chroma_db", embedding_function=embeddings)
-    retriever = vectordb.as_retriever(search_kwargs={"k": 3}) # On demande les 3 meilleurs paragraphes
+    retriever = vectordb.as_retriever(search_kwargs={"k": 4}) # On demande les 4 meilleurs paragraphes
     
     # C. Le modèle qui va parler (Mistral Large)
     llm = ChatMistralAI(model="mistral-large-latest", temperature=0) # Température 0 = pas d'hallucination

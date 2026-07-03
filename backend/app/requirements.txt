@@ -1,0 +1,29 @@
+# Base de données
+SQLAlchemy>=2.0
+psycopg2-binary>=2.9
+
+# Extraction PDF
+PyMuPDF>=1.24
+pypdf>=4.0
+
+# LangChain / RAG
+langchain>=0.3c
+langchain-core>=0.3
+langchain-community>=0.3
+langchain-text-splitters>=0.3
+langchain-chroma>=0.2
+langchain-mistralai>=0.1
+chromadb>=0.5
+
+# IA
+mistralai>=1.0
+
+# API Python
+fastapi>=0.115
+uvicorn>=0.30
+pydantic>=2.8
+
+streamlit>=1.38
+
+# Variables d'environnement
+python-dotenv>=1.0
