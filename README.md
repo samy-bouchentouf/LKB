@@ -13,22 +13,47 @@ Installer :
 
 
 **Cloner le projet**
-```bash
+```bash```
 git clone git@github.com:samy-bouchentouf/LKB.git
 cd LKB
 
-**Lancer le server**
-npm install
-node server.js
 
-**Installer et lancer le pipeline IA/RAG**
-# Installer les dépendances IA (LangChain, OpenAI/Ollama, VectorDB, etc.)
+**Installations nécessaires**
+cd backend
+npm install
 pip install -r requirements.txt
-# Lancer le notebook ou le script principal du Chatbot
-python main.py
+
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4. Configurer PostgreSQL
+
+Créer une base PostgreSQL (par exemple `lab_knowledge`) puis renseigner les paramètres de connexion dans :
+
+
+```backend/app/operators/database.py
+DATABASE_URL = ...`
+```
+
+
+Enfin, créer les tables de la base de données :
+
+```bash
+python backend/app/create_db.py
+```
+
+
+---
+
+**Lancer le serveur**
+node src/server.js
 
 **Lancer frontend**
-Ouvrez simplement le fichier frontend_site.html dans votre navigateur (ou via l'extension VS Code Live Server).
+Ouvrir le fichier frontend_site.html
 
 
 ### Manuel Utilisateur
