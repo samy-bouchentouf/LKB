@@ -24,7 +24,6 @@ cd LKB
 pip install -r requirements.txt
 cd backend
 npm install
-
 ```
 
 **Configurer PostgreSQL**
@@ -43,12 +42,10 @@ Enfin, créer les tables de la base de données :
 python backend/app/create_db.py
 ```
 
-
-
 **Lancer le serveur**
 node src/server.js
 
-**Lancer frontend**
+**Lancer l'app Web**
 Ouvrir le fichier frontend_site.html
 
 ### Manuel Utilisateur
@@ -63,10 +60,9 @@ L'application est divisée en 4 onglets principaux accessibles depuis la barre d
     Résultat : Le fichier est instantanément sauvegardé sur le serveur et apparaît dans la liste "Ajoutés récemment".
 
 3. Onglet Documents Tech
-    Utilisation : Déposez la notice PDF officielle d'un appareil. Une fenêtre pop-up (Modale) s'ouvre pour vous demander de remplir les critères du composant (Nom (obligatoire), Constructeur, Référence, Numéro de série, Stock, Description). Le système convertit ces informations logistiques pour enrichir le PDF. L'IA saura ainsi vous dire à la fois comment aligner un laser et dans quelle armoire il est rangé.
-    Il y a aussi la partie pour faire son schéma d'experience et l'enregistrer. 
+    Utilisation : Déposez la notice PDF officielle d'un appareil. Une fenêtre pop-up (Modale) s'ouvre pour vous demander de remplir les critères du composant (Nom (obligatoire), Constructeur, Référence, Numéro de série, Stock, Description). Le système convertit ces informations logistiques pour enrichir le PDF. L'IA saura ainsi vous dire à la fois comment aligner un laser et dans quelle armoire il est rangé. Il y a aussi une  partie pour faire son schéma d'experience et l'enregistrer. 
 
 4. Onglet Troubleshooting (Pannes)
-    Utilisation : En cas de dysfonctionnement sur un banc optique :
-        Cliquez sur le ou les composants en panne (Boutons multi-sélection). Vous donnez un titre au problème, faites une description, et donnez une solution si celle-ci a été trouvé. 
-        Résultat : L'IA a connaissance des problèmes et solutions rencontrés. 
+    Utilisation : Pour signaler un problème rencontré :
+    Cliquez sur le ou les composants en panne (Boutons multi-sélection). Vous donnez un titre au problème, faites une description, et donnez une solution si celle-ci a été trouvé. 
+    Résultat : L'IA a connaissance des problèmes rencontrés et solutions trouvées.
