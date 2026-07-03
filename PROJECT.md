@@ -13,21 +13,21 @@ Dans le frontend, nous avons codé l'interface en html dans le fichier `test.htm
 
  ### Backend
 
-Le backend de l'application a été développé avec Node.js et Express.js. Son rôle est d'assurer la communication entre l'interface utilisateur et les différents services de traitement. Il expose plusieurs routes API permettant :
+ Le backend de l'application a été développé avec Node.js et Express.js. Son rôle est d'assurer la communication entre l'interface utilisateur et les différents services de traitement. Il expose plusieurs routes API permettant :
 
-l'envoi des questions du chatbot ;
-l'upload des documents techniques ;
-l'upload des publications scientifiques ;
-l'enregistrement des rapports de panne ;
-la consultation des documents déjà présents dans la base de connaissances.
+ l'envoi des questions du chatbot ;
+ l'upload des documents techniques ;
+ l'upload des publications scientifiques ;
+ l'enregistrement des rapports de panne ;
+ la consultation des documents déjà présents dans la base de connaissances.
 
-Le backend agit également comme intermédiaire entre le frontend et le système RAG. Dans la première version du projet, il lançait directement un script Python via exec() afin d'effectuer la recherche documentaire et la génération de réponse. Dans la version finale, cette architecture a été remplacée par un serveur FastAPI dédié afin de conserver en mémoire le moteur RAG, évitant ainsi de recharger l'ensemble des modèles et de la base vectorielle à chaque question.
+ Le backend agit également comme intermédiaire entre le frontend et le système RAG. Dans la première version du projet, il lançait directement un script Python via exec() afin d'effectuer la recherche documentaire et la génération de réponse. Dans la version finale, cette architecture a été remplacée par un serveur FastAPI dédié afin de conserver en mémoire le moteur RAG, évitant ainsi de recharger l'ensemble des modèles et de la base vectorielle à chaque question.
 
 
  ### Frontend - Backend
 
  Les échanges entre le frontend et le backend sont réalisés à l'aide de requêtes HTTP utilisant l'API fetch() du navigateur. Les données sont transmises sous forme JSON pour les questions utilisateur et sous forme FormData pour les fichiers déposés dans l'application.
-Cette architecture permet de séparer clairement la couche d'interface utilisateur de la logique métier et facilite les évolutions futures du projet.
+ Cette architecture permet de séparer clairement la couche d'interface utilisateur de la logique métier et facilite les évolutions futures du projet.
 
 
  ### RAG
