@@ -13,19 +13,18 @@ Installer :
 
 
 **Cloner le projet**
-```bash```
+```bash
 git clone git@github.com:samy-bouchentouf/LKB.git
 cd LKB
+```
 
 
 **Installations nécessaires**
-cd backend
-npm install
-pip install -r requirements.txt
-
-
 ```bash
 pip install -r requirements.txt
+cd backend
+npm install
+
 ```
 
 **Configurer PostgreSQL**
