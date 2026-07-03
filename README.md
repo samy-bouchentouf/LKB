@@ -66,7 +66,9 @@ Le projet utilise deux serveurs distincts qui doivent être démarrés simultan�
 Créer un fichier `.env` à la racine du projet contenant :
 
 MISTRAL_API_KEY=votre_cle_api_mistral
+
 0. Pour lancer le projet sur une nouvelle machine, Construire la base vectorielle utilisée par le RAG.
+
 Ouvrir le terminal, se placer au backend et taper:
 
 python ingest.py
