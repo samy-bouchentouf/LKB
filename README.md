@@ -119,3 +119,15 @@ L'application est divisée en 5 onglets principaux accessibles depuis la barre d
     Utilisation : Pour signaler un problème rencontré :
     Cliquez sur le ou les composants en panne (Boutons multi-sélection). Vous donnez un titre au problème, faites une description, et donnez une solution si celle-ci a été trouvé. 
     Résultat : L'IA a connaissance des problèmes rencontrés et solutions trouvées.
+
+### Document Synchronization
+
+The chatbot automatically updates its knowledge base when documents are managed through the web application. Any document uploaded or deleted via the website is immediately reflected in the Chroma vector database and becomes available to the chatbot without requiring a server restart.
+
+However, manual modifications performed directly in the `documents/` directory are not detected in real time. If a document is added, modified, renamed, or deleted outside of the web application, the chatbot will only take these changes into account after the server is restarted. During startup, the `sync_documents()` routine synchronizes the contents of the `documents/` directory with the Chroma database by indexing new documents and removing obsolete ones.
+
+**Summary:**
+- Uploading or deleting documents through the web application: **no restart required**
+- Immediate availability of new documents uploaded through the application
+- Adding, modifying, renaming, or deleting files directly on disk: **server restart required**
+- The Chroma database is automatically synchronized during server startup
