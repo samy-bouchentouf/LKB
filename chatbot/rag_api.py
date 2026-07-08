@@ -32,13 +32,26 @@ def ask_question(question: str) -> dict:
 
     answer = generate_answer(prompt)
 
-    return {
-        "answer": answer,
-        "sources": [
+    sources = []
+    seen_sources = set()
+
+    for chunk in chunks:
+
+        source = chunk["source"]
+
+        if source in seen_sources:
+            continue
+
+        seen_sources.add(source)
+
+        sources.append(
             {
-                "source": chunk["source"],
+                "source": source,
                 "category": chunk["category"],
             }
-            for chunk in chunks
-        ],
+        )
+
+    return {
+        "answer": answer,
+        "sources": sources,
     }
