@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Knowledge management platform and AI assistant for the Kastler Brossel Laboratory",
   "type": "module",
-  "main": "backend/src/server.js",
+  "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/src/server.js"
+    "start": "node backend/server.js"
   },
   "repository": {
     "type": "git",
