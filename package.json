@@ -1,26 +1,21 @@
 {
   "name": "lkb",
   "version": "1.0.0",
-  "description": "Ce projet est une solution complète combinant une interface utilisateur intuitive, un serveur backend et un pipeline de RAG. Elle permet aux chercheurs de téléverser des publications, de documenter les fiches techniquesndu matériel, et de déclarer des pannes pour alimenter automatiquement la base de connaissances d'un Chatbot IA.",
+  "description": "Knowledge management platform and AI assistant for the Kastler Brossel Laboratory",
+  "type": "module",
   "main": "backend/src/server.js",
   "scripts": {
-    "start": "node backend/src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/src/server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/samy-bouchentouf/LKB.git"
+    "url": "https://github.com/samy-bouchentouf/LKB.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "bugs": {
-    "url": "https://github.com/samy-bouchentouf/LKB/issues"
-  },
-  "homepage": "https://github.com/samy-bouchentouf/LKB#readme",
+  "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "multer": "^2.2.0"
   }
 }
