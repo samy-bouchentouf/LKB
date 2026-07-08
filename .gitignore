@@ -2,6 +2,8 @@ node_modules/
 #Chroma_db est volumineux et se génère localement par l'utilisateur via ingest.py. Il n'est pas nécessaire de le versionner.
 chroma_db/   
 .env
+.vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
