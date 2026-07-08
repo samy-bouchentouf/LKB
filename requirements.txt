@@ -2,9 +2,10 @@
 SQLAlchemy>=2.0
 psycopg2-binary>=2.9
 
-# Extraction PDF
+# Extraction documents
 PyMuPDF>=1.24
 pypdf>=4.0
+python-docx>=0.9
 
 # LangChain / RAG
 langchain>=0.3
