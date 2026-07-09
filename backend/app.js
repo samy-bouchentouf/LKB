@@ -5,28 +5,87 @@
  * shared application settings.
  */
 
-import express from "express";
-import cors from "cors";
-import chatRoutes from "./routes/chat.routes.js";
-import documentsRoutes from "./routes/documents.routes.js";
-import publicationsRoutes from "./routes/publications.routes.js";
+const express = require("express");
+const path = require("path");
+
+const chatRoutes = require("./routes/chat.routes");
+const dashboardRoutes = require("./routes/dashboard.routes");
+const publicationsRoutes = require("./routes/publications.routes");
+const componentsRoutes = require("./routes/components.routes");
+const diagramsRoutes = require("./routes/diagrams.routes");
+const incidentsRoutes = require("./routes/incidents.routes");
 
 const app = express();
 
-// middlewares
-app.use(cors());
+/*
+|--------------------------------------------------------------------------
+| Middlewares
+|--------------------------------------------------------------------------
+*/
+
 app.use(express.json());
 
-// routes
-app.use("/api/chat", chatRoutes);
-app.use("/api/documents", documentsRoutes);
-app.use("/api/publications", publicationsRoutes);
-app.use("/uploads-pdf", express.static("backend/uploads-pdf"));
-app.use("/uploads-component", express.static("backend/uploads-component"));
+app.use(express.urlencoded({ extended: true }));
 
-// test route
-app.get("/", (req, res) => {
-  res.send("✅ API OK");
+/*
+|--------------------------------------------------------------------------
+| Frontend
+|--------------------------------------------------------------------------
+*/
+
+app.use(
+    express.static(
+        path.join(__dirname, "../frontend")
+    )
+);
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+*/
+
+app.use("/api/chat", chatRoutes);
+
+app.use("/api/dashboard", dashboardRoutes);
+
+app.use("/api/publications", publicationsRoutes);
+
+app.use("/api/components", componentsRoutes);
+
+app.use("/api/diagrams", diagramsRoutes);
+
+app.use("/api/incidents", incidentsRoutes);
+
+/*
+|--------------------------------------------------------------------------
+| Health Check
+|--------------------------------------------------------------------------
+*/
+
+app.get("/api/health", (req, res) => {
+
+    res.status(200).json({
+        status: "ok"
+    });
+
 });
 
-export default app;
+/*
+|--------------------------------------------------------------------------
+| Frontend Fallback
+|--------------------------------------------------------------------------
+*/
+
+app.get("*", (req, res) => {
+
+    res.sendFile(
+        path.join(
+            __dirname,
+            "../frontend/index.html"
+        )
+    );
+
+});
+
+module.exports = app;
