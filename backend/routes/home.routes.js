@@ -1,6 +1,6 @@
 /**
- * Dashboard routes.
+ * Home routes.
  *
  * Defines API endpoints used to retrieve
- * dashboard information.
+ * home page information.
  */

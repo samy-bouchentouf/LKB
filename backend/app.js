@@ -9,7 +9,7 @@ const express = require("express");
 const path = require("path");
 
 const chatRoutes = require("./routes/chat.routes");
-const dashboardRoutes = require("./routes/dashboard.routes");
+const homeRoutes = require("./routes/home.routes");
 const publicationsRoutes = require("./routes/publications.routes");
 const componentsRoutes = require("./routes/components.routes");
 const diagramsRoutes = require("./routes/diagrams.routes");
@@ -47,7 +47,7 @@ app.use(
 
 app.use("/api/chat", chatRoutes);
 
-app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/home", homeRoutes);
 
 app.use("/api/publications", publicationsRoutes);
 
