@@ -28,6 +28,12 @@ async function loadPage(pageName) {
 
         updateNavigation(pageName);
 
+        if (pageName === "home") {
+
+            loadHomeStatistics();
+
+        }
+
     } catch (error) {
 
         console.error(error);

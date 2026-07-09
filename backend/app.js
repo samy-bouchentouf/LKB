@@ -5,15 +5,19 @@
  * shared application settings.
  */
 
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const chatRoutes = require("./routes/chat.routes");
-const homeRoutes = require("./routes/home.routes");
-const publicationsRoutes = require("./routes/publications.routes");
-const componentsRoutes = require("./routes/components.routes");
-const diagramsRoutes = require("./routes/diagrams.routes");
-const incidentsRoutes = require("./routes/incidents.routes");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+import homeRoutes from "./routes/home.routes.js";
+//import chatRoutes from "./routes/chat.routes.js";
+//import publicationsRoutes from "./routes/publications.routes.js";
+//import componentsRoutes from "./routes/components.routes.js";
+//import diagramsRoutes from "./routes/diagrams.routes.js";
+//import incidentsRoutes from "./routes/incidents.routes.js";
 
 const app = express();
 
@@ -45,17 +49,17 @@ app.use(
 |--------------------------------------------------------------------------
 */
 
-app.use("/api/chat", chatRoutes);
-
 app.use("/api/home", homeRoutes);
 
-app.use("/api/publications", publicationsRoutes);
+//app.use("/api/chat", chatRoutes);
 
-app.use("/api/components", componentsRoutes);
+//app.use("/api/publications", publicationsRoutes);
 
-app.use("/api/diagrams", diagramsRoutes);
+//app.use("/api/components", componentsRoutes);
 
-app.use("/api/incidents", incidentsRoutes);
+//app.use("/api/diagrams", diagramsRoutes);
+
+//app.use("/api/incidents", incidentsRoutes);
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +79,6 @@ app.get("/api/health", (req, res) => {
 |--------------------------------------------------------------------------
 | Frontend Fallback
 |--------------------------------------------------------------------------
-*/
 
 app.get("*", (req, res) => {
 
@@ -87,5 +90,6 @@ app.get("*", (req, res) => {
     );
 
 });
+*/
 
-module.exports = app;
+export default app;
