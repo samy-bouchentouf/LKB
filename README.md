@@ -131,3 +131,463 @@ However, manual modifications performed directly in the `documents/` directory a
 - Immediate availability of new documents uploaded through the application
 - Adding, modifying, renaming, or deleting files directly on disk: **server restart required**
 - The Chroma database is automatically synchronized during server startup
+
+
+# Functional Specification
+
+## Overview
+
+The LKB AI Hub is a web platform designed to centralize the laboratory knowledge base and provide researchers with a unified interface for:
+
+- Querying documentation through an AI assistant
+- Managing scientific publications
+- Managing technical component documentation
+- Creating and storing experimental diagrams
+- Creating and storing troubleshooting reports
+
+The chatbot relies on a Retrieval-Augmented Generation (RAG) pipeline connected to the laboratory document repository.
+
+---
+
+# Application Structure
+
+The application is organized around six main pages:
+
+```text
+Home
+Chat
+Publications
+Components
+Diagrams
+Incidents
+```
+
+Each page has a specific purpose and associated features.
+
+---
+
+# Home
+
+## Purpose
+
+Provide an overview of the platform and offer quick access to the AI assistant.
+
+## Features
+
+### Quick Question
+
+The user can enter a question directly from the home page.
+
+```text
+Question
+↓
+Click "Ask"
+↓
+Redirect to Chat page
+↓
+Question automatically sent
+↓
+Assistant response displayed
+```
+
+### Knowledge Base Dashboard
+
+Display the number of documents stored in each category.
+
+Example:
+
+```text
+Publications : 154
+Components   : 72
+Diagrams     : 18
+Incidents    : 41
+```
+
+Values must be calculated dynamically from:
+
+```text
+documents/publications/
+documents/components/
+documents/diagrams/
+documents/incidents/
+```
+
+---
+
+# Chat
+
+## Purpose
+
+Interact with the RAG assistant.
+
+## Features
+
+### Question Answering
+
+Users can submit natural language questions regarding:
+
+- Publications
+- Technical documentation
+- Experimental diagrams
+- Incident reports
+
+### Source Display
+
+Each answer should display the documents used by the retrieval system.
+
+Example:
+
+```text
+Sources:
+- mplc_manual.pdf
+- incident_qpd_2026.pdf
+```
+
+### Conversation History
+
+Messages remain visible throughout the current session.
+
+---
+
+# Publications
+
+## Purpose
+
+Manage scientific publications and research documents.
+
+## Storage Location
+
+```text
+documents/publications/
+```
+
+## Features
+
+### Upload
+
+Two upload methods must be supported.
+
+#### Drag & Drop
+
+```text
+Drop file into upload zone
+```
+
+#### File Explorer
+
+Clicking the upload area opens the operating system file explorer.
+
+### Search
+
+Search documents by filename.
+
+### Document Actions
+
+Each publication must support:
+
+```text
+Open
+Download
+Rename
+Delete
+```
+
+#### Open
+
+Open the document inside the browser.
+
+#### Download
+
+Download the document locally.
+
+#### Rename
+
+Rename the physical file on disk.
+
+#### Delete
+
+Delete the physical file from disk.
+
+### Knowledge Base Synchronization
+
+Execute:
+
+```python
+sync_documents()
+```
+
+after:
+
+```text
+Upload
+Delete
+```
+
+Do not execute synchronization after:
+
+```text
+Rename
+```
+
+because the file content remains unchanged and therefore the hash remains unchanged.
+
+---
+
+# Components
+
+## Purpose
+
+Manage technical documentation and equipment manuals.
+
+## Storage Location
+
+```text
+documents/components/
+```
+
+## Features
+
+Identical to the Publications page:
+
+```text
+Upload
+Search
+Open
+Download
+Rename
+Delete
+```
+
+### Knowledge Base Synchronization
+
+Execute:
+
+```python
+sync_documents()
+```
+
+after:
+
+```text
+Upload
+Delete
+```
+
+Do not execute synchronization after:
+
+```text
+Rename
+```
+
+---
+
+# Diagrams
+
+## Purpose
+
+Create and manage experimental setup schematics.
+
+## Storage Location
+
+```text
+documents/diagrams/
+```
+
+## Features
+
+### Diagram Builder
+
+Interactive editor allowing users to:
+
+```text
+Place components
+Create connections
+Design experiment layouts
+```
+
+Examples of components:
+
+```text
+PC
+Laser
+MPLC
+QPD
+Oscilloscope
+```
+
+### Diagram Storage
+
+Saved diagrams must be exported as:
+
+```text
+PNG
+```
+
+and stored inside:
+
+```text
+documents/diagrams/
+```
+
+### Diagram Library
+
+Users can:
+
+```text
+Search
+Open
+Download
+Rename
+Delete
+```
+
+existing diagrams.
+
+### Knowledge Base Synchronization
+
+No synchronization is required for diagrams because they are not intended to be indexed by the RAG system.
+
+---
+
+# Incidents
+
+## Purpose
+
+Create and maintain a laboratory troubleshooting knowledge base.
+
+## Storage Location
+
+```text
+documents/incidents/
+```
+
+## Features
+
+### Incident Report Builder
+
+Each report contains:
+
+```text
+Affected Components
+
+Incident Title
+
+Problem Description
+
+Root Cause
+
+Corrective Action
+```
+
+### Report Generation
+
+Reports must be exported as:
+
+```text
+PDF
+```
+
+and stored in:
+
+```text
+documents/incidents/
+```
+
+Example:
+
+```text
+signal-loss-qpd.pdf
+```
+
+### Incident Library
+
+Users can:
+
+```text
+Search
+Open
+Download
+Rename
+Delete
+```
+
+existing incident reports.
+
+### Knowledge Base Synchronization
+
+Execute:
+
+```python
+sync_documents()
+```
+
+after:
+
+```text
+Create report
+Delete report
+```
+
+Do not execute synchronization after:
+
+```text
+Rename
+```
+
+because the file content remains unchanged.
+
+---
+
+# Knowledge Base Synchronization Rules
+
+The chatbot vector database must be updated only when document content is added or removed.
+
+## Synchronization Required
+
+```text
+Upload Publication
+Delete Publication
+
+Upload Component
+Delete Component
+
+Create Incident Report
+Delete Incident Report
+```
+
+Trigger:
+
+```python
+sync_documents()
+```
+
+---
+
+## Synchronization Not Required
+
+```text
+Rename Publication
+Rename Component
+Rename Diagram
+Rename Incident
+```
+
+because document content remains unchanged.
+
+---
+
+# Development Strategy
+
+The project will be developed in the following order:
+
+```text
+1. Frontend architecture
+2. Frontend mockup validation
+3. Functional specification
+4. API contract definition
+5. Backend implementation
+6. Frontend ↔ Backend integration
+7. RAG integration
+```
+
+The frontend mockup is considered validated and serves as the reference specification for the backend implementation.

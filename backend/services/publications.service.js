@@ -1,3 +1,10 @@
+/**
+ * Publications service.
+ *
+ * Handles publication storage, retrieval
+ * and file management operations.
+ */
+
 import multer from "multer";
 import path from "path";
 import fs from "fs";

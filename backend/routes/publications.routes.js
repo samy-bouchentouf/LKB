@@ -1,3 +1,10 @@
+/**
+ * Publications routes.
+ *
+ * Defines API endpoints used to manage
+ * scientific publications.
+ */
+
 import express from "express";
 import {
     uploadPublication,

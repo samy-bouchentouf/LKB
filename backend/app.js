@@ -1,3 +1,10 @@
+/**
+ * Express application configuration.
+ *
+ * Registers middleware, routes and
+ * shared application settings.
+ */
+
 import express from "express";
 import cors from "cors";
 import chatRoutes from "./routes/chat.routes.js";

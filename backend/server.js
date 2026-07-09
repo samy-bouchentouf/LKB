@@ -1,3 +1,10 @@
+/**
+ * Application entry point.
+ *
+ * Starts the Express server and exposes
+ * the LKB API.
+ */
+
 import app from "./app.js";
 
 const PORT = 3000;

@@ -1,3 +1,10 @@
+/**
+ * Chat controller.
+ *
+ * Handles chatbot requests and returns
+ * generated answers to the frontend.
+ */
+
 import { runRag } from "../services/rag.service.js";
 
 export const handleChat = async (req, res) => {

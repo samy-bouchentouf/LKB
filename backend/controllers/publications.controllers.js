@@ -1,3 +1,10 @@
+/**
+ * Publications controller.
+ *
+ * Handles publication management requests
+ * from the frontend.
+ */
+
 import { uploadMiddleware, getFiles } from "../services/publications.service.js";
 import { exec } from "child_process";
 import path from "path";
