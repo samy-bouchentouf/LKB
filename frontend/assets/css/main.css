@@ -4,3 +4,388 @@
  * Defines the shared visual appearance
  * of the LKB platform.
  */
+
+:root {
+
+    --lkb-blue: #2E5CB8;
+    --lkb-blue-hover: #1F4CA7;
+
+    --lkb-bg: #FAFAF9;
+
+    --lkb-card: #FFFFFF;
+
+    --lkb-border: #E7E5E4;
+
+    --lkb-text: #292524;
+    --lkb-text-light: #78716C;
+
+    --lkb-success: #16A34A;
+    --lkb-danger: #DC2626;
+}
+
+/* ---------- Global ---------- */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: var(--lkb-bg);
+    color: var(--lkb-text);
+}
+
+/* ---------- Navigation ---------- */
+
+.nav-button {
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 0.5rem 1rem;
+
+    border-radius: 0.75rem;
+
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    color: var(--lkb-text-light);
+
+    transition: all 0.2s ease;
+}
+
+.nav-button:hover {
+
+    background-color: #F5F5F4;
+
+    color: var(--lkb-text);
+}
+
+.nav-button-active {
+
+    background-color: #E0F2FE;
+
+    color: #075985;
+
+    font-weight: 600;
+
+    box-shadow:
+        0 1px 2px rgba(0,0,0,0.06);
+}
+
+/* ---------- Page Elements ---------- */
+
+.page-title {
+
+    font-size: 1.5rem;
+
+    font-weight: 700;
+
+    color: var(--lkb-text);
+}
+
+.page-subtitle {
+
+    font-size: 0.875rem;
+
+    color: var(--lkb-text-light);
+
+    margin-top: 0.25rem;
+}
+
+/* ---------- Shared Cards ---------- */
+
+.lkb-card {
+
+    background: white;
+
+    border: 1px solid var(--lkb-border);
+
+    border-radius: 1rem;
+
+    box-shadow:
+        0 1px 3px rgba(0,0,0,0.05);
+
+    transition: all 0.2s ease;
+}
+
+.lkb-card:hover {
+
+    box-shadow:
+        0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ---------- Dashboard Cards ---------- */
+
+.stat-card {
+
+    background: white;
+
+    border: 1px solid var(--lkb-border);
+
+    border-radius: 1rem;
+
+    padding: 1.25rem;
+
+    box-shadow:
+        0 1px 3px rgba(0,0,0,0.05);
+
+    transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ---------- Buttons ---------- */
+
+.primary-button {
+
+    background-color: var(--lkb-blue);
+
+    color: white;
+
+    border-radius: 0.75rem;
+
+    padding: 0.75rem 1.25rem;
+
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.primary-button:hover {
+
+    background-color: var(--lkb-blue-hover);
+}
+
+.secondary-button {
+
+    background-color: #F5F5F4;
+
+    color: var(--lkb-text);
+
+    border-radius: 0.75rem;
+
+    padding: 0.75rem 1.25rem;
+
+    font-weight: 500;
+
+    transition: all 0.2s ease;
+}
+
+.secondary-button:hover {
+
+    background-color: #E7E5E4;
+}
+
+/* ---------- Forms ---------- */
+
+.search-input {
+
+    width: 100%;
+
+    padding: 0.75rem 1rem;
+
+    border: 1px solid var(--lkb-border);
+
+    border-radius: 0.75rem;
+
+    background: white;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.search-input:focus {
+
+    outline: none;
+
+    border-color: #7DD3FC;
+
+    box-shadow:
+        0 0 0 3px rgba(125,211,252,0.25);
+}
+
+.text-input {
+
+    width: 100%;
+
+    padding: 0.75rem 1rem;
+
+    border: 1px solid var(--lkb-border);
+
+    border-radius: 0.75rem;
+
+    background: #FAFAF9;
+}
+
+.text-input:focus {
+
+    outline: none;
+
+    border-color: #7DD3FC;
+
+    box-shadow:
+        0 0 0 3px rgba(125,211,252,0.25);
+}
+
+/* ---------- Textareas ---------- */
+
+.text-area {
+
+    width: 100%;
+
+    padding: 1rem;
+
+    border: 1px solid var(--lkb-border);
+
+    border-radius: 0.75rem;
+
+    background: #FAFAF9;
+
+    resize: none;
+}
+
+.text-area:focus {
+
+    outline: none;
+
+    border-color: #7DD3FC;
+
+    box-shadow:
+        0 0 0 3px rgba(125,211,252,0.25);
+}
+
+/* ---------- Upload Areas ---------- */
+
+.dropzone {
+
+    background: white;
+
+    border: 2px dashed var(--lkb-border);
+
+    border-radius: 1rem;
+
+    transition: all 0.2s ease;
+
+    cursor: pointer;
+}
+
+.dropzone:hover {
+
+    border-color: #7DD3FC;
+
+    background-color: #F0F9FF;
+}
+
+/* ---------- Modals ---------- */
+
+.modal-overlay {
+
+    background:
+        rgba(0,0,0,0.35);
+
+    backdrop-filter:
+        blur(4px);
+}
+
+.modal-content {
+
+    background: white;
+
+    border-radius: 1rem;
+
+    border: 1px solid var(--lkb-border);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.15);
+}
+
+/* ---------- Badges ---------- */
+
+.badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    padding: 0.25rem 0.5rem;
+
+    border-radius: 9999px;
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+}
+
+.badge-blue {
+
+    background: #E0F2FE;
+
+    color: #075985;
+}
+
+.badge-green {
+
+    background: #DCFCE7;
+
+    color: #166534;
+}
+
+.badge-red {
+
+    background: #FEE2E2;
+
+    color: #991B1B;
+}
+
+/* ---------- Animations ---------- */
+
+.fade-in {
+
+    animation:
+        fadeIn 0.3s ease;
+}
+
+.slide-up {
+
+    animation:
+        slideUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}

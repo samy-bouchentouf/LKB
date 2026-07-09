@@ -4,3 +4,174 @@ Diagrams page.
 Provides tools for creating and managing
 experiment diagrams.
 -->
+
+<section class="w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
+
+    <!-- Header -->
+
+    <div class="border-b border-stone-200 pb-4">
+
+        <h2 class="text-2xl font-bold text-stone-800">
+            Diagrams
+        </h2>
+
+        <p class="text-sm text-stone-500 mt-1">
+            Create, manage and browse experimental setup diagrams.
+        </p>
+
+    </div>
+
+    <!-- Diagram Builder -->
+
+    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6">
+
+        <div class="flex justify-between items-center mb-4">
+
+            <div>
+                <h3 class="text-lg font-semibold text-stone-800">
+                    Diagram Builder
+                </h3>
+
+                <p class="text-sm text-stone-500">
+                    Create and save laboratory experiment diagrams.
+                </p>
+            </div>
+
+            <div class="flex gap-2">
+
+                <button
+                    class="bg-green-50 text-green-700 px-4 py-2 rounded-xl font-medium"
+                >
+                    Save Diagram
+                </button>
+
+                <button
+                    class="bg-red-50 text-red-700 px-4 py-2 rounded-xl font-medium"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Placeholder builder -->
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+
+            <div class="border border-stone-200 rounded-xl p-4">
+
+                <h4 class="font-semibold mb-3">
+                    Components
+                </h4>
+
+                <div class="space-y-2">
+
+                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
+                        💻 PC
+                    </button>
+
+                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
+                        🔦 Laser
+                    </button>
+
+                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
+                        🔲 MPLC
+                    </button>
+
+                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
+                        🎯 QPD
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-3 border border-dashed border-stone-300 rounded-xl min-h-[400px] flex items-center justify-center text-stone-400">
+
+                Diagram Drawing Area
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+
+        <div class="flex flex-col md:flex-row gap-4">
+
+            <input
+                type="text"
+                placeholder="Search diagrams..."
+                class="flex-1 border border-stone-200 rounded-xl px-4 py-3"
+            >
+
+            <select
+                class="border border-stone-200 rounded-xl px-4 py-3"
+            >
+                <option>Newest First</option>
+                <option>Oldest First</option>
+                <option>Name A-Z</option>
+                <option>Name Z-A</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- Library Header -->
+
+    <div class="flex justify-between items-center">
+
+        <h3 class="text-lg font-semibold text-stone-800">
+            Diagram Library
+        </h3>
+
+        <span class="text-sm text-stone-500">
+            18 diagrams
+        </span>
+
+    </div>
+
+    <!-- Diagram Gallery -->
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm">
+
+            <div class="h-40 bg-stone-100 flex items-center justify-center text-stone-400">
+                Diagram Preview
+            </div>
+
+            <div class="p-4">
+
+                <h4 class="font-semibold text-stone-800">
+                    MPLC Experimental Setup
+                </h4>
+
+                <p class="text-sm text-stone-500 mt-1">
+                    Updated 2 days ago
+                </p>
+
+                <div class="flex gap-2 mt-4">
+
+                    <button class="flex-1 bg-sky-50 text-sky-700 rounded-xl py-2">
+                        Open
+                    </button>
+
+                    <button class="flex-1 bg-stone-100 text-stone-700 rounded-xl py-2">
+                        Download
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

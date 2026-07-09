@@ -4,3 +4,100 @@ Home page.
 Provides an overview of the LKB platform
 and laboratory resources.
 -->
+
+<section class="w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
+
+    <div class="bg-gradient-to-tr from-sky-100 via-indigo-50 to-amber-50/50 rounded-2xl p-6 text-stone-800 border border-sky-100/60 shadow-sm">
+
+        <h2 class="text-2xl font-bold text-stone-800 mb-2">
+            Welcome to the Kastler Brossel Laboratory AI Hub
+        </h2>
+
+        <p class="text-stone-600/90 text-sm max-w-3xl leading-relaxed">
+            Your research assistant is connected to the laboratory knowledge base
+            to help with scientific publications, technical documentation,
+            troubleshooting reports and experimental diagrams.
+        </p>
+
+        <div class="mt-6">
+            <label
+                for="home-question"
+                class="block text-xs font-bold uppercase tracking-wider text-stone-500 mb-2"
+            >
+                Quick Question
+            </label>
+
+            <div class="flex gap-3">
+                <input
+                    id="home-question"
+                    type="text"
+                    placeholder="Ask a question about the knowledge base..."
+                    class="flex-1 bg-white border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+                >
+
+                <button
+                    id="home-ask-button"
+                    class="bg-[#2E5CB8] text-white px-5 py-3 rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all"
+                >
+                    Ask
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
+
+        <div class="mb-6">
+            <h3 class="text-lg font-bold text-stone-800">
+                Knowledge Base Overview
+            </h3>
+
+            <p class="text-sm text-stone-500 mt-1">
+                Quick summary of the indexed documentation.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <div class="bg-sky-50 border border-sky-100 rounded-xl p-5">
+                <p class="text-xs uppercase font-semibold text-sky-600">
+                    Publications
+                </p>
+                <p class="text-3xl font-bold text-stone-800 mt-2">
+                    154
+                </p>
+            </div>
+
+            <div class="bg-green-50 border border-green-100 rounded-xl p-5">
+                <p class="text-xs uppercase font-semibold text-green-600">
+                    Components
+                </p>
+                <p class="text-3xl font-bold text-stone-800 mt-2">
+                    72
+                </p>
+            </div>
+
+            <div class="bg-amber-50 border border-amber-100 rounded-xl p-5">
+                <p class="text-xs uppercase font-semibold text-amber-600">
+                    Diagrams
+                </p>
+                <p class="text-3xl font-bold text-stone-800 mt-2">
+                    18
+                </p>
+            </div>
+
+            <div class="bg-red-50 border border-red-100 rounded-xl p-5">
+                <p class="text-xs uppercase font-semibold text-red-600">
+                    Incidents
+                </p>
+                <p class="text-3xl font-bold text-stone-800 mt-2">
+                    41
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
