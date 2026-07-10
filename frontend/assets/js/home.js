@@ -54,3 +54,64 @@ async function loadHomeStatistics() {
     }
 
 }
+
+function initializeHome() {
+
+    loadHomeStatistics();
+
+    const askButton =
+        document.getElementById(
+            "home-ask-button"
+        );
+
+    const questionInput =
+        document.getElementById(
+            "home-question"
+        );
+
+    if (!askButton || !questionInput) {
+        return;
+    }
+
+    askButton.addEventListener(
+        "click",
+        askQuickQuestion
+    );
+
+    questionInput.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key === "Enter") {
+
+                askQuickQuestion();
+
+            }
+
+        }
+    );
+
+}
+
+function askQuickQuestion() {
+
+    const questionInput =
+        document.getElementById(
+            "home-question"
+        );
+
+    const question =
+        questionInput.value.trim();
+
+    if (!question) {
+        return;
+    }
+
+    sessionStorage.setItem(
+        "quickQuestion",
+        question
+    );
+
+    loadPage("chat");
+
+}

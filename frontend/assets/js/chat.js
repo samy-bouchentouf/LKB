@@ -39,6 +39,24 @@ function initializeChat() {
         }
     );
 
+    const quickQuestion =
+        sessionStorage.getItem(
+            "quickQuestion"
+        );
+
+    if (quickQuestion) {
+
+        input.value =
+            quickQuestion;
+
+        sessionStorage.removeItem(
+            "quickQuestion"
+        );
+
+        sendMessage();
+
+    }
+
 }
 
 async function sendMessage() {

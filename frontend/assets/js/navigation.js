@@ -30,7 +30,7 @@ async function loadPage(pageName) {
 
         if (pageName === "home") {
 
-            loadHomeStatistics();
+            initializeHome();
 
         }
 
