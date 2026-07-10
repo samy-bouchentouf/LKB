@@ -12,7 +12,7 @@ from pathlib import Path
 from chromadb import PersistentClient
 from .document_loader import load_document
 from .chunker import create_chunks
-from .embeddings import create_embeddings
+from .embedding import create_embeddings
 from .hashing import compute_file_hash
 
 

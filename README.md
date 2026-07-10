@@ -141,7 +141,7 @@ The system uses two servers.
 From the project root:
 
 ```bash
-uvicorn chatbot.api:app --reload --port 8000
+uvicorn chatbot.engine.api:app --reload --port 8000
 ```
 
 FastAPI will start on:

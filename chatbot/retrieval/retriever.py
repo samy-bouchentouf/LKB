@@ -8,7 +8,7 @@ using semantic similarity search.
 
 from pathlib import Path
 from chromadb import PersistentClient
-from ..indexing.embeddings import create_embedding
+from ..indexing.embedding import create_embedding
 
 
 CHROMA_PATH = Path("chatbot/chroma_db")

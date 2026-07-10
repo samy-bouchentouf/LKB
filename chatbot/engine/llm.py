@@ -9,7 +9,7 @@ using retrieved document context.
 import os
 
 from dotenv import load_dotenv
-from mistralai import Mistral
+from mistralai.client import Mistral
 
 
 load_dotenv()

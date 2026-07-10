@@ -34,6 +34,12 @@ async function loadPage(pageName) {
 
         }
 
+        if (pageName === "chat") {
+
+            initializeChat();
+
+        }
+
     } catch (error) {
 
         console.error(error);

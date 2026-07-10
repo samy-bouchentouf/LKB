@@ -8,9 +8,9 @@ queries the language model,
 and returns the generated answer.
 """
 
-from .indexing.indexer import sync_documents
-from .retrieval.retriever import retrieve_chunks
-from .retrieval.prompt_builder import build_prompt
+from ..indexing.indexer import sync_documents
+from ..retrieval.retriever import retrieve_chunks
+from ..retrieval.prompt_builder import build_prompt
 from .llm import generate_answer
 
 

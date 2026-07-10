@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 import homeRoutes from "./routes/home.routes.js";
-//import chatRoutes from "./routes/chat.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 //import publicationsRoutes from "./routes/publications.routes.js";
 //import componentsRoutes from "./routes/components.routes.js";
 //import diagramsRoutes from "./routes/diagrams.routes.js";
@@ -51,7 +51,7 @@ app.use(
 
 app.use("/api/home", homeRoutes);
 
-//app.use("/api/chat", chatRoutes);
+app.use("/api/chat", chatRoutes);
 
 //app.use("/api/publications", publicationsRoutes);
 

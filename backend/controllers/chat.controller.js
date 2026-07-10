@@ -5,20 +5,49 @@
  * generated answers to the frontend.
  */
 
-import { runRag } from "../services/rag.service.js";
+import {
+    askQuestion as askQuestionService
+} from "../services/chat.service.js";
 
-export const handleChat = async (req, res) => {
-  const message = req.body.message;
+async function askQuestion(req, res) {
 
-  try {
-    const response = await runRag(message);
+    try {
 
-    res.json({
-      answer: response
-    });
-  } catch (error) {
-    res.status(500).json({
-      error: "Erreur lors de l'appel RAG"
-    });
-  }
+        const { question } = req.body;
+
+        if (!question?.trim()) {
+
+            return res.status(400).json({
+                message: "Question is required."
+            });
+
+        }
+
+        const response =
+            await askQuestionService(
+                question
+            );
+
+        return res.status(200).json(
+            response
+        );
+
+    } catch (error) {
+
+        console.error(
+            "[ERROR] Failed to process chat request.",
+            error
+        );
+
+        return res.status(500).json({
+            message:
+                "Failed to process chat request."
+        });
+
+    }
+
+}
+
+export {
+    askQuestion
 };
