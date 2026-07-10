@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 import homeRoutes from "./routes/home.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
 import publicationsRoutes from "./routes/publications.routes.js";
-//import componentsRoutes from "./routes/components.routes.js";
+import componentsRoutes from "./routes/components.routes.js";
 //import diagramsRoutes from "./routes/diagrams.routes.js";
 //import incidentsRoutes from "./routes/incidents.routes.js";
 
@@ -55,7 +55,7 @@ app.use("/api/chat", chatRoutes);
 
 app.use("/api/publications", publicationsRoutes);
 
-//app.use("/api/components", componentsRoutes);
+app.use("/api/components", componentsRoutes);
 
 //app.use("/api/diagrams", diagramsRoutes);
 

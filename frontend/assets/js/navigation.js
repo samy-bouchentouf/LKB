@@ -48,6 +48,14 @@ async function loadPage(pageName) {
 
         }
 
+        if (pageName === "components") {
+
+            initializeDocuments(
+                "components"
+            );
+
+        }
+
     } catch (error) {
 
         console.error(error);
