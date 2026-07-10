@@ -2,7 +2,7 @@
 
 LKB AI Hub is a knowledge management platform designed for the Kastler Brossel Laboratory.
 
-The application centralizes:
+The application centralizes and structures laboratory knowledge through:
 
 - Scientific publications
 - Technical component documentation
@@ -29,12 +29,12 @@ Node.js / Express
     ↓
 FastAPI Chatbot Service
     ↓
-Chroma + Mistral
+ChromaDB + Mistral
 ```
 
 ## Frontend
 
-Provides the user interface:
+Provides the user interface and document management tools.
 
 ```text
 Home
@@ -50,14 +50,16 @@ Incidents
 Handles:
 
 - File management
-- API endpoints
+- REST API endpoints
+- Document operations
 - Communication with the chatbot service
 
 ## FastAPI Chatbot
 
 Handles:
 
-- Document retrieval
+- Document indexing
+- Vector retrieval
 - Prompt generation
 - Question answering
 - Knowledge base synchronization
@@ -92,8 +94,6 @@ pip install -r requirements.txt
 
 ## Install Node.js dependencies
 
-From the project root:
-
 ```bash
 npm install
 ```
@@ -118,6 +118,10 @@ LKB/
 ├── backend/
 │
 ├── chatbot/
+│   │
+│   ├── engine/
+│   ├── indexing/
+│   └── retrieval/
 │
 ├── frontend/
 │
@@ -206,7 +210,8 @@ Incidents
 Provides:
 
 - Knowledge base statistics
-- Quick access to the chatbot
+- Quick Question entry point
+- Direct access to laboratory resources
 
 Displays:
 
@@ -219,6 +224,20 @@ Incidents
 
 counts based on the contents of the `documents/` folders.
 
+## Quick Question
+
+Questions asked from the Home page are automatically forwarded to the Chat page.
+
+```text
+Home
+↓
+Quick Question
+↓
+Chat
+↓
+Answer
+```
+
 ---
 
 # Chat
@@ -229,6 +248,8 @@ Questions are processed through:
 
 ```text
 Question
+↓
+Embedding Generation
 ↓
 Chroma Retrieval
 ↓
@@ -241,8 +262,17 @@ Answer
 
 The assistant displays:
 
-- Answer
+- Generated answer
 - Source documents
+
+The chatbot can answer questions using:
+
+- Publications
+- Components
+- Incident reports
+- Diagram descriptions
+
+stored in the knowledge base.
 
 ---
 
@@ -256,12 +286,22 @@ documents/publications/
 
 Features:
 
-- Upload
+- Drag & Drop upload
+- File Explorer upload
 - Search
-- Open
+- Sorting
 - Download
 - Rename
 - Delete
+
+Supported formats:
+
+```text
+PDF
+DOCX
+TXT
+Markdown
+```
 
 ---
 
@@ -275,12 +315,22 @@ documents/components/
 
 Features:
 
-- Upload
+- Drag & Drop upload
+- File Explorer upload
 - Search
-- Open
+- Sorting
 - Download
 - Rename
 - Delete
+
+Supported formats:
+
+```text
+PDF
+DOCX
+TXT
+Markdown
+```
 
 ---
 
@@ -294,13 +344,15 @@ documents/diagrams/
 
 Features:
 
-- Diagram builder
+- Diagram creation
+- Diagram editing
+- Diagram search
 - PNG export
-- Search
-- Open
 - Download
 - Rename
 - Delete
+
+Diagrams are stored as structured documents and can be referenced by the chatbot.
 
 ---
 
@@ -315,12 +367,14 @@ documents/incidents/
 Features:
 
 - Incident report creation
+- Incident report editing
 - PDF export
 - Search
-- Open
 - Download
 - Rename
 - Delete
+
+Incident reports become searchable by the chatbot after synchronization.
 
 ---
 
@@ -341,6 +395,9 @@ Delete Component
 
 Create Incident Report
 Delete Incident Report
+
+Create Diagram
+Delete Diagram
 ```
 
 These actions trigger:
@@ -394,7 +451,25 @@ POST /ask
 ↓
 ask_question()
 ↓
+Retrieve Context
+↓
+Generate Answer
+↓
 Response
+```
+
+## Knowledge Base Synchronization
+
+```text
+Document Modification
+↓
+Express
+↓
+POST /sync
+↓
+sync_documents()
+↓
+Chroma Update
 ```
 
 ## Benefits
@@ -403,5 +478,7 @@ Response
 - Reused Chroma connection
 - Reused Mistral client
 - Faster response times
+- Automatic knowledge base updates
 - Cleaner separation of concerns
-- Scalable architecture
+- Modular architecture
+- Scalable design
