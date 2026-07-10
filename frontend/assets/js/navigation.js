@@ -40,6 +40,14 @@ async function loadPage(pageName) {
 
         }
 
+        if (pageName === "publications") {
+
+            initializeDocuments(
+                "publications"
+            );
+
+        }
+
     } catch (error) {
 
         console.error(error);
