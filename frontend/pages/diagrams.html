@@ -5,7 +5,7 @@ Provides tools for creating and managing
 experiment diagrams.
 -->
 
-<section class="w-full flex-1 overflow-y-auto p-6 max-w-7xl mx-auto space-y-6">
+<section class="w-full flex-1 overflow-y-auto p-6 max-w-6xl mx-auto space-y-6">
 
     <!-- Header -->
 
@@ -23,7 +23,7 @@ experiment diagrams.
 
     <!-- Diagram Builder -->
 
-    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6">
+    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 max-w-[1200px] mx-auto scale-95 origin-top">
 
         <div class="flex justify-between items-center mb-6">
 
@@ -70,7 +70,7 @@ experiment diagrams.
 
         <div
             id="diagram-canvas"
-            class="relative border border-dashed border-stone-300 rounded-xl bg-stone-50 min-h-[600px] overflow-hidden"
+            class="relative border border-dashed border-stone-300 rounded-xl bg-stone-50 min-h-[500px] overflow-hidden"
         >
 
             <!-- SVG Connections Layer -->
@@ -88,7 +88,7 @@ experiment diagrams.
                 class="absolute inset-0 flex items-center justify-center text-stone-400 pointer-events-none"
             >
 
-                Click "Add Component" to start creating a diagram
+                Click "Add" to start creating a diagram
 
             </div>
 
@@ -168,11 +168,22 @@ experiment diagrams.
                                 Connection Name
                             </label>
 
-                            <input
-                                id="connection-name"
-                                type="text"
-                                class="w-full border border-stone-200 rounded-xl px-3 py-2"
-                            >
+                            <div class="flex gap-2">
+
+                                <input
+                                    id="connection-name"
+                                    type="text"
+                                    class="flex-1 border border-stone-200 rounded-xl px-3 py-2"
+                                >
+
+                                <input
+                                    id="connection-color"
+                                    type="color"
+                                    value="#10b981"
+                                    class="w-12 h-12 border border-stone-200 rounded-xl"
+                                >
+
+                            </div>
 
                         </div>
 

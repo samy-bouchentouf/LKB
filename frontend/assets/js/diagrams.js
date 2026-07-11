@@ -182,6 +182,10 @@ function activateAddComponentMode() {
     ).value = "";
 
     document.getElementById(
+        "connection-color"
+    ).value = "#10b981";
+
+    document.getElementById(
         "connect-component-select"
     ).innerHTML = "";
 
@@ -1319,7 +1323,9 @@ function connectSelectedComponent() {
             connectionName,
 
         color:
-            "#10b981"
+            document.getElementById(
+                "connection-color"
+            ).value
 
     });
 
