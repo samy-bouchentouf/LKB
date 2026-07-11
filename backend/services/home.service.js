@@ -66,20 +66,33 @@ async function getStatistics() {
     const [
         publications,
         components,
-        diagrams,
         incidents
     ] = await Promise.all([
         countFiles(publicationsPath),
         countFiles(componentsPath),
-        countFiles(diagramsPath),
         countFiles(incidentsPath)
     ]);
 
+    const diagrams =
+        (
+            await fs.readdir(
+                diagramsPath
+            )
+        ).filter(
+            file =>
+                path.extname(
+                    file
+                ).toLowerCase() ===
+                ".png"
+        ).length;
+
     return {
+
         publications,
         components,
         diagrams,
         incidents
+
     };
 
 }

@@ -185,7 +185,15 @@ function renderDocuments(
 
                 return `
 
-                    <div class="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col h-full">
+                    <div class="relative bg-white border border-stone-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col h-full">
+
+                        <button
+                            onclick="openDocument('${encodedName}')"
+                            class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold flex items-center justify-center"
+                            title="Open"
+                        >
+                            ↗
+                        </button>
 
                         <div class="text-3xl mb-3">
                             📄
@@ -502,6 +510,22 @@ function downloadDocument(
 
 }
 
+function openDocument(
+    filename
+) {
+
+    filename =
+        decodeURIComponent(
+            filename
+        );
+
+    window.open(
+        `/api/${documentType}/open/${encodeURIComponent(filename)}`,
+        "_blank"
+    );
+
+}
+
 window.initializeDocuments =
     initializeDocuments;
 
@@ -513,3 +537,6 @@ window.deleteDocument =
 
 window.downloadDocument =
     downloadDocument;
+
+window.openDocument =
+    openDocument;

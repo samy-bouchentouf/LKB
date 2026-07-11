@@ -67,9 +67,7 @@ async function getDiagrams() {
                             return {
 
                                 name:
-                                    path.parse(
-                                        entry.name
-                                    ).name,
+                                    entry.name,
 
                                 filename:
                                     entry.name,
