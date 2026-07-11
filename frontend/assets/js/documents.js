@@ -9,6 +9,10 @@ let documentType = null;
 
 let documentsCache = [];
 
+let conflictResolver = null;
+
+let conflictModalInitialized = false;
+
 async function initializeDocuments(
     type
 ) {
@@ -23,6 +27,80 @@ async function initializeDocuments(
     initializeSorting();
 
     await loadDocuments();
+
+    initializeConflictModal();
+}
+
+function initializeConflictModal() {
+
+    if (
+        conflictModalInitialized
+    ) {
+
+        return;
+
+    }
+
+    const cancelButton =
+        document.getElementById(
+            "file-conflict-cancel"
+        );
+
+    const renameButton =
+        document.getElementById(
+            "file-conflict-rename"
+        );
+
+    const overwriteButton =
+        document.getElementById(
+            "file-conflict-overwrite"
+        );
+
+    if (
+        !cancelButton ||
+        !renameButton ||
+        !overwriteButton
+    ) {
+
+        return;
+
+    }
+
+    conflictModalInitialized =
+        true;
+
+    cancelButton.onclick =
+        () => {
+
+            closeConflictModal();
+
+            conflictResolver?.(
+                "cancel"
+            );
+
+        };
+
+    renameButton.onclick =
+        () => {
+
+            closeConflictModal();
+
+            conflictResolver?.(
+                "rename"
+            );
+
+        };
+
+    overwriteButton.onclick =
+        () => {
+
+            closeConflictModal();
+
+            conflictResolver?.(
+                "overwrite"
+            );
+
+        };
 
 }
 
@@ -400,7 +478,8 @@ async function uploadDocument(
 }
 
 async function renameDocument(
-    filename
+    filename,
+    forcedName = null
 ) {
 
     filename =
@@ -408,11 +487,12 @@ async function renameDocument(
             filename
         );
 
-    const newName =
-        prompt(
-            "New filename:",
-            filename
-        );
+        const newName =
+            forcedName ??
+            prompt(
+                "New filename:",
+                filename
+            );
 
     if (
         !newName ||
@@ -443,6 +523,56 @@ async function renameDocument(
 
             }
         );
+
+    if (
+        response.status === 409
+    ) {
+
+        const action =
+            await openConflictModal(
+                newName,
+                false
+            );
+
+        if (
+            action ===
+            "cancel"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            action ===
+            "rename"
+        ) {
+
+            const alternativeName =
+                prompt(
+                    "New filename:"
+                );
+
+            if (
+                !alternativeName
+            ) {
+
+                return;
+
+            }
+
+            return renameDocument(
+                encodeURIComponent(
+                    filename
+                ),
+                alternativeName
+            );
+
+        }
+
+        return;
+
+    }
 
     if (!response.ok) {
 
@@ -522,6 +652,71 @@ function openDocument(
     window.open(
         `/api/${documentType}/open/${encodeURIComponent(filename)}`,
         "_blank"
+    );
+
+}
+
+function openConflictModal(
+    filename,
+    allowOverwrite = true
+) {
+
+    return new Promise(
+        resolve => {
+
+            conflictResolver =
+                resolve;
+
+            document.getElementById(
+                "file-conflict-message"
+            ).textContent =
+                `"${filename}" already exists.`;
+
+            const overwriteButton =
+                document.getElementById(
+                    "file-conflict-overwrite"
+                );
+
+            if (
+                overwriteButton
+            ) {
+
+                overwriteButton.classList.toggle(
+                    "hidden",
+                    !allowOverwrite
+                );
+
+            }
+
+            document.getElementById(
+                "file-conflict-modal"
+            ).classList.remove(
+                "hidden"
+            );
+
+            document.getElementById(
+                "file-conflict-modal"
+            ).classList.add(
+                "flex"
+            );
+
+        }
+    );
+
+}
+
+function closeConflictModal() {
+
+    document.getElementById(
+        "file-conflict-modal"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "file-conflict-modal"
+    ).classList.remove(
+        "flex"
     );
 
 }

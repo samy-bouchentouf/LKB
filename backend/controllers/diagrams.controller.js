@@ -49,7 +49,8 @@ async function saveDiagram(req, res) {
             name,
             nodes,
             connections,
-            image
+            image,
+            overwrite
         } = req.body;
 
         if (!name) {
@@ -66,7 +67,8 @@ async function saveDiagram(req, res) {
             name,
             nodes,
             connections,
-            image
+            image,
+            overwrite
 
         });
 
@@ -76,6 +78,18 @@ async function saveDiagram(req, res) {
         });
 
     } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
 
         console.error(
             "[ERROR] Failed to save diagram.",
@@ -147,6 +161,18 @@ async function renameDiagram(req, res) {
         });
 
     } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
 
         console.error(
             "[ERROR] Failed to rename diagram.",

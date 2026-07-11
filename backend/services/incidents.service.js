@@ -110,7 +110,8 @@ async function saveIncident(
         title,
         problem,
         cause,
-        solution
+        solution,
+        overwrite = false
     } = incident;
 
     const pdfPath =
@@ -118,6 +119,33 @@ async function saveIncident(
             INCIDENTS_PATH,
             `${title}.pdf`
         );
+
+    if (!overwrite) {
+
+        try {
+
+            await fs.access(
+                pdfPath
+            );
+
+            throw new Error(
+                "FILE_ALREADY_EXISTS"
+            );
+
+        } catch (error) {
+
+            if (
+                error.message ===
+                "FILE_ALREADY_EXISTS"
+            ) {
+
+                throw error;
+
+            }
+
+        }
+
+    }
 
     await new Promise(
         (
@@ -489,6 +517,29 @@ async function renameIncident(
             INCIDENTS_PATH,
             `${newName}${extension}`
         );
+
+    try {
+
+        await fs.access(
+            newPath
+        );
+
+        throw new Error(
+            "FILE_ALREADY_EXISTS"
+        );
+
+    } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            throw error;
+
+        }
+
+    }
 
     await fs.rename(
         oldPath,

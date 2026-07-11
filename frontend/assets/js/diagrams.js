@@ -1519,13 +1519,18 @@ async function exportDiagramPng() {
  * 12.BACKEND COMMUNICATION
  * ========================================================== */
 
-async function saveDiagram() {
+async function saveDiagram(
+    overwrite = false
+) {
 
     const payload =
         await exportDiagramJson();
 
     payload.image =
         await exportDiagramPng();
+
+    payload.overwrite =
+        overwrite;
 
     const response =
         await fetch(
@@ -1545,7 +1550,66 @@ async function saveDiagram() {
 
             }
         );
-    
+
+    if (
+        response.status === 409
+    ) {
+
+        const action =
+            await openConflictModal(
+                payload.name
+            );
+
+        if (
+            action ===
+            "cancel"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            action ===
+            "rename"
+        ) {
+
+            const newName =
+                prompt(
+                    "New diagram name:",
+                    payload.name
+                );
+
+            if (!newName) {
+
+                return;
+
+            }
+
+            document.getElementById(
+                "diagram-name"
+            ).value =
+                newName;
+
+            return saveDiagram();
+
+        }
+
+        if (
+            action ===
+            "overwrite"
+        ) {
+
+            return saveDiagram(
+                true
+            );
+
+        }
+
+        return;
+
+    }
+
     if (!response.ok) {
 
         throw new Error(

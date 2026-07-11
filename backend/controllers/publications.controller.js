@@ -63,6 +63,18 @@ async function uploadPublication(req, res) {
 
     } catch (error) {
 
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
+
         console.error(
             "[ERROR] Failed to upload publication.",
             error
@@ -106,6 +118,18 @@ async function renamePublication(req, res) {
         });
 
     } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
 
         console.error(
             "[ERROR] Failed to rename publication.",

@@ -48,7 +48,8 @@ async function saveIncident(req, res) {
             title,
             problem,
             cause,
-            solution
+            solution,
+            overwrite
         } = req.body;
 
         if (!title) {
@@ -65,7 +66,8 @@ async function saveIncident(req, res) {
             title,
             problem,
             cause,
-            solution
+            solution,
+            overwrite
 
         });
 
@@ -75,6 +77,18 @@ async function saveIncident(req, res) {
         });
 
     } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
 
         console.error(
             "[ERROR] Failed to save incident report.",
@@ -119,6 +133,18 @@ async function renameIncident(req, res) {
         });
 
     } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            return res.status(409).json({
+                message:
+                    "FILE_ALREADY_EXISTS"
+            });
+
+        }
 
         console.error(
             "[ERROR] Failed to rename incident.",

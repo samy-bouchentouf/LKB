@@ -108,7 +108,8 @@ async function saveDiagram(
         name,
         nodes,
         connections,
-        image
+        image,
+        overwrite=false
     } = diagram;
 
     const jsonPath =
@@ -122,6 +123,56 @@ async function saveDiagram(
             DIAGRAMS_PATH,
             `${name}.png`
         );
+
+    if (!overwrite) {
+
+        try {
+
+            await fs.access(
+                jsonPath
+            );
+
+            throw new Error(
+                "FILE_ALREADY_EXISTS"
+            );
+
+        } catch (error) {
+
+            if (
+                error.message ===
+                "FILE_ALREADY_EXISTS"
+            ) {
+
+                throw error;
+
+            }
+
+        }
+
+        try {
+
+            await fs.access(
+                pngPath
+            );
+
+            throw new Error(
+                "FILE_ALREADY_EXISTS"
+            );
+
+        } catch (error) {
+
+            if (
+                error.message ===
+                "FILE_ALREADY_EXISTS"
+            ) {
+
+                throw error;
+
+            }
+
+        }
+
+    }
 
     await fs.writeFile(
         jsonPath,
@@ -234,6 +285,52 @@ async function renameDiagram(
             DIAGRAMS_PATH,
             `${newName}.png`
         );
+
+    try {
+
+        await fs.access(
+            newJsonPath
+        );
+
+        throw new Error(
+            "FILE_ALREADY_EXISTS"
+        );
+
+    } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            throw error;
+
+        }
+
+    }
+
+    try {
+
+        await fs.access(
+            newPngPath
+        );
+
+        throw new Error(
+            "FILE_ALREADY_EXISTS"
+        );
+
+    } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            throw error;
+
+        }
+
+    }
 
     try {
 

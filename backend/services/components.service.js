@@ -130,6 +130,29 @@ async function renameComponent(
             newName
         );
 
+    try {
+
+        await fs.access(
+            newPath
+        );
+
+        throw new Error(
+            "FILE_ALREADY_EXISTS"
+        );
+
+    } catch (error) {
+
+        if (
+            error.message ===
+            "FILE_ALREADY_EXISTS"
+        ) {
+
+            throw error;
+
+        }
+
+    }
+
     await fs.rename(
         oldPath,
         newPath

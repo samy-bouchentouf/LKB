@@ -22,7 +22,9 @@ async function initializeIncidents() {
 
 }
 
-async function saveIncident() {
+async function saveIncident(
+    overwrite = false
+) {
 
     const payload = {
 
@@ -56,7 +58,9 @@ async function saveIncident() {
                     "incident-solution"
                 )
                 .value
-                .trim()
+                .trim(),
+
+        overwrite
 
     };
 
@@ -89,6 +93,67 @@ async function saveIncident() {
                         )
                 }
             );
+
+        if (
+            response.status === 409
+        ) {
+
+            const action =
+                await openConflictModal(
+                    payload.title
+                );
+
+            if (
+                action ===
+                "cancel"
+            ) {
+
+                return;
+
+            }
+
+            if (
+                action ===
+                "rename"
+            ) {
+
+                const newTitle =
+                    prompt(
+                        "New incident title:",
+                        payload.title
+                    );
+
+                if (
+                    !newTitle
+                ) {
+
+                    return;
+
+                }
+
+                document.getElementById(
+                    "incident-title"
+                ).value =
+                    newTitle;
+
+                return saveIncident();
+
+            }
+
+            if (
+                action ===
+                "overwrite"
+            ) {
+
+                return saveIncident(
+                    true
+                );
+
+            }
+
+            return;
+
+        }
 
         if (!response.ok) {
 
