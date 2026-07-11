@@ -195,6 +195,39 @@ async function deleteDiagram(req, res) {
 
 }
 
+async function openDiagram(req, res) {
+
+    try {
+
+        const {
+            filename
+        } = req.params;
+
+        const filePath =
+            getDiagramPath(
+                filename
+            );
+
+        return res.sendFile(
+            filePath
+        );
+
+    } catch (error) {
+
+        console.error(
+            "[ERROR] Failed to open diagram.",
+            error
+        );
+
+        return res.status(500).json({
+            message:
+                "Failed to open diagram."
+        });
+
+    }
+
+}
+
 async function downloadDiagram(req, res) {
 
     try {
@@ -234,5 +267,6 @@ export {
     getComponents,
     renameDiagram,
     deleteDiagram,
+    openDiagram,
     downloadDiagram
 };

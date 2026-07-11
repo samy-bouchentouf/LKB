@@ -13,6 +13,7 @@ import {
     getComponents,
     renameDiagram,
     deleteDiagram,
+    openDiagram,
     downloadDiagram
 } from "../controllers/diagrams.controller.js";
 
@@ -41,6 +42,11 @@ router.put(
 router.delete(
     "/:filename",
     deleteDiagram
+);
+
+router.get(
+    "/open/:filename",
+    openDiagram
 );
 
 router.get(
