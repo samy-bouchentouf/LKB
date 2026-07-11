@@ -2,7 +2,7 @@
 
 LKB AI Hub is a knowledge management platform designed for the Kastler Brossel Laboratory.
 
-The application centralizes and structures laboratory knowledge through:
+The application centralizes, structures and enriches laboratory knowledge through:
 
 - Scientific publications
 - Technical component documentation
@@ -10,7 +10,7 @@ The application centralizes and structures laboratory knowledge through:
 - Incident reports
 - AI-assisted knowledge retrieval
 
-The platform relies on a Retrieval-Augmented Generation (RAG) pipeline powered by:
+The platform relies on a Retrieval-Augmented Generation (RAG) architecture powered by:
 
 - Chroma Vector Database
 - Mistral Embeddings
@@ -52,6 +52,7 @@ Handles:
 - File management
 - REST API endpoints
 - Document operations
+- Diagram persistence
 - Communication with the chatbot service
 
 ## FastAPI Chatbot
@@ -224,6 +225,8 @@ Incidents
 
 counts based on the contents of the `documents/` folders.
 
+For diagrams, only generated diagram files are counted, avoiding duplicate counts caused by internal JSON representations.
+
 ## Quick Question
 
 Questions asked from the Home page are automatically forwarded to the Chat page.
@@ -290,6 +293,7 @@ Features:
 - File Explorer upload
 - Search
 - Sorting
+- Open
 - Download
 - Rename
 - Delete
@@ -319,6 +323,7 @@ Features:
 - File Explorer upload
 - Search
 - Sorting
+- Open
 - Download
 - Rename
 - Delete
@@ -342,17 +347,98 @@ Storage location:
 documents/diagrams/
 ```
 
+Diagrams are managed through a visual diagram builder.
+
+## Diagram Builder
+
+The diagram editor supports:
+
+- Component creation
+- Component editing
+- Component deletion
+- Drag & Drop positioning
+- Component color customization
+- Connection creation
+- Connection naming
+- Connection coloring
+- Connection renaming
+- Connection deletion
+- Diagram reset
+- Diagram saving
+
+## Components
+
+Components contain:
+
+```text
+Name
+Color
+Position
+```
+
+Users can create components directly from the builder and reposition them freely on the canvas.
+
+## Connections
+
+Connections link two components together.
+
+Each connection contains:
+
+```text
+Name
+Color
+Source Component
+Target Component
+```
+
+Connections are managed directly from the selected component.
+
+For a given component, users can:
+
+- Create new connections
+- View current connections
+- Rename connections
+- Delete connections
+
+Connection updates are automatically reflected on both connected components because connections are stored as shared objects.
+
+## Diagram Persistence
+
+When a diagram is saved, two files are generated:
+
+```text
+diagram-name.png
+diagram-name.json
+```
+
+The PNG file is intended for visualization by users.
+
+The JSON file stores:
+
+```text
+Components
+Connections
+Positions
+Colors
+Names
+```
+
+and is used by the knowledge base and future editing capabilities.
+
+## Diagram Library
+
 Features:
 
-- Diagram creation
-- Diagram editing
-- Diagram search
-- PNG export
+- Search
+- Sorting
+- Open
 - Download
 - Rename
 - Delete
 
-Diagrams are stored as structured documents and can be referenced by the chatbot.
+Only PNG diagram files are displayed in the interface.
+
+The corresponding JSON files remain internal and invisible to users.
 
 ---
 
