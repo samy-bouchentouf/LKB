@@ -62,6 +62,15 @@ async function loadPage(pageName) {
 
         }
 
+        if (
+            pageName ===
+            "incidents"
+        ) {
+
+            initializeIncidents();
+
+        }
+
     } catch (error) {
 
         console.error(error);

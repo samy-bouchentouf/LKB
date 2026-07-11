@@ -17,7 +17,7 @@ import chatRoutes from "./routes/chat.routes.js";
 import publicationsRoutes from "./routes/publications.routes.js";
 import componentsRoutes from "./routes/components.routes.js";
 import diagramsRoutes from "./routes/diagrams.routes.js";
-//import incidentsRoutes from "./routes/incidents.routes.js";
+import incidentsRoutes from "./routes/incidents.routes.js";
 
 const app = express();
 
@@ -59,7 +59,7 @@ app.use("/api/components", componentsRoutes);
 
 app.use("/api/diagrams", diagramsRoutes);
 
-//app.use("/api/incidents", incidentsRoutes);
+app.use("/api/incidents", incidentsRoutes);
 
 /*
 |--------------------------------------------------------------------------
@@ -74,22 +74,5 @@ app.get("/api/health", (req, res) => {
     });
 
 });
-
-/*
-|--------------------------------------------------------------------------
-| Frontend Fallback
-|--------------------------------------------------------------------------
-
-app.get("*", (req, res) => {
-
-    res.sendFile(
-        path.join(
-            __dirname,
-            "../frontend/index.html"
-        )
-    );
-
-});
-*/
 
 export default app;
