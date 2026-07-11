@@ -56,6 +56,12 @@ async function loadPage(pageName) {
 
         }
 
+        if (pageName === "diagrams") {
+
+            initializeDiagrams();
+
+        }
+
     } catch (error) {
 
         console.error(error);

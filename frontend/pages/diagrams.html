@@ -25,28 +25,39 @@ experiment diagrams.
 
     <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6">
 
-        <div class="flex justify-between items-center mb-4">
+        <div class="flex justify-between items-center mb-6">
 
             <div>
+
                 <h3 class="text-lg font-semibold text-stone-800">
                     Diagram Builder
                 </h3>
 
                 <p class="text-sm text-stone-500">
-                    Create and save laboratory experiment diagrams.
+                    Create laboratory experiment diagrams using components and connections.
                 </p>
+
             </div>
 
             <div class="flex gap-2">
 
                 <button
-                    class="bg-green-50 text-green-700 px-4 py-2 rounded-xl font-medium"
+                    id="add-component-button"
+                    class="bg-sky-50 text-sky-700 px-4 py-2 rounded-xl font-medium"
                 >
-                    Save Diagram
+                    Add Component
                 </button>
 
                 <button
-                    class="bg-red-50 text-red-700 px-4 py-2 rounded-xl font-medium"
+                    id="save-diagram-button"
+                    class="bg-green-50 text-green-700 px-4 py-2 rounded-xl font-medium"
+                >
+                    Save
+                </button>
+
+                <button
+                    id="reset-diagram-button"
+                    class="bg-stone-100 text-stone-700 px-4 py-2 rounded-xl font-medium"
                 >
                     Reset
                 </button>
@@ -55,41 +66,29 @@ experiment diagrams.
 
         </div>
 
-        <!-- Placeholder builder -->
+        <!-- Canvas -->
 
-        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div
+            id="diagram-canvas"
+            class="relative border border-dashed border-stone-300 rounded-xl bg-stone-50 min-h-[700px] overflow-hidden"
+        >
 
-            <div class="border border-stone-200 rounded-xl p-4">
+            <!-- SVG Connections Layer -->
 
-                <h4 class="font-semibold mb-3">
-                    Components
-                </h4>
+            <svg
+                id="diagram-connections-layer"
+                class="absolute inset-0 w-full h-full pointer-events-none"
+            >
+            </svg>
 
-                <div class="space-y-2">
+            <!-- Empty State -->
 
-                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
-                        💻 PC
-                    </button>
+            <div
+                id="diagram-empty-state"
+                class="absolute inset-0 flex items-center justify-center text-stone-400 pointer-events-none"
+            >
 
-                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
-                        🔦 Laser
-                    </button>
-
-                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
-                        🔲 MPLC
-                    </button>
-
-                    <button class="w-full bg-stone-50 rounded-lg p-2 text-left">
-                        🎯 QPD
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="lg:col-span-3 border border-dashed border-stone-300 rounded-xl min-h-[400px] flex items-center justify-center text-stone-400">
-
-                Diagram Drawing Area
+                Click "Add Component" to start creating a diagram
 
             </div>
 
@@ -97,81 +96,258 @@ experiment diagrams.
 
     </div>
 
-    <!-- Search -->
+    <!-- Component Modal -->
+
+    <div
+        id="component-modal"
+        class="hidden fixed inset-0 bg-black/40 z-50 overflow-y-auto"
+    >
+
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-2xl mx-auto my-6">
+
+            <h3 class="text-lg font-semibold text-stone-800 mb-4">
+                Component
+            </h3>
+
+            <div class="space-y-4">
+
+                <div>
+
+                    <label class="block text-sm font-medium text-stone-700 mb-2">
+                        Component Name
+                    </label>
+
+                    <input
+                        id="component-name"
+                        type="text"
+                        class="w-full border border-stone-200 rounded-xl px-3 py-2"
+                    >
+
+                </div>
+
+                <div>
+
+                    <label class="block text-sm font-medium text-stone-700 mb-2">
+                        Color
+                    </label>
+
+                    <input
+                        id="component-color"
+                        type="color"
+                        value="#3b82f6"
+                        class="w-full h-12 border border-stone-200 rounded-xl"
+                    >
+
+                </div>
+                
+                <div id="component-connections-section">
+
+                    <div class="border-2 border-stone-300 rounded-2xl p-4 bg-stone-50">
+
+                        <h4 class="font-semibold text-stone-700 mb-4">
+                            Create Connection
+                        </h4>
+
+                        <div>
+
+                            <label class="block text-sm font-medium text-stone-700 mb-2">
+                                Connect With
+                            </label>
+
+                            <select
+                                id="connect-component-select"
+                                class="w-full border border-stone-200 rounded-xl px-3 py-2"
+                            >
+                            </select>
+
+                        </div>
+
+                        <div class="mt-4">
+
+                            <label class="block text-sm font-medium text-stone-700 mb-2">
+                                Connection Name
+                            </label>
+
+                            <input
+                                id="connection-name"
+                                type="text"
+                                class="w-full border border-stone-200 rounded-xl px-3 py-2"
+                            >
+
+                        </div>
+
+                        <button
+                            id="connect-component-button"
+                            class="mt-4 bg-violet-600 text-white px-4 py-2 rounded-xl"
+                        >
+                            Connect
+                        </button>
+
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold text-stone-700">
+                            Current Connections
+                        </h4>
+
+                        <div
+                            id="component-connections-list"
+                            class="space-y-2 max-h-48 overflow-y-auto"
+                        >
+                        </div>
+
+                    </div>
+                
+                </div>
+                
+            </div>
+
+            <div class="flex justify-between gap-2 mt-6">
+
+                <button
+                    id="delete-component-button"
+                    class="bg-red-50 text-red-700 px-4 py-2 rounded-xl"
+                >
+                    Delete Component
+                </button>
+
+                <div class="flex gap-2">
+
+                    <button
+                        id="cancel-component-button"
+                        class="bg-stone-100 text-stone-700 px-4 py-2 rounded-xl"
+                    >
+                        Close
+                    </button>
+
+                    <button
+                        id="confirm-component-button"
+                        class="bg-sky-600 text-white px-4 py-2 rounded-xl"
+                    >
+                        Save
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Save Modal -->
+
+    <div
+        id="save-diagram-modal"
+        class="hidden fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+    >
+
+        <div class="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md">
+
+            <h3 class="text-lg font-semibold text-stone-800 mb-4">
+                Save Diagram
+            </h3>
+
+            <div>
+
+                <label class="block text-sm font-medium text-stone-700 mb-2">
+                    Diagram Name
+                </label>
+
+                <input
+                    id="diagram-name"
+                    type="text"
+                    class="w-full border border-stone-200 rounded-xl px-3 py-2"
+                >
+
+            </div>
+
+            <div class="flex justify-end gap-2 mt-6">
+
+                <button
+                    id="cancel-save-button"
+                    class="bg-stone-100 text-stone-700 px-4 py-2 rounded-xl"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    id="confirm-save-button"
+                    class="bg-green-600 text-white px-4 py-2 rounded-xl"
+                >
+                    Save
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Diagram Library Search -->
 
     <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
 
         <div class="flex flex-col md:flex-row gap-4">
 
             <input
+                id="document-search"
                 type="text"
                 placeholder="Search diagrams..."
-                class="flex-1 border border-stone-200 rounded-xl px-4 py-3"
+                class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
             >
 
             <select
-                class="border border-stone-200 rounded-xl px-4 py-3"
+                id="document-sort"
+                class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
             >
-                <option>Newest First</option>
-                <option>Oldest First</option>
-                <option>Name A-Z</option>
-                <option>Name Z-A</option>
+
+                <option value="newest">
+                    Newest First
+                </option>
+
+                <option value="oldest">
+                    Oldest First
+                </option>
+
+                <option value="az">
+                    Name A-Z
+                </option>
+
+                <option value="za">
+                    Name Z-A
+                </option>
+
             </select>
 
         </div>
 
     </div>
 
-    <!-- Library Header -->
+    <!-- Diagram Library Header -->
 
-    <div class="flex justify-between items-center">
+    <div class="flex items-center justify-between">
 
         <h3 class="text-lg font-semibold text-stone-800">
             Diagram Library
         </h3>
 
-        <span class="text-sm text-stone-500">
-            18 diagrams
+        <span
+            id="documents-count"
+            class="text-sm text-stone-500"
+        >
+            --
         </span>
 
     </div>
 
-    <!-- Diagram Gallery -->
+    <!-- Diagram Library Grid -->
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-        <div class="bg-white border border-stone-200 rounded-2xl overflow-hidden shadow-sm">
-
-            <div class="h-40 bg-stone-100 flex items-center justify-center text-stone-400">
-                Diagram Preview
-            </div>
-
-            <div class="p-4">
-
-                <h4 class="font-semibold text-stone-800">
-                    MPLC Experimental Setup
-                </h4>
-
-                <p class="text-sm text-stone-500 mt-1">
-                    Updated 2 days ago
-                </p>
-
-                <div class="flex gap-2 mt-4">
-
-                    <button class="flex-1 bg-sky-50 text-sky-700 rounded-xl py-2">
-                        Open
-                    </button>
-
-                    <button class="flex-1 bg-stone-100 text-stone-700 rounded-xl py-2">
-                        Download
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
+    <div
+        id="documents-grid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+    >
     </div>
 
 </section>
