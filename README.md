@@ -2,7 +2,7 @@
 
 LKB AI Hub is a knowledge management platform designed for the Kastler Brossel Laboratory.
 
-The application centralizes, structures and enriches laboratory knowledge through:
+The platform centralizes, structures and enriches laboratory knowledge through:
 
 - Scientific publications
 - Technical component documentation
@@ -10,7 +10,7 @@ The application centralizes, structures and enriches laboratory knowledge throug
 - Incident reports
 - AI-assisted knowledge retrieval
 
-The platform relies on a Retrieval-Augmented Generation (RAG) architecture powered by:
+The application combines modern document management with a Retrieval-Augmented Generation (RAG) architecture powered by:
 
 - Chroma Vector Database
 - Mistral Embeddings
@@ -34,7 +34,7 @@ ChromaDB + Mistral
 
 ## Frontend
 
-Provides the user interface and document management tools.
+Provides:
 
 ```text
 Home
@@ -45,6 +45,8 @@ Diagrams
 Incidents
 ```
 
+and all user-facing document management tools.
+
 ## Express Backend
 
 Handles:
@@ -53,6 +55,8 @@ Handles:
 - REST API endpoints
 - Document operations
 - Diagram persistence
+- Incident report generation
+- Knowledge base synchronization requests
 - Communication with the chatbot service
 
 ## FastAPI Chatbot
@@ -60,8 +64,9 @@ Handles:
 Handles:
 
 - Document indexing
+- Embedding generation
 - Vector retrieval
-- Prompt generation
+- Context construction
 - Question answering
 - Knowledge base synchronization
 
@@ -71,8 +76,8 @@ Handles:
 
 Install:
 
-- Node.js (v18 or higher)
-- Python (v3.9 or higher)
+- Node.js v18 or higher
+- Python v3.9 or higher
 - Git
 
 ---
@@ -119,12 +124,14 @@ LKB/
 ├── backend/
 │
 ├── chatbot/
-│   │
 │   ├── engine/
 │   ├── indexing/
 │   └── retrieval/
 │
 ├── frontend/
+│   ├── assets/
+│   ├── pages/
+│   └── templates/
 │
 ├── documents/
 │   ├── publications/
@@ -132,30 +139,29 @@ LKB/
 │   ├── diagrams/
 │   └── incidents/
 │
-└── requirements.txt
+├── requirements.txt
+└── package.json
 ```
 
 ---
 
 # Running the Application
 
-The system uses two servers.
+The system requires two servers.
 
 ## 1. Start the Chatbot Service
-
-From the project root:
 
 ```bash
 uvicorn chatbot.engine.api:app --reload --port 8000
 ```
 
-FastAPI will start on:
+Available at:
 
 ```text
 http://localhost:8000
 ```
 
-Interactive API documentation:
+Swagger documentation:
 
 ```text
 http://localhost:8000/docs
@@ -165,13 +171,11 @@ http://localhost:8000/docs
 
 ## 2. Start the Express Backend
 
-From the project root:
-
 ```bash
 node backend/server.js
 ```
 
-The backend will start on:
+Available at:
 
 ```text
 http://localhost:3000
@@ -193,7 +197,7 @@ The Express server automatically serves the frontend.
 
 # Functional Overview
 
-The application is organized around six pages:
+The platform is organized around six modules:
 
 ```text
 Home
@@ -208,13 +212,13 @@ Incidents
 
 # Home
 
-Provides:
+The Home page provides:
 
 - Knowledge base statistics
 - Quick Question entry point
-- Direct access to laboratory resources
+- Direct access to all resources
 
-Displays:
+Displayed statistics include:
 
 ```text
 Publications
@@ -223,13 +227,11 @@ Diagrams
 Incidents
 ```
 
-counts based on the contents of the `documents/` folders.
-
-For diagrams, only generated diagram files are counted, avoiding duplicate counts caused by internal JSON representations.
+For diagrams, only user-visible PNG files are counted.
 
 ## Quick Question
 
-Questions asked from the Home page are automatically forwarded to the Chat page.
+Questions entered from the Home page automatically redirect users to the Chat page.
 
 ```text
 Home
@@ -238,14 +240,14 @@ Quick Question
 ↓
 Chat
 ↓
-Answer
+Generated Answer
 ```
 
 ---
 
 # Chat
 
-Allows users to interact with the laboratory AI assistant.
+The Chat page exposes the AI assistant.
 
 Questions are processed through:
 
@@ -256,26 +258,26 @@ Embedding Generation
 ↓
 Chroma Retrieval
 ↓
-Prompt Construction
+Context Construction
 ↓
 Mistral
 ↓
 Answer
 ```
 
-The assistant displays:
+Responses include:
 
 - Generated answer
-- Source documents
+- Supporting source documents
 
-The chatbot can answer questions using:
+The assistant can use information from:
 
 - Publications
 - Components
 - Incident reports
 - Diagram descriptions
 
-stored in the knowledge base.
+stored inside the knowledge base.
 
 ---
 
@@ -287,7 +289,7 @@ Storage location:
 documents/publications/
 ```
 
-Features:
+## Features
 
 - Drag & Drop upload
 - File Explorer upload
@@ -298,7 +300,7 @@ Features:
 - Rename
 - Delete
 
-Supported formats:
+## Supported Formats
 
 ```text
 PDF
@@ -317,7 +319,7 @@ Storage location:
 documents/components/
 ```
 
-Features:
+## Features
 
 - Drag & Drop upload
 - File Explorer upload
@@ -328,7 +330,7 @@ Features:
 - Rename
 - Delete
 
-Supported formats:
+## Supported Formats
 
 ```text
 PDF
@@ -347,11 +349,11 @@ Storage location:
 documents/diagrams/
 ```
 
-Diagrams are managed through a visual diagram builder.
+Diagrams are created using a visual editor.
 
 ## Diagram Builder
 
-The diagram editor supports:
+Supports:
 
 - Component creation
 - Component editing
@@ -359,16 +361,15 @@ The diagram editor supports:
 - Drag & Drop positioning
 - Component color customization
 - Connection creation
-- Connection naming
-- Connection coloring
-- Connection renaming
+- Connection editing
 - Connection deletion
 - Diagram reset
+- Diagram export
 - Diagram saving
 
 ## Components
 
-Components contain:
+Each component stores:
 
 ```text
 Name
@@ -376,13 +377,11 @@ Color
 Position
 ```
 
-Users can create components directly from the builder and reposition them freely on the canvas.
+Components can be freely positioned and moved inside the canvas.
 
 ## Connections
 
-Connections link two components together.
-
-Each connection contains:
+Each connection stores:
 
 ```text
 Name
@@ -391,29 +390,25 @@ Source Component
 Target Component
 ```
 
-Connections are managed directly from the selected component.
+Users can:
 
-For a given component, users can:
-
-- Create new connections
-- View current connections
+- Create connections
 - Rename connections
 - Delete connections
+- Edit connection attributes
 
-Connection updates are automatically reflected on both connected components because connections are stored as shared objects.
+Updates are automatically reflected throughout the diagram.
 
 ## Diagram Persistence
 
-When a diagram is saved, two files are generated:
+Saving a diagram generates:
 
 ```text
 diagram-name.png
 diagram-name.json
 ```
 
-The PNG file is intended for visualization by users.
-
-The JSON file stores:
+The JSON representation stores:
 
 ```text
 Components
@@ -423,7 +418,9 @@ Colors
 Names
 ```
 
-and is used by the knowledge base and future editing capabilities.
+The PNG representation is intended for visualization.
+
+Only PNG files are displayed in the diagram library.
 
 ## Diagram Library
 
@@ -436,10 +433,6 @@ Features:
 - Rename
 - Delete
 
-Only PNG diagram files are displayed in the interface.
-
-The corresponding JSON files remain internal and invisible to users.
-
 ---
 
 # Incidents
@@ -450,17 +443,128 @@ Storage location:
 documents/incidents/
 ```
 
-Features:
+Incident reports are generated as professional PDF documents.
+
+## Features
 
 - Incident report creation
-- Incident report editing
-- PDF export
+- Automatic PDF generation
 - Search
+- Open
 - Download
 - Rename
 - Delete
 
-Incident reports become searchable by the chatbot after synchronization.
+## Incident Report Structure
+
+Each report contains:
+
+```text
+Title
+Date
+Problem Description
+Root Cause
+Corrective Action
+```
+
+Generated PDFs include:
+
+- LKB branding
+- Structured layout
+- Automatic date generation
+- Professional formatting
+- Dynamic content sizing
+
+---
+
+# File Conflict Management
+
+The platform prevents accidental data loss caused by duplicate file names.
+
+Whenever a conflict is detected, a dedicated modal is displayed.
+
+---
+
+## Publications & Components
+
+Rename operations are protected.
+
+```text
+File Conflict
+↓
+Cancel
+Rename
+```
+
+Users can:
+
+- Cancel the operation
+- Choose a different name
+
+Existing files cannot be replaced through a rename operation.
+
+---
+
+## Diagrams
+
+When saving an existing diagram:
+
+```text
+Save Diagram
+↓
+Name Already Exists
+↓
+Cancel
+Rename
+Overwrite
+```
+
+### Cancel
+
+Aborts the save.
+
+### Rename
+
+Allows another diagram name to be specified.
+
+### Overwrite
+
+Replaces both:
+
+```text
+diagram-name.png
+diagram-name.json
+```
+
+with the new version.
+
+---
+
+## Incidents
+
+When saving an existing incident report:
+
+```text
+Save Incident
+↓
+Title Already Exists
+↓
+Cancel
+Rename
+Overwrite
+```
+
+### Cancel
+
+Aborts the save.
+
+### Rename
+
+Allows another title to be specified.
+
+### Overwrite
+
+Replaces the existing PDF report.
 
 ---
 
@@ -478,27 +582,15 @@ Delete Publication
 
 Upload Component
 Delete Component
-
-Create Incident Report
-Delete Incident Report
-
-Create Diagram
-Delete Diagram
 ```
 
 These actions trigger:
-
-```python
-sync_documents()
-```
-
-through:
 
 ```text
 POST /sync
 ```
 
-on the FastAPI chatbot service.
+towards the chatbot service.
 
 ## Synchronization Not Required
 
@@ -509,7 +601,7 @@ Rename Diagram
 Rename Incident
 ```
 
-because document hashes are based on file content rather than file names.
+because document content remains unchanged.
 
 ---
 
@@ -517,54 +609,62 @@ because document hashes are based on file content rather than file names.
 
 The chatbot is implemented as an independent FastAPI service.
 
-It exposes two endpoints:
+Available endpoints:
 
 ```text
 POST /ask
 POST /sync
 ```
 
-## Question Answering
+## Question Answering Flow
 
 ```text
 Frontend
 ↓
 POST /api/chat
 ↓
-Express
+Express Backend
 ↓
 POST /ask
 ↓
-ask_question()
+Question Processing
 ↓
-Retrieve Context
+Vector Retrieval
 ↓
-Generate Answer
+Context Construction
+↓
+Mistral
 ↓
 Response
 ```
 
-## Knowledge Base Synchronization
+## Synchronization Flow
 
 ```text
 Document Modification
 ↓
-Express
+Express Backend
 ↓
 POST /sync
 ↓
-sync_documents()
+Knowledge Base Update
 ↓
-Chroma Update
+Chroma Refresh
 ```
 
-## Benefits
+---
 
-- Persistent Python process
-- Reused Chroma connection
-- Reused Mistral client
-- Faster response times
-- Automatic knowledge base updates
-- Cleaner separation of concerns
-- Modular architecture
-- Scalable design
+# Benefits
+
+- Centralized laboratory knowledge
+- AI-assisted information retrieval
+- Persistent vector database
+- Automatic indexing
+- Diagram management system
+- Structured incident reporting
+- Professional PDF generation
+- Conflict-safe save operations
+- Unified document libraries
+- Modular backend architecture
+- Scalable RAG infrastructure
+- Clean separation between frontend, backend and AI services
