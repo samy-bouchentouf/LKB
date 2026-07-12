@@ -110,9 +110,12 @@ async function saveIncident(
         title,
         problem,
         cause,
-        solution,
-        overwrite = false
+        solution
     } = incident;
+
+    const overwrite =
+        incident.overwrite === true ||
+        incident.overwrite === "true";
 
     const pdfPath =
         path.join(
@@ -209,11 +212,11 @@ async function saveIncident(
                 .fontSize(24)
                 .text(
                     "INCIDENT REPORT",
-                    0,
-                    40,
+                    80,
+                    50,
                     {
-                        align:
-                            "center"
+                        width: 450,
+                        align: "center"
                     }
                 );
 
@@ -224,9 +227,11 @@ async function saveIncident(
                 .fontSize(11)
                 .text(
                     "Laboratoire Kastler Brossel",
+                    80,
+                    document.y,
                     {
-                        align:
-                            "center"
+                        width: 450,
+                        align: "center"
                     }
                 );
 

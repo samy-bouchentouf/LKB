@@ -1574,10 +1574,35 @@ async function saveDiagram(
             "rename"
         ) {
 
+            let counter = 1;
+
+            let suggestedName =
+                `${payload.name}(${counter})`;
+
+            while (
+
+                documentsCache.some(
+                    document =>
+                        document.name.replace(
+                            ".png",
+                            ""
+                        ) ===
+                        suggestedName
+                )
+
+            ) {
+
+                counter++;
+
+                suggestedName =
+                    `${payload.name}(${counter})`;
+
+            }
+
             const newName =
                 prompt(
                     "New diagram name:",
-                    payload.name
+                    suggestedName
                 );
 
             if (!newName) {

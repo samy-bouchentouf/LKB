@@ -444,6 +444,55 @@ function initializeDropzone() {
 
 }
 
+function buildSuggestedName(
+    filename
+) {
+
+    const extension =
+        filename.includes(
+            "."
+        )
+            ? filename.substring(
+                filename.lastIndexOf(".")
+            )
+            : "";
+
+    const baseName =
+        filename.includes(
+            "."
+        )
+            ? filename.substring(
+                0,
+                filename.lastIndexOf(".")
+            )
+            : filename;
+
+    let counter = 1;
+
+    let suggestedName =
+        `${baseName}(${counter})${extension}`;
+
+    while (
+
+        documentsCache.some(
+            document =>
+                document.name ===
+                suggestedName
+        )
+
+    ) {
+
+        counter++;
+
+        suggestedName =
+            `${baseName}(${counter})${extension}`;
+
+    }
+
+    return suggestedName;
+
+}
+
 async function uploadDocument(
     file,
     overwrite = false
@@ -498,38 +547,10 @@ async function uploadDocument(
             "rename"
         ) {
 
-        const extension =
-            file.name.substring(
-                file.name.lastIndexOf(".")
-            );
-
-        const baseName =
-            file.name.substring(
-                0,
-                file.name.lastIndexOf(".")
-            );
-
-        let counter = 1;
-
-        let temporaryName =
-            `${baseName}(${counter})${extension}`;
-
-        while (
-
-            documentsCache.some(
-                document =>
-                    document.name ===
-                    temporaryName
-            )
-
-        ) {
-
-            counter++;
-
-            temporaryName =
-                `${baseName}(${counter})${extension}`;
-
-        }
+            const temporaryName =
+                buildSuggestedName(
+                    file.name
+                );
 
             const temporaryFile =
                 new File(
@@ -659,7 +680,10 @@ async function renameDocument(
 
             const alternativeName =
                 prompt(
-                    "New filename:"
+                    "New filename:",
+                    buildSuggestedName(
+                        newName
+                    )
                 );
 
             if (

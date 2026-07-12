@@ -117,10 +117,35 @@ async function saveIncident(
                 "rename"
             ) {
 
+                let counter = 1;
+
+                let suggestedTitle =
+                    `${payload.title}(${counter})`;
+
+                while (
+
+                    documentsCache.some(
+                        document =>
+                            document.name.replace(
+                                ".pdf",
+                                ""
+                            ) ===
+                            suggestedTitle
+                    )
+
+                ) {
+
+                    counter++;
+
+                    suggestedTitle =
+                        `${payload.title}(${counter})`;
+
+                }
+
                 const newTitle =
                     prompt(
                         "New incident title:",
-                        payload.title
+                        suggestedTitle
                     );
 
                 if (
