@@ -258,9 +258,16 @@ chatbot/
 │   ├── hashing.py
 │   └── indexer.py
 │
+├── models/
+│   ├── chunk.py
+│   └── search_result.py
+│
 └── retrieval/
+    ├── hybrid_search.py
+    ├── lexical_search.py
     ├── prompt_builder.py
-    └── retriever.py
+    ├── scorer.py
+    └── vector_search.py
 ```
 
 ## Engine
@@ -286,7 +293,7 @@ Handles communication with the Mistral LLM and generates answers from prompts bu
 ```text
 Retrieval-Augmented Generation orchestration.
 
-Coordinates document retrieval, prompt construction and response generation.
+Coordinates hybrid retrieval, prompt construction and response generation.
 ```
 
 ## Indexing
@@ -331,22 +338,64 @@ Document indexing pipeline.
 Indexes documents into Chroma and synchronizes the vector database with the filesystem.
 ```
 
+## Models
+
+### chunk.py
+
+```text
+Chunk data model.
+
+Represents a document chunk and its associated metadata.
+```
+
+### search_result.py
+
+```text
+Search result data model.
+
+Represents a retrieved document chunk and its retrieval scores.
+```
+
 ## Retrieval
+
+### hybrid_search.py
+
+```text
+Hybrid search module.
+
+Combines semantic retrieval and lexical retrieval to produce a unified ranked list of document chunks.
+```
+
+### lexical_search.py
+
+```text
+Lexical search module.
+
+Retrieves the most relevant document chunks using BM25 keyword-based search.
+```
 
 ### prompt_builder.py
 
 ```text
-Prompt construction utilities.
+Prompt construction module.
 
-Builds prompts from retrieved document context and user questions.
+Builds the final prompt sent to the language model by combining the user's question with the retrieved document context.
 ```
 
-### retriever.py
+### scorer.py
 
 ```text
-Document retrieval utilities.
+Retrieval scoring module.
 
-Retrieves the most relevant chunks from Chroma for a given query.
+Normalizes retrieval scores and computes hybrid relevance scores.
+```
+
+### vector_search.py
+
+```text
+Vector search module.
+
+Retrieves the most relevant document chunks using semantic similarity search in Chroma.
 ```
 
 ---
