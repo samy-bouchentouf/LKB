@@ -487,7 +487,34 @@ Whenever a conflict is detected, a dedicated modal is displayed.
 
 ## Publications & Components
 
-Rename operations are protected.
+File name conflicts are detected during both:
+
+- Upload operations
+- Rename operations
+
+### Upload Conflict
+
+```text
+File Conflict
+↓
+Cancel
+Rename
+Overwrite
+```
+
+#### Cancel
+
+Aborts the upload.
+
+#### Rename
+
+Uploads the document under an automatically generated temporary name and immediately opens the Rename workflow, allowing the user to choose a final name.
+
+#### Overwrite
+
+Replaces the existing document with the uploaded version.
+
+### Rename Conflict
 
 ```text
 File Conflict
@@ -496,12 +523,7 @@ Cancel
 Rename
 ```
 
-Users can:
-
-- Cancel the operation
-- Choose a different name
-
-Existing files cannot be replaced through a rename operation.
+Existing files cannot be overwritten through a rename operation.
 
 ---
 
