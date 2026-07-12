@@ -6,22 +6,26 @@ by combining the user's question with the retrieved
 document context.
 """
 
+from ..models.search_result import SearchResult
+
 
 def build_prompt(
     question: str,
-    chunks: list,
+    results: list[SearchResult],
 ) -> str:
     """Build the final prompt for the language model."""
 
     context = ""
 
-    for chunk in chunks:
+    for result in results:
+
+        chunk = result.chunk
 
         context += (
-            f"\nDocument: {chunk['source']}\n"
-            f"Category: {chunk['category']}\n"
+            f"\nDocument: {chunk.source}\n"
+            f"Category: {chunk.category}\n"
             f"Content:\n"
-            f"{chunk['chunk_text']}\n"
+            f"{chunk.chunk_text}\n"
         )
 
     prompt = f"""

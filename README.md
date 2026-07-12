@@ -10,9 +10,10 @@ The platform centralizes, structures and enriches laboratory knowledge through:
 - Incident reports
 - AI-assisted knowledge retrieval
 
-The application combines modern document management with a Retrieval-Augmented Generation (RAG) architecture powered by:
+The application combines modern document management with a hybrid Retrieval-Augmented Generation (RAG) architecture powered by:
 
 - Chroma Vector Database
+- BM25 Lexical Search
 - Mistral Embeddings
 - Mistral Large Language Models
 
@@ -29,7 +30,9 @@ Node.js / Express
     ↓
 FastAPI Chatbot Service
     ↓
-ChromaDB + Mistral
+Hybrid Retrieval Layer
+    ↓
+ChromaDB + BM25 + Mistral
 ```
 
 ## Frontend
@@ -65,7 +68,9 @@ Handles:
 
 - Document indexing
 - Embedding generation
-- Vector retrieval
+- Semantic retrieval
+- Lexical retrieval
+- Hybrid retrieval
 - Context construction
 - Question answering
 - Knowledge base synchronization
@@ -268,9 +273,20 @@ Question
 ↓
 Mistral Embedding Generation
 ↓
-Chroma Similarity Search
+Vector Search (Top 50)
+        +
+BM25 Search (Top 50)
 ↓
-Top 5 Relevant Chunks Retrieval
+Candidate Union
+↓
+Hybrid Score Computation
+
+0.5 × Vector Score
++
+0.5 × BM25 Score
+
+↓
+Top 10 Chunks
 ↓
 Context Construction
 ↓
@@ -292,6 +308,83 @@ The assistant can use information from:
 - Diagram descriptions
 
 stored inside the knowledge base.
+
+---
+
+# Hybrid Retrieval
+
+The chatbot uses a hybrid retrieval strategy to combine the strengths of semantic search and keyword search.
+
+## Semantic Retrieval
+
+Semantic retrieval uses:
+
+```text
+Mistral Embeddings
++
+Chroma Vector Database
+```
+
+This component is effective for conceptual questions such as:
+
+```text
+What is quantum Fisher information?
+```
+
+even when the wording differs from the original documents.
+
+## Lexical Retrieval
+
+Lexical retrieval uses:
+
+```text
+BM25
+```
+
+This component is effective for:
+
+```text
+Author names
+Product references
+Model numbers
+Acronyms
+Specific terminology
+```
+
+Examples:
+
+```text
+Karuseichyk
+Koheras ADJUSTIK
+PDA50B2
+NIDAQ
+```
+
+## Hybrid Ranking
+
+Both retrieval strategies independently retrieve candidate chunks.
+
+```text
+Vector Search
+↓
+Top 50
+
+BM25 Search
+↓
+Top 50
+```
+
+Candidate chunks are merged and scored using:
+
+```text
+Hybrid Score
+=
+0.5 × Vector Score
++
+0.5 × BM25 Score
+```
+
+The highest-ranked chunks are then used to build the final context provided to the language model.
 
 ---
 
@@ -606,9 +699,23 @@ Replaces the existing PDF report.
 
 # Knowledge Base Synchronization
 
-The chatbot uses a persistent Chroma database.
+The chatbot uses two synchronized retrieval stores:
 
-The knowledge base is automatically synchronized when the chatbot starts and whenever document modifications require an update.
+```text
+Chroma Vector Database
++
+chunks.json
+```
+
+where:
+
+```text
+Chroma
+→ Semantic Retrieval
+
+chunks.json
+→ BM25 Lexical Retrieval
+```
 
 Synchronization is hash-based and incremental.
 
@@ -621,16 +728,24 @@ Documents on Disk
 ↓
 SHA256 Hash Comparison
 ↓
-Documents Added to Chroma
+Documents Added
 
 or
 
-Documents Removed from Disk
+Documents Removed
 ↓
-Removed from Chroma
+Indexed Data Removed
 ```
 
-Only documents whose content is not already present in the vector database are indexed.
+Only documents whose content is not already present in the retrieval stores are indexed.
+
+Whenever the indexed content changes:
+
+```text
+chunks.json Updated
+↓
+BM25 Index Rebuilt
+```
 
 ## Synchronization Required
 
@@ -685,9 +800,11 @@ Express Backend
 ↓
 POST /ask
 ↓
-Mistral Embedding Generation
+Vector Search
+        +
+BM25 Search
 ↓
-Chroma Similarity Search
+Hybrid Ranking
 ↓
 Context Construction
 ↓
@@ -707,9 +824,13 @@ POST /sync
 ↓
 SHA256 Hash Comparison
 ↓
-Document Indexing or Removal
+Index Update
+
+├── Chroma
+└── chunks.json
+
 ↓
-Chroma Update
+BM25 Reload
 ```
 
 ---
@@ -717,9 +838,12 @@ Chroma Update
 # Benefits
 
 - Centralized laboratory knowledge
+- Hybrid semantic and lexical retrieval
 - AI-assisted information retrieval
 - Persistent vector database
+- Persistent lexical chunk store
 - Incremental hash-based indexing
+- BM25-enhanced retrieval
 - Diagram management system
 - Structured incident reporting
 - Professional PDF generation

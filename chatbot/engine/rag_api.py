@@ -9,12 +9,14 @@ and returns the generated answer.
 """
 
 from ..indexing.indexer import sync_documents
-from ..retrieval.retriever import retrieve_chunks
+from ..retrieval.hybrid_search import hybrid_search
 from ..retrieval.prompt_builder import build_prompt
+
 from .llm import generate_answer
 
 
-# Synchronize Chroma with the documents directory when the chatbot starts.
+# Synchronize retrieval data with the documents
+# directory when the chatbot starts.
 sync_documents()
 
 
@@ -23,11 +25,11 @@ def ask_question(question: str) -> dict:
     Answer a user question using the knowledge base.
     """
 
-    chunks = retrieve_chunks(question)
+    results = hybrid_search(question)
 
     prompt = build_prompt(
         question,
-        chunks,
+        results,
     )
 
     answer = generate_answer(prompt)
@@ -35,9 +37,11 @@ def ask_question(question: str) -> dict:
     sources = []
     seen_sources = set()
 
-    for chunk in chunks:
+    for result in results:
 
-        source = chunk["source"]
+        chunk = result.chunk
+
+        source = chunk.source
 
         if source in seen_sources:
             continue
@@ -47,7 +51,7 @@ def ask_question(question: str) -> dict:
         sources.append(
             {
                 "source": source,
-                "category": chunk["category"],
+                "category": chunk.category,
             }
         )
 

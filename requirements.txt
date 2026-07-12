@@ -12,6 +12,9 @@ langchain-chroma>=0.2
 langchain-mistralai>=0.1
 chromadb>=0.5
 
+# Lexical retrieval
+rank-bm25>=0.2
+
 # IA
 mistralai>=1.0
 

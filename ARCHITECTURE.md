@@ -244,7 +244,9 @@ Starts the Express server and exposes the LKB API.
 ```text
 chatbot/
 │
-├── chroma_db/
+├── data/
+│   ├── chroma_db/
+│   └── chunks.json
 │
 ├── engine/
 │   ├── api.py
@@ -270,14 +272,35 @@ chatbot/
     └── vector_search.py
 ```
 
+## Data
+
+### chroma_db/
+
+```text
+Persistent Chroma vector database.
+
+Stores document embeddings used for
+semantic retrieval.
+```
+
+### chunks.json
+
+```text
+Chunk storage.
+
+Stores indexed document chunks used
+to build the BM25 lexical index.
+```
+
 ## Engine
 
 ### api.py
 
 ```text
-FastAPI application.
+Chatbot API.
 
-Exposes chatbot endpoints used by the Express backend.
+Exposes the chatbot functionality through
+HTTP endpoints used by the web application.
 ```
 
 ### llm.py
@@ -285,15 +308,21 @@ Exposes chatbot endpoints used by the Express backend.
 ```text
 Language model interface.
 
-Handles communication with the Mistral LLM and generates answers from prompts built using retrieved document context.
+Handles communication with the Mistral LLM
+and generates answers from prompts built
+using retrieved document context.
 ```
 
 ### rag_api.py
 
 ```text
-Retrieval-Augmented Generation orchestration.
+Main entry point of the chatbot.
 
-Coordinates hybrid retrieval, prompt construction and response generation.
+Receives user questions,
+retrieves relevant document chunks,
+builds the final prompt,
+queries the language model,
+and returns the generated answer.
 ```
 
 ## Indexing
@@ -301,33 +330,37 @@ Coordinates hybrid retrieval, prompt construction and response generation.
 ### chunker.py
 
 ```text
-Document chunking utilities.
+Document chunking module.
 
-Splits documents into retrieval-friendly chunks for vector indexing.
+Splits raw text into smaller chunks that can
+be embedded and stored in the vector database.
 ```
 
 ### document_loader.py
 
 ```text
-Document loading utilities.
+Document loading module.
 
-Extracts text from supported document formats.
+Extracts raw text from supported document formats:
+PDF, DOCX, TXT and Markdown files.
 ```
 
 ### embedding.py
 
 ```text
-Embedding generation utilities.
+Embedding generation module.
 
-Creates vector embeddings using Mistral embedding models.
+Transforms text chunks and user questions into
+vector embeddings using Mistral Embeddings.
 ```
 
 ### hashing.py
 
 ```text
-Document hashing utilities.
+Document hashing module.
 
-Computes content hashes used to detect document additions, deletions and updates.
+Generates a unique hash for a document based
+on its content.
 ```
 
 ### indexer.py
@@ -335,7 +368,9 @@ Computes content hashes used to detect document additions, deletions and updates
 ```text
 Document indexing pipeline.
 
-Indexes documents into Chroma and synchronizes the vector database with the filesystem.
+Coordinates document loading, chunking,
+embedding generation and storage of indexed
+data used by the retrieval system.
 ```
 
 ## Models
@@ -345,7 +380,8 @@ Indexes documents into Chroma and synchronizes the vector database with the file
 ```text
 Chunk data model.
 
-Represents a document chunk and its associated metadata.
+Represents a document chunk and its
+associated metadata.
 ```
 
 ### search_result.py
@@ -353,7 +389,8 @@ Represents a document chunk and its associated metadata.
 ```text
 Search result data model.
 
-Represents a retrieved document chunk and its retrieval scores.
+Represents a retrieved document chunk
+and its retrieval scores.
 ```
 
 ## Retrieval
@@ -363,7 +400,8 @@ Represents a retrieved document chunk and its retrieval scores.
 ```text
 Hybrid search module.
 
-Combines semantic retrieval and lexical retrieval to produce a unified ranked list of document chunks.
+Combines semantic retrieval and lexical retrieval
+to produce a unified ranked list of document chunks.
 ```
 
 ### lexical_search.py
@@ -371,7 +409,8 @@ Combines semantic retrieval and lexical retrieval to produce a unified ranked li
 ```text
 Lexical search module.
 
-Retrieves the most relevant document chunks using BM25 keyword-based search.
+Retrieves the most relevant document chunks
+using BM25 keyword-based search.
 ```
 
 ### prompt_builder.py
@@ -379,7 +418,9 @@ Retrieves the most relevant document chunks using BM25 keyword-based search.
 ```text
 Prompt construction module.
 
-Builds the final prompt sent to the language model by combining the user's question with the retrieved document context.
+Builds the final prompt sent to the language model
+by combining the user's question with the retrieved
+document context.
 ```
 
 ### scorer.py
@@ -387,7 +428,8 @@ Builds the final prompt sent to the language model by combining the user's quest
 ```text
 Retrieval scoring module.
 
-Normalizes retrieval scores and computes hybrid relevance scores.
+Normalizes retrieval scores and computes
+hybrid relevance scores.
 ```
 
 ### vector_search.py
@@ -395,7 +437,8 @@ Normalizes retrieval scores and computes hybrid relevance scores.
 ```text
 Vector search module.
 
-Retrieves the most relevant document chunks using semantic similarity search in Chroma.
+Retrieves the most relevant document chunks
+using semantic similarity search in Chroma.
 ```
 
 ---

@@ -6,44 +6,57 @@ using semantic similarity search in Chroma.
 """
 
 from pathlib import Path
+
 from chromadb import PersistentClient
+
 from ..indexing.embedding import create_embedding
+from ..models.chunk import Chunk
+from ..models.search_result import SearchResult
 
 
-CHROMA_PATH = Path("chatbot/chroma_db")
+CHROMA_PATH = Path("chatbot/data/chroma_db")
 
 client = PersistentClient(path=str(CHROMA_PATH))
 
-collection = client.get_or_create_collection(name="knowledge_base")
+collection = client.get_or_create_collection(
+    name="knowledge_base"
+)
 
 
-def retrieve_chunks(
+def vector_search(
     question: str,
-    n_results: int = 10,
-) -> list:
-    """Retrieve the most relevant document chunks for a given question."""
+    top_k: int = 50,
+) -> list[SearchResult]:
+    """Retrieve chunks using semantic similarity search."""
 
     question_embedding = create_embedding(question)
 
     results = collection.query(
         query_embeddings=[question_embedding],
-        n_results=n_results,
+        n_results=top_k,
     )
 
-    retrieved_chunks = []
+    search_results = []
 
-    for document, metadata in zip(
+    distances = results["distances"][0]
+
+    for document, metadata, distance in zip(
         results["documents"][0],
         results["metadatas"][0],
+        distances,
     ):
-
-        retrieved_chunks.append(
-            {
-                "source": metadata["source"],
-                "category": metadata["category"],
-                "chunk_index": metadata["chunk_index"],
-                "chunk_text": document,
-            }
+        chunk = Chunk(
+            source=metadata["source"],
+            category=metadata["category"],
+            chunk_index=metadata["chunk_index"],
+            chunk_text=document,
         )
 
-    return retrieved_chunks
+        search_results.append(
+            SearchResult(
+                chunk=chunk,
+                vector_score=distance,
+            )
+        )
+
+    return search_results
