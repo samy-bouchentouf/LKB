@@ -445,7 +445,8 @@ function initializeDropzone() {
 }
 
 async function uploadDocument(
-    file
+    file,
+    overwrite = false
 ) {
 
     const formData =
@@ -461,9 +462,117 @@ async function uploadDocument(
             `/api/${documentType}/upload`,
             {
                 method: "POST",
+
+                headers: {
+                    "x-overwrite":
+                        overwrite
+                            ? "true"
+                            : "false"
+                },
+
                 body: formData
             }
         );
+
+    if (
+        response.status === 409
+    ) {
+
+        const action =
+            await openConflictModal(
+                file.name,
+                true
+            );
+
+        if (
+            action ===
+            "cancel"
+        ) {
+
+            return;
+
+        }
+
+        if (
+            action ===
+            "rename"
+        ) {
+
+        const extension =
+            file.name.substring(
+                file.name.lastIndexOf(".")
+            );
+
+        const baseName =
+            file.name.substring(
+                0,
+                file.name.lastIndexOf(".")
+            );
+
+        let counter = 1;
+
+        let temporaryName =
+            `${baseName}(${counter})${extension}`;
+
+        while (
+
+            documentsCache.some(
+                document =>
+                    document.name ===
+                    temporaryName
+            )
+
+        ) {
+
+            counter++;
+
+            temporaryName =
+                `${baseName}(${counter})${extension}`;
+
+        }
+
+            const temporaryFile =
+                new File(
+                    [file],
+                    temporaryName,
+                    {
+                        type:
+                            file.type
+                    }
+                );
+
+            await uploadDocument(
+                temporaryFile,
+                true
+            );
+
+            await loadDocuments();
+
+            await renameDocument(
+                encodeURIComponent(
+                    temporaryName
+                )
+            );
+
+            return;
+
+        }
+
+        if (
+            action ===
+            "overwrite"
+        ) {
+
+            return uploadDocument(
+                file,
+                true
+            );
+
+        }
+
+        return;
+
+    }
 
     if (!response.ok) {
 

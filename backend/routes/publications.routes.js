@@ -7,6 +7,7 @@
 
 import express from "express";
 
+import fs from "fs";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -26,6 +27,12 @@ const __filename =
 const __dirname =
     path.dirname(__filename);
 
+const PUBLICATIONS_PATH =
+    path.join(
+        __dirname,
+        "../../documents/publications"
+    );
+
 const storage =
     multer.diskStorage({
 
@@ -37,10 +44,7 @@ const storage =
 
             callback(
                 null,
-                path.join(
-                    __dirname,
-                    "../../documents/publications"
-                )
+                PUBLICATIONS_PATH
             );
 
         },
@@ -50,6 +54,46 @@ const storage =
             file,
             callback
         ) => {
+
+            const filePath =
+                path.join(
+                    PUBLICATIONS_PATH,
+                    file.originalname
+                );
+
+            const overwrite =
+                req.headers[
+                    "x-overwrite"
+                ] === "true";
+
+            if (
+                fs.existsSync(
+                    filePath
+                ) &&
+                !overwrite
+            ) {
+
+                console.warn(
+                    `[WARN] Publication upload rejected: "${file.originalname}" already exists.`
+                );
+
+                return callback(
+                    new Error(
+                        "FILE_ALREADY_EXISTS"
+                    )
+                );
+
+            }
+
+            if (
+                overwrite
+            ) {
+
+                console.warn(
+                    `[WARN] Publication upload overwrite: "${file.originalname}".`
+                );
+
+            }
 
             callback(
                 null,
@@ -119,7 +163,46 @@ router.get(
 
 router.post(
     "/upload",
-    upload.single("file"),
+    (
+        req,
+        res,
+        next
+    ) => {
+
+        upload.single(
+            "file"
+        )(
+            req,
+            res,
+            error => {
+
+                if (
+                    error?.message ===
+                    "FILE_ALREADY_EXISTS"
+                ) {
+
+                    return res.status(409).json({
+                        message:
+                            "FILE_ALREADY_EXISTS"
+                    });
+
+                }
+
+                if (error) {
+
+                    return res.status(500).json({
+                        message:
+                            error.message
+                    });
+
+                }
+
+                next();
+
+            }
+        );
+
+    },
     uploadPublication
 );
 
