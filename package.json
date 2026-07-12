@@ -5,7 +5,10 @@
   "type": "module",
   "main": "backend/server.js",
   "scripts": {
-    "start": "node backend/server.js"
+    "backend": "node backend/server.js",
+    "chatbot": "uvicorn chatbot.engine.api:app --reload --port 8000",
+    "dev": "concurrently -n CHATBOT,BACKEND -c blue,green \"npm run chatbot\" \"npm run backend\"",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,8 @@
     "express": "^5.2.1",
     "multer": "^2.2.0",
     "pdfkit": "^0.19.1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.3"
   }
 }

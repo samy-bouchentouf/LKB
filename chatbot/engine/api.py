@@ -8,13 +8,44 @@ HTTP endpoints used by the web application.
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+import logging
+
 from .rag_api import ask_question
 from ..indexing.indexer import sync_documents
+
+
+logger = logging.getLogger(
+    "uvicorn"
+)
 
 
 app = FastAPI(
     title="LKB Chatbot API"
 )
+
+
+@app.on_event("startup")
+async def startup_event() -> None:
+
+    logger.info(
+        "=================================="
+    )
+
+    logger.info(
+        "[INFO] LKB AI Hub Chatbot Started"
+    )
+
+    logger.info(
+        "[INFO] Chatbot running on port 8000"
+    )
+
+    logger.info(
+        "[INFO] API documentation available at http://localhost:8000/docs"
+    )
+
+    logger.info(
+        "=================================="
+    )
 
 
 class QuestionRequest(BaseModel):

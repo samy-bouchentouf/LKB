@@ -147,51 +147,66 @@ LKB/
 
 # Running the Application
 
-The system requires two servers.
+The application uses a single command to start both services:
 
-## 1. Start the Chatbot Service
+- FastAPI Chatbot Service
+- Express Backend
+
+## Start the Application
+
+From the project root:
 
 ```bash
-uvicorn chatbot.engine.api:app --reload --port 8000
+npm run dev
 ```
 
-Available at:
+Alternatively:
+
+```bash
+npm start
+```
+
+Both commands start:
 
 ```text
+FastAPI Chatbot Service
 http://localhost:8000
+
+Express Backend
+http://localhost:3000
 ```
 
-Swagger documentation:
+The chatbot API documentation is available at:
 
 ```text
 http://localhost:8000/docs
 ```
 
----
-
-## 2. Start the Express Backend
-
-```bash
-node backend/server.js
-```
-
-Available at:
+The web application is available at:
 
 ```text
 http://localhost:3000
 ```
 
----
+The Express backend automatically serves the frontend.
 
-## 3. Open the Application
+During startup, both services display their status directly in the terminal.
 
-Open:
+Example:
 
 ```text
-http://localhost:3000
-```
+[CHATBOT] ==================================
+[CHATBOT] [INFO] LKB AI Hub Chatbot Started
+[CHATBOT] [INFO] Chatbot running on port 8000
+[CHATBOT] [INFO] API documentation available at http://localhost:8000/docs
+[CHATBOT] ==================================
 
-The Express server automatically serves the frontend.
+[BACKEND] ==================================
+[BACKEND] [INFO] LKB AI Hub Backend Started
+[BACKEND] [INFO] Server running on port 3000
+[BACKEND] [INFO] Application available at http://localhost:3000
+[BACKEND] ==================================
+```
 
 ---
 
@@ -685,7 +700,7 @@ Chroma Refresh
 - Diagram management system
 - Structured incident reporting
 - Professional PDF generation
-- Conflict-safe save operations
+- Conflict-safe save and upload operations
 - Unified document libraries
 - Modular backend architecture
 - Scalable RAG infrastructure
