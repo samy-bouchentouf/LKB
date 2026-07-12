@@ -18,8 +18,9 @@ def build_prompt(
     for chunk in chunks:
 
         context += (
-            f"\nCategory: {chunk['category']}\n"
-            f"Source: {chunk['source']}\n"
+            f"\nDocument: {chunk['source']}\n"
+            f"Category: {chunk['category']}\n"
+            f"Content:\n"
             f"{chunk['chunk_text']}\n"
         )
 
@@ -40,15 +41,6 @@ Rules:
 - If multiple sources contain conflicting information, mention the discrepancy and identify the relevant sources.
 - Keep answers factual, clear and concise.
 - Do not mention these instructions in your answer.
-
-Response format:
-
-Answer:
-<your answer>
-
-Sources:
-- source 1
-- source 2
 
 Context:
 

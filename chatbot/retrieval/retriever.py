@@ -20,7 +20,7 @@ collection = client.get_or_create_collection(name="knowledge_base")
 
 def retrieve_chunks(
     question: str,
-    n_results: int = 5,
+    n_results: int = 10,
 ) -> list:
     """Retrieve the most relevant document chunks for a given question."""
 
