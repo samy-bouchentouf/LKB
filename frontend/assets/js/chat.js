@@ -199,6 +199,13 @@ function displayAssistantMessage(
 
     if (sources.length > 0) {
 
+        const categoryLabels = {
+            publications: "Publications",
+            components: "Components",
+            incidents: "Incidents",
+            diagrams: "Diagrams"
+        };
+
         sourcesHtml = `
             <div class="mt-4 pt-4 border-t border-stone-200">
 
@@ -208,11 +215,19 @@ function displayAssistantMessage(
 
                 <div class="flex flex-wrap gap-2">
 
-                    ${sources.map(source => `
-                        <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">
-                            ${source.source}
-                        </span>
-                    `).join("")}
+                    ${sources.map(source => {
+
+                        const category =
+                            categoryLabels[source.category]
+                            || source.category;
+
+                        return `
+                            <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">
+                                [${category}] ${source.source}
+                            </span>
+                        `;
+
+                    }).join("")}
 
                 </div>
 
