@@ -63,6 +63,164 @@ backend/
 └── server.js
 ```
 
+## Controllers
+
+### chat.controller.js
+
+```text
+Chat controller.
+
+Handles chatbot requests and returns generated answers to the frontend.
+```
+
+### components.controller.js
+
+```text
+Components controller.
+
+Handles component requests and returns component data to the frontend.
+```
+
+### diagrams.controller.js
+
+```text
+Diagrams controller.
+
+Handles diagram requests and returns diagram data to the frontend.
+```
+
+### home.controller.js
+
+```text
+Home controller.
+
+Handles home page requests and returns knowledge base statistics.
+```
+
+### incidents.controller.js
+
+```text
+Incidents controller.
+
+Handles incident requests and returns incident data to the frontend.
+```
+
+### publications.controller.js
+
+```text
+Publications controller.
+
+Handles publication requests and returns publication data to the frontend.
+```
+
+## Routes
+
+### chat.routes.js
+
+```text
+Chat routes.
+
+Defines API endpoints used to interact with the chatbot.
+```
+
+### components.routes.js
+
+```text
+Components routes.
+
+Defines API endpoints used to manage technical documentation.
+```
+
+### diagrams.routes.js
+
+```text
+Diagrams routes.
+
+Defines API endpoints used to manage experiment diagrams.
+```
+
+### home.routes.js
+
+```text
+Home routes.
+
+Defines API endpoints used to retrieve home page information.
+```
+
+### incidents.routes.js
+
+```text
+Incidents routes.
+
+Defines API endpoints used to manage incident reports.
+```
+
+### publications.routes.js
+
+```text
+Publications routes.
+
+Defines API endpoints used to manage scientific publications.
+```
+
+## Services
+
+### chat.service.js
+
+```text
+Chat service.
+
+Communicates with the FastAPI chatbot service and retrieves generated answers.
+```
+
+### components.service.js
+
+```text
+Components service.
+
+Handles component retrieval and filesystem operations.
+```
+
+### diagrams.service.js
+
+```text
+Diagrams service.
+
+Handles diagram retrieval, persistence and filesystem operations.
+```
+
+### home.service.js
+
+```text
+Home service.
+
+Computes knowledge base statistics displayed on the home page.
+```
+
+### incidents.service.js
+
+```text
+Incidents service.
+
+Handles incident retrieval, persistence and filesystem operations.
+```
+
+### publications.service.js
+
+```text
+Publications service.
+
+Handles publication retrieval and filesystem operations.
+```
+
+### sync.service.js
+
+```text
+Synchronization service.
+
+Updates the chatbot knowledge base after document additions or deletions.
+```
+
 ## app.js
 
 ```text
@@ -77,146 +235,6 @@ Registers middleware, routes and shared application settings.
 Application entry point.
 
 Starts the Express server and exposes the LKB API.
-```
-
-### Controllers
-
-#### chat.controller.js
-
-```text
-Chat controller.
-
-Handles chatbot requests and returns generated answers to the frontend.
-```
-
-#### components.controller.js
-
-```text
-[DOCSTRING]
-```
-
-#### diagrams.controller.js
-
-```text
-[DOCSTRING]
-```
-
-#### home.controller.js
-
-```text
-Home controller.
-
-Handles home page requests and returns knowledge base statistics.
-```
-
-#### incidents.controller.js
-
-```text
-[DOCSTRING]
-```
-
-#### publications.controller.js
-
-```text
-Publications controller. 
-
-Handles publication requests and returns publication data to the frontend.
-```
-
-### Routes
-
-#### chat.routes.js
-
-```text
-Chat routes.
-
-Defines API endpoints used to interact with the chatbot.
-```
-
-#### components.routes.js
-
-```text
-[DOCSTRING]
-```
-
-#### diagrams.routes.js
-
-```text
-[DOCSTRING]
-```
-
-#### home.routes.js
-
-```text
-Home routes.
-
-Defines API endpoints used to retrieve home page information.
-```
-
-#### incidents.routes.js
-
-```text
-[DOCSTRING]
-```
-
-#### publications.routes.js
-
-```text
-Publications routes.
-
-Defines API endpoints used to manage scientific publications.
-```
-
-### Services
-
-#### chat.service.js
-
-```text
-Chat service.
-
-Communicates with the FastAPI chatbot service and retrieves generated answers.
-```
-
-#### components.service.js
-
-```text
-[DOCSTRING]
-```
-
-#### diagrams.service.js
-
-```text
-[DOCSTRING]
-```
-
-#### home.service.js
-
-```text
-Home service.
-
-Retrieves knowledge base statistics from the document repositories.
-```
-
-#### incidents.service.js
-
-```text
-[DOCSTRING]
-```
-
-#### publications.service.js
-
-```text
-Publications service.
-
-Handles publication retrieval and filesystem operations.
-```
-
-#### sync.service.js
-
-```text
-Synchronization service.
-
-Updates the chatbot knowledge base after document additions or deletions.
 ```
 
 ---
@@ -344,25 +362,25 @@ documents/
 └── publications/
 ```
 
-### components/
+## components/
 
 ```text
 Technical documentation for laboratory hardware and equipment.
 ```
 
-### diagrams/
+## diagrams/
 
 ```text
 Experimental and technical diagrams used throughout the laboratory.
 ```
 
-### incidents/
+## incidents/
 
 ```text
 Incident reports and generated incident documentation.
 ```
 
-### publications/
+## publications/
 
 ```text
 Scientific papers, publications and research articles.
@@ -379,14 +397,15 @@ frontend/
 │   │
 │   ├── css/
 │   │   └── main.css
-│   │   
-|   ├── images/  
+│   │
+│   ├── images/
 │   │
 │   └── js/
 │       ├── chat.js
 │       ├── diagrams.js
 │       ├── documents.js
 │       ├── home.js
+│       ├── incidents.js
 │       ├── main.js
 │       └── navigation.js
 │
@@ -401,50 +420,22 @@ frontend/
 └── index.html
 ```
 
-## index.html
+## Assets
+
+### CSS
+
+#### main.css
 
 ```text
-Main application shell.
+Global stylesheet.
 
-Hosts the navigation menu and dynamically loaded page content.
+Defines the shared visual appearance of the LKB platform.
 ```
 
-### Pages
-
-#### chat.html
+### Images
 
 ```text
-Chatbot user interface.
-```
-
-#### components.html
-
-```text
-Component management interface.
-```
-
-#### diagrams.html
-
-```text
-Diagram management and visualization interface.
-```
-
-#### home.html
-
-```text
-Application dashboard and quick access page.
-```
-
-#### incidents.html
-
-```text
-Incident report management interface.
-```
-
-#### publications.html
-
-```text
-Scientific publication management interface.
+Application images and visual assets.
 ```
 
 ### JavaScript
@@ -454,7 +445,7 @@ Scientific publication management interface.
 ```text
 Chat module.
 
-Handles user interactions with the chatbot interface.
+Handles user interactions with the LKB chatbot.
 ```
 
 #### diagrams.js
@@ -481,12 +472,20 @@ Home module.
 Handles home page interactions and dashboard statistics.
 ```
 
+#### incidents.js
+
+```text
+Incident management module.
+
+Handles incident report creation and library initialization.
+```
+
 #### main.js
 
 ```text
-Application bootstrap.
+Frontend initialization module.
 
-Initializes the frontend application.
+Loads and initializes the application.
 ```
 
 #### navigation.js
@@ -497,16 +496,62 @@ Navigation module.
 Handles page loading and navigation throughout the application.
 ```
 
-### Stylesheets
+## Pages
 
-#### main.css
-
-```text
-Global application styles.
-```
-
-#### images
+### chat.html
 
 ```text
-Application images and visual assets.
+Chat page.
+
+Provides the interface used to interact with the LKB documentation chatbot.
 ```
+
+### components.html
+
+```text
+Components page.
+
+Displays technical documentation and laboratory component information.
+```
+
+### diagrams.html
+
+```text
+Diagrams page.
+
+Provides tools for creating and managing experiment diagrams.
+```
+
+### home.html
+
+```text
+Home page.
+
+Provides an overview of the LKB platform and laboratory resources.
+```
+
+### incidents.html
+
+```text
+Incidents page.
+
+Displays and manages troubleshooting reports and incident documentation.
+```
+
+### publications.html
+
+```text
+Publications page.
+
+Displays and manages scientific publications stored in the knowledge base.
+```
+
+## index.html
+
+```text
+Frontend entry point.
+
+Defines the global application layout and loads shared frontend resources.
+```
+
+---

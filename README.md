@@ -124,23 +124,20 @@ LKB/
 ├── backend/
 │
 ├── chatbot/
-│   ├── engine/
-│   ├── indexing/
-│   └── retrieval/
-│
-├── frontend/
-│   ├── assets/
-│   ├── pages/
-│   └── templates/
 │
 ├── documents/
-│   ├── publications/
 │   ├── components/
 │   ├── diagrams/
-│   └── incidents/
+│   ├── incidents/
+│   └── publications/
 │
+├── frontend/
+│
+├── .env
+├── package.json
 ├── requirements.txt
-└── package.json
+├── README.md
+└── ARCHITECTURE.md
 ```
 
 ---
@@ -269,13 +266,15 @@ Questions are processed through:
 ```text
 Question
 ↓
-Embedding Generation
+Mistral Embedding Generation
 ↓
-Chroma Retrieval
+Chroma Similarity Search
+↓
+Top 5 Relevant Chunks Retrieval
 ↓
 Context Construction
 ↓
-Mistral
+Mistral Large
 ↓
 Answer
 ```
@@ -609,7 +608,29 @@ Replaces the existing PDF report.
 
 The chatbot uses a persistent Chroma database.
 
-Documents are indexed only when the knowledge base changes.
+The knowledge base is automatically synchronized when the chatbot starts and whenever document modifications require an update.
+
+Synchronization is hash-based and incremental.
+
+Each document receives a SHA256 content hash.
+
+During synchronization:
+
+```text
+Documents on Disk
+↓
+SHA256 Hash Comparison
+↓
+Documents Added to Chroma
+
+or
+
+Documents Removed from Disk
+↓
+Removed from Chroma
+```
+
+Only documents whose content is not already present in the vector database are indexed.
 
 ## Synchronization Required
 
@@ -664,13 +685,13 @@ Express Backend
 ↓
 POST /ask
 ↓
-Question Processing
+Mistral Embedding Generation
 ↓
-Vector Retrieval
+Chroma Similarity Search
 ↓
 Context Construction
 ↓
-Mistral
+Mistral Large
 ↓
 Response
 ```
@@ -684,9 +705,11 @@ Express Backend
 ↓
 POST /sync
 ↓
-Knowledge Base Update
+SHA256 Hash Comparison
 ↓
-Chroma Refresh
+Document Indexing or Removal
+↓
+Chroma Update
 ```
 
 ---
@@ -696,7 +719,7 @@ Chroma Refresh
 - Centralized laboratory knowledge
 - AI-assisted information retrieval
 - Persistent vector database
-- Automatic indexing
+- Incremental hash-based indexing
 - Diagram management system
 - Structured incident reporting
 - Professional PDF generation
