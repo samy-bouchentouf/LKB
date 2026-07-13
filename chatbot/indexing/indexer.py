@@ -7,6 +7,7 @@ data used by the retrieval system.
 """
 
 import json
+import logging
 
 from pathlib import Path
 from chromadb import PersistentClient
@@ -32,6 +33,23 @@ client = PersistentClient(path=str(CHROMA_PATH))
 collection = client.get_or_create_collection(
     name="knowledge_base"
 )
+logger = logging.getLogger(__name__)
+
+
+def safe_console_text(
+    text: str,
+) -> str:
+    """
+    Convert text to a format that can always be
+    displayed by the Windows console.
+    """
+
+    return text.encode(
+        "cp1252",
+        errors="replace",
+    ).decode(
+        "cp1252"
+    )
 
 
 def load_chunks_store() -> list:
@@ -40,12 +58,19 @@ def load_chunks_store() -> list:
     if not CHUNKS_PATH.exists():
         return []
 
-    with open(
-        CHUNKS_PATH,
-        "r",
-        encoding="utf-8",
-    ) as file:
-        return json.load(file)
+    try:
+
+        with open(
+            CHUNKS_PATH,
+            "r",
+            encoding="utf-8",
+        ) as file:
+
+            return json.load(file)
+
+    except json.JSONDecodeError:
+
+        return []
 
 
 def save_chunks_store(
@@ -63,6 +88,7 @@ def save_chunks_store(
         "w",
         encoding="utf-8",
     ) as file:
+
         json.dump(
             chunks,
             file,
@@ -71,70 +97,10 @@ def save_chunks_store(
         )
 
 
-def index_document(
-    file_path: str,
-) -> None:
+def get_disk_documents() -> dict:
     """
-    Index a document and store its chunks
-    for semantic and lexical retrieval.
-    """
-
-    text = load_document(file_path)
-
-    chunks = create_chunks(text)
-
-    embeddings = create_embeddings(chunks)
-
-    source = Path(file_path).name
-    category = Path(file_path).parent.name
-
-    document_hash = compute_file_hash(
-        file_path
-    )
-
-    ids = []
-    metadatas = []
-
-    stored_chunks = load_chunks_store()
-
-    for index, chunk in enumerate(chunks):
-
-        ids.append(
-            f"{document_hash}_{index}"
-        )
-
-        metadata = {
-            "source": source,
-            "category": category,
-            "chunk_index": index,
-            "document_hash": document_hash,
-        }
-
-        metadatas.append(metadata)
-
-        stored_chunks.append(
-            {
-                **metadata,
-                "chunk_text": chunk,
-            }
-        )
-
-    collection.add(
-        ids=ids,
-        documents=chunks,
-        embeddings=embeddings,
-        metadatas=metadatas,
-    )
-
-    save_chunks_store(
-        stored_chunks
-    )
-
-
-def sync_documents() -> bool:
-    """
-    Synchronize indexed data with the documents
-    directory on disk.
+    Return all supported documents
+    currently present on disk.
     """
 
     documents_root = Path("documents")
@@ -146,9 +112,7 @@ def sync_documents() -> bool:
         ".md",
     }
 
-    # Build a mapping of document hashes to file paths
-    # for all supported documents currently on disk.
-    disk_documents = {}
+    documents = {}
 
     for file_path in documents_root.rglob("*"):
 
@@ -165,17 +129,20 @@ def sync_documents() -> bool:
             str(file_path)
         )
 
-        disk_documents[
+        documents[
             document_hash
         ] = str(file_path)
 
-    disk_hashes = set(
-        disk_documents.keys()
-    )
+    return documents
 
-    # Build a mapping of document hashes currently
-    # indexed in Chroma.
-    chroma_documents = {}
+
+def get_chroma_documents() -> dict:
+    """
+    Return all documents currently
+    indexed in Chroma.
+    """
+
+    documents = {}
 
     stored_metadatas = collection.get(
         include=["metadatas"]
@@ -191,82 +158,289 @@ def sync_documents() -> bool:
 
         if (
             document_hash
-            not in chroma_documents
+            not in documents
         ):
-            chroma_documents[
+            documents[
                 document_hash
             ] = (
                 f"{metadata['category']}/"
                 f"{metadata['source']}"
             )
 
+    return documents
+
+
+def get_chunks_store_documents(
+    stored_chunks: list,
+) -> dict:
+    """
+    Return all documents currently
+    stored in chunks.json.
+    """
+
+    documents = {}
+
+    for chunk in stored_chunks:
+
+        document_hash = chunk[
+            "document_hash"
+        ]
+
+        if (
+            document_hash
+            not in documents
+        ):
+            documents[
+                document_hash
+            ] = (
+                f"{chunk['category']}/"
+                f"{chunk['source']}"
+            )
+
+    return documents
+
+
+def add_document_to_chroma(
+    file_path: str,
+    document_hash: str,
+) -> None:
+    """Add a document to Chroma."""
+
+    text = load_document(file_path)
+
+    chunks = create_chunks(text)
+
+    embeddings = create_embeddings(
+        chunks
+    )
+
+    source = Path(file_path).name
+    category = Path(file_path).parent.name
+
+    ids = []
+    metadatas = []
+
+    for index, chunk in enumerate(chunks):
+
+        ids.append(
+            f"{document_hash}_{index}"
+        )
+
+        metadatas.append(
+            {
+                "source": source,
+                "category": category,
+                "chunk_index": index,
+                "document_hash": document_hash,
+            }
+        )
+
+    collection.add(
+        ids=ids,
+        documents=chunks,
+        embeddings=embeddings,
+        metadatas=metadatas,
+    )
+
+
+def remove_document_from_chroma(
+    document_hash: str,
+) -> None:
+    """Remove a document from Chroma."""
+
+    collection.delete(
+        where={
+            "document_hash": document_hash
+        }
+    )
+
+
+def add_document_to_chunks_store(
+    file_path: str,
+    document_hash: str,
+    stored_chunks: list,
+) -> None:
+    """Add a document to the chunk store."""
+
+    text = load_document(file_path)
+
+    chunks = create_chunks(text)
+
+    source = Path(file_path).name
+    category = Path(file_path).parent.name
+
+    for index, chunk in enumerate(chunks):
+
+        stored_chunks.append(
+            {
+                "source": source,
+                "category": category,
+                "chunk_index": index,
+                "document_hash": document_hash,
+                "chunk_text": chunk,
+            }
+        )
+
+
+def remove_document_from_chunks_store(
+    document_hashes: set,
+    stored_chunks: list,
+) -> list:
+    """Remove documents from the chunk store."""
+
+    return [
+        chunk
+        for chunk in stored_chunks
+        if chunk["document_hash"]
+        not in document_hashes
+    ]
+
+
+def sync_documents() -> bool:
+    """
+    Synchronize indexed data with the documents
+    directory on disk.
+    """
+
+    disk_documents = (
+        get_disk_documents()
+    )
+
+    chroma_documents = (
+        get_chroma_documents()
+    )
+
+    stored_chunks = (
+        load_chunks_store()
+    )
+
+    json_documents = (
+        get_chunks_store_documents(
+            stored_chunks
+        )
+    )
+
+    disk_hashes = set(
+        disk_documents.keys()
+    )
+
     chroma_hashes = set(
         chroma_documents.keys()
     )
 
-    hashes_to_add = (
+    json_hashes = set(
+        json_documents.keys()
+    )
+
+    chroma_hashes_to_add = (
         disk_hashes - chroma_hashes
     )
 
-    hashes_to_remove = (
+    chroma_hashes_to_remove = (
         chroma_hashes - disk_hashes
     )
 
-    # Index documents that are present on disk
-    # but missing from the retrieval data stores.
-    for document_hash in hashes_to_add:
+    json_hashes_to_add = (
+        disk_hashes - json_hashes
+    )
 
-        file_path = disk_documents[
-            document_hash
-        ]
+    json_hashes_to_remove = (
+        json_hashes - disk_hashes
+    )
 
-        print(
-            f"Indexing document: "
-            f"{file_path}"
+    # Synchronize Chroma.
+
+    if chroma_hashes_to_add:
+
+        for document_hash in chroma_hashes_to_add:
+
+            file_path = disk_documents[
+                document_hash
+            ]
+
+            logger.info(
+                f"Indexing in Chroma: "
+                f"{safe_console_text(file_path)}"
+            )
+
+            add_document_to_chroma(
+                file_path,
+                document_hash,
+            )
+
+    if chroma_hashes_to_remove:
+
+        for document_hash in chroma_hashes_to_remove:
+
+            logger.info(
+                f"Removing from Chroma: "
+                f"{safe_console_text(chroma_documents[document_hash])}"
+            )
+
+            remove_document_from_chroma(
+                document_hash
+            )
+
+    # Synchronize chunks.json.
+
+    if json_hashes_to_add:
+
+        for document_hash in json_hashes_to_add:
+
+            file_path = disk_documents[
+                document_hash
+            ]
+
+            logger.info(
+                f"Indexing in chunks.json: "
+                f"{safe_console_text(file_path)}"
+            )
+
+            add_document_to_chunks_store(
+                file_path,
+                document_hash,
+                stored_chunks,
+            )
+
+    if json_hashes_to_remove:
+
+        for document_hash in json_hashes_to_remove:
+
+            logger.info(
+                f"Removing from chunks.json: "
+                f"{safe_console_text(json_documents[document_hash])}"
+            )
+
+        stored_chunks = (
+            remove_document_from_chunks_store(
+                json_hashes_to_remove,
+                stored_chunks,
+            )
         )
 
-        index_document(file_path)
-
-    # Remove chunks belonging to deleted documents
-    # from the lexical retrieval store.
-    if hashes_to_remove:
-
-        stored_chunks = load_chunks_store()
-
-        stored_chunks = [
-            chunk
-            for chunk in stored_chunks
-            if chunk["document_hash"]
-            not in hashes_to_remove
-        ]
+    if (
+        json_hashes_to_add
+        or json_hashes_to_remove
+    ):
 
         save_chunks_store(
             stored_chunks
         )
 
-    # Remove deleted documents from Chroma.
-    for document_hash in hashes_to_remove:
-
-        print(
-            f"Removing document: "
-            f"{chroma_documents[document_hash]}"
-        )
-
-        collection.delete(
-            where={
-                "document_hash": document_hash
-            }
-        )
-
-    documents_changed = (
-        bool(hashes_to_add)
-        or bool(hashes_to_remove)
-    )
-
-    # Rebuild the BM25 index whenever the
-    # chunk store has been modified.
-    if documents_changed:
+    if (
+        json_hashes_to_add
+        or json_hashes_to_remove
+    ):
 
         reload_bm25_index()
+        
+    documents_changed = (
+
+        bool(chroma_hashes_to_add)
+        or bool(chroma_hashes_to_remove)
+        or bool(json_hashes_to_add)
+        or bool(json_hashes_to_remove)
+
+    )
 
     return documents_changed

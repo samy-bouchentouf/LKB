@@ -112,6 +112,3 @@ def lexical_search(
         )
 
     return search_results
-
-
-load_bm25_index()

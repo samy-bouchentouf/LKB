@@ -1,6 +1,9 @@
 node_modules/
-#Chroma_db est volumineux et se génère localement par l'utilisateur via ingest.py. Il n'est pas nécessaire de le versionner.
-chroma_db/   
+
+# Chatbot retrieval data
+chatbot/data/chroma_db/
+chatbot/data/chunks.json
+
 .env
 .vscode/
 
