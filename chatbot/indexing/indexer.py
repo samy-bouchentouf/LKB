@@ -358,7 +358,7 @@ def sync_documents() -> bool:
                 document_hash
             ]
 
-            logger.info(
+            logger.warning(
                 f"Indexing in Chroma: "
                 f"{safe_console_text(file_path)}"
             )
@@ -372,7 +372,7 @@ def sync_documents() -> bool:
 
         for document_hash in chroma_hashes_to_remove:
 
-            logger.info(
+            logger.warning(
                 f"Removing from Chroma: "
                 f"{safe_console_text(chroma_documents[document_hash])}"
             )
@@ -391,7 +391,7 @@ def sync_documents() -> bool:
                 document_hash
             ]
 
-            logger.info(
+            logger.warning(
                 f"Indexing in chunks.json: "
                 f"{safe_console_text(file_path)}"
             )
@@ -406,7 +406,7 @@ def sync_documents() -> bool:
 
         for document_hash in json_hashes_to_remove:
 
-            logger.info(
+            logger.warning(
                 f"Removing from chunks.json: "
                 f"{safe_console_text(json_documents[document_hash])}"
             )
