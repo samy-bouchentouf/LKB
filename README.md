@@ -149,20 +149,15 @@ LKB/
 
 # Running the Application
 
-The application uses a single command to start both services:
-
-- FastAPI Chatbot Service
-- Express Backend
+The application uses a single command to start both services.
 
 ## Start the Application
-
-From the project root:
 
 ```bash
 npm run dev
 ```
 
-Alternatively:
+or:
 
 ```bash
 npm start
@@ -188,26 +183,6 @@ The web application is available at:
 
 ```text
 http://localhost:3000
-```
-
-The Express backend automatically serves the frontend.
-
-During startup, both services display their status directly in the terminal.
-
-Example:
-
-```text
-[CHATBOT] ==================================
-[CHATBOT] [INFO] LKB AI Hub Chatbot Started
-[CHATBOT] [INFO] Chatbot running on port 8000
-[CHATBOT] [INFO] API documentation available at http://localhost:8000/docs
-[CHATBOT] ==================================
-
-[BACKEND] ==================================
-[BACKEND] [INFO] LKB AI Hub Backend Started
-[BACKEND] [INFO] Server running on port 3000
-[BACKEND] [INFO] Application available at http://localhost:3000
-[BACKEND] ==================================
 ```
 
 ---
@@ -244,11 +219,9 @@ Diagrams
 Incidents
 ```
 
-For diagrams, only user-visible PNG files are counted.
+For diagrams, only PNG preview files are counted.
 
 ## Quick Question
-
-Questions entered from the Home page automatically redirect users to the Chat page.
 
 ```text
 Home
@@ -280,13 +253,8 @@ BM25 Search (Top 50)
 Candidate Union
 ↓
 Hybrid Score Computation
-
-0.5 × Vector Score
-+
-0.5 × BM25 Score
-
 ↓
-Top 10 Chunks
+Top 15 Chunks
 ↓
 Context Construction
 ↓
@@ -300,24 +268,22 @@ Responses include:
 - Generated answer
 - Supporting source documents
 
-The assistant can use information from:
+The assistant can use information extracted from:
 
 - Publications
 - Components
-- Incident reports
-- Diagram descriptions
-
-stored inside the knowledge base.
+- Incidents
+- Diagrams
 
 ---
 
 # Hybrid Retrieval
 
-The chatbot uses a hybrid retrieval strategy to combine the strengths of semantic search and keyword search.
+The chatbot combines semantic and lexical retrieval.
 
 ## Semantic Retrieval
 
-Semantic retrieval uses:
+Uses:
 
 ```text
 Mistral Embeddings
@@ -325,23 +291,21 @@ Mistral Embeddings
 Chroma Vector Database
 ```
 
-This component is effective for conceptual questions such as:
+Effective for conceptual questions:
 
 ```text
 What is quantum Fisher information?
 ```
 
-even when the wording differs from the original documents.
-
 ## Lexical Retrieval
 
-Lexical retrieval uses:
+Uses:
 
 ```text
 BM25
 ```
 
-This component is effective for:
+Effective for:
 
 ```text
 Author names
@@ -349,6 +313,8 @@ Product references
 Model numbers
 Acronyms
 Specific terminology
+Incident titles
+Diagram names
 ```
 
 Examples:
@@ -358,11 +324,13 @@ Karuseichyk
 Koheras ADJUSTIK
 PDA50B2
 NIDAQ
+Signal loss
+Laser Lock System
 ```
 
 ## Hybrid Ranking
 
-Both retrieval strategies independently retrieve candidate chunks.
+Both retrieval systems independently retrieve candidate chunks.
 
 ```text
 Vector Search
@@ -374,7 +342,23 @@ BM25 Search
 Top 50
 ```
 
-Candidate chunks are merged and scored using:
+Candidate chunks are merged.
+
+### Retrieval Scoring
+
+Documents found by only one retrieval system receive half of the maximum possible score.
+
+```text
+Vector Only
+↓
+0.5 × Vector Score
+
+BM25 Only
+↓
+0.5 × BM25 Score
+```
+
+Documents found by both retrieval systems receive:
 
 ```text
 Hybrid Score
@@ -384,7 +368,9 @@ Hybrid Score
 0.5 × BM25 Score
 ```
 
-The highest-ranked chunks are then used to build the final context provided to the language model.
+Scores are normalized independently for vector retrieval and BM25 retrieval before hybrid scoring.
+
+The 15 highest-ranked chunks are used to build the final context.
 
 ---
 
@@ -484,8 +470,6 @@ Color
 Position
 ```
 
-Components can be freely positioned and moved inside the canvas.
-
 ## Connections
 
 Each connection stores:
@@ -496,15 +480,6 @@ Color
 Source Component
 Target Component
 ```
-
-Users can:
-
-- Create connections
-- Rename connections
-- Delete connections
-- Edit connection attributes
-
-Updates are automatically reflected throughout the diagram.
 
 ## Diagram Persistence
 
@@ -525,9 +500,41 @@ Colors
 Names
 ```
 
-The PNG representation is intended for visualization.
+The PNG representation is used for visualization.
 
-Only PNG files are displayed in the diagram library.
+Only PNG files are exposed through the diagram library.
+
+## Knowledge Base Integration
+
+Diagrams are automatically indexed by the chatbot.
+
+The JSON representation of each diagram is transformed into a searchable textual description containing:
+
+- Diagram name
+- Component list
+- Connection list
+- Diagram summary
+
+Example:
+
+```text
+Diagram name: Laser Lock System
+
+Components:
+- Laser
+- Photodiode
+- PID Controller
+
+Connections:
+- Connection "Feedback Loop" between Laser and Photodiode
+
+Summary:
+The diagram "Laser Lock System" contains 3 components.
+Components present: Laser, Photodiode, PID Controller.
+The diagram contains 1 connection.
+```
+
+Each diagram is indexed as a single chunk to preserve its structure during retrieval.
 
 ## Diagram Library
 
@@ -582,6 +589,20 @@ Generated PDFs include:
 - Professional formatting
 - Dynamic content sizing
 
+## Knowledge Base Integration
+
+Incident reports are automatically indexed and become searchable by the chatbot.
+
+Users can ask questions such as:
+
+```text
+What was the root cause of the Signal loss incident?
+
+How was the Signal loss incident resolved?
+
+What incidents mention a lamp?
+```
+
 ---
 
 # File Conflict Management
@@ -590,110 +611,58 @@ The platform prevents accidental data loss caused by duplicate file names.
 
 Whenever a conflict is detected, a dedicated modal is displayed.
 
----
-
 ## Publications & Components
 
-File name conflicts are detected during both:
+Conflicts are detected during:
 
-- Upload operations
-- Rename operations
+- Upload
+- Rename
 
 ### Upload Conflict
 
 ```text
-File Conflict
-↓
 Cancel
 Rename
 Overwrite
 ```
-
-#### Cancel
-
-Aborts the upload.
-
-#### Rename
-
-Uploads the document under an automatically generated temporary name and immediately opens the Rename workflow, allowing the user to choose a final name.
-
-#### Overwrite
-
-Replaces the existing document with the uploaded version.
 
 ### Rename Conflict
 
 ```text
-File Conflict
-↓
 Cancel
 Rename
 ```
 
-Existing files cannot be overwritten through a rename operation.
-
----
+Overwriting through rename is not permitted.
 
 ## Diagrams
 
-When saving an existing diagram:
+### Save Conflict
 
 ```text
-Save Diagram
-↓
-Name Already Exists
-↓
 Cancel
 Rename
 Overwrite
 ```
 
-### Cancel
-
-Aborts the save.
-
-### Rename
-
-Allows another diagram name to be specified.
-
-### Overwrite
-
-Replaces both:
+Overwrite replaces:
 
 ```text
 diagram-name.png
 diagram-name.json
 ```
 
-with the new version.
-
----
-
 ## Incidents
 
-When saving an existing incident report:
+### Save Conflict
 
 ```text
-Save Incident
-↓
-Title Already Exists
-↓
 Cancel
 Rename
 Overwrite
 ```
 
-### Cancel
-
-Aborts the save.
-
-### Rename
-
-Allows another title to be specified.
-
-### Overwrite
-
-Replaces the existing PDF report.
+Overwrite replaces the existing PDF report.
 
 ---
 
@@ -714,40 +683,36 @@ Chroma
 → Semantic Retrieval
 
 chunks.json
-→ BM25 Lexical Retrieval
+→ BM25 Retrieval
 ```
 
-Synchronization is hash-based and incremental.
+Synchronization is incremental and hash-based.
 
-Each document receives a SHA256 content hash.
-
-During synchronization:
+Every indexed document receives a SHA256 content hash.
 
 ```text
-Documents on Disk
+Document
 ↓
-SHA256 Hash Comparison
+SHA256 Hash
 ↓
-Documents Added
-
-or
-
-Documents Removed
+Comparison With Indexed Documents
 ↓
-Indexed Data Removed
+Add / Remove Operations
 ```
 
-Only documents whose content is not already present in the retrieval stores are indexed.
+Only documents whose content is not already indexed are processed.
 
-Whenever the indexed content changes:
+Whenever indexed content changes:
 
 ```text
 chunks.json Updated
 ↓
-BM25 Index Rebuilt
+BM25 Rebuilt
 ```
 
-## Synchronization Required
+## Synchronization Triggers
+
+The following actions automatically trigger synchronization:
 
 ```text
 Upload Publication
@@ -755,17 +720,21 @@ Delete Publication
 
 Upload Component
 Delete Component
+
+Save Diagram
+Delete Diagram
+
+Create Incident
+Delete Incident
 ```
 
-These actions trigger:
+Synchronization is performed through:
 
 ```text
 POST /sync
 ```
 
-towards the chatbot service.
-
-## Synchronization Not Required
+## No Synchronization Required
 
 ```text
 Rename Publication
@@ -782,11 +751,25 @@ because document content remains unchanged.
 
 The chatbot is implemented as an independent FastAPI service.
 
-Available endpoints:
+Endpoints:
 
 ```text
 POST /ask
 POST /sync
+```
+
+## Startup
+
+At startup:
+
+```text
+FastAPI Start
+↓
+Load chunks.json
+↓
+Build BM25 Index
+↓
+Ready
 ```
 
 ## Question Answering Flow
@@ -822,7 +805,7 @@ Express Backend
 ↓
 POST /sync
 ↓
-SHA256 Hash Comparison
+SHA256 Comparison
 ↓
 Index Update
 
@@ -830,7 +813,7 @@ Index Update
 └── chunks.json
 
 ↓
-BM25 Reload
+BM25 Rebuild
 ```
 
 ---
@@ -840,10 +823,11 @@ BM25 Reload
 - Centralized laboratory knowledge
 - Hybrid semantic and lexical retrieval
 - AI-assisted information retrieval
+- Automatic diagram indexing
+- Automatic incident indexing
 - Persistent vector database
-- Persistent lexical chunk store
+- Persistent BM25 index
 - Incremental hash-based indexing
-- BM25-enhanced retrieval
 - Diagram management system
 - Structured incident reporting
 - Professional PDF generation
