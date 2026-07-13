@@ -389,3 +389,107 @@ body {
             translateY(0);
     }
 }
+
+/* ---------- Chat Markdown ---------- */
+
+.chat-answer p {
+
+    margin-bottom: 1rem;
+
+    line-height: 1.7;
+}
+
+.chat-answer h1,
+.chat-answer h2,
+.chat-answer h3 {
+
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+
+    font-weight: 700;
+
+    color: #1E3A8A;
+}
+
+.chat-answer ul,
+.chat-answer ol {
+
+    margin-left: 1.5rem;
+
+    margin-bottom: 1rem;
+}
+
+.chat-answer li {
+
+    margin-bottom: 0.25rem;
+}
+
+.chat-answer strong {
+
+    font-weight: 700;
+}
+
+.chat-answer blockquote {
+
+    margin: 1rem 0;
+
+    padding-left: 1rem;
+
+    border-left: 4px solid #CBD5E1;
+
+    color: #52525B;
+}
+
+.chat-answer code {
+
+    background: #F5F5F5;
+
+    border-radius: 0.25rem;
+
+    padding: 0.1rem 0.3rem;
+
+    font-family: monospace;
+}
+
+.chat-answer pre {
+
+    background: #F8FAFC;
+
+    border-radius: 0.5rem;
+
+    padding: 1rem;
+
+    overflow-x: auto;
+
+    margin: 1rem 0;
+}
+
+.chat-answer table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin: 1rem 0;
+
+    border-radius: 0.5rem;
+
+    overflow: hidden;
+}
+
+.chat-answer th,
+.chat-answer td {
+
+    border: 1px solid #E5E7EB;
+
+    padding: 0.4rem;
+}
+
+.chat-answer th {
+
+    background: #EFF6FF;
+
+    color: #1E3A8A;
+
+    font-weight: 700;
+}

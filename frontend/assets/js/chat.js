@@ -159,11 +159,11 @@ function displayUserMessage(message) {
         );
 
     bubble.className =
-        "max-w-3xl ml-auto mb-4 bg-[#2E5CB8] text-white rounded-2xl px-5 py-4";
+        "max-w-5xl ml-auto mb-4 bg-[#2E5CB8] text-white rounded-2xl px-5 py-4";
 
     bubble.innerHTML = `
-        <div class="text-xs uppercase font-semibold opacity-80 mb-2">
-            You
+        <div class="text-xl font-bold mb-3">
+            YOU
         </div>
 
         <div>
@@ -194,6 +194,12 @@ function displayAssistantMessage(
         document.createElement(
             "div"
         );
+
+    bubble.className =
+        "max-w-5xl mr-auto mb-4 bg-white border border-stone-200 rounded-2xl px-5 py-4 shadow-sm";
+
+    const formattedAnswer =
+        marked.parse(answer);
 
     let sourcesHtml = "";
 
@@ -235,16 +241,24 @@ function displayAssistantMessage(
         `;
     }
 
-    bubble.className =
-        "max-w-3xl mr-auto mb-4 bg-white border border-stone-200 rounded-2xl px-5 py-4 shadow-sm";
-
     bubble.innerHTML = `
-        <div class="text-xs uppercase font-semibold text-stone-500 mb-2">
-            Assistant
+        <div class="flex items-center justify-between mb-3">
+
+            <div class="text-xl font-bold text-[#2E5CB8]">
+                LKB BOT
+            </div>
+
+            <button
+                class="copy-button text-2xl text-stone-400 hover:text-[#2E5CB8] transition-colors"
+                title="Copy response"
+            >
+                ⧉
+            </button>
+
         </div>
 
-        <div class="text-stone-700 whitespace-pre-wrap">
-            ${answer}
+        <div class="text-stone-700 chat-answer">
+            ${formattedAnswer}
         </div>
 
         ${sourcesHtml}
@@ -254,7 +268,50 @@ function displayAssistantMessage(
         bubble
     );
 
+    const copyButton =
+        bubble.querySelector(
+            ".copy-button"
+        );
+
+    copyButton.addEventListener(
+        "click",
+        async () => {
+
+            await navigator.clipboard.writeText(
+                answer
+            );
+
+            copyButton.textContent =
+                "✓";
+
+            copyButton.classList.remove(
+                "text-stone-400"
+            );
+
+            copyButton.classList.add(
+                "text-[#2E5CB8]"
+            );
+
+            setTimeout(
+                () => {
+
+                    copyButton.textContent =
+                        "⧉";
+
+                    copyButton.classList.remove(
+                        "text-[#2E5CB8]"
+                    );
+
+                    copyButton.classList.add(
+                        "text-stone-400"
+                    );
+
+                },
+                2000
+            );
+        }
+    );
+
     conversation.scrollTop =
         conversation.scrollHeight;
-
 }
