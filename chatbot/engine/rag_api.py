@@ -10,7 +10,7 @@ and returns the generated answer.
 
 from ..indexing.indexer import sync_documents
 from ..retrieval.hybrid_search import hybrid_search
-from ..retrieval.prompt_builder import build_prompt
+from .prompt_builder import build_prompt
 
 from .llm import generate_answer
 

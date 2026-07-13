@@ -251,6 +251,7 @@ chatbot/
 ├── engine/
 │   ├── api.py
 │   ├── llm.py
+│   ├── prompt_builder.py
 │   └── rag_api.py
 │
 ├── indexing/
@@ -267,7 +268,6 @@ chatbot/
 └── retrieval/
     ├── hybrid_search.py
     ├── lexical_search.py
-    ├── prompt_builder.py
     ├── scorer.py
     └── vector_search.py
 ```
@@ -311,6 +311,16 @@ Language model interface.
 Handles communication with the Mistral LLM
 and generates answers from prompts built
 using retrieved document context.
+```
+
+### prompt_builder.py
+
+```text
+Prompt construction module.
+
+Builds the final prompt sent to the language model
+by combining the user's question with the retrieved
+document context.
 ```
 
 ### rag_api.py
@@ -411,16 +421,6 @@ Lexical search module.
 
 Retrieves the most relevant document chunks
 using BM25 keyword-based search.
-```
-
-### prompt_builder.py
-
-```text
-Prompt construction module.
-
-Builds the final prompt sent to the language model
-by combining the user's question with the retrieved
-document context.
 ```
 
 ### scorer.py
