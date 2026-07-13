@@ -12,6 +12,9 @@ import logging
 
 from .rag_api import ask_question
 from ..indexing.indexer import sync_documents
+from ..retrieval.lexical_search import (
+    reload_bm25_index,
+)
 
 
 logger = logging.getLogger(
@@ -26,6 +29,8 @@ app = FastAPI(
 
 @app.on_event("startup")
 async def startup_event() -> None:
+
+    reload_bm25_index()
 
     logger.info(
         "=================================="
