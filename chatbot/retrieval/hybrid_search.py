@@ -73,17 +73,5 @@ def hybrid_search(
         result.hybrid_score,
         reverse=True,
     )
-
-    print("\n=== FINAL HYBRID RESULTS ===")
-
-    for result in results[:final_top_k]:
-
-        print(
-            f"vector={result.vector_score:.3f} | "
-            f"bm25={result.bm25_score:.3f} | "
-            f"hybrid={result.hybrid_score:.3f} | "
-            f"{result.chunk.category} | "
-            f"{result.chunk.source}"
-        )
-
+    
     return results[:final_top_k]
