@@ -16,7 +16,7 @@ def hybrid_search(
     question: str,
     vector_top_k: int = 50,
     lexical_top_k: int = 50,
-    final_top_k: int = 10,
+    final_top_k: int = 15,
 ) -> list[SearchResult]:
     """Retrieve and rank chunks using hybrid search."""
 

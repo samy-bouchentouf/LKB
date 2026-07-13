@@ -11,6 +11,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import PDFDocument from "pdfkit";
 
+import {triggerSynchronization} from "./sync.service.js";
+
 const __filename =
     fileURLToPath(import.meta.url);
 
@@ -499,6 +501,8 @@ async function saveIncident(
         }
     );
 
+    await triggerSynchronization();
+    
 }
 
 async function renameIncident(
@@ -566,6 +570,8 @@ async function deleteIncident(
     await fs.unlink(
         filePath
     );
+
+    await triggerSynchronization();
 
 }
 
