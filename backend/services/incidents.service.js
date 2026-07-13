@@ -11,7 +11,9 @@ import path from "path";
 import { fileURLToPath } from "url";
 import PDFDocument from "pdfkit";
 
-import {triggerSynchronization} from "./sync.service.js";
+import {
+    triggerSynchronization
+} from "./sync.service.js";
 
 const __filename =
     fileURLToPath(import.meta.url);

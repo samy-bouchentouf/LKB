@@ -110,6 +110,7 @@ def get_disk_documents() -> dict:
         ".docx",
         ".txt",
         ".md",
+        ".json",
     }
 
     documents = {}
@@ -208,7 +209,15 @@ def add_document_to_chroma(
 
     text = load_document(file_path)
 
-    chunks = create_chunks(text)
+    category = Path(file_path).parent.name
+
+    if category == "diagrams":
+
+        chunks = [text]
+
+    else:
+
+        chunks = create_chunks(text)
 
     embeddings = create_embeddings(
         chunks
@@ -264,10 +273,16 @@ def add_document_to_chunks_store(
 
     text = load_document(file_path)
 
-    chunks = create_chunks(text)
-
     source = Path(file_path).name
     category = Path(file_path).parent.name
+
+    if category == "diagrams":
+
+        chunks = [text]
+
+    else:
+
+        chunks = create_chunks(text)
 
     for index, chunk in enumerate(chunks):
 

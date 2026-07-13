@@ -9,6 +9,10 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import {
+    triggerSynchronization
+} from "./sync.service.js";
+
 const __filename =
     fileURLToPath(import.meta.url);
 
@@ -205,6 +209,8 @@ async function saveDiagram(
         );
 
     }
+
+    await triggerSynchronization();
 
 }
 
@@ -404,6 +410,8 @@ async function deleteDiagram(
         /* ignore */
 
     }
+
+    await triggerSynchronization();
 
 }
 
