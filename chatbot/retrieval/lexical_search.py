@@ -71,6 +71,8 @@ def lexical_search(
 
     if bm25_index is None:
 
+        print("BM25 INDEX NOT LOADED")
+        
         return []
 
     query_tokens = (
@@ -110,5 +112,22 @@ def lexical_search(
                 bm25_score=float(score),
             )
         )
+    
+    print("\n=== BM25 RESULTS ===")
 
+    for result in search_results:
+
+        print(
+            (
+                f"{result.bm25_score:.3f} | "
+                f"{result.chunk.category} | "
+                f"{result.chunk.source}"
+            ).encode(
+                "cp1252",
+                errors="replace",
+            ).decode(
+                "cp1252"
+            )
+        )
+        
     return search_results

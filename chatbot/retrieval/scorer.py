@@ -23,24 +23,48 @@ def normalize_scores(
     vector_scores = [
         result.vector_score
         for result in results
+        if result.vector_score > 0
     ]
 
     bm25_scores = [
         result.bm25_score
         for result in results
+        if result.bm25_score > 0
     ]
 
-    min_vector = min(vector_scores)
-    max_vector = max(vector_scores)
+    min_vector = (
+        min(vector_scores)
+        if vector_scores
+        else 0.0
+    )
 
-    min_bm25 = min(bm25_scores)
-    max_bm25 = max(bm25_scores)
+    max_vector = (
+        max(vector_scores)
+        if vector_scores
+        else 0.0
+    )
+
+    min_bm25 = (
+        min(bm25_scores)
+        if bm25_scores
+        else 0.0
+    )
+
+    max_bm25 = (
+        max(bm25_scores)
+        if bm25_scores
+        else 0.0
+    )
 
     for result in results:
 
         # Chroma returns distances.
         # Smaller distance = better match.
-        if max_vector > min_vector:
+        if result.vector_score == 0:
+
+            vector_score = 0.0
+
+        elif max_vector > min_vector:
 
             vector_score = (
                 max_vector
@@ -51,11 +75,16 @@ def normalize_scores(
             )
 
         else:
+
             vector_score = 1.0
 
         # BM25 returns similarity scores.
         # Larger score = better match.
-        if max_bm25 > min_bm25:
+        if result.bm25_score == 0:
+
+            bm25_score = 0.0
+
+        elif max_bm25 > min_bm25:
 
             bm25_score = (
                 result.bm25_score
@@ -66,6 +95,7 @@ def normalize_scores(
             )
 
         else:
+
             bm25_score = 1.0
 
         result.vector_score = (

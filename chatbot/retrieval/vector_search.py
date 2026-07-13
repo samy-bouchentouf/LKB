@@ -59,4 +59,14 @@ def vector_search(
             )
         )
 
+    print("\n=== VECTOR RESULTS ===")
+
+    for result in search_results:
+
+        print(
+            f"{result.vector_score:.3f} | "
+            f"{result.chunk.category} | "
+            f"{result.chunk.source}"
+        )
+
     return search_results
