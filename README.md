@@ -65,6 +65,7 @@ Handles:
 - Incident report generation
 - Knowledge base synchronization requests
 - Communication with the chatbot service
+- Static document serving
 
 ## FastAPI Chatbot
 
@@ -78,6 +79,7 @@ Handles:
 - Context construction
 - Question answering
 - Knowledge base synchronization
+- Source attribution generation
 
 ---
 
@@ -271,10 +273,12 @@ Responses include:
 
 - Generated answer
 - Supporting source documents
+- Clickable source references
 - Markdown-rendered formatting
 - Tables
 - Lists
 - Bold text
+- Progressive response streaming
 - One-click response copy
 
 The assistant can use information extracted from:
@@ -288,11 +292,66 @@ The assistant can use information extracted from:
 
 ```text
 Markdown Rendering
+Progressive Response Streaming
 Source Attribution
+Clickable Sources
 Hybrid Retrieval
 Copy Response
+Loading Indicator
 Responsive Conversation Layout
 Quick Question Integration
+```
+
+## Source References
+
+Every response includes the list of retrieved source documents used during context construction.
+
+Each source exposes:
+
+```text
+Category
+Document Name
+Document URL
+```
+
+Sources can be opened directly from the chat interface.
+
+### Publications
+
+```text
+Click Source
+↓
+Open PDF / Document
+```
+
+### Components
+
+```text
+Click Source
+↓
+Open Technical Documentation
+```
+
+### Incidents
+
+```text
+Click Source
+↓
+Open Incident Report
+```
+
+### Diagrams
+
+Diagram retrieval uses the JSON representation for indexing while source links automatically open the corresponding PNG visualization.
+
+```text
+diagram-name.json
+        ↓
+Indexed
+
+diagram-name.png
+        ↓
+Opened From Chat
 ```
 
 ---
@@ -553,25 +612,6 @@ The JSON representation of each diagram is transformed into a searchable textual
 - Connection list
 - Diagram summary
 
-Example:
-
-```text
-Diagram name: Laser Lock System
-
-Components:
-- Laser
-- Photodiode
-- PID Controller
-
-Connections:
-- Connection "Feedback Loop" between Laser and Photodiode
-
-Summary:
-The diagram "Laser Lock System" contains 3 components.
-Components present: Laser, Photodiode, PID Controller.
-The diagram contains 1 connection.
-```
-
 Each diagram is indexed as a single chunk to preserve its structure during retrieval.
 
 Diagram JSON files are transformed into synthetic textual descriptions before indexing, allowing diagrams to be retrieved through natural language queries.
@@ -641,16 +681,6 @@ Incident retrieval supports:
 - Corrective action
 - Semantic similarity search
 - Keyword search
-
-Users can ask questions such as:
-
-```text
-What was the root cause of the Signal loss incident?
-
-How was the Signal loss incident resolved?
-
-What incidents mention a lamp?
-```
 
 ---
 
@@ -844,7 +874,27 @@ Context Construction
 ↓
 Mistral Large
 ↓
-Response
+Response + Sources
+```
+
+## Source Resolution Flow
+
+```text
+Retrieved Chunk
+↓
+Source Metadata
+↓
+Source URL Generation
+
+├── Publication
+├── Component
+├── Incident
+└── Diagram
+
+↓
+Frontend Source Links
+↓
+Direct Document Access
 ```
 
 ## Synchronization Flow
@@ -875,7 +925,10 @@ BM25 Rebuild
 - Hybrid semantic and lexical retrieval
 - Hybrid semantic and lexical ranking
 - AI-assisted information retrieval
+- Progressive answer generation
 - Markdown-rendered chatbot responses
+- Clickable source references
+- Direct access to supporting documents
 - One-click response copy
 - Automatic diagram indexing
 - Automatic incident indexing
@@ -884,6 +937,7 @@ BM25 Rebuild
 - Persistent vector database
 - Persistent BM25 lexical retrieval store
 - Incremental hash-based indexing
+- Static document serving
 - Diagram management system
 - Structured incident reporting
 - Professional PDF generation

@@ -66,7 +66,7 @@ def reload_bm25_index() -> None:
 def lexical_search(
     question: str,
     top_k: int = 50,
-) -> list[SearchResult]:
+    ) -> list[SearchResult]:
     """Retrieve chunks using BM25 search."""
 
     if bm25_index is None:

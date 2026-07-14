@@ -93,6 +93,9 @@ async function sendMessage() {
 
     displayUserMessage(question);
 
+    const loading =
+        displayLoadingMessage();
+
     input.value = "";
 
     try {
@@ -125,7 +128,12 @@ async function sendMessage() {
         const data =
             await response.json();
 
-        displayAssistantMessage(
+        clearInterval(
+            loading.interval
+        );
+
+        updateAssistantMessage(
+            loading,
             data.answer,
             data.sources
         );
@@ -137,7 +145,12 @@ async function sendMessage() {
             error
         );
 
-        displayAssistantMessage(
+        clearInterval(
+            loading.interval
+        );
+
+        updateAssistantMessage(
+            loading,
             "An error occurred while communicating with the chatbot.",
             []
         );
@@ -159,14 +172,14 @@ function displayUserMessage(message) {
         );
 
     bubble.className =
-        "max-w-5xl ml-auto mb-4 bg-[#2E5CB8] text-white rounded-2xl px-5 py-4";
+        "max-w-[50%] ml-auto mb-4 bg-[#2E5CB8] text-white rounded-2xl px-5 py-4";
 
     bubble.innerHTML = `
         <div class="text-xl font-bold mb-3">
             YOU
         </div>
 
-        <div>
+        <div class="chat-message">
             ${message}
         </div>
     `;
@@ -180,10 +193,7 @@ function displayUserMessage(message) {
 
 }
 
-function displayAssistantMessage(
-    answer,
-    sources = []
-) {
+function displayLoadingMessage() {
 
     const conversation =
         document.getElementById(
@@ -196,7 +206,93 @@ function displayAssistantMessage(
         );
 
     bubble.className =
-        "max-w-5xl mr-auto mb-4 bg-white border border-stone-200 rounded-2xl px-5 py-4 shadow-sm";
+        "max-w-7xl mx-auto mb-4 bg-white border border-stone-200 rounded-2xl px-5 py-4 shadow-sm";
+
+    bubble.innerHTML = `
+        <div class="flex items-center justify-between mb-3">
+
+            <div class="text-xl font-bold text-[#1E3A8A]">
+                LKB BOT
+            </div>
+
+            <button
+                class="copy-button text-2xl text-stone-300"
+                title="Copy response"
+                disabled
+            >
+                ⧉
+            </button>
+
+        </div>
+
+        <div
+            class="loading-content text-2xl"
+        >
+            ● ● ●
+        </div>
+    `;
+
+    conversation.appendChild(
+        bubble
+    );
+
+    conversation.scrollTop =
+        conversation.scrollHeight;
+
+    const content =
+        bubble.querySelector(
+            ".loading-content"
+        );
+
+    let step = 0;
+
+    const interval =
+        setInterval(() => {
+
+            const frames = [
+                `
+                    <span class="text-[#2E5CB8]">●</span>
+                    <span class="text-stone-300">●</span>
+                    <span class="text-stone-300">●</span>
+                `,
+                `
+                    <span class="text-stone-300">●</span>
+                    <span class="text-[#2E5CB8]">●</span>
+                    <span class="text-stone-300">●</span>
+                `,
+                `
+                    <span class="text-stone-300">●</span>
+                    <span class="text-stone-300">●</span>
+                    <span class="text-[#2E5CB8]">●</span>
+                `
+            ];
+
+            content.innerHTML =
+                frames[step];
+
+            step =
+                (step + 1)
+                % frames.length;
+
+        }, 300);
+
+    return {
+        bubble,
+        content,
+        interval
+    };
+}
+
+function updateAssistantMessage(
+    loading,
+    answer,
+    sources = []
+) {
+
+    const conversation =
+        document.getElementById(
+            "chat-conversation"
+        );
 
     const formattedAnswer =
         marked.parse(answer);
@@ -219,7 +315,7 @@ function displayAssistantMessage(
                     Sources
                 </div>
 
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-col gap-2">
 
                     ${sources.map(source => {
 
@@ -228,9 +324,14 @@ function displayAssistantMessage(
                             || source.category;
 
                         return `
-                            <span class="px-3 py-1 bg-sky-50 text-sky-700 rounded-full text-xs">
+                            <a
+                                href="${source.url}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="block px-3 py-2 bg-sky-50 text-sky-700 rounded-xl text-sm hover:bg-sky-100 transition-colors"
+                            >
                                 [${category}] ${source.source}
-                            </span>
+                            </a>
                         `;
 
                     }).join("")}
@@ -241,77 +342,106 @@ function displayAssistantMessage(
         `;
     }
 
-    bubble.innerHTML = `
-        <div class="flex items-center justify-between mb-3">
-
-            <div class="text-xl font-bold text-[#2E5CB8]">
-                LKB BOT
-            </div>
-
-            <button
-                class="copy-button text-2xl text-stone-400 hover:text-[#2E5CB8] transition-colors"
-                title="Copy response"
-            >
-                ⧉
-            </button>
-
-        </div>
-
-        <div class="text-stone-700 chat-answer">
-            ${formattedAnswer}
-        </div>
-
-        ${sourcesHtml}
-    `;
-
-    conversation.appendChild(
-        bubble
-    );
-
     const copyButton =
-        bubble.querySelector(
+        loading.bubble.querySelector(
             ".copy-button"
         );
 
-    copyButton.addEventListener(
+    copyButton.outerHTML = `
+        <button
+            class="copy-button text-2xl text-stone-400 hover:text-[#1E3A8A] transition-colors"
+            title="Copy response"
+        >
+            ⧉
+        </button>
+    `;
+
+    loading.content.className =
+        "loading-content text-stone-700 chat-answer";
+
+    loading.content.innerHTML = "";
+
+    const words =
+        answer.split(" ");
+
+    let wordIndex = 0;
+
+    const typingInterval =
+        setInterval(() => {
+
+            wordIndex += 2;
+
+            const partialAnswer =
+                words
+                    .slice(
+                        0,
+                        wordIndex
+                    )
+                    .join(" ");
+
+            loading.content.innerHTML =
+                marked.parse(
+                    partialAnswer
+                );
+
+            if (
+                wordIndex >=
+                words.length
+            ) {
+
+                clearInterval(
+                    typingInterval
+                );
+
+                loading.content.innerHTML =
+                    formattedAnswer +
+                    sourcesHtml;
+            }
+
+        }, 50);
+
+    const newCopyButton =
+        loading.bubble.querySelector(
+            ".copy-button"
+        );
+
+    newCopyButton.addEventListener(
         "click",
         async () => {
 
             await navigator.clipboard.writeText(
-                answer
+                loading.content.innerText
             );
 
-            copyButton.textContent =
+            newCopyButton.textContent =
                 "✓";
 
-            copyButton.classList.remove(
+            newCopyButton.classList.remove(
                 "text-stone-400"
             );
 
-            copyButton.classList.add(
+            newCopyButton.classList.add(
                 "text-[#2E5CB8]"
             );
 
             setTimeout(
                 () => {
 
-                    copyButton.textContent =
+                    newCopyButton.textContent =
                         "⧉";
 
-                    copyButton.classList.remove(
+                    newCopyButton.classList.remove(
                         "text-[#2E5CB8]"
                     );
 
-                    copyButton.classList.add(
+                    newCopyButton.classList.add(
                         "text-stone-400"
                     );
 
                 },
                 2000
             );
+
         }
     );
-
-    conversation.scrollTop =
-        conversation.scrollHeight;
 }

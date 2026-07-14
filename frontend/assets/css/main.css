@@ -30,6 +30,10 @@ body {
     height: 100%;
 }
 
+html {
+    font-size: 14.4px
+}
+
 body {
     background-color: var(--lkb-bg);
     color: var(--lkb-text);
@@ -392,11 +396,18 @@ body {
 
 /* ---------- Chat Markdown ---------- */
 
+.chat-message {
+
+    font-size: 1.1rem;
+}
+
 .chat-answer p {
 
-    margin-bottom: 1rem;
+    margin-top: 0.75rem;
 
-    line-height: 1.7;
+    margin-bottom: 0.75rem;
+
+    line-height: 1.8;
 }
 
 .chat-answer h1,
@@ -427,6 +438,8 @@ body {
 .chat-answer strong {
 
     font-weight: 700;
+
+    color: #1E3A8A;
 }
 
 .chat-answer blockquote {

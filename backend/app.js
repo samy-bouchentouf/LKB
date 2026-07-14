@@ -43,6 +43,13 @@ app.use(
     )
 );
 
+app.use(
+    "/documents",
+    express.static(
+        path.join(__dirname, "../documents")
+    )
+);
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

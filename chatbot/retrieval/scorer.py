@@ -14,7 +14,7 @@ BM25_WEIGHT = 0.5
 
 def normalize_scores(
     results: list[SearchResult],
-) -> None:
+    ) -> None:
     """Normalize vector and BM25 scores."""
 
     if not results:
@@ -109,7 +109,7 @@ def normalize_scores(
 
 def compute_hybrid_scores(
     results: list[SearchResult],
-) -> None:
+    ) -> None:
     """Compute hybrid retrieval scores."""
 
     normalize_scores(results)

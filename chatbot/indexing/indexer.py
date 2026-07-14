@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 
 def safe_console_text(
     text: str,
-) -> str:
+    ) -> str:
     """
     Convert text to a format that can always be
     displayed by the Windows console.
@@ -75,7 +75,7 @@ def load_chunks_store() -> list:
 
 def save_chunks_store(
     chunks: list,
-) -> None:
+    ) -> None:
     """Save chunks to the JSON store."""
 
     CHUNKS_PATH.parent.mkdir(
@@ -173,7 +173,7 @@ def get_chroma_documents() -> dict:
 
 def get_chunks_store_documents(
     stored_chunks: list,
-) -> dict:
+    ) -> dict:
     """
     Return all documents currently
     stored in chunks.json.
@@ -204,7 +204,7 @@ def get_chunks_store_documents(
 def add_document_to_chroma(
     file_path: str,
     document_hash: str,
-) -> None:
+    ) -> None:
     """Add a document to Chroma."""
 
     text = load_document(file_path)
@@ -254,7 +254,7 @@ def add_document_to_chroma(
 
 def remove_document_from_chroma(
     document_hash: str,
-) -> None:
+    ) -> None:
     """Remove a document from Chroma."""
 
     collection.delete(
@@ -268,7 +268,7 @@ def add_document_to_chunks_store(
     file_path: str,
     document_hash: str,
     stored_chunks: list,
-) -> None:
+    ) -> None:
     """Add a document to the chunk store."""
 
     text = load_document(file_path)
@@ -300,7 +300,7 @@ def add_document_to_chunks_store(
 def remove_document_from_chunks_store(
     document_hashes: set,
     stored_chunks: list,
-) -> list:
+    ) -> list:
     """Remove documents from the chunk store."""
 
     return [

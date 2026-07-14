@@ -26,7 +26,7 @@ collection = client.get_or_create_collection(
 def vector_search(
     question: str,
     top_k: int = 50,
-) -> list[SearchResult]:
+    ) -> list[SearchResult]:
     """Retrieve chunks using semantic similarity search."""
 
     question_embedding = create_embedding(question)

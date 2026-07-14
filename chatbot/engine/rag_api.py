@@ -48,10 +48,26 @@ def ask_question(question: str) -> dict:
 
         seen_sources.add(source)
 
+        if chunk.category == "diagrams":
+
+            url = (
+                f"/documents/diagrams/"
+                f"{source.replace('.json', '.png')}"
+            )
+
+        else:
+
+            url = (
+                f"/documents/"
+                f"{chunk.category}/"
+                f"{source}"
+            )
+
         sources.append(
             {
                 "source": source,
                 "category": chunk.category,
+                "url": url,
             }
         )
 
