@@ -544,7 +544,7 @@ function renderComponents() {
                 );
 
             element.className =
-                "diagram-component absolute px-6 py-3 rounded-xl border-2 cursor-move select-none shadow-sm font-semibold";
+                "diagram-component absolute z-10 px-6 py-3 rounded-xl border-2 cursor-move select-none shadow-sm font-semibold";
 
             element.style.left =
                 `${component.x}px`;
@@ -553,7 +553,7 @@ function renderComponents() {
                 `${component.y}px`;
 
             element.style.backgroundColor =
-                "transparent";
+                "#FAFAF9E6";
 
             element.style.borderColor =
                 component.color;
@@ -968,6 +968,16 @@ if (
         line
     );
 
+    const background =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "rect"
+        );
+
+    svg.appendChild(
+        background
+    );
+
     const label =
         document.createElementNS(
             "http://www.w3.org/2000/svg",
@@ -981,12 +991,12 @@ if (
 
     label.setAttribute(
         "y",
-        (y1 + y2) / 2 - 8
+        (y1 + y2) / 2 
     );
 
     label.setAttribute(
         "fill",
-        connection.color
+        "#111827"
     );
 
     label.setAttribute(
@@ -995,8 +1005,18 @@ if (
     );
 
     label.setAttribute(
+        "dominant-baseline",
+        "middle"
+    );
+
+    label.setAttribute(
         "font-size",
         "12"
+    );
+
+    label.setAttribute(
+        "font-weight",
+        "600"
     );
 
     label.dataset.connectionId =
@@ -1012,8 +1032,55 @@ if (
         label
     );
 
-}
+    const bbox =
+        label.getBBox();
 
+    background.setAttribute(
+        "x",
+        bbox.x - 6
+    );
+
+    background.setAttribute(
+        "y",
+        bbox.y - 3
+    );
+
+    background.setAttribute(
+        "width",
+        bbox.width + 12
+    );
+
+    background.setAttribute(
+        "height",
+        bbox.height + 6
+    );
+
+    background.setAttribute(
+        "rx",
+        "6"
+    );
+
+    background.setAttribute(
+        "fill",
+        "#FFFFFF"
+    );
+
+    background.setAttribute(
+        "stroke",
+        "#CBD5E1"
+    );
+
+    background.setAttribute(
+        "stroke-width",
+        "1"
+    );
+
+    svg.insertBefore(
+        background,
+        label
+    );
+
+}
 
 function deleteConnection(
     connectionId
@@ -1673,6 +1740,10 @@ async function saveDiagram(
     alert(
         "Diagram saved successfully."
     );
+
+    document.getElementById(
+        "diagram-name"
+    ).value = "";
 
     initializeDiagramLibrary();
 
