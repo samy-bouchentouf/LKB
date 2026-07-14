@@ -5,11 +5,11 @@ Displays and manages troubleshooting reports
 and incident documentation.
 -->
 
-<section class="w-full flex-1 overflow-y-auto p-6 max-w-6xl mx-auto space-y-6">
+<section class="w-full flex-1 overflow-y-auto p-6 space-y-6">
 
     <!-- Header -->
 
-    <div class="border-b border-stone-200 pb-4">
+    <div class="max-w-6xl mx-auto space-y-6 border-b border-stone-200 pb-4 ">
 
         <h2 class="text-2xl font-bold text-stone-800">
             Incidents
@@ -24,98 +24,102 @@ and incident documentation.
 
     <!-- Incident Report Builder -->
 
-    <div class="bg-white border border-stone-200 rounded-2xl p-6 shadow-sm space-y-6">
+    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 max-w-[1200px] mx-auto">
 
-        <div>
+        <div class="space-y-8">
 
-            <h3 class="text-lg font-semibold text-stone-800">
-                Incident Report Builder
-            </h3>
+            <div>
 
-            <p class="text-sm text-stone-500 mt-1">
-                Document issues, causes and corrective actions.
-            </p>
+                <h3 class="text-lg font-semibold text-stone-800">
+                    Incident Report Builder
+                </h3>
 
-        </div>
+                <p class="text-sm text-stone-500 mt-1">
+                    Document issues, causes and corrective actions.
+                </p>
 
-        <!-- Title -->
+            </div>
 
-        <div>
+            <!-- Title -->
 
-            <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                Incident Title
-            </label>
+            <div>
 
-            <input
-                id="incident-title"
-                type="text"
-                placeholder="Signal loss on QPD detector"
-                class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"
-            >
+                <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                    Incident Title
+                </label>
 
-        </div>
+                <input
+                    id="incident-title"
+                    type="text"
+                    placeholder="Signal loss on QPD detector"
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl p-3 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300"
+                >
 
-        <!-- Problem -->
+            </div>
 
-        <div>
+            <!-- Problem -->
 
-            <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                Problem Description
-            </label>
+            <div>
 
-            <textarea
-                id="incident-problem"
-                rows="4"
-                placeholder="Describe the observed issue..."
-                class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
-            ></textarea>
+                <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                    Problem Description
+                </label>
 
-        </div>
+                <textarea
+                    id="incident-problem"
+                    rows="4"
+                    placeholder="Describe the observed issue..."
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
+                ></textarea>
 
-        <!-- Cause -->
+            </div>
 
-        <div>
+            <!-- Cause -->
 
-            <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                Root Cause
-            </label>
+            <div>
 
-            <textarea
-                id="incident-cause"
-                rows="4"
-                placeholder="Describe the identified cause..."
-                class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
-            ></textarea>
+                <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                    Root Cause
+                </label>
 
-        </div>
+                <textarea
+                    id="incident-cause"
+                    rows="4"
+                    placeholder="Describe the identified cause..."
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
+                ></textarea>
 
-        <!-- Solution -->
+            </div>
 
-        <div>
+            <!-- Solution -->
 
-            <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
-                Corrective Action
-            </label>
+            <div>
 
-            <textarea
-                id="incident-solution"
-                rows="4"
-                placeholder="Describe the corrective actions..."
-                class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
-            ></textarea>
+                <label class="block text-xs font-bold uppercase text-stone-400 tracking-wider mb-2">
+                    Corrective Action
+                </label>
 
-        </div>
+                <textarea
+                    id="incident-solution"
+                    rows="4"
+                    placeholder="Describe the corrective actions..."
+                    class="w-full bg-stone-50 border border-stone-200 rounded-xl p-4 text-sm text-stone-700 focus:outline-none focus:ring-2 focus:ring-sky-300 resize-none"
+                ></textarea>
 
-        <!-- Save -->
+            </div>
 
-        <div>
+            <!-- Save -->
 
-            <button
-                id="save-incident-button"
-                class="bg-[#2E5CB8] text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all"
-            >
-                Save Incident Report
-            </button>
+            <div>
+
+                <button
+                    id="save-incident-button"
+                    class="bg-[#2E5CB8] text-white px-6 py-3 rounded-xl text-sm font-semibold shadow-md hover:bg-blue-700 transition-all"
+                >
+                    Save Incident Report
+                </button>
+
+            </div>
 
         </div>
 
@@ -123,67 +127,71 @@ and incident documentation.
 
     <!-- Search -->
 
-    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+    <div class="max-w-6xl mx-auto space-y-6">
+    
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
 
-        <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-col md:flex-row gap-4">
 
-            <input
-                id="document-search"
-                type="text"
-                placeholder="Search incident reports..."
-                class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
-            >
+                <input
+                    id="document-search"
+                    type="text"
+                    placeholder="Search incident reports..."
+                    class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+                >
 
-            <select
-                id="document-sort"
-                class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
-            >
+                <select
+                    id="document-sort"
+                    class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
+                >
 
-                <option value="newest">
-                    Newest First
-                </option>
+                    <option value="newest">
+                        Newest First
+                    </option>
 
-                <option value="oldest">
-                    Oldest First
-                </option>
+                    <option value="oldest">
+                        Oldest First
+                    </option>
 
-                <option value="az">
-                    Title A-Z
-                </option>
+                    <option value="az">
+                        Title A-Z
+                    </option>
 
-                <option value="za">
-                    Title Z-A
-                </option>
+                    <option value="za">
+                        Title Z-A
+                    </option>
 
-            </select>
+                </select>
+
+            </div>
 
         </div>
 
-    </div>
+        <!-- Library Header -->
 
-    <!-- Library Header -->
+        <div class="flex items-center justify-between">
 
-    <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-stone-800">
+                Incident Library
+            </h3>
 
-        <h3 class="text-lg font-semibold text-stone-800">
-            Incident Library
-        </h3>
+            <span
+                id="documents-count"
+                class="text-sm text-stone-500"
+            >
+                --
+            </span>
 
-        <span
-            id="documents-count"
-            class="text-sm text-stone-500"
+        </div>
+
+        <!-- Library Grid -->
+
+        <div
+            id="documents-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-            --
-        </span>
+        </div>
 
-    </div>
-
-    <!-- Library Grid -->
-
-    <div
-        id="documents-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-    >
     </div>
 
 </section>

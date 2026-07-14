@@ -5,11 +5,11 @@ Provides tools for creating and managing
 experiment diagrams.
 -->
 
-<section class="w-full flex-1 overflow-y-auto p-6 max-w-6xl mx-auto space-y-6">
+<section class="w-full flex-1 overflow-y-auto p-6 space-y-6">
 
     <!-- Header -->
 
-    <div class="border-b border-stone-200 pb-4">
+    <div class="max-w-6xl mx-auto space-y-6 border-b border-stone-200 pb-4">
 
         <h2 class="text-2xl font-bold text-stone-800">
             Diagrams
@@ -23,7 +23,7 @@ experiment diagrams.
 
     <!-- Diagram Builder -->
 
-    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 max-w-[1200px] mx-auto scale-95 origin-top">
+    <div class="bg-white border border-stone-200 rounded-2xl shadow-sm p-6 max-w-[1200px] mx-auto">
 
         <div class="flex justify-between items-center mb-6">
 
@@ -297,68 +297,72 @@ experiment diagrams.
     </div>
 
     <!-- Diagram Library Search -->
+       
+    <div class="max-w-6xl mx-auto space-y-6">
 
-    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
 
-        <div class="flex flex-col md:flex-row gap-4">
+            <div class="flex flex-col md:flex-row gap-4">
 
-            <input
-                id="document-search"
-                type="text"
-                placeholder="Search diagrams..."
-                class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
-            >
+                <input
+                    id="document-search"
+                    type="text"
+                    placeholder="Search diagrams..."
+                    class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+                >
 
-            <select
-                id="document-sort"
-                class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
-            >
+                <select
+                    id="document-sort"
+                    class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
+                >
 
-                <option value="newest">
-                    Newest First
-                </option>
+                    <option value="newest">
+                        Newest First
+                    </option>
 
-                <option value="oldest">
-                    Oldest First
-                </option>
+                    <option value="oldest">
+                        Oldest First
+                    </option>
 
-                <option value="az">
-                    Name A-Z
-                </option>
+                    <option value="az">
+                        Name A-Z
+                    </option>
 
-                <option value="za">
-                    Name Z-A
-                </option>
+                    <option value="za">
+                        Name Z-A
+                    </option>
 
-            </select>
+                </select>
+
+            </div>
 
         </div>
 
-    </div>
+        <!-- Diagram Library Header -->
 
-    <!-- Diagram Library Header -->
+        <div class="flex items-center justify-between">
 
-    <div class="flex items-center justify-between">
+            <h3 class="text-lg font-semibold text-stone-800">
+                Diagram Library
+            </h3>
 
-        <h3 class="text-lg font-semibold text-stone-800">
-            Diagram Library
-        </h3>
+            <span
+                id="documents-count"
+                class="text-sm text-stone-500"
+            >
+                --
+            </span>
 
-        <span
-            id="documents-count"
-            class="text-sm text-stone-500"
+        </div>
+
+        <!-- Diagram Library Grid -->
+
+        <div
+            id="documents-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-            --
-        </span>
-
-    </div>
-
-    <!-- Diagram Library Grid -->
-
-    <div
-        id="documents-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-    >
+        </div>
+    
     </div>
 
 </section>

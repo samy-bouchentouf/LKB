@@ -544,7 +544,7 @@ function renderComponents() {
                 );
 
             element.className =
-                "diagram-component absolute px-4 py-2 rounded-xl border-2 cursor-move select-none shadow-sm font-medium";
+                "diagram-component absolute px-6 py-3 rounded-xl border-2 cursor-move select-none shadow-sm font-semibold";
 
             element.style.left =
                 `${component.x}px`;
@@ -553,6 +553,12 @@ function renderComponents() {
                 `${component.y}px`;
 
             element.style.backgroundColor =
+                "transparent";
+
+            element.style.borderColor =
+                component.color;
+
+            element.style.color =
                 component.color;
 
             element.dataset.id =
@@ -883,17 +889,38 @@ function drawConnection(
         return;
     }
 
+const sourceElement =
+    document.querySelector(
+        `[data-id="${source.id}"]`
+    );
+
+const targetElement =
+    document.querySelector(
+        `[data-id="${target.id}"]`
+    );
+
+if (
+    !sourceElement ||
+    !targetElement
+) {
+    return;
+}
+
     const x1 =
-        source.x + 60;
+        source.x +
+        sourceElement.offsetWidth / 2;
 
     const y1 =
-        source.y + 24;
+        source.y +
+        sourceElement.offsetHeight / 2;
 
     const x2 =
-        target.x + 60;
+        target.x +
+        targetElement.offsetWidth / 2;
 
     const y2 =
-        target.y + 24;
+        target.y +
+        targetElement.offsetHeight / 2;
 
     const line =
         document.createElementNS(

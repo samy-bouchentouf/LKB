@@ -5,111 +5,115 @@ Displays and manages scientific publications
 stored in the knowledge base.
 -->
 
-<section class="w-full flex-1 overflow-y-auto p-6 max-w-6xl mx-auto space-y-6">
+<section class="w-full flex-1 overflow-y-auto p-6 space-y-6">
 
-    <!-- Page Header -->
+    <div class="max-w-6xl mx-auto space-y-6">
 
-    <div class="border-b border-stone-200 pb-4">
+        <!-- Page Header -->
 
-        <h2 class="text-2xl font-bold text-stone-800">
-            Publications
-        </h2>
+        <div class="border-b border-stone-200 pb-4">
 
-        <p class="text-sm text-stone-500 mt-1">
-            Browse, upload and manage scientific publications
-            stored in the LKB knowledge base.
-        </p>
+            <h2 class="text-2xl font-bold text-stone-800">
+                Publications
+            </h2>
 
-    </div>
-
-    <!-- Upload Area -->
-
-    <div
-        id="document-dropzone"
-        class="bg-white border-2 border-dashed border-stone-200 hover:border-sky-300 rounded-2xl p-10 text-center transition-all cursor-pointer"
-    >
-
-        <div class="max-w-md mx-auto">
-
-            <div class="text-4xl mb-4">
-                📚
-            </div>
-
-            <h3 class="text-lg font-semibold text-stone-700">
-                Drop a publication here
-            </h3>
-
-            <p class="text-sm text-stone-400 mt-2">
-                Supported formats: PDF, DOCX, TXT and Markdown
+            <p class="text-sm text-stone-500 mt-1">
+                Browse, upload and manage scientific publications
+                stored in the LKB knowledge base.
             </p>
 
         </div>
 
-    </div>
+        <!-- Upload Area -->
 
-    <!-- Search Area -->
+        <div
+            id="document-dropzone"
+            class="bg-white border-2 border-dashed border-stone-200 hover:border-sky-300 rounded-2xl p-10 text-center transition-all cursor-pointer"
+        >
 
-    <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+            <div class="max-w-md mx-auto">
 
-        <div class="flex flex-col md:flex-row gap-4">
+                <div class="text-4xl mb-4">
+                    📚
+                </div>
 
-            <input
-                id="document-search"
-                type="text"
-                placeholder="Search publications..."
-                class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
-            >
+                <h3 class="text-lg font-semibold text-stone-700">
+                    Drop a publication here
+                </h3>
 
-            <select
-                id="document-sort"
-                class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
-            >
+                <p class="text-sm text-stone-400 mt-2">
+                    Supported formats: PDF, DOCX, TXT and Markdown
+                </p>
 
-                <option value="newest">
-                    Newest First
-                </option>
-
-                <option value="oldest">
-                    Oldest First
-                </option>
-
-                <option value="az">
-                    Name A-Z
-                </option>
-
-                <option value="za">
-                    Name Z-A
-                </option>
-
-            </select>
+            </div>
 
         </div>
 
-    </div>
+        <!-- Search Area -->
 
-    <!-- Results Header -->
+        <div class="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
 
-    <div class="flex items-center justify-between">
+            <div class="flex flex-col md:flex-row gap-4">
 
-        <h3 class="text-lg font-semibold text-stone-800">
-            Publication Library
-        </h3>
+                <input
+                    id="document-search"
+                    type="text"
+                    placeholder="Search publications..."
+                    class="flex-1 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-300"
+                >
 
-        <span
-            id="documents-count"
-            class="text-sm text-stone-500"
+                <select
+                    id="document-sort"
+                    class="border border-stone-200 rounded-xl px-4 py-3 text-sm"
+                >
+
+                    <option value="newest">
+                        Newest First
+                    </option>
+
+                    <option value="oldest">
+                        Oldest First
+                    </option>
+
+                    <option value="az">
+                        Name A-Z
+                    </option>
+
+                    <option value="za">
+                        Name Z-A
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- Results Header -->
+
+        <div class="flex items-center justify-between">
+
+            <h3 class="text-lg font-semibold text-stone-800">
+                Publication Library
+            </h3>
+
+            <span
+                id="documents-count"
+                class="text-sm text-stone-500"
+            >
+                --
+            </span>
+
+        </div>
+
+        <!-- Publications Grid -->
+
+        <div
+            id="documents-grid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
         >
-            --
-        </span>
+        </div>
 
-    </div>
-
-    <!-- Publications Grid -->
-
-    <div
-        id="documents-grid"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-    >
     </div>
 
 </section>
