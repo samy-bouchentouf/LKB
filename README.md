@@ -31,8 +31,12 @@ Node.js / Express
 FastAPI Chatbot Service
     ↓
 Hybrid Retrieval Layer
+
+├── Chroma Semantic Search
+└── BM25 Lexical Search
+
     ↓
-ChromaDB + BM25 + Mistral
+Mistral Large
 ```
 
 ## Frontend
@@ -267,6 +271,11 @@ Responses include:
 
 - Generated answer
 - Supporting source documents
+- Markdown-rendered formatting
+- Tables
+- Lists
+- Bold text
+- One-click response copy
 
 The assistant can use information extracted from:
 
@@ -274,6 +283,17 @@ The assistant can use information extracted from:
 - Components
 - Incidents
 - Diagrams
+
+## Chat Features
+
+```text
+Markdown Rendering
+Source Attribution
+Hybrid Retrieval
+Copy Response
+Responsive Conversation Layout
+Quick Question Integration
+```
 
 ---
 
@@ -346,7 +366,19 @@ Candidate chunks are merged.
 
 ### Retrieval Scoring
 
-Documents found by only one retrieval system receive half of the maximum possible score.
+Vector and BM25 scores are normalized independently before ranking.
+
+```text
+Vector Search
+↓
+Normalized Score
+
+BM25 Search
+↓
+Normalized Score
+```
+
+Documents retrieved by only one retrieval engine receive a contribution from that engine only.
 
 ```text
 Vector Only
@@ -358,7 +390,7 @@ BM25 Only
 0.5 × BM25 Score
 ```
 
-Documents found by both retrieval systems receive:
+Documents retrieved by both retrieval engines receive:
 
 ```text
 Hybrid Score
@@ -368,9 +400,15 @@ Hybrid Score
 0.5 × BM25 Score
 ```
 
-Scores are normalized independently for vector retrieval and BM25 retrieval before hybrid scoring.
+This hybrid strategy combines:
 
-The 15 highest-ranked chunks are used to build the final context.
+```text
+Semantic Similarity
++
+Keyword Matching
+```
+
+The 15 highest-ranked chunks are used to build the final context provided to the language model.
 
 ---
 
@@ -536,6 +574,8 @@ The diagram contains 1 connection.
 
 Each diagram is indexed as a single chunk to preserve its structure during retrieval.
 
+Diagram JSON files are transformed into synthetic textual descriptions before indexing, allowing diagrams to be retrieved through natural language queries.
+
 ## Diagram Library
 
 Features:
@@ -592,6 +632,15 @@ Generated PDFs include:
 ## Knowledge Base Integration
 
 Incident reports are automatically indexed and become searchable by the chatbot.
+
+Incident retrieval supports:
+
+- Incident title
+- Problem description
+- Root cause
+- Corrective action
+- Semantic similarity search
+- Keyword search
 
 Users can ask questions such as:
 
@@ -701,6 +750,8 @@ Add / Remove Operations
 ```
 
 Only documents whose content is not already indexed are processed.
+
+Existing indexed content is skipped automatically through SHA256 hash comparison.
 
 Whenever indexed content changes:
 
@@ -822,11 +873,16 @@ BM25 Rebuild
 
 - Centralized laboratory knowledge
 - Hybrid semantic and lexical retrieval
+- Hybrid semantic and lexical ranking
 - AI-assisted information retrieval
+- Markdown-rendered chatbot responses
+- One-click response copy
 - Automatic diagram indexing
 - Automatic incident indexing
+- Diagram-aware retrieval
+- Incident-aware retrieval
 - Persistent vector database
-- Persistent BM25 index
+- Persistent BM25 lexical retrieval store
 - Incremental hash-based indexing
 - Diagram management system
 - Structured incident reporting
