@@ -52,7 +52,7 @@ Diagrams
 Incidents
 ```
 
-and all user-facing document management tools.
+and all user-facing knowledge management interfaces.
 
 ## Express Backend
 
@@ -214,7 +214,7 @@ The Home page provides:
 
 - Knowledge base statistics
 - Quick Question entry point
-- Direct access to all resources
+- Direct access to all platform modules
 
 Displayed statistics include:
 
@@ -225,9 +225,11 @@ Diagrams
 Incidents
 ```
 
-For diagrams, only PNG preview files are counted.
+For diagrams, only PNG visualization files are counted.
 
 ## Quick Question
+
+Questions entered from the Home page are automatically transferred to the chat system.
 
 ```text
 Home
@@ -489,6 +491,7 @@ documents/publications/
 - Download
 - Rename
 - Delete
+- Duplicate name conflict management
 
 ## Supported Formats
 
@@ -519,6 +522,7 @@ documents/components/
 - Download
 - Rename
 - Delete
+- Duplicate name conflict management
 
 ## Supported Formats
 
@@ -556,6 +560,10 @@ Supports:
 - Diagram reset
 - Diagram export
 - Diagram saving
+- Automatic PNG preview generation
+- Automatic JSON generation
+- Save conflict management
+- Component-to-component visual linking
 
 ## Components
 
@@ -578,6 +586,8 @@ Source Component
 Target Component
 ```
 
+Connection labels are rendered directly on the diagram and stored inside the JSON representation.
+
 ## Diagram Persistence
 
 Saving a diagram generates:
@@ -597,7 +607,7 @@ Colors
 Names
 ```
 
-The PNG representation is used for visualization.
+The PNG representation is used for visualization and preview.
 
 Only PNG files are exposed through the diagram library.
 
@@ -612,7 +622,7 @@ The JSON representation of each diagram is transformed into a searchable textual
 - Connection list
 - Diagram summary
 
-Each diagram is indexed as a single chunk to preserve its structure during retrieval.
+Each diagram is indexed as a single chunk to preserve diagram structure.
 
 Diagram JSON files are transformed into synthetic textual descriptions before indexing, allowing diagrams to be retrieved through natural language queries.
 
@@ -648,6 +658,7 @@ Incident reports are generated as professional PDF documents.
 - Download
 - Rename
 - Delete
+- Save conflict management
 
 ## Incident Report Structure
 
@@ -656,8 +667,11 @@ Each report contains:
 ```text
 Title
 Date
+
 Problem Description
+
 Root Cause
+
 Corrective Action
 ```
 
@@ -731,6 +745,8 @@ diagram-name.png
 diagram-name.json
 ```
 
+Diagram name suggestions are automatically generated when conflicts occur.
+
 ## Incidents
 
 ### Save Conflict
@@ -742,6 +758,8 @@ Overwrite
 ```
 
 Overwrite replaces the existing PDF report.
+
+Incident name suggestions are automatically generated when conflicts occur.
 
 ---
 
@@ -922,8 +940,9 @@ BM25 Rebuild
 # Benefits
 
 - Centralized laboratory knowledge
-- Hybrid semantic and lexical retrieval
-- Hybrid semantic and lexical ranking
+- Hybrid semantic retrieval
+- Hybrid lexical retrieval
+- Hybrid ranking strategy
 - AI-assisted information retrieval
 - Progressive answer generation
 - Markdown-rendered chatbot responses
@@ -935,13 +954,14 @@ BM25 Rebuild
 - Diagram-aware retrieval
 - Incident-aware retrieval
 - Persistent vector database
-- Persistent BM25 lexical retrieval store
+- Persistent BM25 retrieval store
 - Incremental hash-based indexing
 - Static document serving
-- Diagram management system
+- Diagram creation and management
 - Structured incident reporting
 - Professional PDF generation
 - Conflict-safe save and upload operations
+- Automatic conflict resolution workflows
 - Unified document libraries
 - Modular backend architecture
 - Scalable RAG infrastructure
