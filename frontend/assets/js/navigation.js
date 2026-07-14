@@ -7,10 +7,15 @@
 
 async function loadPage(pageName) {
 
-    try {
-
         const container =
-            document.getElementById("page-container");
+            document.getElementById(
+                "page-container"
+            );
+
+        try {
+
+        container.style.visibility =
+            "hidden";
 
         const response =
             await fetch(`pages/${pageName}.html`);
@@ -42,7 +47,7 @@ async function loadPage(pageName) {
 
         if (pageName === "publications") {
 
-            initializeDocuments(
+            await initializeDocuments(
                 "publications"
             );
 
@@ -50,7 +55,7 @@ async function loadPage(pageName) {
 
         if (pageName === "components") {
 
-            initializeDocuments(
+            await initializeDocuments(
                 "components"
             );
 
@@ -58,7 +63,7 @@ async function loadPage(pageName) {
 
         if (pageName === "diagrams") {
 
-            initializeDiagrams();
+            await initializeDiagrams();
 
         }
 
@@ -67,13 +72,19 @@ async function loadPage(pageName) {
             "incidents"
         ) {
 
-            initializeIncidents();
+            await initializeIncidents();
 
         }
 
-    } catch (error) {
+        container.style.visibility =
+            "visible";
+
+        } catch (error) {
 
         console.error(error);
+        
+        container.style.visibility =
+            "visible";
 
         document.getElementById(
             "page-container"
