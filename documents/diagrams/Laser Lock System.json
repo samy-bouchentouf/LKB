@@ -1,0 +1,91 @@
+{
+    "name": "Laser Lock System",
+    "nodes": [
+        {
+            "id": "6ff7971b-4159-48ce-b2de-7c193173df7f",
+            "name": "Laser source",
+            "color": "#3b82f6",
+            "x": 351.1458320617676,
+            "y": 4.6458282470703125
+        },
+        {
+            "id": "a982deb0-4973-4794-a1a4-e36407279c5e",
+            "name": "Piezo actuator",
+            "color": "#3b82f6",
+            "x": 56.14583206176758,
+            "y": 60.64582824707031
+        },
+        {
+            "id": "ab606fb6-7ee1-4c99-bf83-d2aad0e8f3fd",
+            "name": "PID Controller",
+            "color": "#3b82f6",
+            "x": 266.1458320617676,
+            "y": 169.6458282470703
+        },
+        {
+            "id": "798e7f6f-565c-4b50-bd4d-4fc390048f82",
+            "name": "Control Computer",
+            "color": "#3b82f6",
+            "x": 317.1458320617676,
+            "y": 337.6458282470703
+        },
+        {
+            "id": "feb94b0d-cfa8-417c-a270-1240ee4343e3",
+            "name": "DAQ",
+            "color": "#3b82f6",
+            "x": 67.14583206176758,
+            "y": 294.6458282470703
+        },
+        {
+            "id": "7ba9bbb4-ba83-4d20-b40c-25114d3445c7",
+            "name": "Photodiode",
+            "color": "#3b82f6",
+            "x": 82.14583206176758,
+            "y": 178.6458282470703
+        }
+    ],
+    "connections": [
+        {
+            "id": "1ac8213b-04b0-4c45-b3a3-51468b02a486",
+            "from": "6ff7971b-4159-48ce-b2de-7c193173df7f",
+            "to": "a982deb0-4973-4794-a1a4-e36407279c5e",
+            "name": "Frequency Feedback",
+            "color": "#10b981"
+        },
+        {
+            "id": "f74012cf-968e-4f8e-90ad-2edcaa6b7a18",
+            "from": "6ff7971b-4159-48ce-b2de-7c193173df7f",
+            "to": "ab606fb6-7ee1-4c99-bf83-d2aad0e8f3fd",
+            "name": "Signal monitoring",
+            "color": "#10b981"
+        },
+        {
+            "id": "268a68d3-e53c-4048-b9a1-779947b07a32",
+            "from": "ab606fb6-7ee1-4c99-bf83-d2aad0e8f3fd",
+            "to": "a982deb0-4973-4794-a1a4-e36407279c5e",
+            "name": "Correction signal",
+            "color": "#10b981"
+        },
+        {
+            "id": "d44c79b3-055c-40eb-81c6-f396d21d4c71",
+            "from": "798e7f6f-565c-4b50-bd4d-4fc390048f82",
+            "to": "ab606fb6-7ee1-4c99-bf83-d2aad0e8f3fd",
+            "name": "Error signal",
+            "color": "#10b981"
+        },
+        {
+            "id": "84cbbbd0-3a2a-4d60-a095-a9c2ba9f5a58",
+            "from": "7ba9bbb4-ba83-4d20-b40c-25114d3445c7",
+            "to": "feb94b0d-cfa8-417c-a270-1240ee4343e3",
+            "name": "Photodiode Output",
+            "color": "#10b981"
+        },
+        {
+            "id": "e3e773a5-333a-42ed-856d-32693d6ad162",
+            "from": "798e7f6f-565c-4b50-bd4d-4fc390048f82",
+            "to": "feb94b0d-cfa8-417c-a270-1240ee4343e3",
+            "name": "Data acquisition",
+            "color": "#10b981"
+        }
+    ]
+}
