@@ -629,9 +629,15 @@ async function uploadDocument(
 
     if (!response.ok) {
 
-        throw new Error(
+        const error =
+            await response.json();
+
+        alert(
+            error.message ||
             "Failed to upload document."
         );
+
+        return;
 
     }
 
