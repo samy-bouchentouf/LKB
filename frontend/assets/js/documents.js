@@ -231,6 +231,38 @@ function initializeSorting() {
 
 }
 
+function getDocumentTypeColor(filename) {
+
+    const extension =
+        filename
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+    switch (extension) {
+
+        case "pdf":
+            return "bg-[#C84E4E]";
+
+        case "docx":
+            return "bg-[#4E7BC8]";
+
+        case "txt":
+            return "bg-[#6B7280]";
+
+        case "md":
+            return "bg-[#8A5CC8]";
+
+        case "png":
+            return "bg-[#4EA46A]";
+
+        default:
+            return "bg-stone-900/20";
+
+    }
+
+}
+
 function renderDocuments(
     documents
 ) {
@@ -267,31 +299,31 @@ function renderDocuments(
 
                         <button
                             onclick="openDocument('${encodedName}')"
-                            class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 font-semibold flex items-center justify-center"
+                            class="absolute top-10 right-2 w-8 h-8 rounded-lg bg-white border border-stone-200 hover:bg-stone-50 text-stone-700 flex items-center justify-center"
                             title="Open"
                         >
-                            ↗
+                            ⬈
                         </button>
 
-                        <div class="text-3xl mb-3">
-                            📄
-                        </div>
+                        <div
+                            class="h-8 -mx-5 -mt-5 mb-4 rounded-t-2xl ${getDocumentTypeColor(document.name)}"
+                        ></div>
 
-                        <h4 class="font-semibold text-stone-800 break-words flex-1">
+                        <h4 class="font-semibold text-stone-800 break-words flex-1 pr-6">
                             ${document.name}
                         </h4>
 
                         <div class="flex gap-2 mt-5">
 
                             <button
-                                class="flex-1 bg-stone-100 text-stone-700 rounded-xl py-2 text-sm font-medium"
+                                class="flex-1 bg-[#DFF1FF] text-[#075985] rounded-xl py-2 text-sm font-medium"
                                 onclick="downloadDocument('${encodedName}')"
                             >
                                 Download
                             </button>
 
                             <button
-                                class="flex-1 bg-amber-50 text-amber-700 rounded-xl py-2 text-sm font-medium"
+                                class="flex-1 bg-stone-100 text-stone-700 rounded-xl py-2 text-sm font-medium"
                                 onclick="renameDocument('${encodedName}')"
                             >
                                 Rename
