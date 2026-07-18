@@ -41,6 +41,8 @@ backend/
 │   ├── incidents.controller.js
 │   └── publications.controller.js
 │
+├── conversations/
+│
 ├── routes/
 │   ├── chat.routes.js
 │   ├── components.routes.js
@@ -111,6 +113,15 @@ Handles incident requests and returns incident data to the frontend.
 Publications controller.
 
 Handles publication requests and returns publication data to the frontend.
+```
+
+## Conversations
+
+```text
+Conversation storage.
+
+Stores user conversations for
+later access and continuation.
 ```
 
 ## Routes
@@ -246,7 +257,6 @@ chatbot/
 │
 ├── data/
 │   ├── chroma_db/
-│   ├── conversations/
 │   └── chunks.json
 │
 ├── engine/
@@ -286,15 +296,6 @@ Persistent Chroma vector database.
 
 Stores document embeddings used for
 semantic retrieval.
-```
-
-### conversations/
-
-```text
-Conversation storage.
-
-Stores user conversations for
-later access and continuation.
 ```
 
 ### chunks.json

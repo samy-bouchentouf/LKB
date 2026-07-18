@@ -6,11 +6,73 @@
  * and sidebar management.
  */
 
+/* ============================================================
+ * 0.GLOBAL STATE
+ * ========================================================== */
+
 let currentConversationId =
     null;
 
 let sidebarOpen =
     true;
+
+/* ============================================================
+ * 1.LAYOUT MANAGEMENT
+ * ========================================================== */
+
+function moveComposerToWelcome() {
+
+    const composer =
+        document.getElementById(
+            "chat-composer"
+        );
+
+    const anchor =
+        document.getElementById(
+            "welcome-composer-anchor"
+        );
+
+    if (
+        !composer ||
+        !anchor
+    ) {
+        return;
+    }
+
+    anchor.appendChild(
+        composer
+    );
+
+}
+
+function moveComposerToConversation() {
+
+    const composer =
+        document.getElementById(
+            "chat-composer"
+        );
+
+    const conversation =
+        document.getElementById(
+            "chat-conversation"
+        );
+
+    if (
+        !composer ||
+        !conversation
+    ) {
+        return;
+    }
+
+    conversation.after(
+        composer
+    );
+
+}
+
+/* ============================================================
+ * 2.INITIALIZATION
+ * ========================================================== */
 
 function initializeChat() {
 
@@ -24,11 +86,6 @@ function initializeChat() {
             "chat-input"
         );
 
-    const newChatButton =
-        document.getElementById(
-            "new-chat-button"
-        );
-
     const sidebarToggle =
         document.getElementById(
             "sidebar-toggle"
@@ -37,6 +94,11 @@ function initializeChat() {
     if (!sendButton || !input) {
         return;
     }
+
+    document.getElementById(
+        "chat-shell"
+    ).style.visibility =
+        "hidden";
 
     sendButton.addEventListener(
         "click",
@@ -56,11 +118,6 @@ function initializeChat() {
             }
 
         }
-    );
-
-    newChatButton?.addEventListener(
-        "click",
-        startNewChat
     );
 
     sidebarToggle?.addEventListener(
@@ -86,7 +143,47 @@ function initializeChat() {
         }
     );
 
-    loadConversations();
+    const toggle =
+        document.getElementById(
+            "sidebar-toggle"
+        );
+
+    if (toggle) {
+
+        toggle.innerHTML = "←";
+
+        toggle.style.left = "259px";
+
+    }
+
+    const savedConversationId =
+        sessionStorage.getItem(
+            "currentConversationId"
+        );
+
+    if (
+        savedConversationId &&
+        !sessionStorage.getItem(
+            "quickQuestion"
+        )
+    ) {
+
+        openConversation(
+            savedConversationId
+        );
+
+    } else {
+
+        moveComposerToWelcome();
+
+        loadConversations();
+
+        document.getElementById(
+            "chat-shell"
+        ).style.visibility =
+            "visible";
+
+    }
 
     const quickQuestion =
         sessionStorage.getItem(
@@ -107,6 +204,10 @@ function initializeChat() {
     }
 
 }
+
+/* ============================================================
+ * 3.CONVERSATION MANAGEMENT
+ * ========================================================== */
 
 async function loadConversations() {
 
@@ -156,10 +257,45 @@ function renderConversations(
         return;
     }
 
-    container.innerHTML = "";
+    const newChatSelected =
+        currentConversationId ===
+        null;
+
+    container.innerHTML = `
+        <div
+            id="new-chat-button"
+            class="
+                px-3 py-2
+                rounded-xl
+                cursor-pointer
+                text-sm
+                mb-1
+                ${
+                    newChatSelected
+                        ? "bg-stone-100 text-stone-900 font-medium"
+                        : "text-stone-700 hover:bg-stone-100"
+                }
+            "
+        >
+            New Chat
+        </div>
+    `;
+
+    document
+        .getElementById(
+            "new-chat-button"
+        )
+        ?.addEventListener(
+            "click",
+            startNewChat
+        );
 
     conversations.forEach(
         conversation => {
+
+            const isSelected =
+                currentConversationId ===
+                conversation.id;
 
             const item =
                 document.createElement(
@@ -167,7 +303,9 @@ function renderConversations(
                 );
 
             item.className =
-                "group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer hover:bg-stone-100 mb-1";
+                isSelected
+                    ? "group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer bg-stone-100 text-stone-900 font-medium mb-1"
+                    : "group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer hover:bg-stone-100 mb-1";
 
             const title =
                 document.createElement(
@@ -175,7 +313,7 @@ function renderConversations(
                 );
 
             title.className =
-                "flex-1 truncate text-sm text-stone-700";
+                "flex-1 truncate text-sm";
 
             title.textContent =
                 conversation.title;
@@ -257,7 +395,7 @@ function renderConversations(
             menu.classList.add(
                 "conversation-menu"
             );
-            
+
             menu.addEventListener(
                 "click",
                 event => {
@@ -337,6 +475,13 @@ async function openConversation(
         currentConversationId =
             conversation.id;
 
+        sessionStorage.setItem(
+            "currentConversationId",
+            conversation.id
+        );
+
+        await loadConversations();
+
         const welcome =
             document.getElementById(
                 "chat-welcome"
@@ -355,6 +500,8 @@ async function openConversation(
             "hidden"
         );
 
+        moveComposerToConversation();
+
         conversationContainer.innerHTML =
             "";
 
@@ -362,12 +509,22 @@ async function openConversation(
             conversation.messages
         );
 
+        document.getElementById(
+            "chat-shell"
+        ).style.visibility =
+            "visible";
+
     } catch (error) {
 
         console.error(
             "[ERROR] Failed to open conversation.",
             error
         );
+
+        document.getElementById(
+            "chat-shell"
+        ).style.visibility =
+            "visible";
 
     }
 
@@ -467,9 +624,11 @@ async function deleteConversation(
 
             startNewChat();
 
-        }
+        } else {
 
         await loadConversations();
+
+        }
 
     } catch (error) {
 
@@ -486,6 +645,10 @@ function startNewChat() {
 
     currentConversationId =
         null;
+
+    sessionStorage.removeItem(
+        "currentConversationId"
+    );
 
     const welcome =
         document.getElementById(
@@ -513,7 +676,11 @@ function startNewChat() {
         "hidden"
     );
 
+    moveComposerToWelcome();
+
     input.value = "";
+
+    loadConversations();
 
     if (!sidebarOpen) {
 
@@ -522,6 +689,10 @@ function startNewChat() {
     }
 
 }
+
+/* ============================================================
+ * 4.SIDEBAR MANAGEMENT
+ * ========================================================== */
 
 function collapseSidebar() {
 
@@ -539,9 +710,9 @@ function collapseSidebar() {
         "hidden"
     );
 
-    toggle.classList.remove(
-        "hidden"
-    );
+    toggle.innerHTML = "→";
+
+    toggle.style.left = "0px";
 
     sidebarOpen =
         false;
@@ -564,9 +735,9 @@ function expandSidebar() {
         "hidden"
     );
 
-    toggle.classList.add(
-        "hidden"
-    );
+    toggle.innerHTML = "←";
+
+    toggle.style.left = "259px";
 
     sidebarOpen =
         true;
@@ -586,6 +757,10 @@ function toggleSidebar() {
     expandSidebar();
 
 }
+
+/* ============================================================
+ * 5.MESSAGE PROCESSING
+ * ========================================================== */
 
 async function sendMessage() {
 
@@ -618,6 +793,8 @@ async function sendMessage() {
     conversation.classList.remove(
         "hidden"
     );
+
+    moveComposerToConversation();
 
     if (sidebarOpen) {
 
@@ -671,6 +848,11 @@ async function sendMessage() {
         currentConversationId =
             data.conversationId;
 
+        sessionStorage.setItem(
+            "currentConversationId",
+            data.conversationId
+        );
+
         clearInterval(
             loading.interval
         );
@@ -703,6 +885,10 @@ async function sendMessage() {
     }
 
 }
+
+/* ============================================================
+ * 6.MESSAGE RENDERING
+ * ========================================================== */
 
 function renderConversationMessages(
     messages

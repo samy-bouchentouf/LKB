@@ -26,7 +26,7 @@ const CHATBOT_API_URL =
 const CONVERSATIONS_PATH =
     path.join(
         __dirname,
-        "../data/conversations"
+        "../conversations"
     );
 
 async function sendMessage(

@@ -1,0 +1,53 @@
+{
+    "id": "203545e6-6c4a-432d-bb5c-0e2be7490eca",
+    "title": "Nom tres long pour faire un test avec la sidebar, je ne sais pas si elle va se r",
+    "createdAt": "2026-07-18T15:20:45.785Z",
+    "updatedAt": "2026-07-18T15:21:10.959Z",
+    "messages": [
+        {
+            "role": "user",
+            "content": "OK ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The information about \"OK\" in the provided context is related to the **Koheras ADJUSTIK and ADJUSTIK HP** product guide.\n\nIn the Ethernet port configuration section, it states:\n*\"Click OK to accept the configuration of the new Ethernet connection port.\"* This confirms that the \"OK\" button is used to validate and save settings in the software interface.",
+            "sources": [
+                {
+                    "source": "Karuseichyk - 2024 - Multiparameter Method of Moments for Sources Resolving and Characterization.pdf",
+                    "category": "publications",
+                    "url": "/documents/publications/Karuseichyk - 2024 - Multiparameter Method of Moments for Sources Resolving and Characterization.pdf"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                },
+                {
+                    "source": "C-413-UserManual-MS224E.pdf",
+                    "category": "components",
+                    "url": "/documents/components/C-413-UserManual-MS224E.pdf"
+                },
+                {
+                    "source": "NIDAQ_Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/NIDAQ_Manual.pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "yes"
+        },
+        {
+            "role": "assistant",
+            "content": "The \"OK\" button in the Koheras ADJUSTIK and ADJUSTIK HP software interface is used to **accept and save the configuration of a new Ethernet connection port**. Once the settings are entered, clicking \"OK\" validates and applies them.",
+            "sources": [
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        }
+    ]
+}
