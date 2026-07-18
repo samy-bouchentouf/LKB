@@ -246,6 +246,7 @@ chatbot/
 │
 ├── data/
 │   ├── chroma_db/
+│   ├── conversations/
 │   └── chunks.json
 │
 ├── engine/
@@ -260,6 +261,10 @@ chatbot/
 │   ├── embedding.py
 │   ├── hashing.py
 │   └── indexer.py
+│
+├── memory/
+│   ├── history.py
+│   └── rewriter.py
 │
 ├── models/
 │   ├── chunk.py
@@ -281,6 +286,15 @@ Persistent Chroma vector database.
 
 Stores document embeddings used for
 semantic retrieval.
+```
+
+### conversations/
+
+```text
+Conversation storage.
+
+Stores user conversations for
+later access and continuation.
 ```
 
 ### chunks.json
@@ -381,6 +395,28 @@ Document indexing pipeline.
 Coordinates document loading, chunking,
 embedding generation and storage of indexed
 data used by the retrieval system.
+```
+
+## Memory
+
+### history.py
+
+```text
+Conversation history module.
+
+Extracts, formats and limits conversation
+history used by the conversational
+retrieval and response generation pipeline.
+```
+
+### rewriter.py
+
+```text
+Question rewriting module.
+
+Rewrites user questions using conversation
+history to resolve implicit references
+before document retrieval.
 ```
 
 ## Models

@@ -10,7 +10,7 @@ The platform centralizes, structures and enriches laboratory knowledge through:
 - Incident reports
 - AI-assisted knowledge retrieval
 
-The application combines modern document management with a hybrid Retrieval-Augmented Generation (RAG) architecture powered by:
+The application combines modern document management with a conversational hybrid Retrieval-Augmented Generation (RAG) architecture powered by:
 
 - Chroma Vector Database
 - BM25 Lexical Search
@@ -29,6 +29,13 @@ Frontend
 Node.js / Express
     ↓
 FastAPI Chatbot Service
+    ↓
+Conversation Memory
+
+├── Question Rewriter
+├── Conversation History
+└── Prompt Construction
+
     ↓
 Hybrid Retrieval Layer
 
@@ -65,12 +72,16 @@ Handles:
 - Incident report generation
 - Knowledge base synchronization requests
 - Communication with the chatbot service
+- Conversation persistence
+- Conversation retrieval
 - Static document serving
 
 ## FastAPI Chatbot
 
 Handles:
 
+- Conversation-aware question rewriting
+- Conversation history management
 - Document indexing
 - Embedding generation
 - Semantic retrieval
@@ -247,10 +258,57 @@ Generated Answer
 
 The Chat page exposes the AI assistant.
 
+Conversations are persistent and remain available across application restarts.
+
+Each conversation is automatically created after the first successful user interaction and can later be reopened from the conversation sidebar.
+
+## Conversation Features
+
+```text
+Persistent Conversations
+Conversation History
+Conversation Reopening
+Automatic Conversation Creation
+Conversation Continuation
+Context-Aware Questions
+Conversational RAG
+```
+
+## Conversational Retrieval Pipeline
+
+The assistant supports context-aware follow-up questions.
+
+Example:
+
+```text
+User:
+What is the PDA50B2?
+
+Assistant:
+The PDA50B2 is a photodetector.
+
+User:
+What wavelength range does it support?
+```
+
+The system automatically rewrites the question into:
+
+```text
+What wavelength range does the PDA50B2 support?
+```
+
+before retrieval.
+
 Questions are processed through:
 
 ```text
 Question
+↓
+Extended Conversation History
+↓
+Question Rewriter
+↓
+Explicit Question
 ↓
 Mistral Embedding Generation
 ↓
@@ -264,7 +322,11 @@ Hybrid Score Computation
 ↓
 Top 15 Chunks
 ↓
-Context Construction
+Recent Conversation History
+        +
+Retrieved Context
+        +
+Current Question
 ↓
 Mistral Large
 ↓
@@ -290,9 +352,46 @@ The assistant can use information extracted from:
 - Incidents
 - Diagrams
 
+## Conversation Memory
+
+Two levels of conversation memory are used.
+
+### Extended History
+
+Used during question rewriting.
+
+```text
+Last 30 conversation exchanges
+```
+
+This allows the assistant to resolve references to previously discussed entities such as:
+
+```text
+it
+this detector
+that component
+that incident
+the previous issue
+this diagram
+```
+
+### Recent History
+
+Used when generating answers.
+
+```text
+Last 5 conversation exchanges
+```
+
+This keeps prompts compact while preserving conversational context.
+
 ## Chat Features
 
 ```text
+Persistent Conversations
+Conversation History
+Conversational RAG
+Question Rewriting
 Markdown Rendering
 Progressive Response Streaming
 Source Attribution
@@ -880,7 +979,15 @@ POST /api/chat
 ↓
 Express Backend
 ↓
+Load Conversation History
+↓
 POST /ask
+↓
+Extended History
+↓
+Question Rewriter
+↓
+Explicit Question
 ↓
 Vector Search
         +
@@ -888,7 +995,11 @@ BM25 Search
 ↓
 Hybrid Ranking
 ↓
-Context Construction
+Recent History
+        +
+Retrieved Context
+        +
+Current Question
 ↓
 Mistral Large
 ↓
@@ -940,6 +1051,11 @@ BM25 Rebuild
 # Benefits
 
 - Centralized laboratory knowledge
+- Persistent conversations
+- Conversation continuation
+- Conversation-aware retrieval
+- Question rewriting
+- Conversational RAG
 - Hybrid semantic retrieval
 - Hybrid lexical retrieval
 - Hybrid ranking strategy
@@ -964,5 +1080,5 @@ BM25 Rebuild
 - Automatic conflict resolution workflows
 - Unified document libraries
 - Modular backend architecture
-- Scalable RAG infrastructure
+- Scalable conversational RAG infrastructure
 - Clean separation between frontend, backend and AI services

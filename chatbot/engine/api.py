@@ -6,7 +6,8 @@ HTTP endpoints used by the web application.
 """
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import Any
 
 import logging
 
@@ -58,13 +59,21 @@ class QuestionRequest(BaseModel):
 
     question: str
 
+    conversationId: str | None = None
+
+    messages: list[dict[str, Any]] = Field(
+        default_factory=list
+    )
+
 
 @app.post("/ask")
 def ask(request: QuestionRequest) -> dict:
     """Answer a user question using the knowledge base."""
 
     return ask_question(
-        request.question
+        question=request.question,
+        conversation_id=request.conversationId,
+        messages=request.messages
     )
 
 

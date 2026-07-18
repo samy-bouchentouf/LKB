@@ -10,8 +10,16 @@ and returns the generated answer.
 
 from ..indexing.indexer import sync_documents
 from ..retrieval.hybrid_search import hybrid_search
-from .prompt_builder import build_prompt
 
+from ..memory.history import (
+    get_recent_history,
+)
+
+from ..memory.rewriter import (
+    rewrite_question,
+)
+
+from .prompt_builder import build_prompt
 from .llm import generate_answer
 
 
@@ -20,16 +28,34 @@ from .llm import generate_answer
 sync_documents()
 
 
-def ask_question(question: str) -> dict:
+def ask_question(
+    question: str,
+    conversation_id: str | None = None,
+    messages: list[dict] | None = None
+    ) -> dict:
     """
     Answer a user question using the knowledge base.
     """
 
-    results = hybrid_search(question)
+    messages = messages or []
+
+    rewritten_question = rewrite_question(
+        question,
+        messages
+    )
+
+    results = hybrid_search(
+        rewritten_question
+    )
+    
+    recent_history = get_recent_history(
+        messages
+    )
 
     prompt = build_prompt(
-        question,
-        results,
+        question=rewritten_question,
+        results=results,
+        history=recent_history,
     )
 
     answer = generate_answer(prompt)
