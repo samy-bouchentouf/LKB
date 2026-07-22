@@ -333,10 +333,11 @@ function renderConversations(
         <div
             id="new-chat-button"
             class="
+                flex items-center justify-between
                 px-3 py-2
                 rounded-xl
                 cursor-pointer
-                text-sm
+                text-base
                 mb-1
                 ${
                     newChatSelected
@@ -345,7 +346,29 @@ function renderConversations(
                 }
             "
         >
-            New Chat
+            <span>New Chat</span>
+
+            <span
+                class="
+                    w-6 h-6
+                    flex items-center justify-center
+                    rounded-md
+                    border border-stone-300
+                "
+            >
+                <svg
+                    class="w-4 h-4"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <path
+                        d="M12 3V21M3 12H21"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                    />
+                </svg>
+            </span>
         </div>
     `;
 
@@ -381,7 +404,7 @@ function renderConversations(
                 );
 
             title.className =
-                "flex-1 truncate text-sm";
+                "flex-1 truncate text-base";
 
             title.textContent =
                 conversation.title;
