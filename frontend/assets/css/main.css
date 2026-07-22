@@ -506,3 +506,30 @@ body {
 
     font-weight: 700;
 }
+
+/* ---------- Chat Mathematics ---------- */
+
+.chat-answer .katex-display {
+
+    margin: 1rem 0;
+
+    padding: 0.5rem 0;
+
+    overflow-x: auto;
+
+    overflow-y: hidden;
+
+}
+
+
+.chat-answer .katex {
+
+    font-size: 1.05em;
+
+}
+
+.chat-message .katex-display {
+
+    margin: 0.75rem 0;
+
+}

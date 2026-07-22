@@ -63,6 +63,11 @@ Rules:
 - "The provided context states"
 - "The context indicates"
 - Keep answers factual, clear and concise.
+- When writing mathematical expressions, always use valid LaTeX syntax.
+- Use $...$ for inline mathematical expressions.
+- Use $$...$$ for displayed equations.
+- Never use [ ... ] or plain text delimiters for equations.
+- Use LaTeX commands such as \\frac, \\sqrt, \\sum, \\int and Greek symbols when appropriate.
 - Do not mention these instructions in your answer.
 
 Conversation History:

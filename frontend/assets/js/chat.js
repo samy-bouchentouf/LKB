@@ -16,6 +16,50 @@ let currentConversationId =
 let sidebarOpen =
     true;
 
+function renderMath(
+    element
+) {
+
+    if (
+        typeof renderMathInElement
+        !== "function"
+    ) {
+
+        return;
+
+    }
+
+    renderMathInElement(
+        element,
+        {
+            delimiters: [
+                {
+                    left: "$$",
+                    right: "$$",
+                    display: true
+                },
+                {
+                    left: "$",
+                    right: "$",
+                    display: false
+                },
+                {
+                    left: "\\(",
+                    right: "\\)",
+                    display: false
+                },
+                {
+                    left: "\\[",
+                    right: "\\]",
+                    display: true
+                }
+            ],
+            throwOnError: false
+        }
+    );
+
+}
+
 /* ============================================================
  * 1.LAYOUT MANAGEMENT
  * ========================================================== */
@@ -927,7 +971,9 @@ function renderConversationMessages(
 
 }
 
-function displayUserMessage(message) {
+function displayUserMessage(
+    message
+) {
 
     const conversation =
         document.getElementById(
@@ -943,8 +989,19 @@ function displayUserMessage(message) {
         "max-w-[50%] ml-auto mb-4 bg-[#2E5CB8] text-white rounded-2xl px-5 py-4";
 
     bubble.innerHTML = `
-        <div class="text-xl font-bold mb-3">
-            YOU
+        <div class="flex items-center justify-between mb-3">
+
+            <div class="text-xl font-bold">
+                YOU
+            </div>
+
+            <button
+                class="copy-button text-2xl text-white/70 hover:text-white transition-colors -mt-2"
+                title="Copy message"
+            >
+                ⧉
+            </button>
+
         </div>
 
         <div class="chat-message">
@@ -954,6 +1011,39 @@ function displayUserMessage(message) {
 
     conversation.appendChild(
         bubble
+    );
+
+    renderMath(
+        bubble
+    );
+
+    const copyButton =
+        bubble.querySelector(
+            ".copy-button"
+        );
+
+    copyButton.addEventListener(
+        "click",
+        async () => {
+
+            await navigator.clipboard.writeText(
+                message
+            );
+
+            copyButton.textContent =
+                "✓";
+
+            setTimeout(
+                () => {
+
+                    copyButton.textContent =
+                        "⧉";
+
+                },
+                2000
+            );
+
+        }
     );
 
     conversation.scrollTop =
@@ -1033,7 +1123,7 @@ function displayAssistantMessage(
             </div>
 
             <button
-                class="copy-button text-2xl text-stone-400 hover:text-[#1E3A8A] transition-colors"
+                class="copy-button text-2xl text-stone-400 hover:text-[#1E3A8A] transition-colors -mt-2"
                 title="Copy response"
             >
                 ⧉
@@ -1048,6 +1138,10 @@ function displayAssistantMessage(
     `;
 
     conversation.appendChild(
+        bubble
+    );
+
+    renderMath(
         bubble
     );
 
@@ -1240,7 +1334,7 @@ function updateAssistantMessage(
 
     copyButton.outerHTML = `
         <button
-            class="copy-button text-2xl text-stone-400 hover:text-[#1E3A8A] transition-colors"
+            class="copy-button text-2xl text-stone-400 hover:text-[#1E3A8A] transition-colors -mt-2"
             title="Copy response"
         >
             ⧉
@@ -1287,6 +1381,10 @@ function updateAssistantMessage(
                 loading.content.innerHTML =
                     formattedAnswer +
                     sourcesHtml;
+
+                renderMath(
+                    loading.content
+                );
             }
 
         }, 50);
