@@ -192,11 +192,35 @@ function initializeChat() {
             "sidebar-toggle"
         );
 
+    const sidebar =
+        document.getElementById(
+            "chat-sidebar"
+        );
+
+    if (sidebar) {
+
+        sidebar.style.width =
+            "288px";
+
+        sidebar.style.opacity =
+            "1";
+
+        sidebar.style.transition =
+            "width 250ms ease, opacity 250ms ease";
+
+        sidebar.style.overflow =
+            "hidden";
+
+    }
+
     if (toggle) {
 
         toggle.innerHTML = "←";
 
-        toggle.style.left = "259px";
+        toggle.style.left = "287px";
+
+        toggle.style.transition =
+            "left 250ms ease";
 
     }
 
@@ -750,13 +774,22 @@ function collapseSidebar() {
             "sidebar-toggle"
         );
 
-    sidebar.classList.add(
-        "hidden"
-    );
+    sidebar.style.transition =
+        "width 250ms ease, opacity 250ms ease";
+
+    sidebar.style.width =
+        "0px";
+
+    sidebar.style.opacity =
+        "0";
+
+    sidebar.style.overflow =
+        "hidden";
 
     toggle.innerHTML = "→";
 
-    toggle.style.left = "0px";
+    toggle.style.left =
+        "0px";
 
     sidebarOpen =
         false;
@@ -775,13 +808,22 @@ function expandSidebar() {
             "sidebar-toggle"
         );
 
-    sidebar.classList.remove(
-        "hidden"
-    );
+    sidebar.style.transition =
+        "width 250ms ease, opacity 250ms ease";
+
+    sidebar.style.width =
+        "288px";
+
+    sidebar.style.opacity =
+        "1";
+
+    sidebar.style.overflow =
+        "hidden";
 
     toggle.innerHTML = "←";
 
-    toggle.style.left = "259px";
+    toggle.style.left =
+        "287px";
 
     sidebarOpen =
         true;
