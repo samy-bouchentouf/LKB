@@ -1256,7 +1256,10 @@ function displayAssistantMessage(
         </div>
 
         <div class="text-stone-700 chat-answer">
-            ${marked.parse(answer)}
+            <div class="answer-content">
+                ${marked.parse(answer)}
+            </div>
+
             ${sourcesHtml}
         </div>
     `;
@@ -1277,7 +1280,7 @@ function displayAssistantMessage(
             await navigator.clipboard.writeText(
                 bubble
                     .querySelector(
-                        ".chat-answer"
+                        ".answer-content"
                     )
                     .innerText
             );
@@ -1499,8 +1502,13 @@ function updateAssistantMessage(
                 );
 
                 loading.content.innerHTML =
-                    formattedAnswer +
-                    sourcesHtml;
+                    `
+                        <div class="answer-content">
+                            ${formattedAnswer}
+                        </div>
+
+                        ${sourcesHtml}
+                    `;
             }
 
         }, 50);
@@ -1517,7 +1525,7 @@ function updateAssistantMessage(
             await navigator.clipboard.writeText(
                 loading.bubble
                     .querySelector(
-                        ".chat-answer"
+                        ".answer-content"
                     )
                     .innerText
             );
