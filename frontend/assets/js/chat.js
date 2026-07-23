@@ -1532,9 +1532,7 @@ function updateAssistantMessage(
 
             loading.content.innerHTML =
                 marked.parse(
-                    normalizeMath(
-                        partialAnswer
-                    )
+                    partialAnswer
                 );
 
             if (
