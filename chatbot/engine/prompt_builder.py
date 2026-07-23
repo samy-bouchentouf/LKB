@@ -1,9 +1,10 @@
 """
 Prompt construction module.
 
-Builds the final prompt sent to the language model
-by combining the user's question with the retrieved
-document context.
+Builds the final answer-generation prompt sent
+to the language model by combining conversation
+history, retrieved document context, response
+guidelines and the current user question.
 """
 
 from ..models.search_result import SearchResult

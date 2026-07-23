@@ -72,7 +72,7 @@ backend/
 ```text
 Chat controller.
 
-Handles chatbot requests and returns generated answers to the frontend.
+Handles chatbot requests and manages conversation operations.
 ```
 
 ### components.controller.js
@@ -120,8 +120,7 @@ Handles publication requests and returns publication data to the frontend.
 ```text
 Conversation storage.
 
-Stores user conversations for
-later access and continuation.
+Stores user conversations for later access and continuation.
 ```
 
 ## Routes
@@ -131,7 +130,7 @@ later access and continuation.
 ```text
 Chat routes.
 
-Defines API endpoints used to interact with the chatbot.
+Defines API endpoints used to interact with the chatbot and manage conversations.
 ```
 
 ### components.routes.js
@@ -181,7 +180,7 @@ Defines API endpoints used to manage scientific publications.
 ```text
 Chat service.
 
-Communicates with the FastAPI chatbot service and retrieves generated answers.
+Communicates with the RAG chatbot, manages conversation persistence and retrieves stored conversations.
 ```
 
 ### components.service.js
@@ -333,9 +332,9 @@ using retrieved document context.
 ```text
 Prompt construction module.
 
-Builds the final prompt sent to the language model
-by combining the user's question with the retrieved
-document context.
+Builds the final answer-generation prompt sent to the language model 
+by combining conversation history, retrieved document context, response
+guidelines and the current user question.
 ```
 
 ### rag_api.py
@@ -343,11 +342,9 @@ document context.
 ```text
 Main entry point of the chatbot.
 
-Receives user questions,
-retrieves relevant document chunks,
-builds the final prompt,
-queries the language model,
-and returns the generated answer.
+Receives user questions, retrieves relevant document chunks,
+builds the final prompt, queries the language model, and
+returns the generated answer.
 ```
 
 ## Indexing
@@ -393,9 +390,8 @@ on its content.
 ```text
 Document indexing pipeline.
 
-Coordinates document loading, chunking,
-embedding generation and storage of indexed
-data used by the retrieval system.
+Coordinates document loading, chunking, embedding generation 
+and storage of indexed data used by the retrieval system.
 ```
 
 ## Memory
@@ -405,9 +401,8 @@ data used by the retrieval system.
 ```text
 Conversation history module.
 
-Extracts, formats and limits conversation
-history used by the conversational
-retrieval and response generation pipeline.
+Extracts, formats and limits conversation history used by the 
+conversational retrieval and response generation pipeline.
 ```
 
 ### rewriter.py
@@ -415,9 +410,8 @@ retrieval and response generation pipeline.
 ```text
 Question rewriting module.
 
-Rewrites user questions using conversation
-history to resolve implicit references
-before document retrieval.
+Rewrites user questions using conversation history to resolve
+implicit references before document retrieval.
 ```
 
 ## Models
@@ -574,7 +568,7 @@ Application images and visual assets.
 ```text
 Chat module.
 
-Handles user interactions with the LKB chatbot.
+Handles user interactions, conversation persistence and sidebar management.
 ```
 
 #### diagrams.js
@@ -632,7 +626,8 @@ Handles page loading and navigation throughout the application.
 ```text
 Chat page.
 
-Provides the interface used to interact with the LKB documentation chatbot.
+Provides the interface used to interact with the LKB documentation chatbot
+and manage persistent conversations.
 ```
 
 ### components.html
