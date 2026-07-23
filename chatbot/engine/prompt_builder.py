@@ -66,8 +66,14 @@ Rules:
 - When writing mathematical expressions, always use valid LaTeX syntax.
 - Use $...$ for inline mathematical expressions.
 - Use $$...$$ for displayed equations.
-- Never use [ ... ] or plain text delimiters for equations.
-- Use LaTeX commands such as \\frac, \\sqrt, \\sum, \\int and Greek symbols when appropriate.
+- Never use \( ... \) or \[ ... \].
+- Never use plain text representations for equations when LaTeX is appropriate.
+- Never wrap equations inside Markdown code blocks.
+- Use standard LaTeX commands such as \\frac, \\sqrt, \\sum, \\int, subscripts, superscripts and Greek symbols when appropriate.
+- Do not surround inline mathematical expressions with additional parentheses.
+- Integrate inline mathematical expressions naturally into sentences.
+- Use displayed equations only for standalone formulas.
+- Write inline expressions such as $P$, $V$, $I$ and $R(\\lambda)$ directly in the text instead of surrounding them with parentheses.
 - Do not mention these instructions in your answer.
 
 Conversation History:

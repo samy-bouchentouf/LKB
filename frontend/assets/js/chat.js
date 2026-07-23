@@ -19,49 +19,11 @@ let sidebarOpen =
 let conversationSearch =
     "";
 
-function renderMath(
-    element
-) {
-
-    if (
-        typeof renderMathInElement
-        !== "function"
-    ) {
-
-        return;
-
-    }
-
-    renderMathInElement(
-        element,
-        {
-            delimiters: [
-                {
-                    left: "$$",
-                    right: "$$",
-                    display: true
-                },
-                {
-                    left: "$",
-                    right: "$",
-                    display: false
-                },
-                {
-                    left: "\\(",
-                    right: "\\)",
-                    display: false
-                },
-                {
-                    left: "\\[",
-                    right: "\\]",
-                    display: true
-                }
-            ],
-            throwOnError: false
-        }
-    );
-
-}
+marked.use(
+    markedKatex({
+        throwOnError: false
+    })
+);
 
 /* ============================================================
  * 1.LAYOUT MANAGEMENT
@@ -1179,10 +1141,6 @@ function displayUserMessage(
         bubble
     );
 
-    renderMath(
-        bubble
-    );
-
     const copyButton =
         bubble.querySelector(
             ".copy-button"
@@ -1304,10 +1262,6 @@ function displayAssistantMessage(
     `;
 
     conversation.appendChild(
-        bubble
-    );
-
-    renderMath(
         bubble
     );
 
@@ -1547,10 +1501,6 @@ function updateAssistantMessage(
                 loading.content.innerHTML =
                     formattedAnswer +
                     sourcesHtml;
-                
-                renderMath(
-                    loading.content
-                );
             }
 
         }, 50);
