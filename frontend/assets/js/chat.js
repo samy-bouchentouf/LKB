@@ -341,10 +341,10 @@ function renderConversations(
                 rounded-xl
                 cursor-pointer
                 text-base
-                mb-1
+                mb-3
                 ${
                     newChatSelected
-                        ? "bg-[#DFF1FF] text-[#075985] font-medium"
+                        ? "bg-[#DFF1FF] text-[#075985] font-medium transition-colors"
                         : "text-stone-500 hover:bg-[#F5F5F4] hover:text-stone-800 transition-colors"
                 }
             "
@@ -373,6 +373,27 @@ function renderConversations(
                 </svg>
             </span>
         </div>
+
+        <div class="mb-3">
+            <input
+                id="conversation-search"
+                type="text"
+                placeholder="Search conversations..."
+                value="${conversationSearch}"
+                class="
+                    w-full
+                    px-3 py-2
+                    text-base
+                    bg-stone-50
+                    border border-stone-200
+                    rounded-xl
+                    outline-none
+                    focus:border-sky-300
+                    focus:ring-2
+                    focus:ring-sky-100
+                "
+            >
+        </div>
     `;
 
     document
@@ -382,6 +403,38 @@ function renderConversations(
         ?.addEventListener(
             "click",
             startNewChat
+        );
+
+    document
+        .getElementById(
+            "conversation-search"
+        )
+        ?.addEventListener(
+            "input",
+            event => {
+
+                conversationSearch =
+                    event.target.value
+                        .toLowerCase();
+
+                document
+                    .querySelectorAll(
+                        ".conversation-item"
+                    )
+                    .forEach(
+                        item => {
+
+                            item.style.display =
+                                item.dataset.title.includes(
+                                    conversationSearch
+                                )
+                                    ? ""
+                                    : "none";
+
+                        }
+                    );
+
+            }
         );
 
     conversations.forEach(
@@ -396,10 +449,32 @@ function renderConversations(
                     "div"
                 );
 
+            item.classList.add(
+                "conversation-item"
+            );
+
+            item.dataset.title =
+                (
+                    conversation.title ||
+                    ""
+                ).toLowerCase();
+
+            if (
+                conversationSearch &&
+                !item.dataset.title.includes(
+                    conversationSearch.toLowerCase()
+                )
+            ) {
+
+                item.style.display =
+                    "none";
+
+            }
+
             item.className =
                 isSelected
-                    ? "group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer bg-[#DFF1FF] text-[#075985] font-medium transition-colors mb-1"
-                    : "group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer text-stone-500 hover:bg-[#F5F5F4] hover:text-stone-800 transition-colors mb-1";
+                    ? "conversation-item group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer bg-[#DFF1FF] text-[#075985] font-medium transition-colors mb-1"
+                    : "conversation-item group relative flex items-center justify-between px-3 py-2 rounded-xl cursor-pointer text-stone-500 hover:bg-[#F5F5F4] hover:text-stone-800 transition-colors mb-1";
 
             const title =
                 document.createElement(
@@ -441,13 +516,13 @@ function renderConversations(
 
             menu.innerHTML = `
                 <button
-                    class="rename-conversation w-full text-left px-3 py-2 text-sm hover:bg-stone-100"
+                    class="rename-conversation w-full text-left px-3 py-2 text-sm font-medium text-stone-800 hover:bg-stone-100"
                 >
                     Rename
                 </button>
 
                 <button
-                    class="delete-conversation w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50"
+                    class="delete-conversation w-full text-left px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
                 >
                     Delete
                 </button>
@@ -1346,7 +1421,7 @@ function updateAssistantMessage(
     answer,
     sources = []
 ) {
-
+    
     const formattedAnswer =
         marked.parse(answer);
 
