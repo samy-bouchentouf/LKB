@@ -157,12 +157,29 @@ function initializeChat() {
         event => {
 
             if (
-                event.key === "Enter"
+                event.key === "Enter" &&
+                !event.shiftKey
             ) {
+
+                event.preventDefault();
 
                 sendMessage();
 
             }
+
+        }
+    );
+
+    input.addEventListener(
+        "input",
+        () => {
+
+            input.style.height =
+                "auto";
+
+            input.style.height =
+                input.scrollHeight +
+                "px";
 
         }
     );
@@ -849,6 +866,9 @@ function startNewChat() {
 
     input.value = "";
 
+    input.style.height =
+        "auto";
+
     loadConversations();
 
     if (!sidebarOpen) {
@@ -997,6 +1017,9 @@ async function sendMessage() {
         displayLoadingMessage();
 
     input.value = "";
+
+    input.style.height =
+        "auto";
 
     try {
 
@@ -1421,7 +1444,7 @@ function updateAssistantMessage(
     answer,
     sources = []
 ) {
-    
+
     const formattedAnswer =
         marked.parse(answer);
 
@@ -1509,7 +1532,9 @@ function updateAssistantMessage(
 
             loading.content.innerHTML =
                 marked.parse(
-                    partialAnswer
+                    normalizeMath(
+                        partialAnswer
+                    )
                 );
 
             if (
@@ -1524,7 +1549,7 @@ function updateAssistantMessage(
                 loading.content.innerHTML =
                     formattedAnswer +
                     sourcesHtml;
-
+                
                 renderMath(
                     loading.content
                 );

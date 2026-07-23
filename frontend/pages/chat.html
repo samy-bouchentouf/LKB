@@ -111,12 +111,12 @@ manage persistent conversations.
 
                 <div class="flex items-center bg-white border border-stone-200 rounded-3xl shadow-sm px-4 py-3">
 
-                    <input
-                        type="text"
+                    <textarea
                         id="chat-input"
+                        rows="1"
                         placeholder="Ask a question about the knowledge base..."
-                        class="flex-1 outline-none bg-transparent text-stone-700"
-                    >
+                        class="flex-1 outline-none bg-transparent text-stone-700 resize-none overflow-hidden"
+                    ></textarea>
 
                     <button
                         id="send-button"
