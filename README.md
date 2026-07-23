@@ -26,7 +26,7 @@ The application is composed of three layers:
 ```text
 Frontend
     ↓
-Node.js / Express
+Express Backend
     ↓
 FastAPI Chatbot Service
     ↓
@@ -339,6 +339,9 @@ Responses include:
 - Supporting source documents
 - Clickable source references
 - Markdown-rendered formatting
+- KaTeX-rendered mathematical expressions
+- Inline equations
+- Display equations
 - Tables
 - Lists
 - Bold text
@@ -393,6 +396,7 @@ Conversation History
 Conversational RAG
 Question Rewriting
 Markdown Rendering
+Mathematical Expression Rendering
 Progressive Response Streaming
 Source Attribution
 Clickable Sources
@@ -910,7 +914,9 @@ BM25 Rebuilt
 
 ## Synchronization Triggers
 
-The following actions automatically trigger synchronization:
+Any operation modifying indexed content automatically triggers synchronization.
+
+Examples:
 
 ```text
 Upload Publication
@@ -1062,6 +1068,7 @@ BM25 Rebuild
 - AI-assisted information retrieval
 - Progressive answer generation
 - Markdown-rendered chatbot responses
+- Mathematical expression rendering
 - Clickable source references
 - Direct access to supporting documents
 - One-click response copy
