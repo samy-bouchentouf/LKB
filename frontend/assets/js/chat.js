@@ -282,18 +282,32 @@ function initializeChat() {
             "currentConversationId"
         );
 
-    if (
-        savedConversationId &&
-        !sessionStorage.getItem(
+    const quickQuestion =
+        sessionStorage.getItem(
             "quickQuestion"
-        )
-    ) {
-
-        openConversation(
-            savedConversationId
         );
 
-    } else {
+    const firstChatVisit =
+        !sessionStorage.getItem(
+            "chatInitialized"
+        );
+
+    sessionStorage.setItem(
+        "chatInitialized",
+        "true"
+    );
+
+    if (quickQuestion) {
+
+        loadConversations();
+
+        document.getElementById(
+            "chat-shell"
+        ).style.visibility =
+            "visible";
+
+    }
+    else if (firstChatVisit) {
 
         moveComposerToWelcome();
 
@@ -305,11 +319,25 @@ function initializeChat() {
             "visible";
 
     }
+    else if (savedConversationId) {
 
-    const quickQuestion =
-        sessionStorage.getItem(
-            "quickQuestion"
+        openConversation(
+            savedConversationId
         );
+
+    }
+    else {
+
+        moveComposerToWelcome();
+
+        loadConversations();
+
+        document.getElementById(
+            "chat-shell"
+        ).style.visibility =
+            "visible";
+
+    }
 
     if (quickQuestion) {
 
