@@ -352,7 +352,47 @@ function renderConversations(
                 </svg>
             </span>
         </div>
+    `;
 
+    document
+        .getElementById(
+            "new-chat-button"
+        )
+        ?.addEventListener(
+            "click",
+            startNewChat
+        );
+
+    if (
+        conversations.length === 0
+    ) {
+
+        const emptyState =
+            document.createElement(
+                "div"
+            );
+
+        emptyState.className =
+            "flex flex-col items-center justify-center py-10 text-center";
+
+        emptyState.innerHTML = `
+            <div class="text-stone-400 text-sm">
+                No conversations yet.
+            </div>
+
+            <div class="text-stone-400 text-sm mt-1">
+                Start a new chat to begin.
+            </div>
+        `;
+
+        container.appendChild(
+            emptyState
+        );
+
+        return;
+    }
+
+    container.innerHTML += `
         <div class="mb-3">
             <input
                 id="conversation-search"
@@ -374,15 +414,6 @@ function renderConversations(
             >
         </div>
     `;
-
-    document
-        .getElementById(
-            "new-chat-button"
-        )
-        ?.addEventListener(
-            "click",
-            startNewChat
-        );
 
     document
         .getElementById(
