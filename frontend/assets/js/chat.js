@@ -25,6 +25,29 @@ marked.use(
     })
 );
 
+function normalizeAnswer(
+    answer
+) {
+
+    return answer.replace(
+        /\(\s*(\$[^$]+\$)\s*\)/g,
+        "$1"
+    );
+
+}
+
+function renderAnswer(
+    answer
+) {
+
+    return marked.parse(
+        normalizeAnswer(
+            answer
+        )
+    );
+
+}
+
 /* ============================================================
  * 1.LAYOUT MANAGEMENT
  * ========================================================== */
@@ -1322,7 +1345,7 @@ function displayAssistantMessage(
 
         <div class="text-stone-700 chat-answer">
             <div class="answer-content">
-                ${marked.parse(answer)}
+                ${renderAnswer(answer)}
             </div>
 
             ${sourcesHtml}
@@ -1467,8 +1490,20 @@ function updateAssistantMessage(
     sources = []
 ) {
 
+    console.log(
+        "RAW ANSWER:",
+        answer
+    );
+
     const formattedAnswer =
-        marked.parse(answer);
+        renderAnswer(
+            answer
+        );
+
+    console.log(
+        "PARSED HTML:",
+        formattedAnswer
+    );
 
     let sourcesHtml = "";
 
@@ -1534,8 +1569,13 @@ function updateAssistantMessage(
 
     loading.content.innerHTML = "";
 
+    const normalizedAnswer =
+        normalizeAnswer(
+            answer
+        );
+
     const tokens =
-        answer.match(
+        normalizedAnswer.match(
             /(\$\$[\s\S]*?\$\$|\$[^$\n]+\$|[^\s]+|\s+)/g
         ) || [];
 
@@ -1555,7 +1595,7 @@ function updateAssistantMessage(
                     .join("");
 
             loading.content.innerHTML =
-                marked.parse(
+                renderAnswer(
                     partialAnswer
                 );
 
