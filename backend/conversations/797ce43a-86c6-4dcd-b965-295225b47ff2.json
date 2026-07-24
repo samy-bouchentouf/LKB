@@ -1,0 +1,53 @@
+{
+    "id": "797ce43a-86c6-4dcd-b965-295225b47ff2",
+    "title": "What is the Koheras ADJUSTIK ?",
+    "createdAt": "2026-07-24T16:24:15.936Z",
+    "updatedAt": "2026-07-24T16:25:40.619Z",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the Koheras ADJUSTIK ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The Koheras ADJUSTIK is a low-noise single-frequency fiber laser system. It uses a fiber Bragg grating cavity to produce a single-mode laser output with an ultra-narrow linewidth in the Hertz range and exceptionally low frequency and intensity noise. The center wavelength can be configured, typically set to **1550.12 nm** (ITU DWDM C-BAND Channel 34) or **1064.00 nm**, though other wavelengths can be specially ordered.\n\nIt is housed in a rack-mount control chassis with a front-panel interface and is designed for applications such as quantum physics, computing, sensing, and metrology. The laser is classified as **Class 3B** (or **Class 4** for high-power variants) and requires strict adherence to safety protocols. The system includes features like thermal substrate control or optional Piezo components for wavelength tuning and a keyswitch for safety interlocks.",
+            "sources": [
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "Can the laser wavelength be tuned ?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, the wavelength of the Koheras ADJUSTIK can be tuned using two methods:\n\n1. **Thermal Tuning** – Provides coarse wavelength adjustment via thermal control of the laser substrate. It is available in two modes:\n   - *Narrow thermal tuning*: Suitable for systems requiring vibration immunity but with a limited tuning range.\n   - *Wide thermal tuning*: Offers a broader tuning range at the expense of reduced immunity to vibration and acoustic pickup. This is the default option.\n\n2. **Piezo Tuning** – Enables fast and fine wavelength modulation. The lasers are fitted with Piezo tuning by default unless specified otherwise during ordering.\n\nThe standard tuning range is approximately **1 nm** from the specified center wavelength. The center wavelength itself can be configured, typically set to **1550.12 nm** (ITU DWDM C-BAND Channel 34) or **1064.00 nm**, with other wavelengths available upon special request.",
+            "sources": [
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "Can it be used in a laser locking setup ?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, the Koheras ADJUSTIK is suitable for laser locking setups. Its ultra-narrow linewidth in the Hertz range and exceptionally low frequency and intensity noise make it well-suited for applications requiring precise frequency stabilization, such as quantum physics, computing, sensing, and metrology. The laser supports wavelength tuning via thermal or Piezo control, which can be used for active feedback in locking schemes. Additionally, its single-mode operation is maintained stably over the entire operating frequency band.",
+            "sources": [
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        }
+    ]
+}

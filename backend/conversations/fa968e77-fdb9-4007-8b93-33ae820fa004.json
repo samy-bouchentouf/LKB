@@ -1,0 +1,58 @@
+{
+    "id": "fa968e77-fdb9-4007-8b93-33ae820fa004",
+    "title": "What is the PDA50B2 ?",
+    "createdAt": "2026-07-24T16:22:11.065Z",
+    "updatedAt": "2026-07-24T16:23:16.606Z",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the PDA50B2 ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The PDA50B2 is an amplified, switchable-gain Germanium (Ge) detector designed for detecting light signals in the 800 to 1800 nm wavelength range. It features:\n\n- A transimpedance amplifier with adjustable gain over a 70 dB range, controlled via an eight-position rotary switch in 10 dB steps.\n- A buffered output capable of driving 50 Ω load impedances up to 5 V.\n- A rugged housing with a removable threaded coupler (SM1T1) and retainer ring (SM1RR) for compatibility with Thorlabs 1\" threaded accessories.\n- A Ge photodiode optimized for both pulsed and continuous-wave (CW) light sources.\n- Maximum output voltages of 10 V for high-impedance loads (>5 kΩ) and 5 V for 50 Ω loads.\n- A built-in 50 Ω series resistor affecting output scaling for low terminating resistors.\n- ESD-sensitive components requiring proper precautions during handling.",
+            "sources": [
+                {
+                    "source": "PDA50B2-Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/PDA50B2-Manual.pdf"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "What wavelength range does it support ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The PDA50B2 amplified Germanium detector supports a wavelength range from **800 to 1800 nm**.",
+            "sources": [
+                {
+                    "source": "PDA50B2-Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/PDA50B2-Manual.pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "How is detector responsivity defined ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The responsivity of the PDA50B2 amplified Germanium detector is defined as the ratio of the generated photocurrent $I_{PD}$ to the incident light power $P$ at a given wavelength $\\lambda$:\n\n$$\nR(\\lambda) = \\frac{I_{PD}}{P}\n$$",
+            "sources": [
+                {
+                    "source": "PDA50B2-Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/PDA50B2-Manual.pdf"
+                }
+            ]
+        }
+    ]
+}

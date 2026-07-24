@@ -1,0 +1,68 @@
+{
+    "id": "040c178a-e589-4050-8115-683a16d6713b",
+    "title": "Is there a diagram called Laser Lock System ?",
+    "createdAt": "2026-07-24T16:25:59.148Z",
+    "updatedAt": "2026-07-24T16:26:28.332Z",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Is there a diagram called Laser Lock System ?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, there is a diagram called **Laser Lock System**.\n\nIt includes the following components:\n- Laser source\n- Piezo actuator\n- PID Controller\n- Control Computer\n- DAQ\n- Photodiode\n\nThe diagram shows six connections:\n- Frequency Feedback between Laser source and Piezo actuator\n- Signal monitoring between Laser source and PID Controller\n- Correction signal between PID Controller and Piezo actuator\n- Error signal between Control Computer and PID Controller\n- Photodiode Output between Photodiode and DAQ\n- Data acquisition between Control Computer and DAQ",
+            "sources": [
+                {
+                    "source": "Laser Lock System.png",
+                    "category": "diagrams",
+                    "url": "/documents/diagrams/Laser Lock System.png"
+                },
+                {
+                    "source": "Loss of Laser Lock During Long Acquisition.pdf",
+                    "category": "incidents",
+                    "url": "/documents/incidents/Loss of Laser Lock During Long Acquisition.pdf"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                },
+                {
+                    "source": "NIDAQ_Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/NIDAQ_Manual.pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "How does the feedback loop work ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The feedback loop in the **Laser Lock System** operates as follows:\n\n1. The **Laser source** emits light, whose frequency stability is monitored by the **Photodiode**. The photodiode converts the optical signal into an electrical output, which is sent to the **DAQ** via the *Photodiode Output* connection.\n\n2. The **DAQ** acquires this signal and transmits it to the **Control Computer** through the *Data acquisition* connection. The computer processes the data to generate an *Error signal*, representing the deviation between the measured laser frequency and the desired setpoint.\n\n3. The *Error signal* is sent from the **Control Computer** to the **PID Controller**, which computes a *Correction signal* based on proportional, integral, and derivative gains to minimize the error.\n\n4. The *Correction signal* is applied to the **Piezo actuator**, which adjusts the laser cavity or optical path to correct the frequency drift (*Frequency Feedback* connection).\n\n5. The **Laser source** is also directly monitored by the **PID Controller** via the *Signal monitoring* connection, allowing real-time adjustments to maintain lock stability.\n\nThis closed-loop system ensures continuous frequency stabilization by dynamically compensating for drifts through the interplay of measurement, error computation, and corrective actuation. The PID controller’s gain settings (as noted in the *Loss of Laser Lock During Long Acquisition* incident report) must be carefully tuned to avoid oscillations, particularly during long-term operation.",
+            "sources": [
+                {
+                    "source": "Laser Lock System.png",
+                    "category": "diagrams",
+                    "url": "/documents/diagrams/Laser Lock System.png"
+                },
+                {
+                    "source": "Loss of Laser Lock During Long Acquisition.pdf",
+                    "category": "incidents",
+                    "url": "/documents/incidents/Loss of Laser Lock During Long Acquisition.pdf"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                },
+                {
+                    "source": "C-413-UserManual-MS224E.pdf",
+                    "category": "components",
+                    "url": "/documents/components/C-413-UserManual-MS224E.pdf"
+                }
+            ]
+        }
+    ]
+}

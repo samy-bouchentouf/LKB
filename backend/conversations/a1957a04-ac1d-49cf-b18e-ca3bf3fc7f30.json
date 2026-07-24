@@ -1,0 +1,63 @@
+{
+    "id": "a1957a04-ac1d-49cf-b18e-ca3bf3fc7f30",
+    "title": "Was there an incident involving laser lock stability ?",
+    "createdAt": "2026-07-24T16:28:45.465Z",
+    "updatedAt": "2026-07-24T16:29:43.310Z",
+    "messages": [
+        {
+            "role": "user",
+            "content": "Was there an incident involving laser lock stability ?"
+        },
+        {
+            "role": "assistant",
+            "content": "Yes, there was an incident involving laser lock stability at the Kastler Brossel Laboratory. On 15-07-2026, the laser lock was repeatedly lost during acquisitions longer than two hours. The photodiode signal showed increasing oscillations before the lock failure, and the frequency stability degraded progressively until the control loop became unstable.\n\nThe root cause was identified as an overly aggressive PID controller gain for long-term operation, combined with temperature drift affecting the piezo actuator's response and amplifying control loop oscillations. Corrective actions included reducing the PID gains, introducing a temperature compensation procedure, and recalibrating the piezo actuator. The stability was verified during a six-hour acquisition test, with no further lock losses observed.",
+            "sources": [
+                {
+                    "source": "Loss of Laser Lock During Long Acquisition.pdf",
+                    "category": "incidents",
+                    "url": "/documents/incidents/Loss of Laser Lock During Long Acquisition.pdf"
+                },
+                {
+                    "source": "Laser Lock System.png",
+                    "category": "diagrams",
+                    "url": "/documents/diagrams/Laser Lock System.png"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                }
+            ]
+        },
+        {
+            "role": "user",
+            "content": "What corrective actions were implemented to prevent future lock losses ?"
+        },
+        {
+            "role": "assistant",
+            "content": "The corrective actions implemented to address the laser lock stability incident on 15-07-2026 included:\n\n- Reducing the PID controller gains to prevent overly aggressive control loop behavior during long-term operation.\n- Introducing a temperature compensation procedure to mitigate the effects of temperature drift on the piezo actuator's response.\n- Recalibrating the piezo actuator to ensure proper frequency feedback.\n- Verifying the stability through a six-hour acquisition test, during which no further lock losses were observed.",
+            "sources": [
+                {
+                    "source": "Loss of Laser Lock During Long Acquisition.pdf",
+                    "category": "incidents",
+                    "url": "/documents/incidents/Loss of Laser Lock During Long Acquisition.pdf"
+                },
+                {
+                    "source": "Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf",
+                    "category": "components",
+                    "url": "/documents/components/Koheras ADJUSTIK and ADJUSTIK HP Product Guide (1).pdf"
+                },
+                {
+                    "source": "Laser Lock System.png",
+                    "category": "diagrams",
+                    "url": "/documents/diagrams/Laser Lock System.png"
+                },
+                {
+                    "source": "NIDAQ_Manual.pdf",
+                    "category": "components",
+                    "url": "/documents/components/NIDAQ_Manual.pdf"
+                }
+            ]
+        }
+    ]
+}
