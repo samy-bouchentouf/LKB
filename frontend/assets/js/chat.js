@@ -169,6 +169,54 @@ function initializeChat() {
         }
     );
 
+    const conversationsList =
+        document.getElementById(
+            "conversations-list"
+        );
+
+    conversationsList?.addEventListener(
+        "click",
+        event => {
+
+            const newChatButton =
+                event.target.closest(
+                    "#new-chat-button"
+                );
+
+            if (newChatButton) {
+
+                startNewChat();
+
+                return;
+
+            }
+
+            if (
+                event.target.closest(
+                    ".conversation-menu"
+                )
+            ) {
+                return;
+            }
+
+            const conversationItem =
+                event.target.closest(
+                    ".conversation-item"
+                );
+
+            if (
+                conversationItem
+            ) {
+
+                openConversation(
+                    conversationItem.dataset.id
+                );
+
+            }
+
+        }
+    );
+
     const toggle =
         document.getElementById(
             "sidebar-toggle"
@@ -354,15 +402,6 @@ function renderConversations(
         </div>
     `;
 
-    document
-        .getElementById(
-            "new-chat-button"
-        )
-        ?.addEventListener(
-            "click",
-            startNewChat
-        );
-
     if (
         conversations.length === 0
     ) {
@@ -459,6 +498,9 @@ function renderConversations(
                     "div"
                 );
 
+            item.dataset.id =
+                conversation.id;
+
             item.classList.add(
                 "conversation-item"
             );
@@ -496,14 +538,6 @@ function renderConversations(
 
             title.textContent =
                 conversation.title;
-
-            title.addEventListener(
-                "click",
-                () =>
-                    openConversation(
-                        conversation.id
-                    )
-            );
 
             const menuButton =
                 document.createElement(
@@ -1500,23 +1534,25 @@ function updateAssistantMessage(
 
     loading.content.innerHTML = "";
 
-    const words =
-        answer.split(" ");
+    const tokens =
+        answer.match(
+            /(\$\$[\s\S]*?\$\$|\$[^$\n]+\$|[^\s]+|\s+)/g
+        ) || [];
 
-    let wordIndex = 0;
+    let tokenIndex = 0;
 
     const typingInterval =
         setInterval(() => {
 
-            wordIndex += 2;
+            tokenIndex += 3;
 
             const partialAnswer =
-                words
+                tokens
                     .slice(
                         0,
-                        wordIndex
+                        tokenIndex
                     )
-                    .join(" ");
+                    .join("");
 
             loading.content.innerHTML =
                 marked.parse(
@@ -1524,8 +1560,8 @@ function updateAssistantMessage(
                 );
 
             if (
-                wordIndex >=
-                words.length
+                tokenIndex >=
+                tokens.length
             ) {
 
                 clearInterval(
